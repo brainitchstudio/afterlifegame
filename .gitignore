@@ -1,12 +1,47 @@
 # OS Files
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
 
 # Environment variables & secrets
 .env
 .env.local
 .env.*.local
 *.env
+
+# Unity Generated Folders & Caches (Never commit these)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Unity Temporary & Generated Files
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+sysinfo.txt
+*.stackdump
+
+# Unity Project / IDE Files
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
 
 # Python
 __pycache__/
@@ -62,5 +97,3 @@ lerna-debug.log*
 # IDE / Editor configurations
 .idea/
 .vscode/
-*.swp
-*.swo
