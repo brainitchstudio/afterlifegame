@@ -1,0 +1,533 @@
+[
+  {
+    "id": "time",
+    "name": "Time & pacing",
+    "values": {
+      "hourSeconds": 42,
+      "startHour": 7,
+      "workStartHour": 7,
+      "workEndHour": 19,
+      "dailySummaryHour": 7,
+      "needStepMinutes": 10,
+      "speeds": [
+        0,
+        1,
+        2,
+        4
+      ],
+      "autosaveRealMinutes": 5,
+      "populationCap": 16
+    }
+  },
+  {
+    "id": "deployment",
+    "name": "Deployment",
+    "values": {
+      "startingSupplies": {
+        "wood": 150,
+        "scrap_metal": 100,
+        "food": 40,
+        "ammo": 30,
+        "medical_supplies": 8,
+        "cloth": 20,
+        "components": 8,
+        "seed_packets": 6,
+        "raw_salvage": 0,
+        "planks": 0,
+        "metal_parts": 0
+      },
+      "startingEquipment": [
+        {
+          "item": "wooden_club",
+          "count": 5,
+          "state": "equipped"
+        },
+        {
+          "item": "wooden_club",
+          "count": 2,
+          "state": "spare"
+        },
+        {
+          "item": "basic_pistol",
+          "count": 2,
+          "state": "spare"
+        }
+      ],
+      "startingTents": 5,
+      "startingCrew": 5,
+      "cacheCapacity": 600,
+      "guaranteedLocal": {
+        "wood": 500,
+        "scrap_metal": 350,
+        "cloth": 40,
+        "components": 8,
+        "seed_packets": 6
+      },
+      "localInsidePerimeterShare": 0.5,
+      "fadeSeconds": 2,
+      "welcomeDelaySeconds": 1
+    }
+  },
+  {
+    "id": "world",
+    "name": "World & regional scale",
+    "values": {
+      "mapSizes": {
+        "compact": {
+          "worldgen": "medium",
+          "label": "Compact",
+          "regionScale": 0.38
+        },
+        "standard": {
+          "worldgen": "large",
+          "label": "Standard",
+          "regionScale": 0.41
+        },
+        "large": {
+          "worldgen": "xl",
+          "label": "Large",
+          "regionScale": 0.54
+        }
+      },
+      "landingAttempts": 32,
+      "landingAreaTiles": 32,
+      "maxSlopeDegrees": 10,
+      "campExits": 2,
+      "reservedPatchTiles": 6,
+      "reservedPatches": 3,
+      "specTiles": {
+        "localResourceRadius": 60,
+        "protectedPerimeter": 45,
+        "migrationCorridor": [
+          40,
+          70
+        ],
+        "bands": {
+          "near": [
+            60,
+            100
+          ],
+          "mid": [
+            100,
+            220
+          ],
+          "far": [
+            180,
+            300
+          ]
+        }
+      },
+      "corridorAttempts": 24,
+      "corridorWidthTiles": 3,
+      "minDebrisTiles": 9,
+      "buildableShare": 0.9,
+      "siteCapacity": {
+        "town": 3,
+        "industrial": 2,
+        "stop": 2
+      },
+      "regionLetters": "ABCDEFGHJKLMNPRSTUVWXZ",
+      "localScale": 0.41
+    }
+  },
+  {
+    "id": "ledger",
+    "name": "Ledger & storage",
+    "values": {
+      "cancelInProgressRefundLoss": 0.5,
+      "demolishRefund": 0.4,
+      "demolishRefundResources": [
+        "wood",
+        "scrap_metal",
+        "planks",
+        "metal_parts"
+      ],
+      "ruinShare": 0.25,
+      "equippedItemsCountTowardWeight": false
+    }
+  },
+  {
+    "id": "survivors",
+    "name": "Survivors",
+    "values": {
+      "statMin": 1,
+      "statMax": 10,
+      "startStatMin": 3,
+      "startQualityMin": 9,
+      "maxTraits": 2,
+      "maxDrawbacks": 1,
+      "excludedStartTraits": [
+        "violent",
+        "contagious",
+        "refuses_work"
+      ],
+      "baseHP": 100,
+      "archetypes": [
+        {
+          "id": "A",
+          "min": {
+            "int": 7
+          }
+        },
+        {
+          "id": "B",
+          "min": {
+            "str": 6,
+            "end": 6
+          }
+        },
+        {
+          "id": "C",
+          "min": {
+            "int": 7
+          }
+        },
+        {
+          "id": "D",
+          "min": {
+            "agi": 6,
+            "end": 6
+          }
+        },
+        {
+          "id": "E",
+          "min": {}
+        }
+      ],
+      "firstRecruitQualityMin": 16,
+      "statMean": 5,
+      "statSpread": 1.5,
+      "traitRolls": [
+        0.6,
+        0.3
+      ],
+      "drawbackShare": 0.3,
+      "startMorale": 70,
+      "moraleMax": 100
+    }
+  },
+  {
+    "id": "labor",
+    "name": "Labor factor",
+    "values": {
+      "attributeBase": 0.8,
+      "attributePer": 0.04,
+      "proficiencyMax": 20,
+      "proficiencyHoursPerPoint": 4,
+      "proficiencyBonusPerPoint": 0.01,
+      "attributeFor": {
+        "craft": "int",
+        "treat": "int",
+        "food": "end",
+        "farm": "end",
+        "gather": "str",
+        "build": "str",
+        "scavenge": "agi"
+      },
+      "healthBands": [
+        {
+          "above": 0.5,
+          "factor": 1
+        },
+        {
+          "above": 0.25,
+          "factor": 0.75
+        },
+        {
+          "above": 0,
+          "factor": 0
+        }
+      ],
+      "fatigueBands": [
+        {
+          "upTo": 60,
+          "factor": 1
+        },
+        {
+          "upTo": 85,
+          "factor": 0.75
+        },
+        {
+          "upTo": 99,
+          "factor": 0.5
+        },
+        {
+          "upTo": 100,
+          "factor": 0
+        }
+      ]
+    }
+  },
+  {
+    "id": "fatigue",
+    "name": "Fatigue",
+    "values": {
+      "work": 4,
+      "overtime": 7,
+      "combat": 8,
+      "offsite": 5,
+      "housedRest": -8,
+      "unhousedRest": -4,
+      "forcedRestAt": 100,
+      "missionMax": 70,
+      "forcedRestUntil": 40
+    }
+  },
+  {
+    "id": "food",
+    "name": "Food & starvation",
+    "values": {
+      "perPersonPerDay": 1,
+      "moraleShortageHours": 12,
+      "moralePerDay": -5,
+      "healthShortageHours": 24,
+      "hpPerDay": -10,
+      "phase1HpFloor": 1
+    }
+  },
+  {
+    "id": "health",
+    "name": "Injury, bleeding & infection",
+    "values": {
+      "downedHours": 2,
+      "rescueLaborHours": 0.25,
+      "carrySpeed": 0.5,
+      "bleedChance": 0.1,
+      "bleedHpPerHour": 1,
+      "infectionStart": 20,
+      "infectionPerHour": 1,
+      "infectionTreatedPerHour": -2,
+      "reanimateWarningHours": 2,
+      "suppliesPerPatientHours": 4,
+      "selfTreatRate": 0.5,
+      "restHealPerHour": 1
+    }
+  },
+  {
+    "id": "combat",
+    "name": "Infected & noise",
+    "values": {
+      "wanderer": {
+        "hp": 45,
+        "speed": 1,
+        "attackDamage": 8,
+        "attackInterval": 2,
+        "attackRange": 1.5,
+        "sightTiles": 12,
+        "hearingTiles": 20,
+        "structureDamage": 4
+      },
+      "noiseTiles": {
+        "gunshot": 40,
+        "workstations": 12,
+        "salvage_yard": 20,
+        "radio_broadcast": 25
+      },
+      "guardPistolMinAmmo": 5,
+      "interceptChaseTiles": 10
+    }
+  },
+  {
+    "id": "gathering",
+    "name": "Local gathering",
+    "values": {
+      "yieldPerHour": {
+        "wood": 12,
+        "scrap_metal": 8,
+        "cloth": 4
+      },
+      "singleUnitHours": {
+        "components": 0.5,
+        "seed_packets": 0.5
+      },
+      "largeNodeWorkers": 2,
+      "largeNodeEfficiency": 0.85,
+      "pathSpeed": 2,
+      "offPathSpeed": 1,
+      "nodes": {
+        "timber": {
+          "resource": "wood",
+          "small": {
+            "stock": 20,
+            "key": "decor/deco_fallen_log",
+            "workers": 1
+          },
+          "large": {
+            "stock": 60,
+            "key": "decor/deco_logs",
+            "workers": 2
+          }
+        },
+        "scrap": {
+          "resource": "scrap_metal",
+          "small": {
+            "stock": 15,
+            "key": "decor/deco_tires",
+            "workers": 1
+          },
+          "large": {
+            "stock": 45,
+            "key": "decor/deco_car",
+            "workers": 2
+          }
+        },
+        "cloth": {
+          "resource": "cloth",
+          "small": {
+            "stock": 5,
+            "key": "decor/deco_backpack",
+            "workers": 1
+          },
+          "large": {
+            "stock": 12,
+            "key": "decor/deco_cart",
+            "workers": 2
+          }
+        },
+        "components": {
+          "resource": "components",
+          "small": {
+            "stock": 2,
+            "key": "decor/deco_crates",
+            "workers": 1
+          }
+        },
+        "seeds": {
+          "resource": "seed_packets",
+          "small": {
+            "stock": 2,
+            "key": "decor/deco_wheelbarrow",
+            "workers": 1
+          }
+        }
+      },
+      "nodeSpacingTiles": 2,
+      "carryPerTrip": 10
+    }
+  },
+  {
+    "id": "construction",
+    "name": "Construction",
+    "values": {
+      "blueprintHpShare": 0.25,
+      "maxBuilders": 2,
+      "secondBuilderFactor": 0.75,
+      "operationalHpShare": 0.25
+    }
+  },
+  {
+    "id": "farming",
+    "name": "Farming",
+    "values": {
+      "firstCropHours": 12,
+      "batchHours": 3,
+      "gardenFoodPerWorkHour": 0.25,
+      "fieldFarmFoodPerWorkHour": 0.5
+    }
+  },
+  {
+    "id": "operations",
+    "name": "Operations Board",
+    "values": {
+      "maxConcurrent": 1,
+      "scavengeTeam": [
+        2,
+        3
+      ],
+      "expeditionTeam": [
+        3,
+        4
+      ],
+      "tilesPerHour": 80,
+      "minOneWayHours": 0.5,
+      "carryBase": 15,
+      "carryPerStr": 2,
+      "eligibility": {
+        "minHpShare": 0.6,
+        "maxFatigue": 70,
+        "maxInfection": 50
+      },
+      "eventAgiCoeff": 0.01,
+      "eventGuardCoeff": 0.02,
+      "eventMin": 0.02,
+      "eventMax": 0.5,
+      "outcomes": {
+        "delay": {
+          "weight": 0.5,
+          "hours": 2
+        },
+        "injury": {
+          "weight": 0.35,
+          "hp": 15,
+          "ammoMitigatedHp": 8,
+          "ammoCost": 2,
+          "ammoMin": 4,
+          "kitMitigatedHp": 5
+        },
+        "cargoLoss": {
+          "weight": 0.15,
+          "share": 0.2
+        }
+      },
+      "intSpeedupMin": 5,
+      "intPenaltyHours": 2,
+      "tutorialSafeRuns": 2
+    }
+  },
+  {
+    "id": "recruitment",
+    "name": "Radio recruitment",
+    "values": {
+      "broadcastFood": 2,
+      "broadcastHours": 0.5,
+      "cooldownHours": 24,
+      "arrivalHours": [
+        4,
+        8
+      ],
+      "walkHours": 1,
+      "relayCooldownHours": 18,
+      "relayArrivalHours": [
+        2,
+        4
+      ],
+      "relaySuccessBonus": 0.1,
+      "successCap": 0.95
+    }
+  },
+  {
+    "id": "migration",
+    "name": "Migrations",
+    "values": {
+      "first": {
+        "count": 12,
+        "warningHours": 3,
+        "passageHours": 2
+      },
+      "readiness": {
+        "count": 24,
+        "warningHours": 6,
+        "passageHours": 3
+      },
+      "relayWarningBonusHours": 6,
+      "cooldownHours": 24,
+      "clearHours": 1,
+      "shelterEntryMinutes": 10,
+      "shelterSimultaneous": 4
+    }
+  },
+  {
+    "id": "recovery",
+    "name": "Tutorial recovery",
+    "values": {
+      "deliveryCaps": {
+        "wood": 80,
+        "scrap_metal": 50,
+        "cloth": 10,
+        "components": 4,
+        "seed_packets": 3
+      },
+      "deliveryHours": 6
+    }
+  }
+]

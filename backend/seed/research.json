@@ -1,0 +1,108 @@
+[
+  {
+    "id": "tech_solar_grid",
+    "name": "Solar Battery Array",
+    "icon": "☀️",
+    "branch": "defense",
+    "description": "Supplies constant power to spotlights, watchtowers, and automated gates.",
+    "cost": {
+      "scrap_metal": 60,
+      "wood": 40
+    },
+    "hours": 4,
+    "requires": [],
+    "effects": {
+      "watchtowerNightRange": 0.25
+    },
+    "unlocks": []
+  },
+  {
+    "id": "tech_barbed_perimeter",
+    "name": "Barbed Mesh Wire",
+    "icon": "⛓️",
+    "branch": "defense",
+    "description": "All barricades deal 6 continuous damage/sec to hostiles.",
+    "cost": {
+      "scrap_metal": 90,
+      "wood": 50
+    },
+    "hours": 8,
+    "requires": [
+      "tech_solar_grid"
+    ],
+    "effects": {
+      "barricadeThorns": 6
+    },
+    "unlocks": []
+  },
+  {
+    "id": "tech_advanced_metallurgy",
+    "name": "Tempered Alloy Smelting",
+    "icon": "🔥",
+    "branch": "industry",
+    "description": "Improves metal generation by 35% and weapon durability.",
+    "cost": {
+      "wood": 50,
+      "scrap_metal": 50
+    },
+    "hours": 4,
+    "requires": [],
+    "effects": {
+      "metalYield": 0.35
+    },
+    "unlocks": []
+  },
+  {
+    "id": "tech_automated_sawmills",
+    "name": "Steam-Driven Sawmills",
+    "icon": "⚙️",
+    "branch": "industry",
+    "description": "Workshop and Lumber Mill wood yields increased by 50%.",
+    "cost": {
+      "wood": 100,
+      "scrap_metal": 75
+    },
+    "hours": 8,
+    "requires": [
+      "tech_advanced_metallurgy"
+    ],
+    "effects": {
+      "woodYield": 0.5
+    },
+    "unlocks": []
+  },
+  {
+    "id": "tech_penicillin",
+    "name": "Penicillin Fermentation",
+    "icon": "🧪",
+    "branch": "medicine",
+    "description": "Survivors treat injuries 50% faster and gain resistance to infection.",
+    "cost": {
+      "wood": 40,
+      "food": 50
+    },
+    "hours": 4,
+    "requires": [],
+    "effects": {
+      "healingRate": 0.5
+    },
+    "unlocks": []
+  },
+  {
+    "id": "tech_radio_mesh",
+    "name": "CB Radio Mesh Network",
+    "icon": "📡",
+    "branch": "recon",
+    "description": "Doubles survivor signal broadcast reach and detects incursions 2 hours earlier.",
+    "cost": {
+      "wood": 45,
+      "scrap_metal": 60
+    },
+    "hours": 4,
+    "requires": [],
+    "effects": {
+      "earlyWarningHours": 2
+    },
+    "unlocks": []
+  }
+]

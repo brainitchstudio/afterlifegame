@@ -1,0 +1,59 @@
+[
+  {
+    "id": "general_worker",
+    "name": "General Worker",
+    "attribute": "str",
+    "multiplier": 1,
+    "multiplierAppliesTo": [],
+    "role": null,
+    "workCategory": "gather"
+  },
+  {
+    "id": "farmer",
+    "name": "Farmer",
+    "attribute": "end",
+    "multiplier": 1,
+    "multiplierAppliesTo": [],
+    "role": "farmer",
+    "workCategory": "farm"
+  },
+  {
+    "id": "engineer",
+    "name": "Engineer",
+    "attribute": "str",
+    "multiplier": 1.5,
+    "multiplierAppliesTo": [
+      "build",
+      "craft"
+    ],
+    "role": "engineer",
+    "workCategory": "build"
+  },
+  {
+    "id": "medic",
+    "name": "Medic",
+    "attribute": "int",
+    "multiplier": 1,
+    "multiplierAppliesTo": [],
+    "role": "medic",
+    "workCategory": "treat"
+  },
+  {
+    "id": "guard",
+    "name": "Guard",
+    "attribute": "agi",
+    "multiplier": 1,
+    "multiplierAppliesTo": [],
+    "role": "patrol",
+    "workCategory": null
+  },
+  {
+    "id": "scavenger",
+    "name": "Scavenger",
+    "attribute": "agi",
+    "multiplier": 1,
+    "multiplierAppliesTo": [],
+    "role": "scavenger",
+    "workCategory": "scavenge"
+  }
+]

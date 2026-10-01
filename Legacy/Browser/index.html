@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#161d18">
+  <meta name="description" content="Build a refuge. Hold the perimeter. Survive 24 days in Afterlife, a pixel art zombie survival game.">
+  <title>Afterlife — Hold until dawn</title>
+  <link rel="icon" type="image/svg+xml" href="afterlife/icon.svg">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen&family=IBM+Plex+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="afterlife/style.css?v=art-2">
+  <script src="js/pixi-legacy.min.js"></script>
+  <!-- Versioned module URLs so browsers never mix cached and updated modules. Bump the version with any module change. -->
+  <script type="importmap">
+  {
+    "imports": {
+      "./afterlife/art.mjs": "./afterlife/art.mjs?v=art-2",
+      "./afterlife/buildings.mjs": "./afterlife/buildings.mjs?v=art-2",
+      "./afterlife/combat.mjs": "./afterlife/combat.mjs?v=art-2",
+      "./afterlife/data.mjs": "./afterlife/data.mjs?v=art-2",
+      "./afterlife/economy.mjs": "./afterlife/economy.mjs?v=art-2",
+      "./afterlife/expeditions.mjs": "./afterlife/expeditions.mjs?v=art-2",
+      "./afterlife/health.mjs": "./afterlife/health.mjs?v=art-2",
+      "./afterlife/hudSkin.mjs": "./afterlife/hudSkin.mjs?v=art-2",
+      "./afterlife/land.mjs": "./afterlife/land.mjs?v=art-2",
+      "./afterlife/model.mjs": "./afterlife/model.mjs?v=art-2",
+      "./afterlife/navigation.mjs": "./afterlife/navigation.mjs?v=art-2",
+      "./afterlife/pathing.mjs": "./afterlife/pathing.mjs?v=art-2",
+      "./afterlife/recruitment.mjs": "./afterlife/recruitment.mjs?v=art-2",
+      "./afterlife/rules.mjs": "./afterlife/rules.mjs?v=art-2",
+      "./afterlife/save.mjs": "./afterlife/save.mjs?v=art-2",
+      "./afterlife/saveSchema.mjs": "./afterlife/saveSchema.mjs?v=art-2",
+      "./afterlife/spatial.mjs": "./afterlife/spatial.mjs?v=art-2",
+      "./afterlife/staff.mjs": "./afterlife/staff.mjs?v=art-2",
+      "./afterlife/survivors.mjs": "./afterlife/survivors.mjs?v=art-2",
+      "./afterlife/trees.mjs": "./afterlife/trees.mjs?v=art-2",
+      "./afterlife/view.mjs": "./afterlife/view.mjs?v=art-2",
+      "./afterlife/ui-kit/pixel-assets-v2.js": "./afterlife/ui-kit/pixel-assets-v2.js?v=art-2",
+      "./afterlife/ui-kit/pixel-buildings.js": "./afterlife/ui-kit/pixel-buildings.js?v=art-2",
+      "./afterlife/ui-kit/pixel-gunfire.js": "./afterlife/ui-kit/pixel-gunfire.js?v=art-2",
+      "./afterlife/ui-kit/pixel-molotov.js": "./afterlife/ui-kit/pixel-molotov.js?v=art-2",
+      "./afterlife/ui-kit/pixel-ui.js": "./afterlife/ui-kit/pixel-ui.js?v=art-2",
+      "./afterlife/ui-kit/pixel-zombies.js": "./afterlife/ui-kit/pixel-zombies.js?v=art-2",
+      "./afterlife/vendor/heap.mjs": "./afterlife/vendor/heap.mjs?v=art-2",
+      "./afterlife/vendor/kdbush.mjs": "./afterlife/vendor/kdbush.mjs?v=art-2",
+      "./afterlife/vendor/pathfinding.mjs": "./afterlife/vendor/pathfinding.mjs?v=art-2",
+      "./afterlife/vendor/valibot.mjs": "./afterlife/vendor/valibot.mjs?v=art-2"
+    }
+  }
+  </script>
+  <script type="module" src="afterlife/main.mjs?v=art-2"></script>
+</head>
+<body>
+  <main id="game" aria-label="Afterlife survival map"></main>
+  <div id="hud">
+    <header class="hud-panel identity">
+      <div class="brand-line"><span class="brand-mark" aria-hidden="true">A<span>+</span></span><div><h1>AFTERLIFE<span class="brand-dot">.</span></h1><p>HOLD UNTIL DAWN</p></div><button class="icon-button" data-action="help" aria-label="How to play">?</button></div>
+      <div class="clock-line"><span class="live-dot"></span><strong id="day-label">DAY 01 <span>/ 24</span></strong><span id="phase-label">DAYLIGHT</span><strong id="clock-label">06:00</strong></div>
+      <div class="day-track" title="Dawn · Daylight · Dusk · Midnight · Dead of night"><div id="day-progress"></div></div>
+      <div class="time-controls"><span id="phase-countdown">12h until nightfall</span><div><button data-action="pause" id="pause-button" aria-label="Pause game">Ⅱ</button><button data-action="speed" data-speed="1" class="active">1×</button><button data-action="speed" data-speed="2">2×</button><button data-action="speed" data-speed="4">4×</button></div></div>
+    </header>
+    <section class="hud-panel supplies" aria-label="Settlement resources">
+      <div class="panel-eyebrow"><span>SETTLEMENT SUPPLIES</span><span class="status-tag" id="save-status">AUTOSAVE ON</span></div>
+      <div class="resource-grid" id="resources"></div>
+      <div class="base-health"><div><span>REFUGE INTEGRITY</span><strong id="integrity-label">100%</strong></div><div class="meter"><span id="integrity-bar"></span></div></div>
+      <div id="warnings" class="warnings-list" aria-live="polite" hidden></div>
+    </section>
+    <section class="hud-panel crew-panel" aria-label="Survivor patrols">
+      <button class="panel-heading" data-action="toggle-roster"><span><span class="small-cross">✚</span> YOUR SURVIVORS <span id="crew-count">4 / 6</span></span><span id="roster-chevron">−</span></button>
+      <div id="roster-content"><div id="roster"></div><button class="recruit-button" data-action="recruit" id="recruit-button"><span>+ Recruit survivors</span><span>2 free beds</span></button></div>
+      <div class="patrol-summary" id="patrol-summary"></div>
+    </section>
+    <section class="command-panel" aria-label="Settlement controls">
+      <div class="threat-readout"><span class="threat-dot"></span><span id="threat-label">PERIMETER QUIET</span><strong id="kill-count">0 NEUTRALIZED</strong></div>
+      <div class="command-buttons"><button class="build-button" data-action="build-menu"><span class="hammer-icon"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3h5l3 3v3l-2 2-6-6z"/><path d="M14 9 4 19l1.5 1.5L15.5 10.5"/></svg></span><span>BUILD <small>[ B ]</small></span><span class="build-plus"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span></button><button class="utility-button" data-action="expeditions" aria-label="Manage expeditions" title="Expeditions [E]"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11 20 4l-7 16-2-7z"/></svg><small>EXPED</small><span class="tool-badge" id="expedition-badge" hidden></span></button><button class="utility-button alarm-button" id="alarm-button" data-action="alarm" aria-label="Raise or lower the alarm" aria-pressed="false"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4zM10 21h4"/></svg><small>ALARM</small></button><button class="utility-button" data-action="expand-land" aria-label="Expand territory" title="Claim land [L]"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16v16H4zM4 12h16M12 4v16"/></svg><small>LAND</small></button><button class="utility-button" data-action="overview" aria-label="Open settlement overview" title="Settlement overview"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h12v16H6zM9 9h6M9 13h6M9 17h3"/></svg><small>BASE</small></button><button class="utility-button" data-action="settings" aria-label="Open settings" title="Menu"><svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><small>MENU</small></button></div>
+      <p class="control-hint">SELECT TO INSPECT <span>·</span> SPACE TO PAUSE <span>·</span> L TO EXPAND</p>
+    </section>
+    <div class="objective" id="objective"><span class="objective-icon">◇</span><div><span>THE LONG NIGHT</span><p>Build a refuge. Keep them alive. <strong>Survive 24 days.</strong></p></div><button class="icon-button" data-action="dismiss-objective" aria-label="Dismiss objective">×</button></div>
+    <div id="notifications" aria-live="polite"></div>
+    <div id="edge-alert" class="edge-alert" role="alert" hidden></div>
+    <div id="hover-tip" class="hover-tip" hidden></div>
+    <aside id="inspector" class="floating-panel" aria-label="Selected unit details" hidden></aside>
+    <aside id="build-menu" class="floating-panel build-menu" aria-label="Construction catalog" hidden></aside>
+    <div id="placement-banner" class="placement-banner" hidden></div>
+    <div id="expansion-banner" class="placement-banner" hidden></div>
+    <div id="trader-banner" class="placement-banner" hidden></div>
+    <div id="order-banner" class="order-banner" aria-live="polite" hidden></div>
+    <div id="modal-backdrop" class="modal-backdrop" hidden><section id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"></section></div>
+    <div id="loading" class="loading"><span class="brand-mark">A<span>+</span></span><strong>AFTERLIFE</strong><p>Finding a place to survive…</p></div>
+  </div>
+  <noscript>Afterlife requires JavaScript to run.</noscript>
+</body>
+</html>

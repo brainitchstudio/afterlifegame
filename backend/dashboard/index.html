@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Afterlife Content Studio</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' rx='3' fill='%2317191c'/><path d='M8 3c2 3 3 4 3 6a3 3 0 0 1-6 0c0-1 .5-2 1-2.5C6 8 7 8 7 7c0-1.5.5-3 1-4z' fill='%23e0a84a'/></svg>">
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+  <aside id="sidebar">
+    <div class="brand">
+      <span class="brand-mark">♨</span>
+      <div><div class="brand-name">Afterlife</div><div class="brand-sub">Content Studio</div></div>
+    </div>
+    <nav id="nav"></nav>
+    <div class="sidebar-foot">
+      <button class="btn ghost small" data-action="export">Export JSON</button>
+      <button class="btn ghost small" data-action="import">Import JSON</button>
+      <button class="btn ghost small danger-text" data-action="reset">Reset to shipped</button>
+      <input type="file" id="import-file" accept="application/json" hidden>
+    </div>
+  </aside>
+  <div id="shell">
+    <header id="topbar">
+      <div id="crumbs"></div>
+      <div class="topbar-right">
+        <button id="issues-pill" class="pill" data-href="#/issues"></button>
+        <span id="publish-state" class="pill"></span>
+        <button id="publish-btn" class="btn primary" data-action="publish" title="Write web/src/engine/gameContent.mjs">Publish to game</button>
+      </div>
+    </header>
+    <main id="view"></main>
+  </div>
+  <div id="toasts"></div>
+  <div id="modal-root"></div>
+  <script src="studio.js"></script>
+</body>
+</html>

@@ -1,0 +1,1082 @@
+[
+  {
+    "id": "core",
+    "name": "Refuge HQ",
+    "subtitle": "The heart of your settlement",
+    "w": 80,
+    "h": 64,
+    "hp": 800,
+    "cost": {},
+    "icon": "⌂",
+    "color": "#d6c69b",
+    "upgrades": [
+      {
+        "id": "fortify",
+        "name": "Reinforced walls",
+        "description": "+400 maximum integrity",
+        "cost": {
+          "wood": 35,
+          "scrap_metal": 20
+        },
+        "requires": null
+      },
+      {
+        "id": "radio",
+        "name": "Radio antenna",
+        "description": "Recruit for 25% less food; +2 housing",
+        "cost": {
+          "wood": 25,
+          "scrap_metal": 20
+        },
+        "requires": null
+      },
+      {
+        "id": "bunker",
+        "name": "Last refuge",
+        "description": "+600 integrity; slowly self-repairs",
+        "cost": {
+          "wood": 90,
+          "scrap_metal": 55
+        },
+        "requires": "fortify"
+      },
+      {
+        "id": "beacon",
+        "name": "Signal beacon",
+        "description": "Walk-up survivors find you twice as often",
+        "cost": {
+          "wood": 60,
+          "scrap_metal": 50
+        },
+        "requires": "radio"
+      }
+    ]
+  },
+  {
+    "id": "farm",
+    "name": "Farm",
+    "subtitle": "Grow food to sustain your survivors",
+    "w": 80,
+    "h": 64,
+    "hp": 190,
+    "cost": {
+      "wood": 45,
+      "scrap_metal": 8
+    },
+    "icon": "♧",
+    "color": "#afc879",
+    "upgrades": [
+      {
+        "id": "irrigation",
+        "name": "Irrigation",
+        "description": "+50% food production",
+        "cost": {
+          "wood": 25,
+          "scrap_metal": 12
+        },
+        "requires": null
+      },
+      {
+        "id": "storage",
+        "name": "Seed stores",
+        "description": "+80 durability; +25% food production",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 8
+        },
+        "requires": null
+      },
+      {
+        "id": "greenhouse",
+        "name": "Greenhouse",
+        "description": "+75% production; full output at night",
+        "cost": {
+          "wood": 65,
+          "scrap_metal": 35
+        },
+        "requires": "irrigation"
+      },
+      {
+        "id": "harvest",
+        "name": "Rich harvest",
+        "description": "+75% food production",
+        "cost": {
+          "wood": 60,
+          "scrap_metal": 25
+        },
+        "requires": "storage"
+      }
+    ]
+  },
+  {
+    "id": "dorm",
+    "name": "Bunkhouse",
+    "subtitle": "Four beds for new survivors",
+    "w": 80,
+    "h": 64,
+    "hp": 280,
+    "cost": {
+      "wood": 60,
+      "scrap_metal": 15
+    },
+    "icon": "▤",
+    "color": "#c6bba0",
+    "upgrades": [
+      {
+        "id": "bunks",
+        "name": "Bunk beds",
+        "description": "+2 survivor spaces",
+        "cost": {
+          "wood": 35,
+          "scrap_metal": 8
+        },
+        "requires": null
+      },
+      {
+        "id": "comfort",
+        "name": "Warm bedding",
+        "description": "Survivors heal 25% faster",
+        "cost": {
+          "wood": 25,
+          "scrap_metal": 10
+        },
+        "requires": null
+      },
+      {
+        "id": "annex",
+        "name": "Bunkhouse annex",
+        "description": "+4 survivor spaces",
+        "cost": {
+          "wood": 80,
+          "scrap_metal": 30
+        },
+        "requires": "bunks"
+      },
+      {
+        "id": "infirmary",
+        "name": "Recovery room",
+        "description": "Survivors heal 75% faster",
+        "cost": {
+          "wood": 50,
+          "scrap_metal": 40
+        },
+        "requires": "comfort"
+      }
+    ]
+  },
+  {
+    "id": "workshop",
+    "name": "Workshop",
+    "subtitle": "Produce wood and salvage metal",
+    "w": 80,
+    "h": 64,
+    "hp": 240,
+    "cost": {
+      "wood": 50,
+      "scrap_metal": 18
+    },
+    "icon": "⚒",
+    "color": "#d3a56b",
+    "upgrades": [
+      {
+        "id": "sawbench",
+        "name": "Saw bench",
+        "description": "+60% wood production",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 15
+        },
+        "requires": null
+      },
+      {
+        "id": "forge",
+        "name": "Salvage forge",
+        "description": "+70% metal production",
+        "cost": {
+          "wood": 25,
+          "scrap_metal": 20
+        },
+        "requires": null
+      },
+      {
+        "id": "machinery",
+        "name": "Power tools",
+        "description": "+100% wood production; engineers repair 50% faster",
+        "cost": {
+          "wood": 65,
+          "scrap_metal": 40
+        },
+        "requires": "sawbench"
+      },
+      {
+        "id": "recycling",
+        "name": "Recycling line",
+        "description": "+100% metal production",
+        "cost": {
+          "wood": 60,
+          "scrap_metal": 45
+        },
+        "requires": "forge"
+      }
+    ]
+  },
+  {
+    "id": "clinic",
+    "name": "Clinic",
+    "subtitle": "Treat the injured and speed recovery",
+    "w": 80,
+    "h": 64,
+    "hp": 210,
+    "cost": {
+      "wood": 55,
+      "scrap_metal": 30
+    },
+    "icon": "✚",
+    "color": "#d98e8e",
+    "upgrades": [
+      {
+        "id": "salves",
+        "name": "Herbal salves",
+        "description": "+40% healing refuge-wide; medics +50%",
+        "cost": {
+          "wood": 25,
+          "scrap_metal": 12
+        },
+        "requires": null
+      },
+      {
+        "id": "surgeon",
+        "name": "Field surgeon",
+        "description": "40% less expedition injury risk",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 15
+        },
+        "requires": null
+      },
+      {
+        "id": "ward",
+        "name": "Recovery ward",
+        "description": "+120 durability; +40% healing; medics +50%",
+        "cost": {
+          "wood": 55,
+          "scrap_metal": 30
+        },
+        "requires": "salves"
+      },
+      {
+        "id": "antibiotics",
+        "name": "Antibiotics",
+        "description": "Survivors no longer lose health to starvation",
+        "cost": {
+          "wood": 70,
+          "scrap_metal": 40
+        },
+        "requires": "surgeon"
+      }
+    ]
+  },
+  {
+    "id": "barracks",
+    "name": "Barracks",
+    "subtitle": "Train guards to hunt the dead; +2 beds",
+    "w": 80,
+    "h": 64,
+    "hp": 320,
+    "cost": {
+      "wood": 70,
+      "scrap_metal": 35
+    },
+    "icon": "⚔",
+    "color": "#9fb7c9",
+    "upgrades": [
+      {
+        "id": "drills",
+        "name": "Combat drills",
+        "description": "Guards deal +25% damage",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 20
+        },
+        "requires": null
+      },
+      {
+        "id": "armory",
+        "name": "Armory",
+        "description": "Guards take 30% less damage",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 25
+        },
+        "requires": null
+      },
+      {
+        "id": "rally",
+        "name": "Rapid response",
+        "description": "Guards move 40% faster and hunt 50% farther",
+        "cost": {
+          "wood": 55,
+          "scrap_metal": 35
+        },
+        "requires": "drills"
+      },
+      {
+        "id": "nightwatch",
+        "name": "Night watch",
+        "description": "Guards fire 30% faster; +2 guard posts",
+        "cost": {
+          "wood": 60,
+          "scrap_metal": 45
+        },
+        "requires": "armory"
+      }
+    ]
+  },
+  {
+    "id": "tower",
+    "name": "Watchtower",
+    "subtitle": "Stands free, even outside the wall; guards keep watch from it in shifts",
+    "w": 32,
+    "h": 32,
+    "hp": 420,
+    "cost": {
+      "wood": 40,
+      "scrap_metal": 22
+    },
+    "icon": "♜",
+    "color": "#c4c9a9",
+    "upgrades": [
+      {
+        "id": "scope",
+        "name": "Long sight",
+        "description": "+45 attack range",
+        "cost": {
+          "wood": 20,
+          "scrap_metal": 15
+        },
+        "requires": null
+      },
+      {
+        "id": "rounds",
+        "name": "Heavy rounds",
+        "description": "+12 damage per shot",
+        "cost": {
+          "wood": 20,
+          "scrap_metal": 20
+        },
+        "requires": null
+      },
+      {
+        "id": "spotlight",
+        "name": "Spotlight",
+        "description": "+55 range; illuminate nearby dead",
+        "cost": {
+          "wood": 45,
+          "scrap_metal": 35
+        },
+        "requires": "scope"
+      },
+      {
+        "id": "rapid",
+        "name": "Quick reload",
+        "description": "Fire twice as fast",
+        "cost": {
+          "wood": 50,
+          "scrap_metal": 45
+        },
+        "requires": "rounds"
+      }
+    ]
+  },
+  {
+    "id": "barricade",
+    "name": "Barricade",
+    "subtitle": "Slow the dead at your perimeter",
+    "w": 32,
+    "h": 16,
+    "hp": 300,
+    "cost": {
+      "wood": 12,
+      "scrap_metal": 2
+    },
+    "icon": "▥",
+    "color": "#bca885",
+    "upgrades": [
+      {
+        "id": "reinforce",
+        "name": "Cross bracing",
+        "description": "+150 durability",
+        "cost": {
+          "wood": 14,
+          "scrap_metal": 4
+        },
+        "requires": null
+      },
+      {
+        "id": "wire",
+        "name": "Barbed wire",
+        "description": "Deal 4 damage/sec to attackers",
+        "cost": {
+          "wood": 8,
+          "scrap_metal": 10
+        },
+        "requires": null
+      },
+      {
+        "id": "plate",
+        "name": "Steel plating",
+        "description": "+250 durability",
+        "cost": {
+          "wood": 20,
+          "scrap_metal": 18
+        },
+        "requires": "reinforce"
+      },
+      {
+        "id": "spikes",
+        "name": "Steel spikes",
+        "description": "Deal 10 additional damage/sec",
+        "cost": {
+          "wood": 15,
+          "scrap_metal": 22
+        },
+        "requires": "wire"
+      }
+    ]
+  },
+  {
+    "id": "gate",
+    "name": "Gate",
+    "subtitle": "Seals a road, or makes a way through the fence; opens for your own",
+    "w": 64,
+    "h": 16,
+    "hp": 360,
+    "cost": {
+      "wood": 30,
+      "scrap_metal": 12
+    },
+    "icon": "⊓",
+    "color": "#c9b27f",
+    "upgrades": [
+      {
+        "id": "reinforce",
+        "name": "Cross bracing",
+        "description": "+150 durability",
+        "cost": {
+          "wood": 24,
+          "scrap_metal": 8
+        },
+        "requires": null
+      },
+      {
+        "id": "wire",
+        "name": "Barbed wire",
+        "description": "Deal 4 damage/sec to attackers",
+        "cost": {
+          "wood": 12,
+          "scrap_metal": 14
+        },
+        "requires": null
+      },
+      {
+        "id": "plate",
+        "name": "Steel plating",
+        "description": "+250 durability",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 30
+        },
+        "requires": "reinforce"
+      },
+      {
+        "id": "spikes",
+        "name": "Steel spikes",
+        "description": "Deal 10 additional damage/sec",
+        "cost": {
+          "wood": 22,
+          "scrap_metal": 32
+        },
+        "requires": "wire"
+      }
+    ]
+  },
+  {
+    "id": "shelter",
+    "name": "Shelter",
+    "subtitle": "Reinforced bunker to shield survivors during swarms",
+    "w": 32,
+    "h": 32,
+    "hp": 200,
+    "cost": {
+      "wood": 35,
+      "scrap_metal": 10
+    },
+    "icon": "⌂",
+    "color": "#d8b58a",
+    "upgrades": [
+      {
+        "id": "reinforced_door",
+        "name": "Blast Door",
+        "description": "+150 durability and blast resistance",
+        "cost": {
+          "wood": 25,
+          "scrap_metal": 15
+        },
+        "requires": null
+      },
+      {
+        "id": "air_filtration",
+        "name": "Air Filtration",
+        "description": "Survivors heal inside shelter",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 20
+        },
+        "requires": null
+      },
+      {
+        "id": "bunk_racks",
+        "name": "Bunk Racks",
+        "description": "+4 shelter capacity; +1 permanent bed",
+        "cost": {
+          "wood": 45,
+          "scrap_metal": 25
+        },
+        "requires": "reinforced_door"
+      },
+      {
+        "id": "deep_vault",
+        "name": "Deep Vault",
+        "description": "+250 durability; protects resources during swarms",
+        "cost": {
+          "wood": 60,
+          "scrap_metal": 40
+        },
+        "requires": "air_filtration"
+      }
+    ]
+  },
+  {
+    "id": "lumber_mill",
+    "name": "Lumber Mill",
+    "subtitle": "Processes timber to accelerate wood generation",
+    "w": 48,
+    "h": 32,
+    "hp": 220,
+    "cost": {
+      "wood": 40,
+      "scrap_metal": 15
+    },
+    "icon": "▤",
+    "color": "#c99e6b",
+    "upgrades": [
+      {
+        "id": "circular_saw",
+        "name": "Circular Saw",
+        "description": "+40% wood yield",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 20
+        },
+        "requires": null
+      },
+      {
+        "id": "log_chute",
+        "name": "Log Chute",
+        "description": "+30% gathering speed",
+        "cost": {
+          "wood": 25,
+          "scrap_metal": 15
+        },
+        "requires": null
+      },
+      {
+        "id": "steam_engine",
+        "name": "Steam Engine",
+        "description": "+70% wood production",
+        "cost": {
+          "wood": 55,
+          "scrap_metal": 45
+        },
+        "requires": "circular_saw"
+      },
+      {
+        "id": "timber_kiln",
+        "name": "Timber Kiln",
+        "description": "+100 durability to lumber mill",
+        "cost": {
+          "wood": 60,
+          "scrap_metal": 35
+        },
+        "requires": "log_chute"
+      }
+    ]
+  },
+  {
+    "id": "storage",
+    "name": "Storage Depot",
+    "subtitle": "Caches supplies and protects surplus resources",
+    "w": 48,
+    "h": 48,
+    "hp": 260,
+    "cost": {
+      "wood": 50,
+      "scrap_metal": 20
+    },
+    "icon": "▦",
+    "color": "#9fa8a3",
+    "upgrades": [
+      {
+        "id": "bulk_bins",
+        "name": "Bulk Bins",
+        "description": "Expands storage capacity",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 15
+        },
+        "requires": null
+      },
+      {
+        "id": "iron_lockers",
+        "name": "Iron Lockers",
+        "description": "+150 durability; secure stash",
+        "cost": {
+          "wood": 25,
+          "scrap_metal": 25
+        },
+        "requires": null
+      },
+      {
+        "id": "refrigeration",
+        "name": "Preservation Cells",
+        "description": "Prevents food loss; +20% food reserve",
+        "cost": {
+          "wood": 50,
+          "scrap_metal": 40
+        },
+        "requires": "bulk_bins"
+      },
+      {
+        "id": "vault_lock",
+        "name": "Reinforced Vault",
+        "description": "+300 durability",
+        "cost": {
+          "wood": 65,
+          "scrap_metal": 50
+        },
+        "requires": "iron_lockers"
+      }
+    ]
+  },
+  {
+    "id": "lab",
+    "name": "Research Lab",
+    "subtitle": "Synthesizes medicine and develops incendiary technology",
+    "w": 48,
+    "h": 48,
+    "hp": 250,
+    "cost": {
+      "wood": 60,
+      "scrap_metal": 35
+    },
+    "icon": "⚗",
+    "color": "#7eaac9",
+    "upgrades": [
+      {
+        "id": "chemistry_set",
+        "name": "Compound Synthesis",
+        "description": "Clinic medicines are 30% more potent",
+        "cost": {
+          "wood": 35,
+          "scrap_metal": 25
+        },
+        "requires": null
+      },
+      {
+        "id": "ballistics",
+        "name": "Ballistics Research",
+        "description": "All firearms deal +15% damage",
+        "cost": {
+          "wood": 35,
+          "scrap_metal": 30
+        },
+        "requires": null
+      },
+      {
+        "id": "autoclave",
+        "name": "Sterilization Rig",
+        "description": "Infection and bleedout timers doubled",
+        "cost": {
+          "wood": 50,
+          "scrap_metal": 45
+        },
+        "requires": "chemistry_set"
+      },
+      {
+        "id": "incendiary",
+        "name": "Incendiary Mix",
+        "description": "Craft Molotovs; shots ignite the dead",
+        "cost": {
+          "wood": 60,
+          "scrap_metal": 55
+        },
+        "requires": "ballistics"
+      }
+    ]
+  },
+  {
+    "id": "armory",
+    "name": "Armory",
+    "subtitle": "Fabricates munitions and reinforces guard defenses",
+    "w": 32,
+    "h": 32,
+    "hp": 240,
+    "cost": {
+      "wood": 45,
+      "scrap_metal": 25
+    },
+    "icon": "⚔",
+    "color": "#a38970",
+    "upgrades": [
+      {
+        "id": "gunsmith_bench",
+        "name": "Gunsmith Bench",
+        "description": "Weapon crafting cost reduced by 25%",
+        "cost": {
+          "wood": 30,
+          "scrap_metal": 20
+        },
+        "requires": null
+      },
+      {
+        "id": "kevlar_weave",
+        "name": "Ballistic Vests",
+        "description": "Guards take 20% less damage",
+        "cost": {
+          "wood": 35,
+          "scrap_metal": 30
+        },
+        "requires": null
+      },
+      {
+        "id": "ammo_press",
+        "name": "Munition Press",
+        "description": "Ranged fire rate increased by 25%",
+        "cost": {
+          "wood": 50,
+          "scrap_metal": 40
+        },
+        "requires": "gunsmith_bench"
+      },
+      {
+        "id": "heavy_turret",
+        "name": "Defensive Emplacement",
+        "description": "Armory fires at nearby zombies",
+        "cost": {
+          "wood": 70,
+          "scrap_metal": 60
+        },
+        "requires": "kevlar_weave"
+      }
+    ]
+  },
+  {
+    "id": "campfire",
+    "name": "Campfire",
+    "subtitle": "The heart of your camp; if it goes out, the camp is lost",
+    "w": 16,
+    "h": 16,
+    "hp": 500,
+    "cost": {},
+    "icon": "♨",
+    "color": "#e89a3c",
+    "fixture": true,
+    "upgrades": []
+  },
+  {
+    "id": "tent",
+    "name": "Tent",
+    "subtitle": "Temporary housing: a bedroll out of the weather for one survivor",
+    "w": 32,
+    "h": 16,
+    "hp": 120,
+    "cost": {
+      "wood": 10
+    },
+    "icon": "⛺",
+    "color": "#b8a57a",
+    "upgrades": []
+  },
+  {
+    "id": "cache",
+    "name": "Supply Cache",
+    "subtitle": "The crates you were dropped in with; your tablet logs what is inside",
+    "w": 32,
+    "h": 16,
+    "hp": 160,
+    "cost": {},
+    "icon": "▦",
+    "color": "#9a8157",
+    "fixture": true,
+    "upgrades": []
+  },
+  {
+    "id": "supply_stash",
+    "name": "Supply Stash",
+    "subtitle": "Additional primitive storage",
+    "w": 32,
+    "h": 16,
+    "hp": 140,
+    "cost": {
+      "wood": 12
+    },
+    "icon": "▦",
+    "color": "#9a8157",
+    "upgrades": []
+  },
+  {
+    "id": "garden_plot",
+    "name": "Garden Plot",
+    "subtitle": "Primitive food production",
+    "w": 32,
+    "h": 16,
+    "hp": 100,
+    "cost": {
+      "wood": 15
+    },
+    "icon": "♧",
+    "color": "#afc879",
+    "upgrades": []
+  },
+  {
+    "id": "field_workbench",
+    "name": "Field Workbench",
+    "subtitle": "Basic crafting station",
+    "w": 32,
+    "h": 16,
+    "hp": 160,
+    "cost": {
+      "wood": 20,
+      "scrap_metal": 4
+    },
+    "icon": "⚒",
+    "color": "#d3a56b",
+    "upgrades": []
+  },
+  {
+    "id": "aid_station",
+    "name": "Aid Station",
+    "subtitle": "Basic medical treatment point",
+    "w": 32,
+    "h": 16,
+    "hp": 140,
+    "cost": {
+      "wood": 18,
+      "scrap_metal": 6
+    },
+    "icon": "✚",
+    "color": "#d98e8e",
+    "upgrades": []
+  },
+  {
+    "id": "lookout_post",
+    "name": "Lookout Post",
+    "subtitle": "Guard detection platform",
+    "w": 16,
+    "h": 16,
+    "hp": 180,
+    "cost": {
+      "wood": 22,
+      "scrap_metal": 4
+    },
+    "icon": "♜",
+    "color": "#c4c9a9",
+    "upgrades": []
+  },
+  {
+    "id": "guard_post",
+    "name": "Guard Post",
+    "subtitle": "Creates a defensive patrol point",
+    "w": 32,
+    "h": 16,
+    "hp": 220,
+    "cost": {
+      "wood": 14,
+      "scrap_metal": 4
+    },
+    "icon": "⚔",
+    "color": "#9fb7c9",
+    "upgrades": []
+  },
+  {
+    "id": "radio_kit",
+    "name": "Radio Kit",
+    "subtitle": "Recruitment calls, distress signals and quest communication",
+    "w": 32,
+    "h": 16,
+    "hp": 100,
+    "cost": {
+      "wood": 8,
+      "scrap_metal": 10
+    },
+    "icon": "📻",
+    "color": "#7eaac9",
+    "upgrades": []
+  },
+  {
+    "id": "makeshift_shelter",
+    "name": "Makeshift Shelter",
+    "subtitle": "Small-capacity emergency shelter",
+    "w": 32,
+    "h": 16,
+    "hp": 120,
+    "cost": {
+      "wood": 16
+    },
+    "icon": "⌂",
+    "color": "#d8b58a",
+    "upgrades": []
+  },
+  {
+    "id": "salvage_pile",
+    "name": "Salvage Pile",
+    "subtitle": "Temporary sorting point for recovered scrap and materials",
+    "w": 32,
+    "h": 16,
+    "hp": 90,
+    "cost": {
+      "wood": 6
+    },
+    "icon": "♻",
+    "color": "#8a958d",
+    "upgrades": []
+  },
+  {
+    "id": "workbench",
+    "name": "Workbench",
+    "subtitle": "Replaced by the overseer's tablet",
+    "w": 32,
+    "h": 16,
+    "hp": 160,
+    "cost": {},
+    "icon": "⚒",
+    "color": "#9a8157",
+    "fixture": true,
+    "upgrades": []
+  },
+  {
+    "id": "operations_board",
+    "name": "Operations Board",
+    "subtitle": "Plans and launches regional missions",
+    "w": 48,
+    "h": 32,
+    "hp": 250,
+    "cost": {
+      "wood": 20,
+      "scrap_metal": 15
+    },
+    "icon": "⚑",
+    "color": "#c9b37a",
+    "upgrades": []
+  },
+  {
+    "id": "salvage_yard",
+    "name": "Salvage Yard",
+    "subtitle": "Sorts raw salvage into scrap metal",
+    "w": 80,
+    "h": 64,
+    "hp": 400,
+    "cost": {
+      "wood": 40,
+      "scrap_metal": 30
+    },
+    "icon": "⚙",
+    "color": "#8f9a92",
+    "upgrades": []
+  },
+  {
+    "id": "storage_depot",
+    "name": "Storage Depot",
+    "subtitle": "Large covered storage",
+    "w": 80,
+    "h": 64,
+    "hp": 500,
+    "cost": {
+      "wood": 40,
+      "scrap_metal": 20
+    },
+    "icon": "▤",
+    "color": "#9aa0a8",
+    "upgrades": []
+  },
+  {
+    "id": "field_farm",
+    "name": "Field Farm",
+    "subtitle": "Rows of crops for a larger camp",
+    "w": 96,
+    "h": 96,
+    "hp": 300,
+    "cost": {
+      "wood": 30
+    },
+    "icon": "⚘",
+    "color": "#9fbf6a",
+    "upgrades": []
+  },
+  {
+    "id": "field_clinic",
+    "name": "Field Clinic",
+    "subtitle": "Two-bed ward with a shared medic",
+    "w": 64,
+    "h": 64,
+    "hp": 450,
+    "cost": {
+      "wood": 30
+    },
+    "icon": "✚",
+    "color": "#d98e8e",
+    "upgrades": []
+  },
+  {
+    "id": "watchtower",
+    "name": "Watchtower",
+    "subtitle": "Tall watch with a long view",
+    "w": 48,
+    "h": 48,
+    "hp": 600,
+    "cost": {
+      "wood": 30
+    },
+    "icon": "⌂",
+    "color": "#9fb7c9",
+    "upgrades": []
+  },
+  {
+    "id": "reinforced_shelter",
+    "name": "Reinforced Shelter",
+    "subtitle": "Sealed emergency bunker",
+    "w": 80,
+    "h": 80,
+    "hp": 1000,
+    "cost": {
+      "wood": 40
+    },
+    "icon": "⌂",
+    "color": "#8e9085",
+    "upgrades": []
+  },
+  {
+    "id": "radio_relay",
+    "name": "Radio Relay",
+    "subtitle": "Regional transmitter",
+    "w": 48,
+    "h": 48,
+    "hp": 350,
+    "cost": {
+      "wood": 30
+    },
+    "icon": "☎",
+    "color": "#c9b37a",
+    "upgrades": []
+  }
+]

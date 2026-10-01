@@ -1,0 +1,196 @@
+[
+  {
+    "id": "c01",
+    "code": "C01",
+    "name": "Wooden Club",
+    "station": "field_workbench",
+    "unlockedBy": "p1_04",
+    "inputs": {
+      "wood": 4
+    },
+    "itemInputs": {},
+    "output": {
+      "item": "wooden_club",
+      "count": 1
+    },
+    "laborHours": 0.5,
+    "effect": "Melee damage 8; 1.5s game cooldown"
+  },
+  {
+    "id": "c02",
+    "code": "C02",
+    "name": "Improvised Spear",
+    "station": "field_workbench",
+    "unlockedBy": "p1_06",
+    "inputs": {
+      "wood": 4,
+      "scrap_metal": 3
+    },
+    "itemInputs": {},
+    "output": {
+      "item": "improvised_spear",
+      "count": 1
+    },
+    "laborHours": 1,
+    "effect": "Melee damage 12; 2s cooldown; 2m reach"
+  },
+  {
+    "id": "c03",
+    "code": "C03",
+    "name": "Bandage",
+    "station": "field_workbench",
+    "unlockedBy": "p1_05",
+    "inputs": {
+      "cloth": 2
+    },
+    "itemInputs": {},
+    "output": {
+      "item": "bandage",
+      "count": 1
+    },
+    "laborHours": 0.5,
+    "effect": "Stop bleeding, +10 HP"
+  },
+  {
+    "id": "c04",
+    "code": "C04",
+    "name": "Planks",
+    "station": "workshop",
+    "unlockedBy": "p2_04",
+    "inputs": {
+      "wood": 10
+    },
+    "itemInputs": {},
+    "output": {
+      "resource": "planks",
+      "count": 5
+    },
+    "laborHours": 1,
+    "effect": "Construction material"
+  },
+  {
+    "id": "c05",
+    "code": "C05",
+    "name": "Metal Parts",
+    "station": "workshop",
+    "unlockedBy": "p2_04",
+    "inputs": {
+      "scrap_metal": 9
+    },
+    "itemInputs": {},
+    "output": {
+      "resource": "metal_parts",
+      "count": 3
+    },
+    "laborHours": 1.5,
+    "effect": "Construction material"
+  },
+  {
+    "id": "c06",
+    "code": "C06",
+    "name": "Ammo",
+    "station": "workshop",
+    "unlockedBy": "p2_08",
+    "inputs": {
+      "scrap_metal": 5,
+      "components": 1
+    },
+    "itemInputs": {},
+    "output": {
+      "resource": "ammo",
+      "count": 10
+    },
+    "laborHours": 1.5,
+    "effect": "Generic handgun ammunition"
+  },
+  {
+    "id": "c07",
+    "code": "C07",
+    "name": "Medical Supplies",
+    "station": "workshop",
+    "unlockedBy": "p2_07",
+    "inputs": {
+      "cloth": 3,
+      "food": 1
+    },
+    "itemInputs": {},
+    "output": {
+      "resource": "medical_supplies",
+      "count": 2
+    },
+    "laborHours": 1,
+    "effect": "Abstract sterilized consumables, no antibiotic claim"
+  },
+  {
+    "id": "c08",
+    "code": "C08",
+    "name": "First Aid Kit",
+    "station": "workshop",
+    "unlockedBy": "p2_07",
+    "inputs": {
+      "medical_supplies": 2,
+      "cloth": 2
+    },
+    "itemInputs": {},
+    "output": {
+      "item": "first_aid_kit",
+      "count": 1
+    },
+    "laborHours": 1,
+    "effect": "Stop bleeding, +25 HP"
+  },
+  {
+    "id": "c09",
+    "code": "C09",
+    "name": "Reinforced Club",
+    "station": "workshop",
+    "unlockedBy": "p2_08",
+    "inputs": {
+      "scrap_metal": 4
+    },
+    "itemInputs": {
+      "wooden_club": 1
+    },
+    "output": {
+      "item": "reinforced_club",
+      "count": 1
+    },
+    "laborHours": 1,
+    "effect": "Melee damage 14; 1.5s cooldown"
+  },
+  {
+    "id": "c10",
+    "code": "C10",
+    "name": "Basic Pistol",
+    "station": "workshop",
+    "unlockedBy": "p2_08",
+    "inputs": {
+      "metal_parts": 10,
+      "components": 2
+    },
+    "itemInputs": {},
+    "output": {
+      "item": "basic_pistol",
+      "count": 1
+    },
+    "laborHours": 3,
+    "effect": "Ranged damage 18, 12-tile range, 2s cooldown"
+  },
+  {
+    "id": "c11",
+    "code": "C11",
+    "name": "Seed Packet",
+    "station": "workshop",
+    "unlockedBy": "p2_02",
+    "inputs": {
+      "food": 4
+    },
+    "itemInputs": {},
+    "output": {
+      "resource": "seed_packets",
+      "count": 1
+    },
+    "laborHours": 2,
+    "effect": "Recovery path for farm expansion"
+  }
+]

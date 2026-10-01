@@ -1,0 +1,2163 @@
+{
+  "name": "Zombie Base Building Tileset",
+  "version": "1.0.0",
+  "generated": "2026-09-28T07:35:17.852Z",
+  "conventions": {
+    "tileSize": 16,
+    "projection": "top-down 3/4",
+    "pixelArt": true,
+    "filtering": "nearest",
+    "transparency": "PNG alpha",
+    "anchor": "bottom-center of the sprite unless noted; buildings/walls: footprint sits at the bottom of the image, the rest overhangs upward"
+  },
+  "tiles": {
+    "grass_a": {
+      "file": "tiles/grass_a.png",
+      "w": 16,
+      "h": 16
+    },
+    "grass_b": {
+      "file": "tiles/grass_b.png",
+      "w": 16,
+      "h": 16
+    },
+    "grass_c": {
+      "file": "tiles/grass_c.png",
+      "w": 16,
+      "h": 16
+    },
+    "dirt_a": {
+      "file": "tiles/dirt_a.png",
+      "w": 16,
+      "h": 16
+    },
+    "dirt_b": {
+      "file": "tiles/dirt_b.png",
+      "w": 16,
+      "h": 16
+    },
+    "dirt_c": {
+      "file": "tiles/dirt_c.png",
+      "w": 16,
+      "h": 16
+    },
+    "edge_n": {
+      "file": "tiles/edge_n.png",
+      "w": 16,
+      "h": 16
+    },
+    "edge_e": {
+      "file": "tiles/edge_e.png",
+      "w": 16,
+      "h": 16
+    },
+    "edge_s": {
+      "file": "tiles/edge_s.png",
+      "w": 16,
+      "h": 16
+    },
+    "edge_w": {
+      "file": "tiles/edge_w.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_h": {
+      "file": "tiles/road_h.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_v": {
+      "file": "tiles/road_v.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_x": {
+      "file": "tiles/road_x.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_p": {
+      "file": "tiles/road_p.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_edge_n": {
+      "file": "tiles/road_edge_n.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_edge_e": {
+      "file": "tiles/road_edge_e.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_edge_s": {
+      "file": "tiles/road_edge_s.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_edge_w": {
+      "file": "tiles/road_edge_w.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_corner_nw": {
+      "file": "tiles/road_corner_nw.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_corner_ne": {
+      "file": "tiles/road_corner_ne.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_corner_sw": {
+      "file": "tiles/road_corner_sw.png",
+      "w": 16,
+      "h": 16
+    },
+    "road_corner_se": {
+      "file": "tiles/road_corner_se.png",
+      "w": 16,
+      "h": 16
+    },
+    "tree_oak": {
+      "file": "tiles/tree_oak.png",
+      "w": 32,
+      "h": 40
+    },
+    "tree_pine": {
+      "file": "tiles/tree_pine.png",
+      "w": 24,
+      "h": 44
+    },
+    "tree_dead": {
+      "file": "tiles/tree_dead.png",
+      "w": 24,
+      "h": 36
+    },
+    "bush": {
+      "file": "tiles/bush.png",
+      "w": 16,
+      "h": 14
+    },
+    "stump": {
+      "file": "tiles/stump.png",
+      "w": 16,
+      "h": 14
+    },
+    "wall_planks_h": {
+      "file": "tiles/wall_planks_h.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_planks_v": {
+      "file": "tiles/wall_planks_v.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_planks_tl": {
+      "file": "tiles/wall_planks_tl.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_planks_tr": {
+      "file": "tiles/wall_planks_tr.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_planks_bl": {
+      "file": "tiles/wall_planks_bl.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_planks_br": {
+      "file": "tiles/wall_planks_br.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_palisade_h": {
+      "file": "tiles/wall_palisade_h.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_palisade_v": {
+      "file": "tiles/wall_palisade_v.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_palisade_tl": {
+      "file": "tiles/wall_palisade_tl.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_palisade_tr": {
+      "file": "tiles/wall_palisade_tr.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_palisade_bl": {
+      "file": "tiles/wall_palisade_bl.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_palisade_br": {
+      "file": "tiles/wall_palisade_br.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_sandbag_h": {
+      "file": "tiles/wall_sandbag_h.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_sandbag_v": {
+      "file": "tiles/wall_sandbag_v.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_sandbag_tl": {
+      "file": "tiles/wall_sandbag_tl.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_sandbag_tr": {
+      "file": "tiles/wall_sandbag_tr.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_sandbag_bl": {
+      "file": "tiles/wall_sandbag_bl.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_sandbag_br": {
+      "file": "tiles/wall_sandbag_br.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_scrap_h": {
+      "file": "tiles/wall_scrap_h.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_scrap_v": {
+      "file": "tiles/wall_scrap_v.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_scrap_tl": {
+      "file": "tiles/wall_scrap_tl.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_scrap_tr": {
+      "file": "tiles/wall_scrap_tr.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_scrap_bl": {
+      "file": "tiles/wall_scrap_bl.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_scrap_br": {
+      "file": "tiles/wall_scrap_br.png",
+      "w": 16,
+      "h": 28
+    },
+    "wall_planks_dmg": {
+      "file": "tiles/wall_planks_dmg.png",
+      "w": 16,
+      "h": 28
+    },
+    "gate_wood_closed": {
+      "file": "tiles/gate_wood_closed.png",
+      "w": 32,
+      "h": 28
+    },
+    "gate_wood_open": {
+      "file": "tiles/gate_wood_open.png",
+      "w": 32,
+      "h": 28
+    },
+    "gate_metal_closed": {
+      "file": "tiles/gate_metal_closed.png",
+      "w": 32,
+      "h": 28
+    },
+    "gate_metal_open": {
+      "file": "tiles/gate_metal_open.png",
+      "w": 32,
+      "h": 28
+    },
+    "tower_open": {
+      "file": "tiles/tower_open.png",
+      "w": 32,
+      "h": 56
+    },
+    "tower_roofed": {
+      "file": "tiles/tower_roofed.png",
+      "w": 32,
+      "h": 56
+    },
+    "palette": {
+      "file": "tiles/palette.png",
+      "w": 30,
+      "h": 60
+    }
+  },
+  "buildings": {
+    "town_hall": {
+      "file": "buildings/town_hall.png",
+      "w": 64,
+      "h": 72,
+      "footprintTiles": [
+        4,
+        3
+      ],
+      "ghostValid": "ui/ghost_town_hall_ok.png",
+      "ghostBlocked": "ui/ghost_town_hall_bad.png"
+    },
+    "clinic": {
+      "file": "buildings/clinic.png",
+      "w": 48,
+      "h": 58,
+      "footprintTiles": [
+        3,
+        3
+      ],
+      "ghostValid": "ui/ghost_clinic_ok.png",
+      "ghostBlocked": "ui/ghost_clinic_bad.png"
+    },
+    "barracks": {
+      "file": "buildings/barracks.png",
+      "w": 64,
+      "h": 54,
+      "footprintTiles": [
+        4,
+        2
+      ],
+      "ghostValid": "ui/ghost_barracks_ok.png",
+      "ghostBlocked": "ui/ghost_barracks_bad.png"
+    },
+    "workshop": {
+      "file": "buildings/workshop.png",
+      "w": 48,
+      "h": 62,
+      "footprintTiles": [
+        3,
+        3
+      ],
+      "ghostValid": "ui/ghost_workshop_ok.png",
+      "ghostBlocked": "ui/ghost_workshop_bad.png"
+    },
+    "farm": {
+      "file": "buildings/farm.png",
+      "w": 64,
+      "h": 52,
+      "footprintTiles": [
+        4,
+        3
+      ],
+      "ghostValid": "ui/ghost_farm_ok.png",
+      "ghostBlocked": "ui/ghost_farm_bad.png"
+    },
+    "shelter": {
+      "file": "buildings/shelter.png",
+      "w": 32,
+      "h": 40,
+      "footprintTiles": [
+        2,
+        2
+      ],
+      "ghostValid": "ui/ghost_shelter_ok.png",
+      "ghostBlocked": "ui/ghost_shelter_bad.png"
+    },
+    "lumber_mill": {
+      "file": "buildings/lumber_mill.png",
+      "w": 48,
+      "h": 50,
+      "footprintTiles": [
+        3,
+        2
+      ],
+      "ghostValid": "ui/ghost_lumber_mill_ok.png",
+      "ghostBlocked": "ui/ghost_lumber_mill_bad.png"
+    },
+    "storage": {
+      "file": "buildings/storage.png",
+      "w": 48,
+      "h": 60,
+      "footprintTiles": [
+        3,
+        3
+      ],
+      "ghostValid": "ui/ghost_storage_ok.png",
+      "ghostBlocked": "ui/ghost_storage_bad.png"
+    },
+    "lab": {
+      "file": "buildings/lab.png",
+      "w": 48,
+      "h": 62,
+      "footprintTiles": [
+        3,
+        3
+      ],
+      "ghostValid": "ui/ghost_lab_ok.png",
+      "ghostBlocked": "ui/ghost_lab_bad.png"
+    },
+    "armory": {
+      "file": "buildings/armory.png",
+      "w": 32,
+      "h": 42,
+      "footprintTiles": [
+        2,
+        2
+      ],
+      "ghostValid": "ui/ghost_armory_ok.png",
+      "ghostBlocked": "ui/ghost_armory_bad.png"
+    },
+    "bunkhouse": {
+      "file": "buildings/bunkhouse.png",
+      "w": 48,
+      "h": 46,
+      "footprintTiles": [
+        3,
+        2
+      ],
+      "ghostValid": "ui/ghost_bunkhouse_ok.png",
+      "ghostBlocked": "ui/ghost_bunkhouse_bad.png"
+    }
+  },
+  "characters": {
+    "zombies": {
+      "walker": {
+        "file": "characters/zombies/zombie_walker.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "runner": {
+        "file": "characters/zombies/zombie_runner.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "brute": {
+        "file": "characters/zombies/zombie_brute.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "bloater": {
+        "file": "characters/zombies/zombie_bloater.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "soldier": {
+        "file": "characters/zombies/zombie_soldier.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      }
+    },
+    "survivors": {
+      "mechanic": {
+        "file": "characters/survivors/survivor_mechanic.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "doctor": {
+        "file": "characters/survivors/survivor_doctor.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "hunter": {
+        "file": "characters/survivors/survivor_hunter.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "guard": {
+        "file": "characters/survivors/survivor_guard.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "elder": {
+        "file": "characters/survivors/survivor_elder.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "scavenger": {
+        "file": "characters/survivors/survivor_scavenger.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "nurse": {
+        "file": "characters/survivors/survivor_nurse.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "engineer": {
+        "file": "characters/survivors/survivor_engineer.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "ranger": {
+        "file": "characters/survivors/survivor_ranger.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      },
+      "grower": {
+        "file": "characters/survivors/survivor_grower.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk"
+      }
+    }
+  },
+  "fx": {
+    "gunfire": {
+      "flash": {
+        "file": "fx/gunfire/gunfire_flash.png",
+        "w": 48,
+        "h": 256,
+        "frameW": 16,
+        "frameH": 16,
+        "cols": 3,
+        "rows": 16,
+        "rowAngles": "row i = i*22.5 degrees, 0 = east, clockwise (screen y down)",
+        "loop": false
+      },
+      "tracer": {
+        "file": "fx/gunfire/gunfire_tracer.png",
+        "w": 32,
+        "h": 256,
+        "frameW": 16,
+        "frameH": 16,
+        "cols": 2,
+        "rows": 16,
+        "rowAngles": "row i = i*22.5 degrees, 0 = east, clockwise (screen y down)",
+        "loop": false
+      },
+      "spark": {
+        "file": "fx/gunfire/gunfire_spark.png",
+        "w": 64,
+        "h": 256,
+        "frameW": 16,
+        "frameH": 16,
+        "cols": 4,
+        "rows": 16,
+        "rowAngles": "row i = i*22.5 degrees, 0 = east, clockwise (screen y down)",
+        "loop": false
+      },
+      "blood": {
+        "file": "fx/gunfire/gunfire_blood.png",
+        "w": 64,
+        "h": 256,
+        "frameW": 16,
+        "frameH": 16,
+        "cols": 4,
+        "rows": 16,
+        "rowAngles": "row i = i*22.5 degrees, 0 = east, clockwise (screen y down)",
+        "loop": false
+      },
+      "casing": {
+        "file": "fx/gunfire/gunfire_casing.png",
+        "w": 32,
+        "h": 8,
+        "frameW": 8,
+        "frameH": 8,
+        "cols": 4,
+        "rows": 1,
+        "loop": true
+      }
+    },
+    "molotov": {
+      "bottle": {
+        "file": "fx/molotov/molotov_bottle.png",
+        "w": 112,
+        "h": 14,
+        "frameW": 14,
+        "frameH": 14,
+        "cols": 8,
+        "rows": 1,
+        "loop": true
+      },
+      "shadow": {
+        "file": "fx/molotov/molotov_shadow.png",
+        "w": 10,
+        "h": 4
+      },
+      "splash": {
+        "file": "fx/molotov/molotov_splash.png",
+        "w": 240,
+        "h": 32,
+        "frameW": 40,
+        "frameH": 32,
+        "cols": 6,
+        "rows": 1,
+        "loop": false
+      },
+      "fire": {
+        "file": "fx/molotov/molotov_fire.png",
+        "w": 320,
+        "h": 32,
+        "frameW": 40,
+        "frameH": 32,
+        "cols": 8,
+        "rows": 1,
+        "loop": true
+      },
+      "burnout": {
+        "file": "fx/molotov/molotov_burnout.png",
+        "w": 160,
+        "h": 32,
+        "frameW": 40,
+        "frameH": 32,
+        "cols": 4,
+        "rows": 1,
+        "loop": false
+      },
+      "scorch": {
+        "file": "fx/molotov/molotov_scorch.png",
+        "w": 40,
+        "h": 32
+      },
+      "zombie_walker_burning": {
+        "file": "fx/molotov/zombie_walker_burning.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk while burning (swap for walk sheet)"
+      },
+      "zombie_runner_burning": {
+        "file": "fx/molotov/zombie_runner_burning.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk while burning (swap for walk sheet)"
+      },
+      "zombie_brute_burning": {
+        "file": "fx/molotov/zombie_brute_burning.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk while burning (swap for walk sheet)"
+      },
+      "zombie_bloater_burning": {
+        "file": "fx/molotov/zombie_bloater_burning.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk while burning (swap for walk sheet)"
+      },
+      "zombie_soldier_burning": {
+        "file": "fx/molotov/zombie_soldier_burning.png",
+        "w": 96,
+        "h": 224,
+        "frameW": 24,
+        "frameH": 28,
+        "cols": 4,
+        "rows": 8,
+        "rowDirections": [
+          "s",
+          "n",
+          "e",
+          "w",
+          "se",
+          "sw",
+          "ne",
+          "nw"
+        ],
+        "fps": 8,
+        "loop": true,
+        "anim": "walk while burning (swap for walk sheet)"
+      },
+      "_anchor": {
+        "fire": [
+          20,
+          24
+        ],
+        "note": "pixel within splash/fire/burnout frames that sits on the impact point"
+      }
+    }
+  },
+  "ui": {
+    "icon_wood": {
+      "file": "ui/icon_wood.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_metal": {
+      "file": "ui/icon_metal.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_food": {
+      "file": "ui/icon_food.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_survivor": {
+      "file": "ui/icon_survivor.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_build": {
+      "file": "ui/icon_build.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_alarm": {
+      "file": "ui/icon_alarm.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_map": {
+      "file": "ui/icon_map.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_base": {
+      "file": "ui/icon_base.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_menu": {
+      "file": "ui/icon_menu.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_expedition": {
+      "file": "ui/icon_expedition.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_wall": {
+      "file": "ui/icon_wall.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_gate": {
+      "file": "ui/icon_gate.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_tower": {
+      "file": "ui/icon_tower.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_repair": {
+      "file": "ui/icon_repair.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_demolish": {
+      "file": "ui/icon_demolish.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_zombie": {
+      "file": "ui/icon_zombie.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_health": {
+      "file": "ui/icon_health.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_integrity": {
+      "file": "ui/icon_integrity.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_bed": {
+      "file": "ui/icon_bed.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_day": {
+      "file": "ui/icon_day.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_night": {
+      "file": "ui/icon_night.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_warning": {
+      "file": "ui/icon_warning.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_pause": {
+      "file": "ui/icon_pause.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_play": {
+      "file": "ui/icon_play.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_fast": {
+      "file": "ui/icon_fast.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_settings": {
+      "file": "ui/icon_settings.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_save": {
+      "file": "ui/icon_save.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_research": {
+      "file": "ui/icon_research.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_upgrade": {
+      "file": "ui/icon_upgrade.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_lock": {
+      "file": "ui/icon_lock.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_check": {
+      "file": "ui/icon_check.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_star": {
+      "file": "ui/icon_star.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_timer": {
+      "file": "ui/icon_timer.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_damage": {
+      "file": "ui/icon_damage.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_range": {
+      "file": "ui/icon_range.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_capacity": {
+      "file": "ui/icon_capacity.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_yield": {
+      "file": "ui/icon_yield.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_stamina": {
+      "file": "ui/icon_stamina.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_medicine": {
+      "file": "ui/icon_medicine.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_carry": {
+      "file": "ui/icon_carry.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_barricade": {
+      "file": "ui/icon_barricade.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_trap": {
+      "file": "ui/icon_trap.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_training": {
+      "file": "ui/icon_training.png",
+      "w": 24,
+      "h": 24
+    },
+    "icon_blueprint": {
+      "file": "ui/icon_blueprint.png",
+      "w": 24,
+      "h": 24
+    },
+    "mini_time": {
+      "file": "ui/mini_time.png",
+      "w": 10,
+      "h": 10
+    },
+    "mini_points": {
+      "file": "ui/mini_points.png",
+      "w": 10,
+      "h": 10
+    },
+    "mini_wood": {
+      "file": "ui/mini_wood.png",
+      "w": 10,
+      "h": 10
+    },
+    "mini_metal": {
+      "file": "ui/mini_metal.png",
+      "w": 10,
+      "h": 10
+    },
+    "mini_food": {
+      "file": "ui/mini_food.png",
+      "w": 10,
+      "h": 10
+    },
+    "frame_panel": {
+      "file": "ui/frame_panel.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_inset": {
+      "file": "ui/frame_inset.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_btn": {
+      "file": "ui/frame_btn.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_hover": {
+      "file": "ui/frame_hover.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_down": {
+      "file": "ui/frame_down.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_off": {
+      "file": "ui/frame_off.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_primary": {
+      "file": "ui/frame_primary.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_primaryDown": {
+      "file": "ui/frame_primaryDown.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_alert": {
+      "file": "ui/frame_alert.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_select": {
+      "file": "ui/frame_select.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_owned": {
+      "file": "ui/frame_owned.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_research": {
+      "file": "ui/frame_research.png",
+      "w": 24,
+      "h": 24
+    },
+    "frame_maxed": {
+      "file": "ui/frame_maxed.png",
+      "w": 24,
+      "h": 24
+    },
+    "portrait_1": {
+      "file": "ui/portrait_1.png",
+      "w": 26,
+      "h": 26
+    },
+    "portrait_2": {
+      "file": "ui/portrait_2.png",
+      "w": 26,
+      "h": 26
+    },
+    "portrait_3": {
+      "file": "ui/portrait_3.png",
+      "w": 26,
+      "h": 26
+    },
+    "portrait_4": {
+      "file": "ui/portrait_4.png",
+      "w": 26,
+      "h": 26
+    },
+    "counter_wood": {
+      "file": "ui/counter_wood.png",
+      "w": 65,
+      "h": 30
+    },
+    "counter_metal": {
+      "file": "ui/counter_metal.png",
+      "w": 61,
+      "h": 30
+    },
+    "counter_food": {
+      "file": "ui/counter_food.png",
+      "w": 61,
+      "h": 30
+    },
+    "clock": {
+      "file": "ui/clock.png",
+      "w": 168,
+      "h": 46
+    },
+    "speed": {
+      "file": "ui/speed.png",
+      "w": 78,
+      "h": 16
+    },
+    "bar_health": {
+      "file": "ui/bar_health.png",
+      "w": 72,
+      "h": 8
+    },
+    "bar_integrity": {
+      "file": "ui/bar_integrity.png",
+      "w": 72,
+      "h": 8
+    },
+    "bar_progress": {
+      "file": "ui/bar_progress.png",
+      "w": 72,
+      "h": 8
+    },
+    "bar_empty": {
+      "file": "ui/bar_empty.png",
+      "w": 72,
+      "h": 8
+    },
+    "ubar_full": {
+      "file": "ui/ubar_full.png",
+      "w": 14,
+      "h": 4
+    },
+    "ubar_mid": {
+      "file": "ui/ubar_mid.png",
+      "w": 14,
+      "h": 4
+    },
+    "ubar_low": {
+      "file": "ui/ubar_low.png",
+      "w": 14,
+      "h": 4
+    },
+    "build_btn": {
+      "file": "ui/build_btn.png",
+      "w": 92,
+      "h": 30
+    },
+    "build_btn_down": {
+      "file": "ui/build_btn_down.png",
+      "w": 92,
+      "h": 30
+    },
+    "sq_btn": {
+      "file": "ui/sq_btn.png",
+      "w": 38,
+      "h": 38
+    },
+    "sq_hover": {
+      "file": "ui/sq_hover.png",
+      "w": 38,
+      "h": 38
+    },
+    "sq_down": {
+      "file": "ui/sq_down.png",
+      "w": 38,
+      "h": 38
+    },
+    "sq_off": {
+      "file": "ui/sq_off.png",
+      "w": 38,
+      "h": 38
+    },
+    "action_bar": {
+      "file": "ui/action_bar.png",
+      "w": 278,
+      "h": 38
+    },
+    "build_menu": {
+      "file": "ui/build_menu.png",
+      "w": 184,
+      "h": 176
+    },
+    "inspect": {
+      "file": "ui/inspect.png",
+      "w": 156,
+      "h": 118
+    },
+    "survivors": {
+      "file": "ui/survivors.png",
+      "w": 164,
+      "h": 154
+    },
+    "toast_alert": {
+      "file": "ui/toast_alert.png",
+      "w": 184,
+      "h": 40
+    },
+    "toast_info": {
+      "file": "ui/toast_info.png",
+      "w": 184,
+      "h": 40
+    },
+    "toast_ok": {
+      "file": "ui/toast_ok.png",
+      "w": 184,
+      "h": 40
+    },
+    "crew_manager": {
+      "file": "ui/crew_manager.png",
+      "w": 320,
+      "h": 196
+    },
+    "objective": {
+      "file": "ui/objective.png",
+      "w": 216,
+      "h": 32
+    },
+    "minimap": {
+      "file": "ui/minimap.png",
+      "w": 116,
+      "h": 94
+    },
+    "pause": {
+      "file": "ui/pause.png",
+      "w": 144,
+      "h": 144
+    },
+    "cursor_arrow": {
+      "file": "ui/cursor_arrow.png",
+      "w": 16,
+      "h": 16
+    },
+    "cursor_build": {
+      "file": "ui/cursor_build.png",
+      "w": 16,
+      "h": 16
+    },
+    "cursor_attack": {
+      "file": "ui/cursor_attack.png",
+      "w": 16,
+      "h": 16
+    },
+    "cursor_deny": {
+      "file": "ui/cursor_deny.png",
+      "w": 16,
+      "h": 16
+    },
+    "ghost_wall_ok": {
+      "file": "ui/ghost_wall_ok.png",
+      "w": 16,
+      "h": 28
+    },
+    "ghost_wall_bad": {
+      "file": "ui/ghost_wall_bad.png",
+      "w": 16,
+      "h": 28
+    },
+    "ghost_tower_ok": {
+      "file": "ui/ghost_tower_ok.png",
+      "w": 32,
+      "h": 56
+    },
+    "ghost_tower_bad": {
+      "file": "ui/ghost_tower_bad.png",
+      "w": 32,
+      "h": 56
+    },
+    "ghost_town_hall_ok": {
+      "file": "ui/ghost_town_hall_ok.png",
+      "w": 64,
+      "h": 72
+    },
+    "ghost_town_hall_bad": {
+      "file": "ui/ghost_town_hall_bad.png",
+      "w": 64,
+      "h": 72
+    },
+    "ghost_clinic_ok": {
+      "file": "ui/ghost_clinic_ok.png",
+      "w": 48,
+      "h": 58
+    },
+    "ghost_clinic_bad": {
+      "file": "ui/ghost_clinic_bad.png",
+      "w": 48,
+      "h": 58
+    },
+    "ghost_barracks_ok": {
+      "file": "ui/ghost_barracks_ok.png",
+      "w": 64,
+      "h": 54
+    },
+    "ghost_barracks_bad": {
+      "file": "ui/ghost_barracks_bad.png",
+      "w": 64,
+      "h": 54
+    },
+    "ghost_workshop_ok": {
+      "file": "ui/ghost_workshop_ok.png",
+      "w": 48,
+      "h": 62
+    },
+    "ghost_workshop_bad": {
+      "file": "ui/ghost_workshop_bad.png",
+      "w": 48,
+      "h": 62
+    },
+    "ghost_farm_ok": {
+      "file": "ui/ghost_farm_ok.png",
+      "w": 64,
+      "h": 52
+    },
+    "ghost_farm_bad": {
+      "file": "ui/ghost_farm_bad.png",
+      "w": 64,
+      "h": 52
+    },
+    "ghost_shelter_ok": {
+      "file": "ui/ghost_shelter_ok.png",
+      "w": 32,
+      "h": 40
+    },
+    "ghost_shelter_bad": {
+      "file": "ui/ghost_shelter_bad.png",
+      "w": 32,
+      "h": 40
+    },
+    "ghost_lumber_mill_ok": {
+      "file": "ui/ghost_lumber_mill_ok.png",
+      "w": 48,
+      "h": 50
+    },
+    "ghost_lumber_mill_bad": {
+      "file": "ui/ghost_lumber_mill_bad.png",
+      "w": 48,
+      "h": 50
+    },
+    "ghost_storage_ok": {
+      "file": "ui/ghost_storage_ok.png",
+      "w": 48,
+      "h": 60
+    },
+    "ghost_storage_bad": {
+      "file": "ui/ghost_storage_bad.png",
+      "w": 48,
+      "h": 60
+    },
+    "ghost_lab_ok": {
+      "file": "ui/ghost_lab_ok.png",
+      "w": 48,
+      "h": 62
+    },
+    "ghost_lab_bad": {
+      "file": "ui/ghost_lab_bad.png",
+      "w": 48,
+      "h": 62
+    },
+    "ghost_armory_ok": {
+      "file": "ui/ghost_armory_ok.png",
+      "w": 32,
+      "h": 42
+    },
+    "ghost_armory_bad": {
+      "file": "ui/ghost_armory_bad.png",
+      "w": 32,
+      "h": 42
+    },
+    "ghost_bunkhouse_ok": {
+      "file": "ui/ghost_bunkhouse_ok.png",
+      "w": 48,
+      "h": 46
+    },
+    "ghost_bunkhouse_bad": {
+      "file": "ui/ghost_bunkhouse_bad.png",
+      "w": 48,
+      "h": 46
+    },
+    "select_1": {
+      "file": "ui/select_1.png",
+      "w": 16,
+      "h": 16
+    },
+    "select_2": {
+      "file": "ui/select_2.png",
+      "w": 32,
+      "h": 32
+    },
+    "select_2_bad": {
+      "file": "ui/select_2_bad.png",
+      "w": 32,
+      "h": 32
+    },
+    "badge_lock": {
+      "file": "ui/badge_lock.png",
+      "w": 10,
+      "h": 10
+    },
+    "badge_check": {
+      "file": "ui/badge_check.png",
+      "w": 10,
+      "h": 10
+    },
+    "badge_star": {
+      "file": "ui/badge_star.png",
+      "w": 10,
+      "h": 10
+    },
+    "badge_up": {
+      "file": "ui/badge_up.png",
+      "w": 10,
+      "h": 10
+    },
+    "badge_time": {
+      "file": "ui/badge_time.png",
+      "w": 10,
+      "h": 10
+    },
+    "badge_new": {
+      "file": "ui/badge_new.png",
+      "w": 10,
+      "h": 10
+    },
+    "node_locked": {
+      "file": "ui/node_locked.png",
+      "w": 32,
+      "h": 32
+    },
+    "node_major_locked": {
+      "file": "ui/node_major_locked.png",
+      "w": 40,
+      "h": 40
+    },
+    "node_available": {
+      "file": "ui/node_available.png",
+      "w": 32,
+      "h": 32
+    },
+    "node_major_available": {
+      "file": "ui/node_major_available.png",
+      "w": 40,
+      "h": 40
+    },
+    "node_hover": {
+      "file": "ui/node_hover.png",
+      "w": 32,
+      "h": 32
+    },
+    "node_major_hover": {
+      "file": "ui/node_major_hover.png",
+      "w": 40,
+      "h": 40
+    },
+    "node_research": {
+      "file": "ui/node_research.png",
+      "w": 32,
+      "h": 32
+    },
+    "node_major_research": {
+      "file": "ui/node_major_research.png",
+      "w": 40,
+      "h": 40
+    },
+    "node_owned": {
+      "file": "ui/node_owned.png",
+      "w": 32,
+      "h": 32
+    },
+    "node_major_owned": {
+      "file": "ui/node_major_owned.png",
+      "w": 40,
+      "h": 40
+    },
+    "node_maxed": {
+      "file": "ui/node_maxed.png",
+      "w": 32,
+      "h": 32
+    },
+    "node_major_maxed": {
+      "file": "ui/node_major_maxed.png",
+      "w": 40,
+      "h": 40
+    },
+    "node_empty": {
+      "file": "ui/node_empty.png",
+      "w": 32,
+      "h": 32
+    },
+    "node_select": {
+      "file": "ui/node_select.png",
+      "w": 36,
+      "h": 36
+    },
+    "node_select_major": {
+      "file": "ui/node_select_major.png",
+      "w": 44,
+      "h": 44
+    },
+    "link_off_n": {
+      "file": "ui/link_off_n.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_e": {
+      "file": "ui/link_off_e.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_ne": {
+      "file": "ui/link_off_ne.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_s": {
+      "file": "ui/link_off_s.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_ns": {
+      "file": "ui/link_off_ns.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_es": {
+      "file": "ui/link_off_es.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_nes": {
+      "file": "ui/link_off_nes.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_w": {
+      "file": "ui/link_off_w.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_nw": {
+      "file": "ui/link_off_nw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_ew": {
+      "file": "ui/link_off_ew.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_new": {
+      "file": "ui/link_off_new.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_sw": {
+      "file": "ui/link_off_sw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_nsw": {
+      "file": "ui/link_off_nsw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_esw": {
+      "file": "ui/link_off_esw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_off_nesw": {
+      "file": "ui/link_off_nesw.png",
+      "w": 8,
+      "h": 8
+    },
+    "links_off": {
+      "file": "ui/links_off.png",
+      "w": 148,
+      "h": 8
+    },
+    "link_on_n": {
+      "file": "ui/link_on_n.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_e": {
+      "file": "ui/link_on_e.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_ne": {
+      "file": "ui/link_on_ne.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_s": {
+      "file": "ui/link_on_s.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_ns": {
+      "file": "ui/link_on_ns.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_es": {
+      "file": "ui/link_on_es.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_nes": {
+      "file": "ui/link_on_nes.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_w": {
+      "file": "ui/link_on_w.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_nw": {
+      "file": "ui/link_on_nw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_ew": {
+      "file": "ui/link_on_ew.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_new": {
+      "file": "ui/link_on_new.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_sw": {
+      "file": "ui/link_on_sw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_nsw": {
+      "file": "ui/link_on_nsw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_esw": {
+      "file": "ui/link_on_esw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_on_nesw": {
+      "file": "ui/link_on_nesw.png",
+      "w": 8,
+      "h": 8
+    },
+    "links_on": {
+      "file": "ui/links_on.png",
+      "w": 148,
+      "h": 8
+    },
+    "link_prog_n": {
+      "file": "ui/link_prog_n.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_e": {
+      "file": "ui/link_prog_e.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_ne": {
+      "file": "ui/link_prog_ne.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_s": {
+      "file": "ui/link_prog_s.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_ns": {
+      "file": "ui/link_prog_ns.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_es": {
+      "file": "ui/link_prog_es.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_nes": {
+      "file": "ui/link_prog_nes.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_w": {
+      "file": "ui/link_prog_w.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_nw": {
+      "file": "ui/link_prog_nw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_ew": {
+      "file": "ui/link_prog_ew.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_new": {
+      "file": "ui/link_prog_new.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_sw": {
+      "file": "ui/link_prog_sw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_nsw": {
+      "file": "ui/link_prog_nsw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_esw": {
+      "file": "ui/link_prog_esw.png",
+      "w": 8,
+      "h": 8
+    },
+    "link_prog_nesw": {
+      "file": "ui/link_prog_nesw.png",
+      "w": 8,
+      "h": 8
+    },
+    "links_prog": {
+      "file": "ui/links_prog.png",
+      "w": 148,
+      "h": 8
+    },
+    "pip_off": {
+      "file": "ui/pip_off.png",
+      "w": 6,
+      "h": 6
+    },
+    "pip_on": {
+      "file": "ui/pip_on.png",
+      "w": 6,
+      "h": 6
+    },
+    "pip_next": {
+      "file": "ui/pip_next.png",
+      "w": 6,
+      "h": 6
+    },
+    "pip_max": {
+      "file": "ui/pip_max.png",
+      "w": 6,
+      "h": 6
+    },
+    "rank_0_3": {
+      "file": "ui/rank_0_3.png",
+      "w": 20,
+      "h": 6
+    },
+    "rank_2_3": {
+      "file": "ui/rank_2_3.png",
+      "w": 20,
+      "h": 6
+    },
+    "rank_3_3": {
+      "file": "ui/rank_3_3.png",
+      "w": 20,
+      "h": 6
+    },
+    "rank_2_5": {
+      "file": "ui/rank_2_5.png",
+      "w": 34,
+      "h": 6
+    },
+    "tier_1": {
+      "file": "ui/tier_1.png",
+      "w": 32,
+      "h": 13
+    },
+    "lv_1": {
+      "file": "ui/lv_1.png",
+      "w": 25,
+      "h": 13
+    },
+    "tier_2": {
+      "file": "ui/tier_2.png",
+      "w": 35,
+      "h": 13
+    },
+    "lv_2": {
+      "file": "ui/lv_2.png",
+      "w": 25,
+      "h": 13
+    },
+    "tier_3": {
+      "file": "ui/tier_3.png",
+      "w": 37,
+      "h": 13
+    },
+    "lv_3": {
+      "file": "ui/lv_3.png",
+      "w": 25,
+      "h": 13
+    },
+    "tier_4": {
+      "file": "ui/tier_4.png",
+      "w": 38,
+      "h": 13
+    },
+    "lv_4": {
+      "file": "ui/lv_4.png",
+      "w": 25,
+      "h": 13
+    },
+    "tier_5": {
+      "file": "ui/tier_5.png",
+      "w": 35,
+      "h": 13
+    },
+    "lv_5": {
+      "file": "ui/lv_5.png",
+      "w": 25,
+      "h": 13
+    },
+    "btn_upgrade": {
+      "file": "ui/btn_upgrade.png",
+      "w": 64,
+      "h": 18
+    },
+    "btn_upgrade_down": {
+      "file": "ui/btn_upgrade_down.png",
+      "w": 64,
+      "h": 18
+    },
+    "btn_upgrade_off": {
+      "file": "ui/btn_upgrade_off.png",
+      "w": 64,
+      "h": 18
+    },
+    "btn_research": {
+      "file": "ui/btn_research.png",
+      "w": 68,
+      "h": 18
+    },
+    "btn_research_off": {
+      "file": "ui/btn_research_off.png",
+      "w": 68,
+      "h": 18
+    },
+    "btn_cancel": {
+      "file": "ui/btn_cancel.png",
+      "w": 45,
+      "h": 18
+    },
+    "btn_speedup": {
+      "file": "ui/btn_speedup.png",
+      "w": 48,
+      "h": 18
+    },
+    "tabs_tree": {
+      "file": "ui/tabs_tree.png",
+      "w": 164,
+      "h": 16
+    },
+    "detail_upgrade": {
+      "file": "ui/detail_upgrade.png",
+      "w": 176,
+      "h": 147
+    },
+    "detail_locked": {
+      "file": "ui/detail_locked.png",
+      "w": 176,
+      "h": 148
+    },
+    "research_queue": {
+      "file": "ui/research_queue.png",
+      "w": 176,
+      "h": 142
+    },
+    "tree_survivor": {
+      "file": "ui/tree_survivor.png",
+      "w": 200,
+      "h": 256
+    },
+    "tree_building": {
+      "file": "ui/tree_building.png",
+      "w": 176,
+      "h": 288
+    },
+    "tree_defense": {
+      "file": "ui/tree_defense.png",
+      "w": 200,
+      "h": 160
+    },
+    "toast_research": {
+      "file": "ui/toast_research.png",
+      "w": 184,
+      "h": 40
+    },
+    "toast_upgrade": {
+      "file": "ui/toast_upgrade.png",
+      "w": 184,
+      "h": 40
+    },
+    "font_8": {
+      "file": "ui/font_8.png",
+      "w": 142,
+      "h": 30
+    },
+    "font_16": {
+      "file": "ui/font_16.png",
+      "w": 146,
+      "h": 68
+    }
+  }
+}

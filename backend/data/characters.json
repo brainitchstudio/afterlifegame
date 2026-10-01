@@ -1,0 +1,32 @@
+[
+  {
+    "id": "command",
+    "name": "Regional Command",
+    "title": "Radio voice of the reclamation effort",
+    "faction": "Command",
+    "icon": "📡",
+    "color": "#7eaac9",
+    "bio": "The authority that dropped you into the region. Issues orders, releases supplies and confirms status.",
+    "inGame": "Regional Command"
+  },
+  {
+    "id": "overseer",
+    "name": "Camp",
+    "title": "The overseer's own notes and camp alerts",
+    "faction": "Camp",
+    "icon": "⛺",
+    "color": "#d8b58a",
+    "bio": "You. Warnings about beds, food and the state of the camp come from your own people.",
+    "inGame": "Camp"
+  },
+  {
+    "id": "gate",
+    "name": "The gate",
+    "title": "Whoever is on the gate",
+    "faction": "Camp",
+    "icon": "⊓",
+    "color": "#c9b27f",
+    "bio": "Reports survivors waiting to be let in.",
+    "inGame": "The gate"
+  }
+]

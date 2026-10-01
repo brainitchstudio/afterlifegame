@@ -1,0 +1,856 @@
+[
+  {
+    "id": "fortify",
+    "buildingType": "core",
+    "name": "Reinforced walls",
+    "description": "+400 maximum integrity",
+    "cost": {
+      "wood": 35,
+      "metal": 20
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "hpBonus": 400
+    }
+  },
+  {
+    "id": "radio",
+    "buildingType": "core",
+    "name": "Radio antenna",
+    "description": "Recruit for 25% less food; +2 housing",
+    "cost": {
+      "wood": 25,
+      "metal": 20
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "recruitDiscount": 0.25,
+      "housingBonus": 2
+    }
+  },
+  {
+    "id": "bunker",
+    "buildingType": "core",
+    "name": "Last refuge",
+    "description": "+600 integrity; slowly self-repairs",
+    "cost": {
+      "wood": 90,
+      "metal": 55
+    },
+    "requires": "fortify",
+    "tier": 2,
+    "stats": {
+      "hpBonus": 600,
+      "autoRepair": true
+    }
+  },
+  {
+    "id": "beacon",
+    "buildingType": "core",
+    "name": "Signal beacon",
+    "description": "Walk-up survivors find you twice as often",
+    "cost": {
+      "wood": 60,
+      "metal": 50
+    },
+    "requires": "radio",
+    "tier": 2,
+    "stats": {
+      "walkUpMultiplier": 2.0
+    }
+  },
+  {
+    "id": "irrigation",
+    "buildingType": "farm",
+    "name": "Irrigation",
+    "description": "+50% food production",
+    "cost": {
+      "wood": 25,
+      "metal": 12
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "outputBonus": 0.5
+    }
+  },
+  {
+    "id": "storage",
+    "buildingType": "farm",
+    "name": "Seed stores",
+    "description": "+80 durability; +25% food production",
+    "cost": {
+      "wood": 30,
+      "metal": 8
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "hpBonus": 80,
+      "outputBonus": 0.25
+    }
+  },
+  {
+    "id": "greenhouse",
+    "buildingType": "farm",
+    "name": "Greenhouse",
+    "description": "+75% production; full output at night",
+    "cost": {
+      "wood": 65,
+      "metal": 35
+    },
+    "requires": "irrigation",
+    "tier": 2,
+    "stats": {
+      "outputBonus": 0.75,
+      "nightPenaltyIgnored": true
+    }
+  },
+  {
+    "id": "harvest",
+    "buildingType": "farm",
+    "name": "Rich harvest",
+    "description": "+75% food production",
+    "cost": {
+      "wood": 60,
+      "metal": 25
+    },
+    "requires": "storage",
+    "tier": 2,
+    "stats": {
+      "outputBonus": 0.75
+    }
+  },
+  {
+    "id": "bunks",
+    "buildingType": "dorm",
+    "name": "Bunk beds",
+    "description": "+2 survivor spaces",
+    "cost": {
+      "wood": 35,
+      "metal": 8
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "bedBonus": 2
+    }
+  },
+  {
+    "id": "comfort",
+    "buildingType": "dorm",
+    "name": "Warm bedding",
+    "description": "Survivors heal 25% faster",
+    "cost": {
+      "wood": 25,
+      "metal": 10
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "healingRateBonus": 0.25
+    }
+  },
+  {
+    "id": "annex",
+    "buildingType": "dorm",
+    "name": "Bunkhouse annex",
+    "description": "+4 survivor spaces",
+    "cost": {
+      "wood": 80,
+      "metal": 30
+    },
+    "requires": "bunks",
+    "tier": 2,
+    "stats": {
+      "bedBonus": 4
+    }
+  },
+  {
+    "id": "infirmary",
+    "buildingType": "dorm",
+    "name": "Recovery room",
+    "description": "Survivors heal 75% faster",
+    "cost": {
+      "wood": 50,
+      "metal": 40
+    },
+    "requires": "comfort",
+    "tier": 2,
+    "stats": {
+      "healingRateBonus": 0.75
+    }
+  },
+  {
+    "id": "sawbench",
+    "buildingType": "workshop",
+    "name": "Saw bench",
+    "description": "+60% wood production",
+    "cost": {
+      "wood": 30,
+      "metal": 15
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "woodBonus": 0.6
+    }
+  },
+  {
+    "id": "forge",
+    "buildingType": "workshop",
+    "name": "Salvage forge",
+    "description": "+70% metal production",
+    "cost": {
+      "wood": 25,
+      "metal": 20
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "metalBonus": 0.7
+    }
+  },
+  {
+    "id": "machinery",
+    "buildingType": "workshop",
+    "name": "Power tools",
+    "description": "+100% wood production; engineers repair 50% faster",
+    "cost": {
+      "wood": 65,
+      "metal": 40
+    },
+    "requires": "sawbench",
+    "tier": 2,
+    "stats": {
+      "woodBonus": 1.0,
+      "repairSpeedBonus": 0.5
+    }
+  },
+  {
+    "id": "recycling",
+    "buildingType": "workshop",
+    "name": "Recycling line",
+    "description": "+100% metal production",
+    "cost": {
+      "wood": 60,
+      "metal": 45
+    },
+    "requires": "forge",
+    "tier": 2,
+    "stats": {
+      "metalBonus": 1.0
+    }
+  },
+  {
+    "id": "salves",
+    "buildingType": "clinic",
+    "name": "Herbal salves",
+    "description": "+40% healing refuge-wide; medics +50%",
+    "cost": {
+      "wood": 25,
+      "metal": 12
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "refugeHealBonus": 0.4,
+      "medicBonus": 0.5
+    }
+  },
+  {
+    "id": "surgeon",
+    "buildingType": "clinic",
+    "name": "Field surgeon",
+    "description": "40% less expedition injury risk",
+    "cost": {
+      "wood": 30,
+      "metal": 15
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "expeditionRiskReduction": 0.4
+    }
+  },
+  {
+    "id": "ward",
+    "buildingType": "clinic",
+    "name": "Recovery ward",
+    "description": "+120 durability; +40% healing; medics +50%",
+    "cost": {
+      "wood": 55,
+      "metal": 30
+    },
+    "requires": "salves",
+    "tier": 2,
+    "stats": {
+      "hpBonus": 120,
+      "refugeHealBonus": 0.4,
+      "medicBonus": 0.5
+    }
+  },
+  {
+    "id": "antibiotics",
+    "buildingType": "clinic",
+    "name": "Antibiotics",
+    "description": "Survivors no longer lose health to starvation",
+    "cost": {
+      "wood": 70,
+      "metal": 40
+    },
+    "requires": "surgeon",
+    "tier": 2,
+    "stats": {
+      "starvationImmunity": true
+    }
+  },
+  {
+    "id": "drills",
+    "buildingType": "barracks",
+    "name": "Combat drills",
+    "description": "Guards deal +25% damage",
+    "cost": {
+      "wood": 30,
+      "metal": 20
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "guardDamageBonus": 0.25
+    }
+  },
+  {
+    "id": "armory",
+    "buildingType": "barracks",
+    "name": "Armory",
+    "description": "Guards take 30% less damage",
+    "cost": {
+      "wood": 30,
+      "metal": 25
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "guardDamageReduction": 0.3
+    }
+  },
+  {
+    "id": "rally",
+    "buildingType": "barracks",
+    "name": "Rapid response",
+    "description": "Guards move 40% faster and hunt 50% farther",
+    "cost": {
+      "wood": 55,
+      "metal": 35
+    },
+    "requires": "drills",
+    "tier": 2,
+    "stats": {
+      "guardSpeedBonus": 0.4,
+      "huntRangeBonus": 0.5
+    }
+  },
+  {
+    "id": "nightwatch",
+    "buildingType": "barracks",
+    "name": "Night watch",
+    "description": "Guards fire 30% faster; +2 guard posts",
+    "cost": {
+      "wood": 60,
+      "metal": 45
+    },
+    "requires": "armory",
+    "tier": 2,
+    "stats": {
+      "guardFireRate": 0.3,
+      "guardSlotsBonus": 2
+    }
+  },
+  {
+    "id": "scope",
+    "buildingType": "tower",
+    "name": "Long sight",
+    "description": "+45 attack range",
+    "cost": {
+      "wood": 20,
+      "metal": 15
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "rangeBonus": 45
+    }
+  },
+  {
+    "id": "rounds",
+    "buildingType": "tower",
+    "name": "Heavy rounds",
+    "description": "+12 damage per shot",
+    "cost": {
+      "wood": 20,
+      "metal": 20
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "damageBonus": 12
+    }
+  },
+  {
+    "id": "spotlight",
+    "buildingType": "tower",
+    "name": "Spotlight",
+    "description": "+55 range; illuminate nearby dead",
+    "cost": {
+      "wood": 45,
+      "metal": 35
+    },
+    "requires": "scope",
+    "tier": 2,
+    "stats": {
+      "rangeBonus": 55,
+      "illuminates": true
+    }
+  },
+  {
+    "id": "rapid",
+    "buildingType": "tower",
+    "name": "Quick reload",
+    "description": "Fire twice as fast",
+    "cost": {
+      "wood": 50,
+      "metal": 45
+    },
+    "requires": "rounds",
+    "tier": 2,
+    "stats": {
+      "fireRateMultiplier": 2.0
+    }
+  },
+  {
+    "id": "reinforce_barricade",
+    "buildingType": "barricade",
+    "name": "Cross bracing",
+    "description": "+150 durability",
+    "cost": {
+      "wood": 14,
+      "metal": 4
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "hpBonus": 150
+    }
+  },
+  {
+    "id": "wire_barricade",
+    "buildingType": "barricade",
+    "name": "Barbed wire",
+    "description": "Deal 4 damage/sec to attackers",
+    "cost": {
+      "wood": 8,
+      "metal": 10
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "thornsDmg": 4
+    }
+  },
+  {
+    "id": "plate_barricade",
+    "buildingType": "barricade",
+    "name": "Steel plating",
+    "description": "+250 durability",
+    "cost": {
+      "wood": 20,
+      "metal": 18
+    },
+    "requires": "reinforce_barricade",
+    "tier": 2,
+    "stats": {
+      "hpBonus": 250
+    }
+  },
+  {
+    "id": "spikes_barricade",
+    "buildingType": "barricade",
+    "name": "Steel spikes",
+    "description": "Deal 10 additional damage/sec",
+    "cost": {
+      "wood": 15,
+      "metal": 22
+    },
+    "requires": "wire_barricade",
+    "tier": 2,
+    "stats": {
+      "thornsDmg": 10
+    }
+  },
+  {
+    "id": "reinforce_gate",
+    "buildingType": "gate",
+    "name": "Cross bracing",
+    "description": "+150 durability",
+    "cost": {
+      "wood": 24,
+      "metal": 8
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "hpBonus": 150
+    }
+  },
+  {
+    "id": "wire_gate",
+    "buildingType": "gate",
+    "name": "Barbed wire",
+    "description": "Deal 4 damage/sec to attackers",
+    "cost": {
+      "wood": 12,
+      "metal": 14
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "thornsDmg": 4
+    }
+  },
+  {
+    "id": "plate_gate",
+    "buildingType": "gate",
+    "name": "Steel plating",
+    "description": "+250 durability",
+    "cost": {
+      "wood": 30,
+      "metal": 30
+    },
+    "requires": "reinforce_gate",
+    "tier": 2,
+    "stats": {
+      "hpBonus": 250
+    }
+  },
+  {
+    "id": "spikes_gate",
+    "buildingType": "gate",
+    "name": "Steel spikes",
+    "description": "Deal 10 additional damage/sec",
+    "cost": {
+      "wood": 22,
+      "metal": 32
+    },
+    "requires": "wire_gate",
+    "tier": 2,
+    "stats": {
+      "thornsDmg": 10
+    }
+  },
+  {
+    "id": "reinforced_door",
+    "buildingType": "shelter",
+    "name": "Blast Door",
+    "description": "+150 durability and blast resistance",
+    "cost": {
+      "wood": 25,
+      "metal": 15
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "hpBonus": 150
+    }
+  },
+  {
+    "id": "air_filtration",
+    "buildingType": "shelter",
+    "name": "Air Filtration",
+    "description": "Survivors heal inside shelter",
+    "cost": {
+      "wood": 30,
+      "metal": 20
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "healInside": true
+    }
+  },
+  {
+    "id": "bunk_racks",
+    "buildingType": "shelter",
+    "name": "Bunk Racks",
+    "description": "+4 shelter capacity; +1 permanent bed",
+    "cost": {
+      "wood": 45,
+      "metal": 25
+    },
+    "requires": "reinforced_door",
+    "tier": 2,
+    "stats": {
+      "capacityBonus": 4,
+      "bedBonus": 1
+    }
+  },
+  {
+    "id": "deep_vault",
+    "buildingType": "shelter",
+    "name": "Deep Vault",
+    "description": "+250 durability; protects resources during swarms",
+    "cost": {
+      "wood": 60,
+      "metal": 40
+    },
+    "requires": "air_filtration",
+    "tier": 2,
+    "stats": {
+      "hpBonus": 250,
+      "protectsResources": true
+    }
+  },
+  {
+    "id": "circular_saw",
+    "buildingType": "lumber_mill",
+    "name": "Circular Saw",
+    "description": "+40% wood yield",
+    "cost": {
+      "wood": 30,
+      "metal": 20
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "woodBonus": 0.4
+    }
+  },
+  {
+    "id": "log_chute",
+    "buildingType": "lumber_mill",
+    "name": "Log Chute",
+    "description": "+30% gathering speed",
+    "cost": {
+      "wood": 25,
+      "metal": 15
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "speedBonus": 0.3
+    }
+  },
+  {
+    "id": "steam_engine",
+    "buildingType": "lumber_mill",
+    "name": "Steam Engine",
+    "description": "+70% wood production",
+    "cost": {
+      "wood": 55,
+      "metal": 45
+    },
+    "requires": "circular_saw",
+    "tier": 2,
+    "stats": {
+      "woodBonus": 0.7
+    }
+  },
+  {
+    "id": "timber_kiln",
+    "buildingType": "lumber_mill",
+    "name": "Timber Kiln",
+    "description": "+100 durability to lumber mill",
+    "cost": {
+      "wood": 60,
+      "metal": 35
+    },
+    "requires": "log_chute",
+    "tier": 2,
+    "stats": {
+      "hpBonus": 100
+    }
+  },
+  {
+    "id": "bulk_bins",
+    "buildingType": "storage",
+    "name": "Bulk Bins",
+    "description": "Expands storage capacity",
+    "cost": {
+      "wood": 30,
+      "metal": 15
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "capacityBonus": 500
+    }
+  },
+  {
+    "id": "iron_lockers",
+    "buildingType": "storage",
+    "name": "Iron Lockers",
+    "description": "+150 durability; secure stash",
+    "cost": {
+      "wood": 25,
+      "metal": 25
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "hpBonus": 150
+    }
+  },
+  {
+    "id": "refrigeration",
+    "buildingType": "storage",
+    "name": "Preservation Cells",
+    "description": "Prevents food loss; +20% food reserve",
+    "cost": {
+      "wood": 50,
+      "metal": 40
+    },
+    "requires": "bulk_bins",
+    "tier": 2,
+    "stats": {
+      "preventsFoodLoss": true,
+      "foodReserveBonus": 0.2
+    }
+  },
+  {
+    "id": "vault_lock",
+    "buildingType": "storage",
+    "name": "Reinforced Vault",
+    "description": "+300 durability",
+    "cost": {
+      "wood": 65,
+      "metal": 50
+    },
+    "requires": "iron_lockers",
+    "tier": 2,
+    "stats": {
+      "hpBonus": 300
+    }
+  },
+  {
+    "id": "chemistry_set",
+    "buildingType": "lab",
+    "name": "Compound Synthesis",
+    "description": "Clinic medicines are 30% more potent",
+    "cost": {
+      "wood": 35,
+      "metal": 25
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "potencyBonus": 0.3
+    }
+  },
+  {
+    "id": "ballistics",
+    "buildingType": "lab",
+    "name": "Ballistics Research",
+    "description": "All firearms deal +15% damage",
+    "cost": {
+      "wood": 35,
+      "metal": 30
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "firearmDamageBonus": 0.15
+    }
+  },
+  {
+    "id": "autoclave",
+    "buildingType": "lab",
+    "name": "Sterilization Rig",
+    "description": "Infection and bleedout timers doubled",
+    "cost": {
+      "wood": 50,
+      "metal": 45
+    },
+    "requires": "chemistry_set",
+    "tier": 2,
+    "stats": {
+      "bleedoutMultiplier": 2.0
+    }
+  },
+  {
+    "id": "incendiary",
+    "buildingType": "lab",
+    "name": "Incendiary Mix",
+    "description": "Craft Molotovs; shots ignite the dead",
+    "cost": {
+      "wood": 60,
+      "metal": 55
+    },
+    "requires": "ballistics",
+    "tier": 2,
+    "stats": {
+      "ignitesEnemies": true
+    }
+  },
+  {
+    "id": "gunsmith_bench",
+    "buildingType": "armory",
+    "name": "Gunsmith Bench",
+    "description": "Weapon crafting cost reduced by 25%",
+    "cost": {
+      "wood": 30,
+      "metal": 20
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "craftingDiscount": 0.25
+    }
+  },
+  {
+    "id": "kevlar_weave",
+    "buildingType": "armory",
+    "name": "Ballistic Vests",
+    "description": "Guards take 20% less damage",
+    "cost": {
+      "wood": 35,
+      "metal": 30
+    },
+    "requires": null,
+    "tier": 1,
+    "stats": {
+      "guardDamageReduction": 0.2
+    }
+  },
+  {
+    "id": "ammo_press",
+    "buildingType": "armory",
+    "name": "Munition Press",
+    "description": "Ranged fire rate increased by 25%",
+    "cost": {
+      "wood": 50,
+      "metal": 40
+    },
+    "requires": "gunsmith_bench",
+    "tier": 2,
+    "stats": {
+      "fireRateBonus": 0.25
+    }
+  },
+  {
+    "id": "heavy_turret",
+    "buildingType": "armory",
+    "name": "Defensive Emplacement",
+    "description": "Armory fires at nearby zombies",
+    "cost": {
+      "wood": 70,
+      "metal": 60
+    },
+    "requires": "kevlar_weave",
+    "tier": 2,
+    "stats": {
+      "automatedTurret": true
+    }
+  }
+]

@@ -1,0 +1,358 @@
+[
+  {
+    "id": "point_blank",
+    "name": "Point Blank",
+    "description": "Ranged weapons deal +35% damage to targets within 50 range.",
+    "category": "combat",
+    "tier": 1,
+    "icon": "🎯",
+    "cost": {
+      "xp": 60
+    },
+    "statRequirements": {
+      "str": 4,
+      "agi": 5
+    },
+    "effects": {
+      "closeRangeDamage": 0.35
+    },
+    "requires": [],
+    "tags": [
+      "combat",
+      "passive"
+    ]
+  },
+  {
+    "id": "hollow_point",
+    "name": "Hollow Point",
+    "description": "Gunfire shreds incoming zombies with a 20% chance to critically strike for double damage.",
+    "category": "combat",
+    "tier": 2,
+    "icon": "💥",
+    "cost": {
+      "xp": 110,
+      "metal": 20
+    },
+    "statRequirements": {
+      "agi": 7
+    },
+    "effects": {
+      "critChance": 0.2,
+      "critMultiplier": 2.0
+    },
+    "requires": [
+      "point_blank"
+    ],
+    "tags": [
+      "combat",
+      "firearms"
+    ]
+  },
+  {
+    "id": "deadeye",
+    "name": "Deadeye Stance",
+    "description": "When stationary for 2+ seconds, firearm range expands by +40 and accuracy reaches 95%.",
+    "category": "combat",
+    "tier": 3,
+    "icon": "👁",
+    "cost": {
+      "xp": 180,
+      "metal": 35
+    },
+    "statRequirements": {
+      "agi": 9,
+      "int": 6
+    },
+    "effects": {
+      "rangeBonus": 40,
+      "aimAccuracy": 0.95
+    },
+    "requires": [
+      "hollow_point"
+    ],
+    "tags": [
+      "combat",
+      "marksman"
+    ]
+  },
+  {
+    "id": "cqc_mastery",
+    "name": "CQC Mastery",
+    "description": "Melee swing speed increases by 40% and blunt weapons stun hostiles for 1.2 seconds.",
+    "category": "combat",
+    "tier": 2,
+    "icon": "🥊",
+    "cost": {
+      "xp": 100
+    },
+    "statRequirements": {
+      "str": 7
+    },
+    "effects": {
+      "meleeSpeed": 0.4,
+      "stunSeconds": 1.2
+    },
+    "requires": [],
+    "tags": [
+      "combat",
+      "melee"
+    ]
+  },
+  {
+    "id": "thick_skin",
+    "name": "Thick Skin",
+    "description": "Maximum hit points permanently increased by +25.",
+    "category": "survival",
+    "tier": 1,
+    "icon": "🛡",
+    "cost": {
+      "xp": 50
+    },
+    "statRequirements": {
+      "end": 5
+    },
+    "effects": {
+      "hpBase": 25
+    },
+    "requires": [],
+    "tags": [
+      "survival",
+      "durability"
+    ]
+  },
+  {
+    "id": "iron_lungs",
+    "name": "Iron Lungs",
+    "description": "Bleed-out survival timer when downed increases from 3 hours to 6 hours.",
+    "category": "survival",
+    "tier": 2,
+    "icon": "🫁",
+    "cost": {
+      "xp": 90
+    },
+    "statRequirements": {
+      "end": 7
+    },
+    "effects": {
+      "bleedOutMultiplier": 2.0
+    },
+    "requires": [
+      "thick_skin"
+    ],
+    "tags": [
+      "survival",
+      "recovery"
+    ]
+  },
+  {
+    "id": "fleet_foot",
+    "name": "Fleet Foot",
+    "description": "Sprint and standard movement speed boosted by 22%. Outruns normal walkers easily.",
+    "category": "survival",
+    "tier": 1,
+    "icon": "👟",
+    "cost": {
+      "xp": 65
+    },
+    "statRequirements": {
+      "agi": 5
+    },
+    "effects": {
+      "speedBonus": 0.22
+    },
+    "requires": [],
+    "tags": [
+      "survival",
+      "mobility"
+    ]
+  },
+  {
+    "id": "scavenger_senses",
+    "name": "Scavenger Senses",
+    "description": "Survivor identifies salvageable metal caches during regular patrols and movements.",
+    "category": "survival",
+    "tier": 2,
+    "icon": "🧭",
+    "cost": {
+      "xp": 120,
+      "food": 15
+    },
+    "statRequirements": {
+      "int": 6,
+      "agi": 6
+    },
+    "effects": {
+      "ambientSalvageRate": 0.05
+    },
+    "requires": [
+      "fleet_foot"
+    ],
+    "tags": [
+      "survival",
+      "economy"
+    ]
+  },
+  {
+    "id": "pack_mule",
+    "name": "Pack Mule",
+    "description": "Expedition carry quota increased by +50% salvage returned without additional food.",
+    "category": "work",
+    "tier": 1,
+    "icon": "🎒",
+    "cost": {
+      "xp": 55
+    },
+    "statRequirements": {
+      "str": 6
+    },
+    "effects": {
+      "lootCapacity": 0.5
+    },
+    "requires": [],
+    "tags": [
+      "work",
+      "expedition"
+    ]
+  },
+  {
+    "id": "rapid_fabrication",
+    "name": "Rapid Fabrication",
+    "description": "Engineers repair barricades and buildings 45% faster while spending 15% less wood.",
+    "category": "work",
+    "tier": 2,
+    "icon": "⚒",
+    "cost": {
+      "xp": 115,
+      "wood": 30
+    },
+    "statRequirements": {
+      "int": 7
+    },
+    "effects": {
+      "repairSpeed": 0.45,
+      "woodDiscount": 0.15
+    },
+    "requires": [],
+    "tags": [
+      "work",
+      "engineering"
+    ]
+  },
+  {
+    "id": "field_medic_perk",
+    "name": "Field Triage Training",
+    "description": "Stabilizing downed allies takes only 2 seconds instead of standard 4-10 seconds.",
+    "category": "work",
+    "tier": 2,
+    "icon": "✚",
+    "cost": {
+      "xp": 105
+    },
+    "statRequirements": {
+      "int": 6,
+      "end": 5
+    },
+    "effects": {
+      "stabilizeSeconds": 2.0
+    },
+    "requires": [],
+    "tags": [
+      "work",
+      "medical"
+    ]
+  },
+  {
+    "id": "botanical_acumen",
+    "name": "Botanical Acumen",
+    "description": "Increases farm crop yield by 35% when survivor is on duty.",
+    "category": "work",
+    "tier": 1,
+    "icon": "🌱",
+    "cost": {
+      "xp": 60
+    },
+    "statRequirements": {
+      "int": 5
+    },
+    "effects": {
+      "farmOutputBonus": 0.35
+    },
+    "requires": [],
+    "tags": [
+      "work",
+      "agriculture"
+    ]
+  },
+  {
+    "id": "inspirational_presence",
+    "name": "Inspirational Presence",
+    "description": "Allies within 80 radius gain +10% movement speed and deal +15% damage.",
+    "category": "leadership",
+    "tier": 2,
+    "icon": "⭐",
+    "cost": {
+      "xp": 130
+    },
+    "statRequirements": {
+      "cha": 7
+    },
+    "effects": {
+      "auraDamage": 0.15,
+      "auraSpeed": 0.1
+    },
+    "requires": [],
+    "tags": [
+      "leadership",
+      "aura"
+    ]
+  },
+  {
+    "id": "master_negotiator",
+    "name": "Master Negotiator",
+    "description": "Reduces survivor recruitment food cost by 30% and improves trader barter rates by 25%.",
+    "category": "leadership",
+    "tier": 3,
+    "icon": "🤝",
+    "cost": {
+      "xp": 160,
+      "food": 30
+    },
+    "statRequirements": {
+      "cha": 8,
+      "int": 7
+    },
+    "effects": {
+      "recruitDiscount": 0.3,
+      "tradeDiscount": 0.25
+    },
+    "requires": [
+      "inspirational_presence"
+    ],
+    "tags": [
+      "leadership",
+      "diplomacy"
+    ]
+  },
+  {
+    "id": "temp_runner_perk",
+    "name": "Marathon Sprint",
+    "description": "Run 50% faster for 10 seconds.",
+    "category": "survival",
+    "tier": 1,
+    "icon": "⚔",
+    "cost": {
+      "xp": 40
+    },
+    "statRequirements": {
+      "agi": 6
+    },
+    "effects": {
+      "speedBoost": 0.5
+    },
+    "requires": [],
+    "tags": [
+      "combat",
+      "passive"
+    ]
+  }
+]

@@ -1,0 +1,3211 @@
+{
+ "name": "Zombie Base Building Tileset",
+ "version": "2.0.0",
+ "generated": "2026-09-29T00:55:49.767Z",
+ "conventions": {
+  "tileSize": 16,
+  "pixelsPerUnit": 16,
+  "projection": "top-down 3/4",
+  "filtering": "point",
+  "seasons": [
+   "spring",
+   "summer",
+   "fall",
+   "winter"
+  ],
+  "seasonFolders": "Art/{Terrain,Buildings,Decor,World}/{season}/<key>.png",
+  "timesOfDay": [
+   "early_morning",
+   "morning",
+   "day",
+   "early_evening",
+   "evening",
+   "night",
+   "late_night"
+  ],
+  "pivots": {
+   "grid": "bottom-left (terrain, trees, walls, gates, towers, buildings, world, decor)",
+   "characters": "bottom-centre",
+   "fx": "see pivot per entry in unity_import.json",
+   "ui": "centre"
+  },
+  "depthSort": "sortingOrder = ground Y of the footprint bottom in pixels (higher on screen draws first)"
+ },
+ "terrain": {
+  "grass_a": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/grass_a.png"
+  },
+  "grass_b": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/grass_b.png"
+  },
+  "grass_c": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/grass_c.png"
+  },
+  "dirt_a": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/dirt_a.png"
+  },
+  "dirt_b": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/dirt_b.png"
+  },
+  "dirt_c": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/dirt_c.png"
+  },
+  "edge_n": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/edge_n.png"
+  },
+  "edge_e": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/edge_e.png"
+  },
+  "edge_s": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/edge_s.png"
+  },
+  "edge_w": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/edge_w.png"
+  },
+  "road_h": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_h.png"
+  },
+  "road_v": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_v.png"
+  },
+  "road_x": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_x.png"
+  },
+  "road_p": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_p.png"
+  },
+  "road_edge_n": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_edge_n.png"
+  },
+  "road_edge_e": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_edge_e.png"
+  },
+  "road_edge_s": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_edge_s.png"
+  },
+  "road_edge_w": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_edge_w.png"
+  },
+  "road_corner_nw": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_corner_nw.png"
+  },
+  "road_corner_ne": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_corner_ne.png"
+  },
+  "road_corner_sw": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_corner_sw.png"
+  },
+  "road_corner_se": {
+   "w": 16,
+   "h": 16,
+   "file": "Art/Terrain/{season}/road_corner_se.png"
+  },
+  "tree_oak": {
+   "w": 32,
+   "h": 40,
+   "file": "Art/Terrain/{season}/tree_oak.png"
+  },
+  "tree_pine": {
+   "w": 24,
+   "h": 44,
+   "file": "Art/Terrain/{season}/tree_pine.png"
+  },
+  "tree_dead": {
+   "w": 24,
+   "h": 36,
+   "file": "Art/Terrain/{season}/tree_dead.png"
+  },
+  "bush": {
+   "w": 16,
+   "h": 14,
+   "file": "Art/Terrain/{season}/bush.png"
+  },
+  "stump": {
+   "w": 16,
+   "h": 14,
+   "file": "Art/Terrain/{season}/stump.png"
+  },
+  "tower_open": {
+   "w": 32,
+   "h": 56,
+   "file": "Art/Terrain/{season}/tower_open.png"
+  },
+  "tower_roofed": {
+   "w": 32,
+   "h": 56,
+   "file": "Art/Terrain/{season}/tower_roofed.png"
+  }
+ },
+ "walls": {
+  "wall_planks_h": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_planks_h.png"
+  },
+  "wall_planks_v": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_planks_v.png"
+  },
+  "wall_planks_tl": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_planks_tl.png"
+  },
+  "wall_planks_tr": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_planks_tr.png"
+  },
+  "wall_planks_bl": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_planks_bl.png"
+  },
+  "wall_planks_br": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_planks_br.png"
+  },
+  "wall_palisade_h": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_palisade_h.png"
+  },
+  "wall_palisade_v": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_palisade_v.png"
+  },
+  "wall_palisade_tl": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_palisade_tl.png"
+  },
+  "wall_palisade_tr": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_palisade_tr.png"
+  },
+  "wall_palisade_bl": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_palisade_bl.png"
+  },
+  "wall_palisade_br": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_palisade_br.png"
+  },
+  "wall_sandbag_h": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_sandbag_h.png"
+  },
+  "wall_sandbag_v": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_sandbag_v.png"
+  },
+  "wall_sandbag_tl": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_sandbag_tl.png"
+  },
+  "wall_sandbag_tr": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_sandbag_tr.png"
+  },
+  "wall_sandbag_bl": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_sandbag_bl.png"
+  },
+  "wall_sandbag_br": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_sandbag_br.png"
+  },
+  "wall_scrap_h": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_scrap_h.png"
+  },
+  "wall_scrap_v": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_scrap_v.png"
+  },
+  "wall_scrap_tl": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_scrap_tl.png"
+  },
+  "wall_scrap_tr": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_scrap_tr.png"
+  },
+  "wall_scrap_bl": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_scrap_bl.png"
+  },
+  "wall_scrap_br": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_scrap_br.png"
+  },
+  "wall_planks_dmg": {
+   "w": 16,
+   "h": 28,
+   "file": "Art/Walls/wall_planks_dmg.png"
+  }
+ },
+ "gates": {
+  "gate_wood_closed": {
+   "w": 32,
+   "h": 28,
+   "file": "Art/Gates/gate_wood_closed.png"
+  },
+  "gate_wood_open": {
+   "w": 32,
+   "h": 28,
+   "file": "Art/Gates/gate_wood_open.png"
+  },
+  "gate_wood_v_closed": {
+   "w": 16,
+   "h": 44,
+   "file": "Art/Gates/gate_wood_v_closed.png"
+  },
+  "gate_wood_v_open_e": {
+   "w": 32,
+   "h": 44,
+   "file": "Art/Gates/gate_wood_v_open_e.png"
+  },
+  "gate_wood_v_open_w": {
+   "w": 32,
+   "h": 44,
+   "file": "Art/Gates/gate_wood_v_open_w.png"
+  },
+  "gate_metal_closed": {
+   "w": 32,
+   "h": 28,
+   "file": "Art/Gates/gate_metal_closed.png"
+  },
+  "gate_metal_open": {
+   "w": 32,
+   "h": 28,
+   "file": "Art/Gates/gate_metal_open.png"
+  },
+  "gate_metal_v_closed": {
+   "w": 16,
+   "h": 44,
+   "file": "Art/Gates/gate_metal_v_closed.png"
+  },
+  "gate_metal_v_open_e": {
+   "w": 32,
+   "h": 44,
+   "file": "Art/Gates/gate_metal_v_open_e.png"
+  },
+  "gate_metal_v_open_w": {
+   "w": 32,
+   "h": 44,
+   "file": "Art/Gates/gate_metal_v_open_w.png"
+  },
+  "gate_log_closed": {
+   "w": 32,
+   "h": 28,
+   "file": "Art/Gates/gate_log_closed.png"
+  },
+  "gate_log_open": {
+   "w": 32,
+   "h": 28,
+   "file": "Art/Gates/gate_log_open.png"
+  },
+  "gate_log_v_closed": {
+   "w": 16,
+   "h": 44,
+   "file": "Art/Gates/gate_log_v_closed.png"
+  },
+  "gate_log_v_open_e": {
+   "w": 32,
+   "h": 44,
+   "file": "Art/Gates/gate_log_v_open_e.png"
+  },
+  "gate_log_v_open_w": {
+   "w": 32,
+   "h": 44,
+   "file": "Art/Gates/gate_log_v_open_w.png"
+  },
+  "gate_scrap_closed": {
+   "w": 32,
+   "h": 28,
+   "file": "Art/Gates/gate_scrap_closed.png"
+  },
+  "gate_scrap_open": {
+   "w": 32,
+   "h": 28,
+   "file": "Art/Gates/gate_scrap_open.png"
+  },
+  "gate_scrap_v_closed": {
+   "w": 16,
+   "h": 44,
+   "file": "Art/Gates/gate_scrap_v_closed.png"
+  },
+  "gate_scrap_v_open_e": {
+   "w": 32,
+   "h": 44,
+   "file": "Art/Gates/gate_scrap_v_open_e.png"
+  },
+  "gate_scrap_v_open_w": {
+   "w": 32,
+   "h": 44,
+   "file": "Art/Gates/gate_scrap_v_open_w.png"
+  }
+ },
+ "buildings": {
+  "town_hall": {
+   "w": 64,
+   "h": 72,
+   "footprint": [
+    4,
+    3
+   ],
+   "door": {
+    "type": "double",
+    "x": 27,
+    "y": 49,
+    "w": 10,
+    "h": 15,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/town_hall_door.png"
+   },
+   "file": "Art/Buildings/{season}/town_hall.png",
+   "ghostValid": "Art/UI/ghost_town_hall_ok.png",
+   "ghostBlocked": "Art/UI/ghost_town_hall_bad.png"
+  },
+  "clinic": {
+   "w": 48,
+   "h": 58,
+   "footprint": [
+    3,
+    3
+   ],
+   "door": {
+    "type": "slide",
+    "x": 20,
+    "y": 35,
+    "w": 8,
+    "h": 14,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/clinic_door.png"
+   },
+   "file": "Art/Buildings/{season}/clinic.png",
+   "ghostValid": "Art/UI/ghost_clinic_ok.png",
+   "ghostBlocked": "Art/UI/ghost_clinic_bad.png"
+  },
+  "barracks": {
+   "w": 64,
+   "h": 54,
+   "footprint": [
+    4,
+    2
+   ],
+   "door": {
+    "type": "swing",
+    "x": 28,
+    "y": 34,
+    "w": 8,
+    "h": 14,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/barracks_door.png"
+   },
+   "file": "Art/Buildings/{season}/barracks.png",
+   "ghostValid": "Art/UI/ghost_barracks_ok.png",
+   "ghostBlocked": "Art/UI/ghost_barracks_bad.png"
+  },
+  "workshop": {
+   "w": 48,
+   "h": 62,
+   "footprint": [
+    3,
+    3
+   ],
+   "door": {
+    "type": "roll",
+    "x": 7,
+    "y": 34,
+    "w": 24,
+    "h": 22,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/workshop_door.png"
+   },
+   "file": "Art/Buildings/{season}/workshop.png",
+   "ghostValid": "Art/UI/ghost_workshop_ok.png",
+   "ghostBlocked": "Art/UI/ghost_workshop_bad.png"
+  },
+  "farm": {
+   "w": 64,
+   "h": 52,
+   "footprint": [
+    4,
+    3
+   ],
+   "file": "Art/Buildings/{season}/farm.png",
+   "ghostValid": "Art/UI/ghost_farm_ok.png",
+   "ghostBlocked": "Art/UI/ghost_farm_bad.png"
+  },
+  "shelter": {
+   "w": 32,
+   "h": 40,
+   "footprint": [
+    2,
+    2
+   ],
+   "door": {
+    "type": "blast",
+    "x": 10,
+    "y": 23,
+    "w": 12,
+    "h": 11,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/shelter_door.png"
+   },
+   "file": "Art/Buildings/{season}/shelter.png",
+   "ghostValid": "Art/UI/ghost_shelter_ok.png",
+   "ghostBlocked": "Art/UI/ghost_shelter_bad.png"
+  },
+  "lumber_mill": {
+   "w": 48,
+   "h": 50,
+   "footprint": [
+    3,
+    2
+   ],
+   "file": "Art/Buildings/{season}/lumber_mill.png",
+   "ghostValid": "Art/UI/ghost_lumber_mill_ok.png",
+   "ghostBlocked": "Art/UI/ghost_lumber_mill_bad.png"
+  },
+  "storage": {
+   "w": 48,
+   "h": 60,
+   "footprint": [
+    3,
+    3
+   ],
+   "door": {
+    "type": "roll",
+    "x": 12,
+    "y": 44,
+    "w": 24,
+    "h": 10,
+    "top": 34,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/storage_door.png"
+   },
+   "file": "Art/Buildings/{season}/storage.png",
+   "ghostValid": "Art/UI/ghost_storage_ok.png",
+   "ghostBlocked": "Art/UI/ghost_storage_bad.png"
+  },
+  "lab": {
+   "w": 48,
+   "h": 62,
+   "footprint": [
+    3,
+    3
+   ],
+   "door": {
+    "type": "slide",
+    "x": 20,
+    "y": 37,
+    "w": 8,
+    "h": 18,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/lab_door.png"
+   },
+   "file": "Art/Buildings/{season}/lab.png",
+   "ghostValid": "Art/UI/ghost_lab_ok.png",
+   "ghostBlocked": "Art/UI/ghost_lab_bad.png"
+  },
+  "armory": {
+   "w": 32,
+   "h": 42,
+   "footprint": [
+    2,
+    2
+   ],
+   "door": {
+    "type": "swing",
+    "x": 11,
+    "y": 24,
+    "w": 10,
+    "h": 12,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/armory_door.png"
+   },
+   "file": "Art/Buildings/{season}/armory.png",
+   "ghostValid": "Art/UI/ghost_armory_ok.png",
+   "ghostBlocked": "Art/UI/ghost_armory_bad.png"
+  },
+  "bunkhouse": {
+   "w": 48,
+   "h": 46,
+   "footprint": [
+    3,
+    2
+   ],
+   "door": {
+    "type": "swing",
+    "x": 21,
+    "y": 28,
+    "w": 6,
+    "h": 12,
+    "frames": 4,
+    "file": "Art/Buildings/{season}/bunkhouse_door.png"
+   },
+   "file": "Art/Buildings/{season}/bunkhouse.png",
+   "ghostValid": "Art/UI/ghost_bunkhouse_ok.png",
+   "ghostBlocked": "Art/UI/ghost_bunkhouse_bad.png"
+  }
+ },
+ "decor": {
+  "car": {
+   "w": 32,
+   "h": 24,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/car.png"
+  },
+  "drum": {
+   "w": 14,
+   "h": 20,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/drum.png"
+  },
+  "crates": {
+   "w": 16,
+   "h": 22,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/crates.png"
+  },
+  "tires": {
+   "w": 16,
+   "h": 16,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/tires.png"
+  },
+  "boulder": {
+   "w": 18,
+   "h": 14,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/boulder.png"
+  },
+  "fence": {
+   "w": 16,
+   "h": 18,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/fence.png"
+  },
+  "streetlight": {
+   "w": 14,
+   "h": 44,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/streetlight.png"
+  },
+  "rubble": {
+   "w": 16,
+   "h": 12,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/rubble.png"
+  },
+  "campfire": {
+   "w": 16,
+   "h": 12,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/campfire.png"
+  },
+  "dumpster": {
+   "w": 32,
+   "h": 24,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/dumpster.png"
+  },
+  "bench": {
+   "w": 32,
+   "h": 18,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/bench.png"
+  },
+  "barrier": {
+   "w": 32,
+   "h": 18,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/barrier.png"
+  },
+  "sign": {
+   "w": 14,
+   "h": 32,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/sign.png"
+  },
+  "mailbox": {
+   "w": 12,
+   "h": 20,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/mailbox.png"
+  },
+  "hydrant": {
+   "w": 10,
+   "h": 14,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/hydrant.png"
+  },
+  "haybale": {
+   "w": 18,
+   "h": 16,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/haybale.png"
+  },
+  "logs": {
+   "w": 20,
+   "h": 14,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/logs.png"
+  },
+  "trash": {
+   "w": 16,
+   "h": 12,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/trash.png"
+  },
+  "pole": {
+   "w": 20,
+   "h": 56,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/pole.png"
+  },
+  "well": {
+   "w": 20,
+   "h": 24,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/well.png"
+  },
+  "flowers": {
+   "w": 16,
+   "h": 12,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/flowers.png"
+  },
+  "tuft": {
+   "w": 16,
+   "h": 14,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/tuft.png"
+  },
+  "mushrooms": {
+   "w": 12,
+   "h": 10,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/mushrooms.png"
+  },
+  "leaves": {
+   "w": 16,
+   "h": 10,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/leaves.png"
+  },
+  "pebbles": {
+   "w": 16,
+   "h": 10,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/pebbles.png"
+  },
+  "fallen_log": {
+   "w": 32,
+   "h": 18,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/fallen_log.png"
+  },
+  "skeleton": {
+   "w": 16,
+   "h": 10,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/skeleton.png"
+  },
+  "blood": {
+   "w": 16,
+   "h": 12,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/blood.png"
+  },
+  "tent": {
+   "w": 32,
+   "h": 24,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/tent.png"
+  },
+  "cart": {
+   "w": 16,
+   "h": 16,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/cart.png"
+  },
+  "backpack": {
+   "w": 12,
+   "h": 12,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/backpack.png"
+  },
+  "bicycle": {
+   "w": 18,
+   "h": 12,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/bicycle.png"
+  },
+  "picnic": {
+   "w": 32,
+   "h": 20,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/picnic.png"
+  },
+  "scarecrow": {
+   "w": 16,
+   "h": 32,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/scarecrow.png"
+  },
+  "wheelbarrow": {
+   "w": 18,
+   "h": 14,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/wheelbarrow.png"
+  },
+  "tractor": {
+   "w": 32,
+   "h": 28,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/tractor.png"
+  },
+  "bus": {
+   "w": 48,
+   "h": 30,
+   "footprint": [
+    3,
+    1
+   ],
+   "file": "Art/Decor/{season}/bus.png"
+  },
+  "police_car": {
+   "w": 32,
+   "h": 24,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/police_car.png"
+  },
+  "grave_cross": {
+   "w": 12,
+   "h": 18,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/grave_cross.png"
+  },
+  "tombstone": {
+   "w": 12,
+   "h": 16,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/tombstone.png"
+  },
+  "wire": {
+   "w": 32,
+   "h": 16,
+   "footprint": [
+    2,
+    1
+   ],
+   "file": "Art/Decor/{season}/wire.png"
+  },
+  "sandbags": {
+   "w": 18,
+   "h": 14,
+   "footprint": [
+    1,
+    1
+   ],
+   "file": "Art/Decor/{season}/sandbags.png"
+  }
+ },
+ "world": {
+  "house": {
+   "label": "Farmhouse",
+   "w": 48,
+   "h": 60,
+   "footprint": [
+    3,
+    3
+   ],
+   "file": "Art/World/{season}/house.png"
+  },
+  "burnt_house": {
+   "label": "Burned house",
+   "w": 48,
+   "h": 46,
+   "footprint": [
+    3,
+    2
+   ],
+   "file": "Art/World/{season}/burnt_house.png"
+  },
+  "gas_station": {
+   "label": "Gas station",
+   "w": 64,
+   "h": 64,
+   "footprint": [
+    4,
+    3
+   ],
+   "file": "Art/World/{season}/gas_station.png"
+  },
+  "barn": {
+   "label": "Barn",
+   "w": 64,
+   "h": 70,
+   "footprint": [
+    4,
+    3
+   ],
+   "file": "Art/World/{season}/barn.png"
+  },
+  "chapel": {
+   "label": "Chapel",
+   "w": 48,
+   "h": 76,
+   "footprint": [
+    3,
+    3
+   ],
+   "file": "Art/World/{season}/chapel.png"
+  },
+  "water_tower": {
+   "label": "Water tower",
+   "w": 32,
+   "h": 64,
+   "footprint": [
+    2,
+    2
+   ],
+   "file": "Art/World/{season}/water_tower.png"
+  },
+  "shed": {
+   "label": "Tool shed",
+   "w": 32,
+   "h": 38,
+   "footprint": [
+    2,
+    2
+   ],
+   "file": "Art/World/{season}/shed.png"
+  },
+  "trailer": {
+   "label": "Trailer home",
+   "w": 48,
+   "h": 40,
+   "footprint": [
+    3,
+    2
+   ],
+   "file": "Art/World/{season}/trailer.png"
+  }
+ },
+ "characters": {
+  "zombies": {
+   "walker": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4,
+    "loop": true,
+    "name": "Walker",
+    "file": "Art/Characters/Zombies/walker.png"
+   },
+   "runner": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 6.4,
+    "loop": true,
+    "name": "Runner",
+    "file": "Art/Characters/Zombies/runner.png"
+   },
+   "brute": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 2.8,
+    "loop": true,
+    "name": "Brute",
+    "file": "Art/Characters/Zombies/brute.png"
+   },
+   "bloater": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 2.4,
+    "loop": true,
+    "name": "Bloater",
+    "file": "Art/Characters/Zombies/bloater.png"
+   },
+   "soldier": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 3.6,
+    "loop": true,
+    "name": "Soldier",
+    "file": "Art/Characters/Zombies/soldier.png"
+   }
+  },
+  "survivors": {
+   "mechanic": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Mechanic",
+    "file": "Art/Characters/Survivors/mechanic.png"
+   },
+   "doctor": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Doctor",
+    "file": "Art/Characters/Survivors/doctor.png"
+   },
+   "hunter": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Hunter",
+    "file": "Art/Characters/Survivors/hunter.png"
+   },
+   "guard": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Guard",
+    "file": "Art/Characters/Survivors/guard.png"
+   },
+   "elder": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4,
+    "loop": true,
+    "name": "Elder farmer",
+    "file": "Art/Characters/Survivors/elder.png"
+   },
+   "scavenger": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Scavenger",
+    "file": "Art/Characters/Survivors/scavenger.png"
+   },
+   "nurse": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Nurse",
+    "file": "Art/Characters/Survivors/nurse.png"
+   },
+   "engineer": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Engineer",
+    "file": "Art/Characters/Survivors/engineer.png"
+   },
+   "ranger": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Ranger",
+    "file": "Art/Characters/Survivors/ranger.png"
+   },
+   "grower": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "fps": 4.8,
+    "loop": true,
+    "name": "Grower",
+    "file": "Art/Characters/Survivors/grower.png"
+   }
+  },
+  "burning": {
+   "walker": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "loop": true,
+    "file": "Art/Characters/Zombies/Burning/walker.png"
+   },
+   "runner": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "loop": true,
+    "file": "Art/Characters/Zombies/Burning/runner.png"
+   },
+   "brute": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "loop": true,
+    "file": "Art/Characters/Zombies/Burning/brute.png"
+   },
+   "bloater": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "loop": true,
+    "file": "Art/Characters/Zombies/Burning/bloater.png"
+   },
+   "soldier": {
+    "w": 96,
+    "h": 224,
+    "frameW": 24,
+    "frameH": 28,
+    "cols": 4,
+    "rows": 8,
+    "rowDirections": [
+     "s",
+     "n",
+     "e",
+     "w",
+     "se",
+     "sw",
+     "ne",
+     "nw"
+    ],
+    "loop": true,
+    "file": "Art/Characters/Zombies/Burning/soldier.png"
+   }
+  }
+ },
+ "fx": {
+  "gunfire": {
+   "flash": {
+    "w": 48,
+    "h": 256,
+    "frameW": 16,
+    "frameH": 16,
+    "cols": 3,
+    "rows": 16,
+    "rowDirections": [
+     "E",
+     "ESE",
+     "SE",
+     "SSE",
+     "S",
+     "SSW",
+     "SW",
+     "WSW",
+     "W",
+     "WNW",
+     "NW",
+     "NNW",
+     "N",
+     "NNE",
+     "NE",
+     "ENE"
+    ],
+    "rowAngleDeg": 22.5,
+    "loop": false,
+    "file": "Art/FX/Gunfire/flash.png"
+   },
+   "tracer": {
+    "w": 32,
+    "h": 256,
+    "frameW": 16,
+    "frameH": 16,
+    "cols": 2,
+    "rows": 16,
+    "rowDirections": [
+     "E",
+     "ESE",
+     "SE",
+     "SSE",
+     "S",
+     "SSW",
+     "SW",
+     "WSW",
+     "W",
+     "WNW",
+     "NW",
+     "NNW",
+     "N",
+     "NNE",
+     "NE",
+     "ENE"
+    ],
+    "rowAngleDeg": 22.5,
+    "loop": false,
+    "file": "Art/FX/Gunfire/tracer.png"
+   },
+   "spark": {
+    "w": 64,
+    "h": 256,
+    "frameW": 16,
+    "frameH": 16,
+    "cols": 4,
+    "rows": 16,
+    "rowDirections": [
+     "E",
+     "ESE",
+     "SE",
+     "SSE",
+     "S",
+     "SSW",
+     "SW",
+     "WSW",
+     "W",
+     "WNW",
+     "NW",
+     "NNW",
+     "N",
+     "NNE",
+     "NE",
+     "ENE"
+    ],
+    "rowAngleDeg": 22.5,
+    "loop": false,
+    "file": "Art/FX/Gunfire/spark.png"
+   },
+   "blood": {
+    "w": 64,
+    "h": 256,
+    "frameW": 16,
+    "frameH": 16,
+    "cols": 4,
+    "rows": 16,
+    "rowDirections": [
+     "E",
+     "ESE",
+     "SE",
+     "SSE",
+     "S",
+     "SSW",
+     "SW",
+     "WSW",
+     "W",
+     "WNW",
+     "NW",
+     "NNW",
+     "N",
+     "NNE",
+     "NE",
+     "ENE"
+    ],
+    "rowAngleDeg": 22.5,
+    "loop": false,
+    "file": "Art/FX/Gunfire/blood.png"
+   },
+   "casing": {
+    "w": 32,
+    "h": 8,
+    "frameW": 8,
+    "frameH": 8,
+    "cols": 4,
+    "rows": 1,
+    "loop": true,
+    "file": "Art/FX/Gunfire/casing.png"
+   }
+  },
+  "molotov": {
+   "bottle": {
+    "w": 112,
+    "h": 14,
+    "frameW": 14,
+    "frameH": 14,
+    "cols": 8,
+    "rows": 1,
+    "loop": true,
+    "anchor": null,
+    "file": "Art/FX/Molotov/bottle.png"
+   },
+   "shadow": {
+    "w": 10,
+    "h": 4,
+    "frameW": 10,
+    "frameH": 4,
+    "cols": 1,
+    "rows": 1,
+    "loop": false,
+    "anchor": null,
+    "file": "Art/FX/Molotov/shadow.png"
+   },
+   "splash": {
+    "w": 240,
+    "h": 32,
+    "frameW": 40,
+    "frameH": 32,
+    "cols": 6,
+    "rows": 1,
+    "loop": false,
+    "anchor": [
+     20,
+     24
+    ],
+    "file": "Art/FX/Molotov/splash.png"
+   },
+   "fire": {
+    "w": 320,
+    "h": 32,
+    "frameW": 40,
+    "frameH": 32,
+    "cols": 8,
+    "rows": 1,
+    "loop": true,
+    "anchor": [
+     20,
+     24
+    ],
+    "file": "Art/FX/Molotov/fire.png"
+   },
+   "burnout": {
+    "w": 160,
+    "h": 32,
+    "frameW": 40,
+    "frameH": 32,
+    "cols": 4,
+    "rows": 1,
+    "loop": false,
+    "anchor": [
+     20,
+     24
+    ],
+    "file": "Art/FX/Molotov/burnout.png"
+   },
+   "scorch": {
+    "w": 40,
+    "h": 32,
+    "frameW": 40,
+    "frameH": 32,
+    "cols": 1,
+    "rows": 1,
+    "loop": false,
+    "anchor": [
+     20,
+     24
+    ],
+    "file": "Art/FX/Molotov/scorch.png"
+   }
+  }
+ },
+ "lights": {
+  "light_torch": {
+   "w": 78,
+   "h": 61,
+   "file": "Art/Lights/light_torch.png"
+  },
+  "light_flashlight_e": {
+   "w": 101,
+   "h": 57,
+   "origin": [
+    12,
+    28.5
+   ],
+   "file": "Art/Lights/light_flashlight_e.png"
+  },
+  "prop_torch": {
+   "w": 24,
+   "h": 8,
+   "frameW": 8,
+   "cols": 3,
+   "file": "Art/Lights/prop_torch.png"
+  },
+  "prop_flashlight": {
+   "w": 5,
+   "h": 3,
+   "file": "Art/Lights/prop_flashlight.png"
+  }
+ },
+ "ui": {
+  "icon_wood": {
+   "file": "Art/UI/icon_wood.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_metal": {
+   "file": "Art/UI/icon_metal.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_food": {
+   "file": "Art/UI/icon_food.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_survivor": {
+   "file": "Art/UI/icon_survivor.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_build": {
+   "file": "Art/UI/icon_build.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_alarm": {
+   "file": "Art/UI/icon_alarm.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_map": {
+   "file": "Art/UI/icon_map.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_base": {
+   "file": "Art/UI/icon_base.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_menu": {
+   "file": "Art/UI/icon_menu.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_expedition": {
+   "file": "Art/UI/icon_expedition.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_wall": {
+   "file": "Art/UI/icon_wall.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_gate": {
+   "file": "Art/UI/icon_gate.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_tower": {
+   "file": "Art/UI/icon_tower.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_repair": {
+   "file": "Art/UI/icon_repair.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_demolish": {
+   "file": "Art/UI/icon_demolish.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_zombie": {
+   "file": "Art/UI/icon_zombie.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_health": {
+   "file": "Art/UI/icon_health.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_integrity": {
+   "file": "Art/UI/icon_integrity.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_bed": {
+   "file": "Art/UI/icon_bed.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_day": {
+   "file": "Art/UI/icon_day.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_night": {
+   "file": "Art/UI/icon_night.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_warning": {
+   "file": "Art/UI/icon_warning.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_pause": {
+   "file": "Art/UI/icon_pause.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_play": {
+   "file": "Art/UI/icon_play.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_fast": {
+   "file": "Art/UI/icon_fast.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_settings": {
+   "file": "Art/UI/icon_settings.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_save": {
+   "file": "Art/UI/icon_save.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_research": {
+   "file": "Art/UI/icon_research.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_upgrade": {
+   "file": "Art/UI/icon_upgrade.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_lock": {
+   "file": "Art/UI/icon_lock.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_check": {
+   "file": "Art/UI/icon_check.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_star": {
+   "file": "Art/UI/icon_star.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_timer": {
+   "file": "Art/UI/icon_timer.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_damage": {
+   "file": "Art/UI/icon_damage.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_range": {
+   "file": "Art/UI/icon_range.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_capacity": {
+   "file": "Art/UI/icon_capacity.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_yield": {
+   "file": "Art/UI/icon_yield.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_stamina": {
+   "file": "Art/UI/icon_stamina.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_medicine": {
+   "file": "Art/UI/icon_medicine.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_carry": {
+   "file": "Art/UI/icon_carry.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_barricade": {
+   "file": "Art/UI/icon_barricade.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_trap": {
+   "file": "Art/UI/icon_trap.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_training": {
+   "file": "Art/UI/icon_training.png",
+   "w": 24,
+   "h": 24
+  },
+  "icon_blueprint": {
+   "file": "Art/UI/icon_blueprint.png",
+   "w": 24,
+   "h": 24
+  },
+  "mini_time": {
+   "file": "Art/UI/mini_time.png",
+   "w": 10,
+   "h": 10
+  },
+  "mini_points": {
+   "file": "Art/UI/mini_points.png",
+   "w": 10,
+   "h": 10
+  },
+  "mini_wood": {
+   "file": "Art/UI/mini_wood.png",
+   "w": 10,
+   "h": 10
+  },
+  "mini_metal": {
+   "file": "Art/UI/mini_metal.png",
+   "w": 10,
+   "h": 10
+  },
+  "mini_food": {
+   "file": "Art/UI/mini_food.png",
+   "w": 10,
+   "h": 10
+  },
+  "mini_health": {
+   "file": "Art/UI/mini_health.png",
+   "w": 10,
+   "h": 10
+  },
+  "mini_morale": {
+   "file": "Art/UI/mini_morale.png",
+   "w": 10,
+   "h": 10
+  },
+  "frame_panel": {
+   "file": "Art/UI/frame_panel.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_inset": {
+   "file": "Art/UI/frame_inset.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_btn": {
+   "file": "Art/UI/frame_btn.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_hover": {
+   "file": "Art/UI/frame_hover.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_down": {
+   "file": "Art/UI/frame_down.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_off": {
+   "file": "Art/UI/frame_off.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_primary": {
+   "file": "Art/UI/frame_primary.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_primaryDown": {
+   "file": "Art/UI/frame_primaryDown.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_alert": {
+   "file": "Art/UI/frame_alert.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_select": {
+   "file": "Art/UI/frame_select.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_owned": {
+   "file": "Art/UI/frame_owned.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_research": {
+   "file": "Art/UI/frame_research.png",
+   "w": 24,
+   "h": 24
+  },
+  "frame_maxed": {
+   "file": "Art/UI/frame_maxed.png",
+   "w": 24,
+   "h": 24
+  },
+  "portrait_1": {
+   "file": "Art/UI/portrait_1.png",
+   "w": 26,
+   "h": 26
+  },
+  "portrait_2": {
+   "file": "Art/UI/portrait_2.png",
+   "w": 26,
+   "h": 26
+  },
+  "portrait_3": {
+   "file": "Art/UI/portrait_3.png",
+   "w": 26,
+   "h": 26
+  },
+  "portrait_4": {
+   "file": "Art/UI/portrait_4.png",
+   "w": 26,
+   "h": 26
+  },
+  "counter_wood": {
+   "file": "Art/UI/counter_wood.png",
+   "w": 77,
+   "h": 30
+  },
+  "counter_metal": {
+   "file": "Art/UI/counter_metal.png",
+   "w": 72,
+   "h": 30
+  },
+  "counter_food": {
+   "file": "Art/UI/counter_food.png",
+   "w": 71,
+   "h": 30
+  },
+  "clock": {
+   "file": "Art/UI/clock.png",
+   "w": 168,
+   "h": 46
+  },
+  "speed": {
+   "file": "Art/UI/speed.png",
+   "w": 78,
+   "h": 16
+  },
+  "bar_health": {
+   "file": "Art/UI/bar_health.png",
+   "w": 72,
+   "h": 8
+  },
+  "bar_integrity": {
+   "file": "Art/UI/bar_integrity.png",
+   "w": 72,
+   "h": 8
+  },
+  "bar_progress": {
+   "file": "Art/UI/bar_progress.png",
+   "w": 72,
+   "h": 8
+  },
+  "bar_empty": {
+   "file": "Art/UI/bar_empty.png",
+   "w": 72,
+   "h": 8
+  },
+  "ubar_full": {
+   "file": "Art/UI/ubar_full.png",
+   "w": 14,
+   "h": 4
+  },
+  "ubar_mid": {
+   "file": "Art/UI/ubar_mid.png",
+   "w": 14,
+   "h": 4
+  },
+  "ubar_low": {
+   "file": "Art/UI/ubar_low.png",
+   "w": 14,
+   "h": 4
+  },
+  "build_btn": {
+   "file": "Art/UI/build_btn.png",
+   "w": 92,
+   "h": 30
+  },
+  "build_btn_down": {
+   "file": "Art/UI/build_btn_down.png",
+   "w": 92,
+   "h": 30
+  },
+  "sq_btn": {
+   "file": "Art/UI/sq_btn.png",
+   "w": 38,
+   "h": 38
+  },
+  "sq_hover": {
+   "file": "Art/UI/sq_hover.png",
+   "w": 38,
+   "h": 38
+  },
+  "sq_down": {
+   "file": "Art/UI/sq_down.png",
+   "w": 38,
+   "h": 38
+  },
+  "sq_off": {
+   "file": "Art/UI/sq_off.png",
+   "w": 38,
+   "h": 38
+  },
+  "action_bar": {
+   "file": "Art/UI/action_bar.png",
+   "w": 278,
+   "h": 38
+  },
+  "build_menu": {
+   "file": "Art/UI/build_menu.png",
+   "w": 184,
+   "h": 176
+  },
+  "inspect": {
+   "file": "Art/UI/inspect.png",
+   "w": 156,
+   "h": 118
+  },
+  "survivors": {
+   "file": "Art/UI/survivors.png",
+   "w": 164,
+   "h": 154
+  },
+  "toast_alert": {
+   "file": "Art/UI/toast_alert.png",
+   "w": 184,
+   "h": 40
+  },
+  "toast_info": {
+   "file": "Art/UI/toast_info.png",
+   "w": 184,
+   "h": 40
+  },
+  "toast_ok": {
+   "file": "Art/UI/toast_ok.png",
+   "w": 184,
+   "h": 40
+  },
+  "crew_manager": {
+   "file": "Art/UI/crew_manager.png",
+   "w": 320,
+   "h": 196
+  },
+  "btn_close": {
+   "file": "Art/UI/btn_close.png",
+   "w": 13,
+   "h": 13
+  },
+  "btn_close_hover": {
+   "file": "Art/UI/btn_close_hover.png",
+   "w": 13,
+   "h": 13
+  },
+  "btn_close_down": {
+   "file": "Art/UI/btn_close_down.png",
+   "w": 13,
+   "h": 13
+  },
+  "objective": {
+   "file": "Art/UI/objective.png",
+   "w": 216,
+   "h": 32
+  },
+  "minimap": {
+   "file": "Art/UI/minimap.png",
+   "w": 116,
+   "h": 94
+  },
+  "pause": {
+   "file": "Art/UI/pause.png",
+   "w": 144,
+   "h": 144
+  },
+  "cursor_arrow": {
+   "file": "Art/UI/cursor_arrow.png",
+   "w": 16,
+   "h": 16
+  },
+  "cursor_build": {
+   "file": "Art/UI/cursor_build.png",
+   "w": 16,
+   "h": 16
+  },
+  "cursor_attack": {
+   "file": "Art/UI/cursor_attack.png",
+   "w": 16,
+   "h": 16
+  },
+  "cursor_deny": {
+   "file": "Art/UI/cursor_deny.png",
+   "w": 16,
+   "h": 16
+  },
+  "ghost_wall_ok": {
+   "file": "Art/UI/ghost_wall_ok.png",
+   "w": 16,
+   "h": 28
+  },
+  "ghost_wall_bad": {
+   "file": "Art/UI/ghost_wall_bad.png",
+   "w": 16,
+   "h": 28
+  },
+  "ghost_tower_ok": {
+   "file": "Art/UI/ghost_tower_ok.png",
+   "w": 32,
+   "h": 56
+  },
+  "ghost_tower_bad": {
+   "file": "Art/UI/ghost_tower_bad.png",
+   "w": 32,
+   "h": 56
+  },
+  "ghost_town_hall_ok": {
+   "file": "Art/UI/ghost_town_hall_ok.png",
+   "w": 64,
+   "h": 72
+  },
+  "ghost_town_hall_bad": {
+   "file": "Art/UI/ghost_town_hall_bad.png",
+   "w": 64,
+   "h": 72
+  },
+  "ghost_clinic_ok": {
+   "file": "Art/UI/ghost_clinic_ok.png",
+   "w": 48,
+   "h": 58
+  },
+  "ghost_clinic_bad": {
+   "file": "Art/UI/ghost_clinic_bad.png",
+   "w": 48,
+   "h": 58
+  },
+  "ghost_barracks_ok": {
+   "file": "Art/UI/ghost_barracks_ok.png",
+   "w": 64,
+   "h": 54
+  },
+  "ghost_barracks_bad": {
+   "file": "Art/UI/ghost_barracks_bad.png",
+   "w": 64,
+   "h": 54
+  },
+  "ghost_workshop_ok": {
+   "file": "Art/UI/ghost_workshop_ok.png",
+   "w": 48,
+   "h": 62
+  },
+  "ghost_workshop_bad": {
+   "file": "Art/UI/ghost_workshop_bad.png",
+   "w": 48,
+   "h": 62
+  },
+  "ghost_farm_ok": {
+   "file": "Art/UI/ghost_farm_ok.png",
+   "w": 64,
+   "h": 52
+  },
+  "ghost_farm_bad": {
+   "file": "Art/UI/ghost_farm_bad.png",
+   "w": 64,
+   "h": 52
+  },
+  "ghost_shelter_ok": {
+   "file": "Art/UI/ghost_shelter_ok.png",
+   "w": 32,
+   "h": 40
+  },
+  "ghost_shelter_bad": {
+   "file": "Art/UI/ghost_shelter_bad.png",
+   "w": 32,
+   "h": 40
+  },
+  "ghost_lumber_mill_ok": {
+   "file": "Art/UI/ghost_lumber_mill_ok.png",
+   "w": 48,
+   "h": 50
+  },
+  "ghost_lumber_mill_bad": {
+   "file": "Art/UI/ghost_lumber_mill_bad.png",
+   "w": 48,
+   "h": 50
+  },
+  "ghost_storage_ok": {
+   "file": "Art/UI/ghost_storage_ok.png",
+   "w": 48,
+   "h": 60
+  },
+  "ghost_storage_bad": {
+   "file": "Art/UI/ghost_storage_bad.png",
+   "w": 48,
+   "h": 60
+  },
+  "ghost_lab_ok": {
+   "file": "Art/UI/ghost_lab_ok.png",
+   "w": 48,
+   "h": 62
+  },
+  "ghost_lab_bad": {
+   "file": "Art/UI/ghost_lab_bad.png",
+   "w": 48,
+   "h": 62
+  },
+  "ghost_armory_ok": {
+   "file": "Art/UI/ghost_armory_ok.png",
+   "w": 32,
+   "h": 42
+  },
+  "ghost_armory_bad": {
+   "file": "Art/UI/ghost_armory_bad.png",
+   "w": 32,
+   "h": 42
+  },
+  "ghost_bunkhouse_ok": {
+   "file": "Art/UI/ghost_bunkhouse_ok.png",
+   "w": 48,
+   "h": 46
+  },
+  "ghost_bunkhouse_bad": {
+   "file": "Art/UI/ghost_bunkhouse_bad.png",
+   "w": 48,
+   "h": 46
+  },
+  "select_1": {
+   "file": "Art/UI/select_1.png",
+   "w": 16,
+   "h": 16
+  },
+  "select_2": {
+   "file": "Art/UI/select_2.png",
+   "w": 32,
+   "h": 32
+  },
+  "select_2_bad": {
+   "file": "Art/UI/select_2_bad.png",
+   "w": 32,
+   "h": 32
+  },
+  "badge_lock": {
+   "file": "Art/UI/badge_lock.png",
+   "w": 10,
+   "h": 10
+  },
+  "badge_check": {
+   "file": "Art/UI/badge_check.png",
+   "w": 10,
+   "h": 10
+  },
+  "badge_star": {
+   "file": "Art/UI/badge_star.png",
+   "w": 10,
+   "h": 10
+  },
+  "badge_up": {
+   "file": "Art/UI/badge_up.png",
+   "w": 10,
+   "h": 10
+  },
+  "badge_time": {
+   "file": "Art/UI/badge_time.png",
+   "w": 10,
+   "h": 10
+  },
+  "badge_new": {
+   "file": "Art/UI/badge_new.png",
+   "w": 10,
+   "h": 10
+  },
+  "badge_open": {
+   "file": "Art/UI/badge_open.png",
+   "w": 10,
+   "h": 10
+  },
+  "node_locked": {
+   "file": "Art/UI/node_locked.png",
+   "w": 32,
+   "h": 32
+  },
+  "node_major_locked": {
+   "file": "Art/UI/node_major_locked.png",
+   "w": 40,
+   "h": 40
+  },
+  "node_available": {
+   "file": "Art/UI/node_available.png",
+   "w": 32,
+   "h": 32
+  },
+  "node_major_available": {
+   "file": "Art/UI/node_major_available.png",
+   "w": 40,
+   "h": 40
+  },
+  "node_hover": {
+   "file": "Art/UI/node_hover.png",
+   "w": 32,
+   "h": 32
+  },
+  "node_major_hover": {
+   "file": "Art/UI/node_major_hover.png",
+   "w": 40,
+   "h": 40
+  },
+  "node_research": {
+   "file": "Art/UI/node_research.png",
+   "w": 32,
+   "h": 32
+  },
+  "node_major_research": {
+   "file": "Art/UI/node_major_research.png",
+   "w": 40,
+   "h": 40
+  },
+  "node_owned": {
+   "file": "Art/UI/node_owned.png",
+   "w": 32,
+   "h": 32
+  },
+  "node_major_owned": {
+   "file": "Art/UI/node_major_owned.png",
+   "w": 40,
+   "h": 40
+  },
+  "node_maxed": {
+   "file": "Art/UI/node_maxed.png",
+   "w": 32,
+   "h": 32
+  },
+  "node_major_maxed": {
+   "file": "Art/UI/node_major_maxed.png",
+   "w": 40,
+   "h": 40
+  },
+  "node_empty": {
+   "file": "Art/UI/node_empty.png",
+   "w": 32,
+   "h": 32
+  },
+  "node_select": {
+   "file": "Art/UI/node_select.png",
+   "w": 36,
+   "h": 36
+  },
+  "node_select_major": {
+   "file": "Art/UI/node_select_major.png",
+   "w": 44,
+   "h": 44
+  },
+  "link_off_n": {
+   "file": "Art/UI/link_off_n.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_e": {
+   "file": "Art/UI/link_off_e.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_ne": {
+   "file": "Art/UI/link_off_ne.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_s": {
+   "file": "Art/UI/link_off_s.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_ns": {
+   "file": "Art/UI/link_off_ns.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_es": {
+   "file": "Art/UI/link_off_es.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_nes": {
+   "file": "Art/UI/link_off_nes.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_w": {
+   "file": "Art/UI/link_off_w.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_nw": {
+   "file": "Art/UI/link_off_nw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_ew": {
+   "file": "Art/UI/link_off_ew.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_new": {
+   "file": "Art/UI/link_off_new.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_sw": {
+   "file": "Art/UI/link_off_sw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_nsw": {
+   "file": "Art/UI/link_off_nsw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_esw": {
+   "file": "Art/UI/link_off_esw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_off_nesw": {
+   "file": "Art/UI/link_off_nesw.png",
+   "w": 8,
+   "h": 8
+  },
+  "links_off": {
+   "file": "Art/UI/links_off.png",
+   "w": 148,
+   "h": 8
+  },
+  "link_on_n": {
+   "file": "Art/UI/link_on_n.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_e": {
+   "file": "Art/UI/link_on_e.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_ne": {
+   "file": "Art/UI/link_on_ne.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_s": {
+   "file": "Art/UI/link_on_s.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_ns": {
+   "file": "Art/UI/link_on_ns.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_es": {
+   "file": "Art/UI/link_on_es.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_nes": {
+   "file": "Art/UI/link_on_nes.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_w": {
+   "file": "Art/UI/link_on_w.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_nw": {
+   "file": "Art/UI/link_on_nw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_ew": {
+   "file": "Art/UI/link_on_ew.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_new": {
+   "file": "Art/UI/link_on_new.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_sw": {
+   "file": "Art/UI/link_on_sw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_nsw": {
+   "file": "Art/UI/link_on_nsw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_esw": {
+   "file": "Art/UI/link_on_esw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_on_nesw": {
+   "file": "Art/UI/link_on_nesw.png",
+   "w": 8,
+   "h": 8
+  },
+  "links_on": {
+   "file": "Art/UI/links_on.png",
+   "w": 148,
+   "h": 8
+  },
+  "link_prog_n": {
+   "file": "Art/UI/link_prog_n.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_e": {
+   "file": "Art/UI/link_prog_e.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_ne": {
+   "file": "Art/UI/link_prog_ne.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_s": {
+   "file": "Art/UI/link_prog_s.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_ns": {
+   "file": "Art/UI/link_prog_ns.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_es": {
+   "file": "Art/UI/link_prog_es.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_nes": {
+   "file": "Art/UI/link_prog_nes.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_w": {
+   "file": "Art/UI/link_prog_w.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_nw": {
+   "file": "Art/UI/link_prog_nw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_ew": {
+   "file": "Art/UI/link_prog_ew.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_new": {
+   "file": "Art/UI/link_prog_new.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_sw": {
+   "file": "Art/UI/link_prog_sw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_nsw": {
+   "file": "Art/UI/link_prog_nsw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_esw": {
+   "file": "Art/UI/link_prog_esw.png",
+   "w": 8,
+   "h": 8
+  },
+  "link_prog_nesw": {
+   "file": "Art/UI/link_prog_nesw.png",
+   "w": 8,
+   "h": 8
+  },
+  "links_prog": {
+   "file": "Art/UI/links_prog.png",
+   "w": 148,
+   "h": 8
+  },
+  "pip_off": {
+   "file": "Art/UI/pip_off.png",
+   "w": 6,
+   "h": 6
+  },
+  "pip_on": {
+   "file": "Art/UI/pip_on.png",
+   "w": 6,
+   "h": 6
+  },
+  "pip_next": {
+   "file": "Art/UI/pip_next.png",
+   "w": 6,
+   "h": 6
+  },
+  "pip_max": {
+   "file": "Art/UI/pip_max.png",
+   "w": 6,
+   "h": 6
+  },
+  "rank_0_3": {
+   "file": "Art/UI/rank_0_3.png",
+   "w": 20,
+   "h": 6
+  },
+  "rank_2_3": {
+   "file": "Art/UI/rank_2_3.png",
+   "w": 20,
+   "h": 6
+  },
+  "rank_3_3": {
+   "file": "Art/UI/rank_3_3.png",
+   "w": 20,
+   "h": 6
+  },
+  "rank_2_5": {
+   "file": "Art/UI/rank_2_5.png",
+   "w": 34,
+   "h": 6
+  },
+  "tier_1": {
+   "file": "Art/UI/tier_1.png",
+   "w": 35,
+   "h": 13
+  },
+  "lv_1": {
+   "file": "Art/UI/lv_1.png",
+   "w": 30,
+   "h": 13
+  },
+  "tier_2": {
+   "file": "Art/UI/tier_2.png",
+   "w": 38,
+   "h": 13
+  },
+  "lv_2": {
+   "file": "Art/UI/lv_2.png",
+   "w": 31,
+   "h": 13
+  },
+  "tier_3": {
+   "file": "Art/UI/tier_3.png",
+   "w": 41,
+   "h": 13
+  },
+  "lv_3": {
+   "file": "Art/UI/lv_3.png",
+   "w": 31,
+   "h": 13
+  },
+  "tier_4": {
+   "file": "Art/UI/tier_4.png",
+   "w": 42,
+   "h": 13
+  },
+  "lv_4": {
+   "file": "Art/UI/lv_4.png",
+   "w": 31,
+   "h": 13
+  },
+  "tier_5": {
+   "file": "Art/UI/tier_5.png",
+   "w": 39,
+   "h": 13
+  },
+  "lv_5": {
+   "file": "Art/UI/lv_5.png",
+   "w": 31,
+   "h": 13
+  },
+  "btn_upgrade": {
+   "file": "Art/UI/btn_upgrade.png",
+   "w": 67,
+   "h": 18
+  },
+  "btn_upgrade_down": {
+   "file": "Art/UI/btn_upgrade_down.png",
+   "w": 67,
+   "h": 18
+  },
+  "btn_upgrade_off": {
+   "file": "Art/UI/btn_upgrade_off.png",
+   "w": 67,
+   "h": 18
+  },
+  "btn_research": {
+   "file": "Art/UI/btn_research.png",
+   "w": 72,
+   "h": 18
+  },
+  "btn_research_off": {
+   "file": "Art/UI/btn_research_off.png",
+   "w": 72,
+   "h": 18
+  },
+  "btn_cancel": {
+   "file": "Art/UI/btn_cancel.png",
+   "w": 48,
+   "h": 18
+  },
+  "btn_speedup": {
+   "file": "Art/UI/btn_speedup.png",
+   "w": 50,
+   "h": 18
+  },
+  "tabs_tree": {
+   "file": "Art/UI/tabs_tree.png",
+   "w": 179,
+   "h": 16
+  },
+  "detail_upgrade": {
+   "file": "Art/UI/detail_upgrade.png",
+   "w": 176,
+   "h": 147
+  },
+  "detail_locked": {
+   "file": "Art/UI/detail_locked.png",
+   "w": 176,
+   "h": 148
+  },
+  "research_queue": {
+   "file": "Art/UI/research_queue.png",
+   "w": 176,
+   "h": 142
+  },
+  "btn_manage": {
+   "file": "Art/UI/btn_manage.png",
+   "w": 136,
+   "h": 18
+  },
+  "btn_manage_hover": {
+   "file": "Art/UI/btn_manage_hover.png",
+   "w": 136,
+   "h": 18
+  },
+  "btn_manage_down": {
+   "file": "Art/UI/btn_manage_down.png",
+   "w": 136,
+   "h": 18
+  },
+  "chip_working": {
+   "file": "Art/UI/chip_working.png",
+   "w": 50,
+   "h": 13
+  },
+  "chip_idle": {
+   "file": "Art/UI/chip_idle.png",
+   "w": 28,
+   "h": 13
+  },
+  "chip_hurt": {
+   "file": "Art/UI/chip_hurt.png",
+   "w": 32,
+   "h": 13
+  },
+  "chip_away": {
+   "file": "Art/UI/chip_away.png",
+   "w": 62,
+   "h": 13
+  },
+  "survivor_card": {
+   "file": "Art/UI/survivor_card.png",
+   "w": 148,
+   "h": 155
+  },
+  "survivor_card_hurt": {
+   "file": "Art/UI/survivor_card_hurt.png",
+   "w": 148,
+   "h": 155
+  },
+  "survivor_card_away": {
+   "file": "Art/UI/survivor_card_away.png",
+   "w": 148,
+   "h": 155
+  },
+  "tree_survivor": {
+   "file": "Art/UI/tree_survivor.png",
+   "w": 200,
+   "h": 256
+  },
+  "tree_building": {
+   "file": "Art/UI/tree_building.png",
+   "w": 191,
+   "h": 288
+  },
+  "tree_defense": {
+   "file": "Art/UI/tree_defense.png",
+   "w": 200,
+   "h": 160
+  },
+  "toast_research": {
+   "file": "Art/UI/toast_research.png",
+   "w": 184,
+   "h": 40
+  },
+  "toast_upgrade": {
+   "file": "Art/UI/toast_upgrade.png",
+   "w": 184,
+   "h": 40
+  },
+  "font_8": {
+   "file": "Art/UI/font_8.png",
+   "w": 157,
+   "h": 30,
+   "glyphs": [
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "0123456789 .,:;!?+-/%()#"
+   ]
+  },
+  "font_16": {
+   "file": "Art/UI/font_16.png",
+   "w": 164,
+   "h": 68,
+   "glyphs": [
+    "ABCDEFGHIJKLM",
+    "NOPQRSTUVWXYZ",
+    "0123456789:/+"
+   ]
+  }
+ },
+ "title": {
+  "title_bg": {
+   "file": "Art/Title/title_bg.png",
+   "w": 960,
+   "h": 540
+  },
+  "logo": {
+   "file": "Art/Title/logo.png",
+   "w": 436,
+   "h": 78
+  },
+  "logo_sub": {
+   "file": "Art/Title/logo_sub.png",
+   "w": 436,
+   "h": 12
+  },
+  "menu_btn_btn": {
+   "file": "Art/Title/menu_btn_btn.png",
+   "w": 220,
+   "h": 28
+  },
+  "menu_btn_hover": {
+   "file": "Art/Title/menu_btn_hover.png",
+   "w": 220,
+   "h": 28
+  },
+  "menu_btn_down": {
+   "file": "Art/Title/menu_btn_down.png",
+   "w": 220,
+   "h": 28
+  },
+  "menu_btn_off": {
+   "file": "Art/Title/menu_btn_off.png",
+   "w": 220,
+   "h": 28
+  },
+  "menu_btn_primary": {
+   "file": "Art/Title/menu_btn_primary.png",
+   "w": 220,
+   "h": 28
+  },
+  "menu_btn_primaryDown": {
+   "file": "Art/Title/menu_btn_primaryDown.png",
+   "w": 220,
+   "h": 28
+  },
+  "caret": {
+   "file": "Art/Title/caret.png",
+   "w": 12,
+   "h": 14
+  },
+  "main_menu": {
+   "file": "Art/Title/main_menu.png",
+   "w": 236,
+   "h": 136
+  },
+  "main_menu_hover": {
+   "file": "Art/Title/main_menu_hover.png",
+   "w": 236,
+   "h": 136
+  },
+  "hint_bar": {
+   "file": "Art/Title/hint_bar.png",
+   "w": 244,
+   "h": 15
+  },
+  "panel_new": {
+   "file": "Art/Title/panel_new.png",
+   "w": 402,
+   "h": 232
+  },
+  "field": {
+   "file": "Art/Title/field.png",
+   "w": 160,
+   "h": 18
+  },
+  "field_focus": {
+   "file": "Art/Title/field_focus.png",
+   "w": 160,
+   "h": 18
+  },
+  "card_easy": {
+   "file": "Art/Title/card_easy.png",
+   "w": 92,
+   "h": 60
+  },
+  "card_normal": {
+   "file": "Art/Title/card_normal.png",
+   "w": 92,
+   "h": 60
+  },
+  "card_hard": {
+   "file": "Art/Title/card_hard.png",
+   "w": 92,
+   "h": 60
+  },
+  "checkbox_off": {
+   "file": "Art/Title/checkbox_off.png",
+   "w": 11,
+   "h": 11
+  },
+  "checkbox_on": {
+   "file": "Art/Title/checkbox_on.png",
+   "w": 11,
+   "h": 11
+  },
+  "panel_load": {
+   "file": "Art/Title/panel_load.png",
+   "w": 402,
+   "h": 242
+  },
+  "slot_selected": {
+   "file": "Art/Title/slot_selected.png",
+   "w": 390,
+   "h": 44
+  },
+  "slot": {
+   "file": "Art/Title/slot.png",
+   "w": 390,
+   "h": 44
+  },
+  "slot_auto": {
+   "file": "Art/Title/slot_auto.png",
+   "w": 390,
+   "h": 44
+  },
+  "slot_empty": {
+   "file": "Art/Title/slot_empty.png",
+   "w": 390,
+   "h": 44
+  },
+  "dialog_quit": {
+   "file": "Art/Title/dialog_quit.png",
+   "w": 208,
+   "h": 82
+  },
+  "dialog_delete": {
+   "file": "Art/Title/dialog_delete.png",
+   "w": 208,
+   "h": 82
+  },
+  "settings_video": {
+   "file": "Art/Title/settings_video.png",
+   "w": 402,
+   "h": 186
+  },
+  "settings_audio": {
+   "file": "Art/Title/settings_audio.png",
+   "w": 402,
+   "h": 186
+  },
+  "settings_controls": {
+   "file": "Art/Title/settings_controls.png",
+   "w": 402,
+   "h": 206
+  },
+  "slider": {
+   "file": "Art/Title/slider.png",
+   "w": 118,
+   "h": 12
+  },
+  "slider_hover": {
+   "file": "Art/Title/slider_hover.png",
+   "w": 118,
+   "h": 12
+  },
+  "toggle_on": {
+   "file": "Art/Title/toggle_on.png",
+   "w": 47,
+   "h": 13
+  },
+  "toggle_off": {
+   "file": "Art/Title/toggle_off.png",
+   "w": 47,
+   "h": 13
+  },
+  "stepper": {
+   "file": "Art/Title/stepper.png",
+   "w": 118,
+   "h": 16
+  },
+  "key": {
+   "file": "Art/Title/key.png",
+   "w": 17,
+   "h": 15
+  },
+  "key_wide": {
+   "file": "Art/Title/key_wide.png",
+   "w": 26,
+   "h": 15
+  },
+  "key_listen": {
+   "file": "Art/Title/key_listen.png",
+   "w": 70,
+   "h": 15
+  },
+  "title_screen": {
+   "file": "Art/Title/title_screen.png",
+   "w": 960,
+   "h": 540
+  }
+ }
+}

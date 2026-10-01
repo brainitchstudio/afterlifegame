@@ -1,0 +1,246 @@
+[
+  {
+    "id": "grocery_annex",
+    "name": "Grocery Annex",
+    "kind": "scavenging",
+    "band": "near",
+    "preferredPoiTypes": [
+      "town",
+      "stop",
+      "gas"
+    ],
+    "unlockedBy": "p2_01",
+    "siteWorkHours": 2,
+    "stock": {
+      "food": 24,
+      "cloth": 12
+    },
+    "bonusRange": null,
+    "recurring": false,
+    "cooldownHours": 0,
+    "baseEventChance": 0.15,
+    "tutorialSafe": true,
+    "description": "A corner grocery whose back room was overlooked by everyone with better ideas.",
+    "notes": "P2-02 guaranteed; persists uncollected remainder."
+  },
+  {
+    "id": "hardware_yard",
+    "name": "Hardware Yard",
+    "kind": "scavenging",
+    "band": "near",
+    "preferredPoiTypes": [
+      "industrial",
+      "town",
+      "stop"
+    ],
+    "unlockedBy": "p2_02",
+    "siteWorkHours": 3,
+    "stock": {
+      "raw_salvage": 80,
+      "wood": 30,
+      "components": 4
+    },
+    "bonusRange": null,
+    "recurring": false,
+    "cooldownHours": 0,
+    "baseEventChance": 0.1,
+    "tutorialSafe": true,
+    "description": "Fenced yard of a hardware store. The fence held; the staff did not.",
+    "notes": "P2-03; first required run cannot cause death."
+  },
+  {
+    "id": "abandoned_clinic",
+    "name": "Abandoned Clinic",
+    "kind": "scavenging",
+    "band": "mid",
+    "preferredPoiTypes": [
+      "town",
+      "chapel",
+      "ruin"
+    ],
+    "unlockedBy": "p2_02",
+    "siteWorkHours": 3,
+    "stock": {
+      "medical_supplies": 12,
+      "cloth": 10
+    },
+    "bonusRange": null,
+    "recurring": false,
+    "cooldownHours": 0,
+    "baseEventChance": 0.2,
+    "tutorialSafe": false,
+    "description": "A walk-in clinic. The waiting room is still waiting.",
+    "notes": "Optional healthcare recovery."
+  },
+  {
+    "id": "roadside_depot",
+    "name": "Roadside Depot",
+    "kind": "scavenging",
+    "band": "mid",
+    "preferredPoiTypes": [
+      "stop",
+      "gas",
+      "industrial"
+    ],
+    "unlockedBy": "p2_02",
+    "siteWorkHours": 4,
+    "stock": {
+      "wood": 60,
+      "scrap_metal": 40,
+      "ammo": 10
+    },
+    "bonusRange": null,
+    "recurring": false,
+    "cooldownHours": 0,
+    "baseEventChance": 0.25,
+    "tutorialSafe": false,
+    "description": "Highway maintenance depot with timber, scrap and a locked ammunition locker.",
+    "notes": "Optional material diversity."
+  },
+  {
+    "id": "scrapyard_route",
+    "name": "Scrapyard Route",
+    "kind": "route",
+    "band": "mid",
+    "preferredPoiTypes": [
+      "industrial",
+      "ruin",
+      "stop"
+    ],
+    "unlockedBy": "p2_03",
+    "siteWorkHours": 4,
+    "stock": {
+      "raw_salvage": 30
+    },
+    "bonusRange": [
+      0,
+      10
+    ],
+    "recurring": true,
+    "cooldownHours": 48,
+    "baseEventChance": 0.2,
+    "tutorialSafe": false,
+    "description": "A recurring loop through scrap heaps that keep shedding useful junk.",
+    "notes": "Recurring regional contract after P2-03."
+  },
+  {
+    "id": "food_foraging_route",
+    "name": "Food Foraging Route",
+    "kind": "route",
+    "band": "mid",
+    "preferredPoiTypes": [
+      "farm",
+      "wild",
+      "camp"
+    ],
+    "unlockedBy": "p2_06",
+    "siteWorkHours": 4,
+    "stock": {
+      "food": 12
+    },
+    "bonusRange": null,
+    "recurring": true,
+    "cooldownHours": 48,
+    "baseEventChance": 0.1,
+    "tutorialSafe": false,
+    "description": "Overgrown gardens and orchards along a back road. Edible, mostly.",
+    "notes": "Unlocks after P2-06, yields 12 Food."
+  },
+  {
+    "id": "motel_strip",
+    "name": "Motel Strip",
+    "kind": "scavenging",
+    "band": "mid",
+    "preferredPoiTypes": [
+      "stop",
+      "town",
+      "gas"
+    ],
+    "unlockedBy": "p2_02",
+    "siteWorkHours": 3,
+    "stock": {
+      "cloth": 20,
+      "food": 8,
+      "components": 2
+    },
+    "bonusRange": null,
+    "recurring": false,
+    "cooldownHours": 0,
+    "baseEventChance": 0.2,
+    "tutorialSafe": false,
+    "description": "Roadside motel. Every room has linens and a reason not to check the bathroom.",
+    "notes": "Generated site: cloth recovery.",
+    "generated": true
+  },
+  {
+    "id": "ranger_cache",
+    "name": "Ranger Cache",
+    "kind": "scavenging",
+    "band": "mid",
+    "preferredPoiTypes": [
+      "wild",
+      "chapel",
+      "farm"
+    ],
+    "unlockedBy": "p2_02",
+    "siteWorkHours": 4,
+    "stock": {
+      "ammo": 12,
+      "medical_supplies": 4,
+      "seed_packets": 2
+    },
+    "bonusRange": null,
+    "recurring": false,
+    "cooldownHours": 0,
+    "baseEventChance": 0.25,
+    "tutorialSafe": false,
+    "description": "A ranger station supply cache, sealed with a padlock and optimism.",
+    "notes": "Generated site: munitions and seeds.",
+    "generated": true
+  },
+  {
+    "id": "old_access_road",
+    "name": "Old Access Road",
+    "kind": "story",
+    "band": "far",
+    "preferredPoiTypes": [
+      "ruin",
+      "wild",
+      "stop"
+    ],
+    "unlockedBy": "p2_09",
+    "expedition": "e01",
+    "revealed": true,
+    "description": "A service road with a transmission trace and a marker nobody remembers installing."
+  },
+  {
+    "id": "service_depot",
+    "name": "Service Depot",
+    "kind": "story",
+    "band": "far",
+    "preferredPoiTypes": [
+      "industrial",
+      "town",
+      "stop"
+    ],
+    "unlockedBy": "p2_10",
+    "expedition": "e02",
+    "revealed": false,
+    "description": "Utility service depot. Someone inside has been keeping the door locked from the right side."
+  },
+  {
+    "id": "regional_relay",
+    "name": "Regional Relay",
+    "kind": "story",
+    "band": "far",
+    "preferredPoiTypes": [
+      "wild",
+      "chapel",
+      "industrial"
+    ],
+    "unlockedBy": "p2_11",
+    "expedition": "e03",
+    "revealed": false,
+    "description": "A hilltop relay station. CentroCom lists it as \"temporarily resting\"."
+  }
+]

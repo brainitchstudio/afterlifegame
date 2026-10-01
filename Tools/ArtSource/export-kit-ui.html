@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Export kit UI sprites</title>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+<style>body{margin:0;padding:24px;background:#171a14;color:#d6d8c6;font:13px monospace}pre{white-space:pre-wrap}</style>
+</head>
+<body>
+<h1 style="font-family:Silkscreen">Kit UI export</h1>
+<pre id="log">Rendering...</pre>
+<script type="module">
+// Served by Tools/export-kit-ui.py. Draws sprites with the kit's own generators and saves them as PNGs.
+import { buildUI } from './ui-kit/pixel-ui.js';
+import { draw } from './ui-kit/pixel-assets-v2.js';
+import { buildMolotov } from './ui-kit/pixel-molotov.js';
+import * as S from './ui-kit/pixel-supplies.js';
+
+// Unity's Resources/UI was missing these kit parts (see the design project's ZombieBaseKit/Art/UI).
+const UI_FROM_KIT = ['badge_open', 'btn_close', 'btn_close_down', 'btn_close_hover', 'btn_manage', 'btn_manage_down', 'btn_manage_hover',
+  'chip_away', 'chip_hurt', 'chip_idle', 'chip_working', 'mini_health', 'mini_morale', 'survivor_card', 'survivor_card_away', 'survivor_card_hurt',
+  // The overseer's tablet: its bezel and tab icons.
+  'tablet_frame', 'icon_quest', 'icon_journal', 'icon_message', 'icon_milestone', 'icon_tablet'];
+// Checks before anything is written. Font-free sprites must match the shipped PNGs (colour rounding
+// may differ by 2); text sprites must match the sizes of the design project's own exports, because the
+// oldest shipped art used an earlier Silkscreen build that sets text a few pixels narrower.
+const VERIFY = ['icon_food', 'icon_wood', 'badge_up', 'badge_check', 'portrait_1'];
+const DESIGN_SIZES = { chip_idle: [28, 13], chip_working: [50, 13], btn_close: [13, 13], btn_manage: [136, 18] };
+
+const log = document.getElementById('log'), say = m => { log.textContent += '\n' + m; };
+const pngOf = cv => new Promise(r => cv.toBlob(r, 'image/png'));
+const spriteCanvas = s => { const cv = document.createElement('canvas'); draw(cv, s); return cv; };
+const save = async (folder, name, cv) => {
+  const res = await fetch(`/save?folder=${folder}&name=${name}`, { method: 'POST', body: await pngOf(cv) });
+  if (!res.ok) throw new Error(`${name}: ${res.status}`);
+  say('saved ' + (await res.json()).saved);
+};
+const pixels = cv => cv.getContext('2d').getImageData(0, 0, cv.width, cv.height).data;
+const loadImage = src => new Promise(r => { const i = new Image(); i.onload = () => r(i); i.onerror = () => r(null); i.src = src; });
+
+try {
+  log.textContent = 'Loading Silkscreen...';
+  await document.fonts.load('8px Silkscreen'); await document.fonts.load('16px Silkscreen');
+  const A = await buildUI();
+
+  // 1. The pipeline must reproduce existing art exactly before anything is written.
+  let mismatch = 0;
+  for (const name of VERIFY) {
+    const img = await loadImage(`/shipped/${name}.png`);
+    const cv = spriteCanvas(A[name]);
+    if (!img) { say(`verify ${name}: shipped PNG not reachable, skipped`); continue; }
+    const ref = document.createElement('canvas'); ref.width = img.width; ref.height = img.height; ref.getContext('2d').drawImage(img, 0, 0);
+    const a = pixels(cv), b = pixels(ref);
+    const same = cv.width === ref.width && cv.height === ref.height && a.every((v, i) => Math.abs(v - b[i]) <= 2);
+    say(`verify ${name}: ${same ? 'identical' : 'DIFFERENT'}`);
+    if (!same) mismatch++;
+  }
+  for (const [name, [w, h]] of Object.entries(DESIGN_SIZES)) {
+    const ok = A[name].w === w && A[name].h === h;
+    say(`verify ${name}: ${A[name].w}x${A[name].h} ${ok ? 'matches the design export' : `DIFFERS from the design export (${w}x${h})`}`);
+    if (!ok) mismatch++;
+  }
+  if (mismatch) throw new Error(`${mismatch} verification check(s) failed; not exporting.`);
+
+  // 2. Kit UI parts drawn with text and pixel art.
+  for (const name of UI_FROM_KIT) { if (!A[name]) throw new Error('pixel-ui.js has no ' + name); await save('UI', name, spriteCanvas(A[name])); }
+  // 3. Supplies card parts (pixel-supplies.js draws them without the font).
+  for (const name of Object.keys(S.PARTS)) await save('UI', name, S.toCanvas(S.PARTS[name]()));
+  // 4. The molotov scorch mark left after a fire burns out.
+  await save('FX', 'molotov_scorch', spriteCanvas(buildMolotov({}).sheets.molotov_scorch));
+  say('\nDONE');
+  window.exportDone = true;
+} catch (error) {
+  say('\nFAILED: ' + error.message);
+  window.exportDone = 'failed';
+}
+</script>
+</body>
+</html>

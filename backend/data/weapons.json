@@ -1,0 +1,81 @@
+[
+  {
+    "id": "fists",
+    "name": "Bare hands",
+    "melee": true,
+    "damage": 8,
+    "range": 26,
+    "cooldown": 0.9
+  },
+  {
+    "id": "pipe",
+    "name": "Lead pipe",
+    "melee": true,
+    "damage": 14,
+    "range": 30,
+    "cooldown": 0.85,
+    "cost": {
+      "scrap_metal": 8
+    }
+  },
+  {
+    "id": "pistol",
+    "name": "Pistol",
+    "melee": false,
+    "damage": 17,
+    "range": 115,
+    "cooldown": 1.1,
+    "cost": {
+      "scrap_metal": 25,
+      "wood": 5
+    }
+  },
+  {
+    "id": "rifle",
+    "name": "Rifle",
+    "melee": false,
+    "damage": 26,
+    "range": 150,
+    "cooldown": 1.5,
+    "cost": {
+      "scrap_metal": 45,
+      "wood": 15
+    }
+  },
+  {
+    "id": "wooden_club",
+    "name": "Wooden Club",
+    "melee": true,
+    "damage": 8,
+    "range": 28,
+    "cooldown": 1.5,
+    "recipe": "c01"
+  },
+  {
+    "id": "improvised_spear",
+    "name": "Improvised Spear",
+    "melee": true,
+    "damage": 12,
+    "range": 40,
+    "cooldown": 2.0,
+    "recipe": "c02"
+  },
+  {
+    "id": "reinforced_club",
+    "name": "Reinforced Club",
+    "melee": true,
+    "damage": 14,
+    "range": 28,
+    "cooldown": 1.5,
+    "recipe": "c09"
+  },
+  {
+    "id": "basic_pistol",
+    "name": "Basic Pistol",
+    "melee": false,
+    "damage": 18,
+    "range": 192,
+    "cooldown": 2.0,
+    "recipe": "c10"
+  }
+]

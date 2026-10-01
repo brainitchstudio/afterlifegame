@@ -1,0 +1,163 @@
+[
+  {
+    "id": "camp",
+    "name": "Camp",
+    "tier": 0,
+    "blurb": "A fire, some tents and a cache of supplies.",
+    "milestones": []
+  },
+  {
+    "id": "outpost",
+    "name": "Outpost",
+    "tier": 1,
+    "blurb": "First upgrades for every structure: cross bracing, barbed wire, irrigation and more.",
+    "milestones": [
+      {
+        "kind": "survivors",
+        "count": 4
+      },
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "farm"
+      },
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "gate"
+      },
+      {
+        "kind": "day",
+        "count": 2
+      }
+    ],
+    "reward": {
+      "wood": 40,
+      "scrap_metal": 20,
+      "food": 30
+    },
+    "log": "Command logged us as an Outpost today. A dot on their map with a name."
+  },
+  {
+    "id": "settlement",
+    "name": "Settlement",
+    "tier": 2,
+    "blurb": "Second-tier upgrades: steel plating, spiked walls, greenhouses, bunkhouse annexes.",
+    "milestones": [
+      {
+        "kind": "survivors",
+        "count": 7
+      },
+      {
+        "kind": "build",
+        "count": 2,
+        "type": "farm"
+      },
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "storage"
+      },
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "workshop"
+      },
+      {
+        "kind": "kills",
+        "count": 40
+      },
+      {
+        "kind": "day",
+        "count": 6
+      }
+    ],
+    "reward": {
+      "wood": 80,
+      "scrap_metal": 40,
+      "food": 40
+    },
+    "log": "We are a Settlement now. People have stopped asking how long we will stay."
+  },
+  {
+    "id": "town",
+    "name": "Town",
+    "tier": 2,
+    "blurb": "Traders and travellers seek you out. Word of the town reaches far.",
+    "milestones": [
+      {
+        "kind": "survivors",
+        "count": 10
+      },
+      {
+        "kind": "build",
+        "count": 2,
+        "type": "tower"
+      },
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "clinic"
+      },
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "barracks"
+      },
+      {
+        "kind": "land",
+        "count": 1
+      },
+      {
+        "kind": "day",
+        "count": 11
+      }
+    ],
+    "reward": {
+      "wood": 120,
+      "scrap_metal": 60,
+      "food": 60
+    },
+    "log": "A Town. There is a market day now, of sorts."
+  },
+  {
+    "id": "city",
+    "name": "City",
+    "tier": 2,
+    "blurb": "Full city status: the region is reclaimed and your post is permanent.",
+    "milestones": [
+      {
+        "kind": "survivors",
+        "count": 14
+      },
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "lab"
+      },
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "armory"
+      },
+      {
+        "kind": "upgrades",
+        "count": 12
+      },
+      {
+        "kind": "kills",
+        "count": 250
+      },
+      {
+        "kind": "day",
+        "count": 16
+      }
+    ],
+    "reward": {
+      "wood": 200,
+      "scrap_metal": 100,
+      "food": 100
+    },
+    "log": "City status confirmed by Command. I came here with a crate and a tablet."
+  }
+]

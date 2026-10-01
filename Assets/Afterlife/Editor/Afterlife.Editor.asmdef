@@ -1,0 +1,14 @@
+{
+  "name": "Afterlife.Editor",
+  "rootNamespace": "Afterlife.Editor",
+  "references": ["Afterlife.Runtime", "ZombieBaseKit.Runtime", "UnityEditor.TestRunner"],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
+}

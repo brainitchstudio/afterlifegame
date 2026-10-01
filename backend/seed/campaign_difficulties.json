@@ -1,0 +1,29 @@
+[
+  {
+    "id": "standard",
+    "name": "Standard",
+    "resourceMult": 1,
+    "threatMult": 1,
+    "biteChance": 0.05,
+    "recruitChance": 0.75,
+    "description": "The deployment as CentroCom intended it."
+  },
+  {
+    "id": "assisted",
+    "name": "Assisted",
+    "resourceMult": 1.5,
+    "threatMult": 0.75,
+    "biteChance": 0.03,
+    "recruitChance": 0.9,
+    "description": "Extra supplies and fewer infected. CentroCom calls this \"onboarding\"."
+  },
+  {
+    "id": "severe",
+    "name": "Severe",
+    "resourceMult": 0.8,
+    "threatMult": 1.25,
+    "biteChance": 0.07,
+    "recruitChance": 0.6,
+    "description": "Lean supplies and more infected. Recommended for Overseers who skim legal agreements."
+  }
+]

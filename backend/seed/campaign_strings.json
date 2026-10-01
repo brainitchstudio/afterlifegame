@@ -1,0 +1,661 @@
+[
+  {
+    "id": "letter_header",
+    "group": "appendix_a",
+    "text": "AFTERLIFE INC.\nExploration & Reclamation Division\nOperated in partnership with CentroCom\n\nOVERSEER RECRUITMENT OFFER",
+    "source": "spec"
+  },
+  {
+    "id": "letter_section_01",
+    "group": "appendix_a",
+    "text": "Congratulations.\n\nIf you are reading this, you have been identified as a potential candidate for AfterLife Inc.'s pioneering new Exploration & Reclamation Division, an ambitious initiative dedicated to restoring permanent human habitation in regions currently classified as:\n\n- abandoned,\n- compromised,\n- overrun,\n- structurally unstable,\n- biologically unfavorable,\n- or \"probably fine from a distance.\"\n\nAs an Overseer, you will be entrusted with the establishment, management, and long-term development of a new regional outpost under CentroCom supervision.\n\nThis is a unique opportunity to become part of the next chapter of human civilization.\nPossibly the last chapter.\nBut preferably not.",
+    "source": "spec",
+    "title": "Dear Applicant,"
+  },
+  {
+    "id": "letter_section_02",
+    "group": "appendix_a",
+    "text": "As an Overseer, you will be responsible for directing a small deployment team into an assigned reclamation zone and transforming an initial survival camp into a stable, productive, defensible population center.\n\nYour responsibilities may include, but are not limited to:\n- managing personnel,\n- assigning work,\n- securing food,\n- organizing shelter,\n- allocating scarce resources,\n- constructing infrastructure,\n- coordinating defense,\n- overseeing medical response,\n- recruiting additional survivors,\n- conducting expeditions,\n- recovering useful materials,\n- establishing trade,\n- maintaining morale through competent leadership,\n- responding to unexpected emergencies,\n- responding to expected emergencies that remain inconvenient,\n- and determining which emergencies can reasonably be ignored until morning.\n\nSuccessful Overseers may eventually qualify their assigned territory for permanent settlement status.\nExceptional Overseers may even oversee the development of a functioning town.\nAfterLife Inc. recognizes that this may sound ambitious.\nThat is why we have described it as pioneering.",
+    "source": "spec",
+    "title": "YOUR ROLE"
+  },
+  {
+    "id": "letter_section_03",
+    "group": "appendix_a",
+    "text": "You will not be undertaking this mission alone.\nEvery Overseer receives access to a company-issued SeerPad, providing centralized control over approved settlement functions.\n\nDepending on operational authorization, your SeerPad may provide access to:\n- personnel management,\n- construction,\n- inventory tracking,\n- resource monitoring,\n- communications,\n- task management,\n- defensive coordination,\n- recruitment,\n- regional intelligence,\n- expedition planning,\n- trade,\n- research,\n- municipal development,\n- and additional systems CentroCom determines you have earned the right to know about.\n\nAccess to certain features may be withheld until your outpost demonstrates sufficient operational stability.\nThis is not intended as a lack of trust.\nIt is intended as a controlled rollout.",
+    "source": "spec",
+    "title": "YOUR SUPPORT"
+  },
+  {
+    "id": "letter_section_04",
+    "group": "appendix_a",
+    "text": "CentroCom will provide remote operational guidance throughout your assignment.\nYou may periodically receive:\n- objectives,\n- milestone evaluations,\n- construction authorizations,\n- resource advisories,\n- regional warnings,\n- personnel notices,\n- congratulatory messages,\n- strongly worded recommendations,\n- and automatically generated expressions of concern.\n\nCentroCom is committed to supporting Overseers in the field.\nPlease note that \"supporting\" refers primarily to informational, administrative, and motivational assistance.\nPhysical assistance may not be available.\nTimely physical assistance should not be assumed.\nExtraction should not be assumed.",
+    "source": "spec",
+    "title": "CENTROCOM OVERSIGHT"
+  },
+  {
+    "id": "letter_section_05",
+    "group": "appendix_a",
+    "text": "Upon acceptance, you will be assigned:\n- a small crew of survivors,\n- temporary shelter,\n- basic food reserves,\n- limited ammunition,\n- construction materials,\n- medical supplies,\n- basic tools,\n- and a reasonable expectation that additional resources exist somewhere nearby.\n\nYour deployment zone will be selected using CentroCom regional analysis.\nWhile every effort is made to identify suitable locations, AfterLife Inc. cannot guarantee:\n- reliable water,\n- intact infrastructure,\n- favorable weather,\n- nearby farmland,\n- accessible roads,\n- friendly neighbors,\n- functional utilities,\n- available medical facilities,\n- predictable infected behavior,\n- or the continued existence of anything shown on pre-collapse maps.\n\nHistorical data may be inaccurate due to time, damage, population displacement, structural decay, fire, flooding, abandonment, infected migration, human interference, clerical error, or events classified internally as \"other.\"",
+    "source": "spec",
+    "title": "INITIAL DEPLOYMENT PACKAGE"
+  },
+  {
+    "id": "letter_section_06",
+    "group": "appendix_a",
+    "text": "Your assigned region may contain individuals currently categorized as infected.\nFor clarity, the term \"infected\" may include persons who are:\n- actively hostile,\n- recently deceased,\n- previously deceased,\n- mobile despite previous death,\n- apparently inactive,\n- temporarily inactive,\n- partially dismembered,\n- difficult to classify,\n- or behaving in a manner inconsistent with accepted biological expectations.\n\nOverseers are advised not to approach infected persons unless necessary.\nIf approach is necessary, CentroCom recommends maintaining a safe distance.\nIf maintaining a safe distance is no longer possible, CentroCom recommends resolving the situation.\nHow you resolve the situation is left to your professional judgment.",
+    "source": "spec",
+    "title": "INFECTED PERSONS"
+  },
+  {
+    "id": "letter_section_07",
+    "group": "appendix_a",
+    "text": "Your deployment personnel are considered essential operational assets and, where practical, human beings.\nYou are expected to provide reasonable access to:\n- food,\n- shelter,\n- medical attention,\n- safety,\n- meaningful work,\n- and opportunities not to be bitten.\n\nYou may recruit additional survivors as your outpost develops.\nEach additional survivor may increase:\n- labor capacity,\n- defensive capability,\n- expedition potential,\n- food consumption,\n- housing demand,\n- medical burden,\n- and the statistical likelihood of somebody making a poor decision while unsupervised.\n\nRecruitment is therefore encouraged responsibly.\nAfterLife Inc. assumes no liability for disputes arising from personality conflicts, romantic entanglements, workplace disagreements, ration allocation, snoring, theft accusations, questionable cooking, or disputes beginning with the phrase:\n> \"I thought you said you checked the door.\"",
+    "source": "spec",
+    "title": "PERSONNEL MANAGEMENT"
+  },
+  {
+    "id": "letter_section_08",
+    "group": "appendix_a",
+    "text": "At later stages of development, Overseers may be authorized to conduct scavenging operations and expeditions outside the established outpost.\nPotential objectives may include:\n- resource recovery,\n- survivor rescue,\n- reconnaissance,\n- infrastructure repair,\n- regional security,\n- communications restoration,\n- trade contact,\n- supply retrieval,\n- investigation of unusual activity,\n- and entering buildings everybody agrees are probably a bad idea.\n\nAll field operations carry risk.\nCentroCom will provide available intelligence where possible.\nIntelligence should not be interpreted as certainty.\nThreat assessments may change without notice.\nStructures marked \"clear\" may no longer be clear.\nIndividuals marked \"friendly\" may no longer be friendly.\nRoads marked \"passable\" may technically remain roads.",
+    "source": "spec",
+    "title": "FIELD OPERATIONS"
+  },
+  {
+    "id": "letter_section_09",
+    "group": "appendix_a",
+    "text": "In reclamation zones, property abandoned during regional collapse may be recovered for settlement use where no active claimant can reasonably be identified.\nThis includes, but is not limited to:\n- lumber,\n- metal,\n- food,\n- ammunition,\n- tools,\n- equipment,\n- vehicles,\n- medical supplies,\n- machinery,\n- building materials,\n- and items sitting unattended for what appears to have been a very long time.\n\nAfterLife Inc. encourages Overseers to exercise discretion when determining whether property is genuinely abandoned.\nA person shouting:\n> \"Hey, that's mine!\"\nshould generally be considered evidence that the property may not be abandoned.",
+    "source": "spec",
+    "title": "RESOURCE OWNERSHIP"
+  },
+  {
+    "id": "letter_section_10",
+    "group": "appendix_a",
+    "text": "Overseers are expected to develop increasingly permanent infrastructure as regional stability improves.\nEarly structures may include temporary shelters, work stations, basic food production, and defensive positions.\nPermanent construction authorization may be granted after CentroCom determines that your outpost demonstrates sufficient:\n- population stability,\n- food production,\n- medical capability,\n- defensive readiness,\n- resource access,\n- operational competence,\n- and continued existence.\n\nPlease note that permanent construction does not indicate permanent safety.\nBuildings may be damaged by:\n- infected activity,\n- human activity,\n- fire,\n- weather,\n- structural failure,\n- poor maintenance,\n- resource shortages,\n- operational mistakes,\n- or exceptionally determined wildlife.",
+    "source": "spec",
+    "title": "STRUCTURAL DEVELOPMENT"
+  },
+  {
+    "id": "letter_section_11",
+    "group": "appendix_a",
+    "text": "AfterLife Inc. recognizes that reclamation operations may result in injury or loss of life.\nEvery reasonable effort should be made to protect assigned personnel.\nHowever, by participating in the Exploration & Reclamation Division, you acknowledge that absolute safety cannot be guaranteed.\n\nPotential causes of injury or death include:\n- infected attack,\n- blood loss,\n- untreated wounds,\n- structural collapse,\n- fire,\n- environmental exposure,\n- hostile survivors,\n- accidents,\n- equipment malfunction,\n- inadequate preparation,\n- overconfidence,\n- underconfidence,\n- unexplored basements,\n- suspiciously quiet hallways,\n- and investigating noises that clearly should have been left alone.\n\nIn the event of personnel loss, Overseers are expected to adjust staffing accordingly.\nCentroCom may offer condolences where system availability permits.",
+    "source": "spec",
+    "title": "CASUALTY POLICY"
+  },
+  {
+    "id": "letter_section_12",
+    "group": "appendix_a",
+    "text": "Regional infected populations may periodically form large migratory groups.\nThese events may occur:\n- with warning,\n- with insufficient warning,\n- without warning,\n- immediately after you commit most of your personnel elsewhere,\n- or while you are attempting to accomplish something unrelated.\n\nOverseers are authorized to determine the appropriate response.\nOptions may include:\n- direct engagement,\n- fortified defense,\n- withdrawal,\n- sheltering personnel,\n- reducing settlement activity,\n- waiting quietly,\n- and hoping the infected continue walking.\n\nAfterLife Inc. does not consider avoidance to be cowardice.\nCurrent terminology is:\nstrategic non-engagement.",
+    "source": "spec",
+    "title": "HORDE CONDITIONS"
+  },
+  {
+    "id": "letter_section_13",
+    "group": "appendix_a",
+    "text": "Your SeerPad will serve as your primary link to CentroCom.\nLoss of SeerPad functionality may significantly impair your ability to manage settlement systems.\nPlease avoid:\n- dropping the device,\n- submerging the device,\n- exposing the device to open flame,\n- using the device as a weapon,\n- allowing infected persons to handle the device,\n- or attempting unauthorized repair with scavenged kitchen appliances.\n\nIf your SeerPad displays an error message stating:\nCONTACT CENTROCOM SUPPORT\nand communication with CentroCom is unavailable, please appreciate the irony privately and continue operations to the best of your ability.",
+    "source": "spec",
+    "title": "COMMUNICATIONS"
+  },
+  {
+    "id": "letter_section_14",
+    "group": "appendix_a",
+    "text": "Acceptance of this offer grants you the provisional title:\nOVERSEER\n\nYour employment status remains contingent upon continued performance, operational viability, regional conditions, corporate restructuring, communications continuity, and your continued ability to respond to messages.\nExtended failure to respond may result in your status being changed to:\nINACTIVE\n\nAdditional classifications may include:\nMISSING\nUNREACHABLE\nPRESUMED LOST\nCONFIRMED LOST\nADMINISTRATIVE REVIEW PENDING\n\nAfterLife Inc. reserves the right to amend terminology in the interest of clarity, morale, or quarterly reporting.",
+    "source": "spec",
+    "title": "EMPLOYMENT STATUS"
+  },
+  {
+    "id": "letter_section_15",
+    "group": "appendix_a",
+    "text": "Qualified Overseers receive:\n- leadership authority over assigned reclamation operations,\n- access to CentroCom systems,\n- deployment housing,\n- field supplies,\n- professional development opportunities,\n- exposure to diverse working environments,\n- direct involvement in rebuilding civilization,\n- and a sense of accomplishment not currently available through most conventional employment.\n\nMedical coverage is provided primarily through whatever medical infrastructure you successfully establish.\nPaid leave is not currently available.\nVacation requests may be reconsidered once the region is no longer actively collapsing.",
+    "source": "spec",
+    "title": "BENEFITS"
+  },
+  {
+    "id": "letter_section_16",
+    "group": "appendix_a",
+    "text": "Participation in the Exploration & Reclamation Division is voluntary.\nBy accepting this offer, you acknowledge that you understand the associated risks and agree to assume responsibility for regional settlement operations.\n\nYou additionally acknowledge that:\n- information may be incomplete,\n- conditions may deteriorate,\n- assigned personnel may be injured,\n- resources may become scarce,\n- infected populations may migrate,\n- assistance may be delayed,\n- plans may fail,\n- backup plans may also fail,\n- and circumstances may arise for which CentroCom has prepared a reassuring message but no practical solution.\n\nYou agree to exercise reasonable judgment.\nWhere reasonable judgment is unavailable, you agree to exercise whatever judgment remains.",
+    "source": "spec",
+    "title": "VOLUNTARY ACCEPTANCE"
+  },
+  {
+    "id": "letter_section_17",
+    "group": "appendix_a",
+    "text": "By selecting I AGREE, you confirm that you have:\n- read,\n- reviewed,\n- skimmed,\n- scrolled past,\n- or otherwise progressed through\nthe terms above.\n\nYou further acknowledge that selecting I AGREE constitutes acceptance regardless of whether you fully understood every provision.\nThat sentence has been reviewed by Legal.\nSeveral times.",
+    "source": "spec",
+    "title": "FINAL ACKNOWLEDGMENT"
+  },
+  {
+    "id": "letter_acceptance",
+    "group": "appendix_a",
+    "text": "I accept appointment as an AfterLife Inc. Overseer and authorize CentroCom to assign me to an available reclamation region.",
+    "source": "spec"
+  },
+  {
+    "id": "letter_after_status",
+    "group": "appendix_a",
+    "text": "APPLICATION STATUS: ACCEPTED",
+    "source": "spec"
+  },
+  {
+    "id": "letter_after_message",
+    "group": "appendix_a",
+    "text": "Congratulations, Overseer.\n\nYour application to the AfterLife Inc. Exploration & Reclamation Division has been approved.\nCentroCom is now preparing your regional deployment.\nPlease remain available for immediate relocation.\nPersonal belongings should be limited to essential items.\nSentimental attachment to current surroundings is discouraged.\n\nWELCOME TO AFTERLIFE INC.\nBuilding tomorrow from what's left of today.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_reserve",
+    "group": "appendix_b",
+    "text": "Available stock excludes resources already reserved for construction, crafting or a mission.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_build_blocked",
+    "group": "appendix_b",
+    "text": "Cannot place here: {reason}. Choose a clear footprint with a reachable entrance.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_no_worker",
+    "group": "appendix_b",
+    "text": "Construction is waiting for an available worker. Assign a builder or free an existing assignment.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_no_farmer",
+    "group": "appendix_b",
+    "text": "Food production paused. Assign a Farmer to this plot.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_output_blocked",
+    "group": "appendix_b",
+    "text": "Output is ready but storage is full. Use stock or add operational storage.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_no_medic",
+    "group": "appendix_b",
+    "text": "Treatment is waiting for a Medic. Assign one to this station.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_no_supplies",
+    "group": "appendix_b",
+    "text": "Medical Supplies are depleted. Treatment cannot continue.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_food_low",
+    "group": "appendix_b",
+    "text": "FOOD RESERVE LOW / Approximately {foodDays} days at the current net rate. Review staffing and recovery options.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_ammo_low",
+    "group": "appendix_b",
+    "text": "AMMUNITION LOW / Guards will switch to melee when Ammo is exhausted.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_fatigue",
+    "group": "appendix_b",
+    "text": "{survivorName} needs rest. Their work rate is reduced; housing improves recovery.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_candidate_wait",
+    "group": "appendix_b",
+    "text": "A candidate is waiting. Review housing, Food and their profile before accepting.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_no_bed",
+    "group": "appendix_b",
+    "text": "Acceptance unavailable. Add a housing vacancy for this candidate.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_recruit_miss",
+    "group": "appendix_b",
+    "text": "No reply to this broadcast. The next transmission is available after cooldown.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_recruit_reject",
+    "group": "appendix_b",
+    "text": "Invitation declined by the outpost. The channel remains open for future contacts.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_mission_staff",
+    "group": "appendix_b",
+    "text": "This team removes essential camp staff: {assignments}. Review remaining coverage before launch.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_mission_return",
+    "group": "appendix_b",
+    "text": "TEAM RETURNED / {recoveredSummary}. {leftBehindSummary}. Open the report for details.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_mission_recall",
+    "group": "appendix_b",
+    "text": "Recall issued. The team returns along its current route; arrival in {eta}.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_mission_block",
+    "group": "appendix_b",
+    "text": "Launch unavailable: {reason}. No provisions have been spent.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_poi_depleted",
+    "group": "appendix_b",
+    "text": "This search area is depleted. Regional recovery routes are listed separately.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_shelter_short",
+    "group": "appendix_b",
+    "text": "Emergency shelter has {capacity} slots for {population} residents. {outsideCount} remain outside.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_shelter_offsite",
+    "group": "appendix_b",
+    "text": "{offsiteCount} residents are away on operations. Shelter All cannot move them home.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_shelter_sealed",
+    "group": "appendix_b",
+    "text": "Shelter sealed. Work remains suspended until safe release or manual override.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_release_early",
+    "group": "appendix_b",
+    "text": "The route is not clear. Releasing now exposes occupants. Release anyway?",
+    "source": "spec"
+  },
+  {
+    "id": "ui_building_broken",
+    "group": "appendix_b",
+    "text": "{buildingName} is broken and its function is unavailable. Repair it to above 25% health.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_downed",
+    "group": "appendix_b",
+    "text": "URGENT / {survivorName} is downed. Rescue and staffed treatment are required before {eta}.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_infection",
+    "group": "appendix_b",
+    "text": "INFECTION WARNING / {survivorName} requires supervised treatment. Review isolation and supplies.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_death",
+    "group": "appendix_b",
+    "text": "PERSONNEL LOSS / {survivorName} has died. Assignments and housing have been released. A memorial record has been added.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_hold_reset",
+    "group": "appendix_b",
+    "text": "Certification hold reset: {reason}. Completed tasks and permanent unlocks remain recorded.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_new_module",
+    "group": "appendix_b",
+    "text": "{moduleName} available / {actionSummary}.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_save_fail",
+    "group": "appendix_b",
+    "text": "Save could not be written. Your previous save is intact. Retry before leaving the campaign.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_generation_fail",
+    "group": "appendix_b",
+    "text": "A valid deployment region could not be prepared. Retry this seed or choose another.",
+    "source": "spec"
+  },
+  {
+    "id": "ui_phase2_risk",
+    "group": "appendix_b",
+    "text": "Phase 2 begins sustained regional operations. Tutorial starvation protection ends, and regional missions carry greater risk. Combat and untreated injuries can cause permanent personnel loss.",
+    "source": "spec"
+  },
+  {
+    "id": "generic_task_complete",
+    "group": "messages",
+    "text": "TASK COMPLETE / {taskTitle}.",
+    "source": "spec"
+  },
+  {
+    "id": "generic_reward",
+    "group": "messages",
+    "text": "Allocation received: {rewardSummary}.",
+    "source": "spec"
+  },
+  {
+    "id": "generic_locked_module",
+    "group": "messages",
+    "text": "Requires later settlement authorization.",
+    "source": "spec"
+  },
+  {
+    "id": "generic_daily_report",
+    "group": "messages",
+    "text": "DAY {day} OPERATIONS SUMMARY. Population: {population}. Food produced: {producedFood}. Food consumed: {consumedFood}. Current reserve: {availableFood}. Injuries needing attention: {injuryCount}. Outstanding alerts: {alertCount}.",
+    "source": "spec"
+  },
+  {
+    "id": "centrocom_loss_msg",
+    "group": "messages",
+    "text": "Personnel loss recorded. AfterLife Inc. extends its condolences. Review staffing, treatment coverage and the circumstances of the loss before resuming exposed work.",
+    "source": "spec"
+  },
+  {
+    "id": "mara_first_loss_msg",
+    "group": "messages",
+    "text": "I'm sorry, Overseer. There isn't a useful joke for this. Make sure the others are safe, then take a moment. The work can wait.",
+    "source": "spec"
+  },
+  {
+    "id": "food_shortage_msg",
+    "group": "messages",
+    "text": "Ration distribution is below requirement. Restore Food access or production. Continued shortage reduces morale and eventually health.",
+    "source": "spec"
+  },
+  {
+    "id": "mara_shortage_hint",
+    "group": "messages",
+    "text": "The forecast is a warning, not an epitaph. Pause nonessential jobs, check the farms and send the safest team for food.",
+    "source": "spec"
+  },
+  {
+    "id": "expedition_stalled_msg",
+    "group": "messages",
+    "text": "Team contact delayed. Open Operations for recovery options. Their status has not been classified as lost.",
+    "source": "spec"
+  },
+  {
+    "id": "end_of_scope_msg",
+    "group": "messages",
+    "text": "ESTABLISHED OUTPOST. Your camp has completed the Phase 0-2 campaign. Continue managing this region, load an earlier save or return to the menu. Further municipal development is awaiting authorization.",
+    "source": "spec"
+  },
+  {
+    "id": "deploy_step_01",
+    "group": "deployment",
+    "text": "Selecting regional assignment...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_02",
+    "group": "deployment",
+    "text": "Reviewing regional suitability (results not guaranteed)...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_03",
+    "group": "deployment",
+    "text": "Surveying terrain and estimating slope tolerance...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_04",
+    "group": "deployment",
+    "text": "Locating a clearing with fewer than average hazards...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_05",
+    "group": "deployment",
+    "text": "Confirming two exits, in case one becomes an entrance...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_06",
+    "group": "deployment",
+    "text": "Plotting infected migration corridors at a respectful distance...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_07",
+    "group": "deployment",
+    "text": "Placing salvageable debris within walking distance...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_08",
+    "group": "deployment",
+    "text": "Charting regional sites of opportunity and concern...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_09",
+    "group": "deployment",
+    "text": "Packing tents, clubs and a supply cache of approved size...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_10",
+    "group": "deployment",
+    "text": "Briefing personnel. Briefing personnel again...",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_step_11",
+    "group": "deployment",
+    "text": "Deployment authorized.",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_fallback",
+    "group": "deployment",
+    "text": "Primary landing sites unsuitable. Deploying to the approved fallback clearing. CentroCom regrets nothing.",
+    "source": "generated"
+  },
+  {
+    "id": "deploy_title",
+    "group": "deployment",
+    "text": "REGION {regionId} / DAY 1 / 07:00",
+    "source": "generated"
+  },
+  {
+    "id": "start_difficulty_hint",
+    "group": "start",
+    "text": "Difficulty adjusts starting supplies and infected pressure. It can be described to others however you like.",
+    "source": "generated"
+  },
+  {
+    "id": "start_seed_hint",
+    "group": "start",
+    "text": "The same seed always produces the same region. CentroCom calls this \"accountability\".",
+    "source": "generated"
+  },
+  {
+    "id": "start_name_hint",
+    "group": "start",
+    "text": "Your name will appear on official correspondence and, if necessary, memorial records.",
+    "source": "generated"
+  },
+  {
+    "id": "letter_go_to_end",
+    "group": "appendix_a",
+    "text": "Go to final acknowledgment",
+    "source": "generated"
+  },
+  {
+    "id": "letter_scroll_hint",
+    "group": "appendix_a",
+    "text": "Scroll to the end of the agreement to continue. Legal insists.",
+    "source": "generated"
+  },
+  {
+    "id": "loss_title",
+    "group": "loss",
+    "text": "REGION LOST",
+    "source": "generated"
+  },
+  {
+    "id": "loss_body",
+    "group": "loss",
+    "text": "No living personnel remain in Region {regionId}. CentroCom has closed the assignment file and opened a lessons-learned file of identical length.",
+    "source": "generated"
+  },
+  {
+    "id": "loss_mara",
+    "group": "loss",
+    "text": "There's nobody left to tell you it wasn't your fault, so I will. Go again if you can.",
+    "source": "generated"
+  },
+  {
+    "id": "scav_event_delay",
+    "group": "operations",
+    "text": "TEAM DELAYED / {siteName}: the route was worse than mapped. Return estimate +2 hours.",
+    "source": "generated"
+  },
+  {
+    "id": "scav_event_injury",
+    "group": "operations",
+    "text": "TEAM INJURY / {survivorName} was hurt at {siteName} ({damage} HP). The team is continuing.",
+    "source": "generated"
+  },
+  {
+    "id": "scav_event_cargo",
+    "group": "operations",
+    "text": "CARGO LOSS / {siteName}: part of the haul was dropped during a hasty exit. Remaining cargo is secure.",
+    "source": "generated"
+  },
+  {
+    "id": "scav_contact",
+    "group": "operations",
+    "text": "TEAM IN CONTACT / {teamName} reports infected near {location}. They are responding.",
+    "source": "generated"
+  },
+  {
+    "id": "phase2_transition_title",
+    "group": "campaign",
+    "text": "CAMP CLASSIFICATION UPDATED: ESTABLISHED CAMP",
+    "source": "generated"
+  },
+  {
+    "id": "phase2_begin",
+    "group": "campaign",
+    "text": "[ BEGIN PHASE 2 ]",
+    "source": "generated"
+  },
+  {
+    "id": "campaign_continue",
+    "group": "campaign",
+    "text": "[ CONTINUE MANAGING OUTPOST ]",
+    "source": "generated"
+  },
+  {
+    "id": "campaign_menu",
+    "group": "campaign",
+    "text": "[ RETURN TO MENU ]",
+    "source": "generated"
+  },
+  {
+    "id": "mara_closing",
+    "group": "campaign",
+    "text": "Private channel. It's still me. CentroCom will send a certificate; I'm sending something less official. Thank you, {overseerName}. Keep them fed, keep the door working, and call me when the next authorization comes through.",
+    "source": "generated"
+  },
+  {
+    "id": "recovery_delivery",
+    "group": "messages",
+    "text": "EMERGENCY ALLOCATION / CentroCom has approved a one-time delivery of {resourceSummary}, arriving in 6 hours. This allocation has been noted in your file. In pencil, for now.",
+    "source": "generated"
+  },
+  {
+    "id": "component_reserve_warning",
+    "group": "appendix_b",
+    "text": "COMPONENT RESERVE / This order leaves {components} Components. The Radio Relay needs 6. Continue anyway?",
+    "source": "generated"
+  },
+  {
+    "id": "job_general_worker",
+    "group": "jobs",
+    "text": "Gathers salvage, carries it to storage and raises blueprints. Strength speeds the work. Officially 'flexible'; unofficially, everything nobody else was assigned.",
+    "source": "generated"
+  },
+  {
+    "id": "job_farmer",
+    "group": "jobs",
+    "text": "Tends a garden plot through the work shift. Endurance speeds the crop. Food output is projected, not promised.",
+    "source": "generated"
+  },
+  {
+    "id": "job_engineer",
+    "group": "jobs",
+    "text": "Builds and crafts at 1.5x. Strength speeds the work. Will build without a queue; the queue simply makes it look planned.",
+    "source": "generated"
+  },
+  {
+    "id": "job_medic",
+    "group": "jobs",
+    "text": "Treats the injured at an aid station. Intelligence speeds the treatment. Liability coverage is pending review.",
+    "source": "generated"
+  },
+  {
+    "id": "job_guard",
+    "group": "jobs",
+    "text": "Holds the perimeter and answers threats. Agility speeds the response. Bravery is encouraged but not reimbursed.",
+    "source": "generated"
+  },
+  {
+    "id": "job_scavenger",
+    "group": "jobs",
+    "text": "Leads runs to regional sites. Agility speeds the search. Returns are expected; returns of personnel especially.",
+    "source": "generated"
+  },
+  {
+    "id": "reanimation_warning",
+    "group": "appendix_b",
+    "text": "{survivorName} has reached terminal infection. Reanimation is expected within two hours. Isolate them in a medical bed or move everyone else away. CentroCom recommends both.",
+    "source": "generated"
+  },
+  {
+    "id": "broadcast_done",
+    "group": "messages",
+    "text": "Broadcast complete. {operatorName} read the invitation twice, in a calm and legally reviewed voice. Replies, if any, are expected within {minHours}-{maxHours} hours.",
+    "source": "generated"
+  },
+  {
+    "id": "candidate_expired",
+    "group": "messages",
+    "text": "{candidateName} stopped waiting for an answer. The channel remains open. Their opinion of the process has not been recorded.",
+    "source": "generated"
+  },
+  {
+    "id": "recruit_arrived",
+    "group": "messages",
+    "text": "{survivorName} has reached camp and been entered into the personnel register. Population: {population}. Food demand has been updated accordingly.",
+    "source": "generated"
+  },
+  {
+    "id": "threats_active_mara",
+    "group": "messages",
+    "text": "That was the demonstration. The rest won't be marked, and they won't wait for the work shift. Keep the watch staffed and the patrol close.",
+    "source": "generated"
+  },
+  {
+    "id": "relay_lost_mara",
+    "group": "messages",
+    "text": "The relay is down and the battery went with it. It will still be in the ruin up there. One more trip, a short one, and nobody needs to be brave about it.",
+    "source": "generated"
+  }
+]

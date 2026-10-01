@@ -1,0 +1,155 @@
+// Serialization, validation and migration of saves, keyed on SAVE_VERSION. Installed onto Game.prototype by model.mjs.
+import { initialLand, patrolRoutes } from './land.mjs';
+import { generateStats, grantStatPoint, hashSeed } from './survivors.mjs';
+import { HOUR_SECONDS, DAY_SECONDS, RUN_DAYS, SAVE_VERSION, DIRECTOR_STATES, EXPEDITIONS, ROLE_FOR, SHIFTS, LEGACY_DAY_SECONDS } from './data.mjs';
+import { survivorStats } from './rules.mjs';
+import { checkSave, upgradeSave } from './saveSchema.mjs';
+import { applyWorldToGame } from './worldgen.mjs';
+import { onWallGrid } from './walls.mjs';
+import { restoreCampaign } from './campaignState.mjs';
+import { emptyLedger, LEGACY_RESOURCES } from './ledger.mjs';
+import { restoreCrewFields } from './crew.mjs';
+const TRANSIENT = { tendSpot: undefined, tendTimer: undefined, tendIndex: undefined, treatedBy: undefined, path: [], pathVersion: -1, pathGoal: undefined, pathRetry: undefined, goal: undefined, goalKey: undefined, hunt: undefined, huntTimer: undefined, job: undefined, fxTimer: undefined, heldUntil: undefined, stationed: undefined, perch: undefined, towerId: undefined, patrolDir: undefined, task: undefined, injuredRefuge: undefined, towerCooldown: undefined, emergencyShelter: undefined, camp: undefined };
+
+export class Save {
+  serialize() {
+    const { elapsed, status, resources, buildings, survivors, zombies, kills, nextId, spawnTimer, recruitTimer, recruited, director, incoming, threatSide, worldSeed, nextEventId, items, candidates, alerts, alarm, shelterOrder, broadcasting } = this;
+    return JSON.stringify({ version: SAVE_VERSION, difficulty: this.difficulty, map: this.map, worldMeta: this.worldMeta, land: this.land, elapsed, status, resources, buildings, survivors: survivors.map(s => ({ ...s, ...TRANSIENT, resting: s.resting || undefined, restAt: s.resting ? s.restAt : undefined, shift: s.role === 'sentry' ? s.shift : undefined })), zombies, kills, nextId, spawnTimer, recruitTimer, recruited, director, incoming, threatSide, dayLength: DAY_SECONDS, worldSeed, nextEventId, items, candidates, alerts, alarm, shelterOrder, broadcasting, gates: true, sturdyWalls: true, wallTowers: true, southGate: true, roadGates: true, wallGrid: true, freeGates: true, openings: this.openings, start: this.start, campaign: this.campaign || undefined, reservations: this.reservations, nextTxId: this.nextTxId, debris: this.debris, ...this.serializeProgress(), harvestJobs: this.harvestJobs.map(j => ({ tree: j.tree })), treeRegrow: this.treeRegrow, cleared: this.cleared });
+  }
+  // Why a save would be rejected, or '' when it is valid.
+  restoreError(json) {
+    try { return checkSave(JSON.parse(json)); } catch { return 'Not valid JSON'; }
+  }
+  restore(json) {
+    try {
+      const d = upgradeSave(JSON.parse(json));
+      if (checkSave(d)) return false;
+      const finite = value => typeof value === 'number' && Number.isFinite(value), id = v => Number.isInteger(v);
+      const legacy = d.version < 3, items = legacy ? [] : d.items, candidates = legacy ? [] : d.candidates;
+      // Director state is optional so saves from before the 24-hour pacing still load.
+      const director = d.director && DIRECTOR_STATES.includes(d.director.state) && [d.director.timer, d.director.tension].every(finite) ? d.director : { state: 'lull', timer: 40, tension: 0 };
+      const incoming = d.incoming && director.state === 'peak' && [0, 1, 2, 3].includes(d.incoming.side) && [d.incoming.count, d.incoming.eta, d.incoming.total].every(finite) && d.incoming.count >= 0 && d.incoming.count <= 18 ? d.incoming : null;
+      for (const key of ['elapsed', 'status', 'resources', 'buildings', 'survivors', 'zombies', 'kills', 'nextId', 'spawnTimer', 'recruitTimer', 'recruited']) this[key] = d[key];
+      this.difficulty = ['easy', 'normal', 'hard'].includes(d.difficulty) ? d.difficulty : 'normal';
+      if (d.map && Number.isInteger(d.map.w) && Number.isInteger(d.map.h) && d.map.w > 0 && d.map.h > 0 && d.map.w <= 512 && d.map.h <= 512 && Array.isArray(d.map.terr) && d.map.terr.length === d.map.w * d.map.h && Array.isArray(d.map.objs) && d.map.objs.length <= 60000 && d.worldMeta && d.worldMeta.base && Array.isArray(d.worldMeta.pois))
+        applyWorldToGame(this, d.map, d.worldMeta);
+      else {
+        this.map = null; this.worldMeta = null; this.worldPois = []; this.worldDecor = [];
+        this.worldBuildings = []; this.mapTrees = []; this.worldOrigin = null; this.water = null;
+      }
+      this.director = { state: director.state, timer: director.timer, tension: director.tension, stressAt: finite(director.stressAt) ? director.stressAt : -1e9 };
+      // Saves from the 3-minute day keep their date and time of day.
+      if (d.dayLength !== DAY_SECONDS) this.elapsed = Math.min(DAY_SECONDS * RUN_DAYS, d.elapsed * DAY_SECONDS / (finite(d.dayLength) && d.dayLength > 0 ? d.dayLength : LEGACY_DAY_SECONDS));
+      this.incoming = incoming && { side: incoming.side, count: incoming.count, eta: incoming.eta, total: incoming.total, spotted: !!incoming.spotted };
+      this.threatSide = [0, 1, 2, 3].includes(d.threatSide) ? d.threatSide : 0;
+      this.worldSeed = finite(d.worldSeed) ? d.worldSeed : hashSeed('legacy-world', d.nextId, d.kills, d.recruited);
+      this.nextEventId = finite(d.nextEventId) ? d.nextEventId : 1;
+      this.items = items.map(i => ({ id: i.id, type: i.type, holder: i.holder ?? null, ...(typeof i.reservedFor === 'string' && i.holder == null && d.reservations?.[i.reservedFor] ? { reservedFor: i.reservedFor } : {}) }));
+      this.candidates = candidates;
+      this.alerts = Array.isArray(d.alerts) ? d.alerts.filter(a => typeof a.id === 'string' && Array.isArray(a.threatIds) && a.threatIds.every(id) && a.lastKnown && finite(a.lastKnown.x) && finite(a.lastKnown.y) && finite(a.expiresAt) && finite(a.lastSeenAt)) : [];
+      this.alarm = d.alarm && typeof d.alarm.raised === 'boolean' && finite(d.alarm.quiet) ? { raised: d.alarm.raised, quiet: d.alarm.quiet } : { raised: false, quiet: 0 };
+      this.shelterOrder = d.shelterOrder && id(d.shelterOrder.buildingId) && this.buildings.some(b => b.id === d.shelterOrder.buildingId) ? { buildingId: d.shelterOrder.buildingId } : null;
+      this.broadcasting = d.broadcasting === true && this.recruitTimer > 0;
+      if (!this.broadcasting) this.recruitTimer = 0;
+      this.land = d.version === 1 ? initialLand() : d.land;
+      // Older saves didn't record dismantled fence panels, so every hole is treated as a breach.
+      this.openings = Array.isArray(d.openings) ? d.openings.filter(k => typeof k === 'string') : [];
+      // Saves from before the starter camp are walled refuges with every structure available.
+      this.start = d.start === 'camp' || this.buildings.some(b => b.type === 'campfire') ? 'camp' : 'refuge';
+      this.campaign = this.start === 'camp' ? restoreCampaign(d.campaign) : null;
+      this.mode = this.campaign ? 'campaign' : 'legacy';
+      // The ledger: a campaign holds every resource; what is reserved is rebuilt from the open reservations.
+      const kinds = this.campaign ? undefined : LEGACY_RESOURCES;
+      this.resources = { ...Object.fromEntries(Object.entries(this.resources).filter(([, n]) => finite(n) && n >= 0)) };
+      for (const r of Object.keys(emptyLedger(kinds))) this.resources[r] ??= 0;
+      this.reservations = d.reservations && typeof d.reservations === 'object' ? d.reservations : {};
+      this.reserved = emptyLedger(kinds);
+      for (const tx of Object.values(this.reservations)) for (const [r, n] of Object.entries(tx.cost)) this.reserved[r] = (this.reserved[r] || 0) + n;
+      this.nextTxId = Number.isInteger(d.nextTxId) && d.nextTxId > 0 ? d.nextTxId : Object.keys(this.reservations).length + 1;
+      this.autosaveReason = null;
+      if (this.campaign) { for (const s of this.survivors) if (s.model === 'campaign') restoreCrewFields(s); this.restoreTasks(d.campaign); }
+      // Finite debris keeps what is left in it; emptied nodes are gone.
+      this.debris = this.campaign && Array.isArray(d.debris) ? d.debris.filter(n => n && typeof n.id === 'string' && finite(n.x) && finite(n.y) && finite(n.stock) && n.stock > 0 && typeof n.resource === 'string' && typeof n.key === 'string').slice(0, 400) : [];
+      // The workbench of the first camps became the overseer's supply cache.
+      for (const b of this.buildings) if (b.type === 'workbench') b.type = 'cache';
+      this.restoreProgress(d);
+      this.harvestJobs = Array.isArray(d.harvestJobs) ? d.harvestJobs.filter(j => typeof j?.tree === 'string').slice(0, 500).map(j => ({ tree: j.tree, by: null })) : [];
+      this.treeRegrow = d.treeRegrow && typeof d.treeRegrow === 'object' ? Object.fromEntries(Object.entries(d.treeRegrow).filter(([, t]) => finite(t) && t > this.elapsed)) : {};
+      this.cleared = Array.isArray(d.cleared) ? d.cleared.filter(t => typeof t === 'string').slice(0, 20000) : [];
+      this.landRevision++;
+      // Camps saved before their land kept its trees: none stand where something is built.
+      this.clearTreesUnder(this.buildings);
+      this.routes = patrolRoutes(this.land);
+      this.navigation = null;
+      if (d.version === 1) {
+        for (const b of this.buildings) if (b.type === 'barricade' && (Math.abs(b.x) === 240 || Math.abs(b.y) === 176)) b.perimeter = true;
+        this.extendPerimeter([]);
+      }
+      if (!d.gates) this.addMissingGates();
+      if (!d.southGate) this.migrateSouthGate();
+      if (!d.roadGates) this.openRoadGates();
+      // Barricades used to start at 150 durability; older saves keep the same share of the new maximum.
+      if (!d.sturdyWalls) for (const b of this.buildings) if (b.type === 'barricade') b.hp *= 2;
+      // Barricades the player placed used to sit half a cell off the wall grid the fence is on.
+      // Every gate used to be part of the wall; the player can now stand their own anywhere.
+      if (!d.freeGates) for (const b of this.buildings) if (b.type === 'gate') b.perimeter = true;
+      if (!d.wallGrid) for (const b of this.buildings) if (b.type === 'barricade' && !b.perimeter) Object.assign(b, onWallGrid(b.x, b.y, b.rotation));
+      if (legacy) this.migrateSurvivors();
+      const survivorIds = new Set(this.survivors.map(s => s.id)), zombieIds = new Set(this.zombies.map(z => z.id));
+      for (const s of this.survivors) {
+        Object.assign(s, TRANSIENT, { path: [] });
+        // Logs being carried home survive a save; a tree job is handed out again.
+        s.harvest = s.harvest?.phase === 'toPile' && finite(s.harvest.carry) && s.harvest.carry >= 0 ? { phase: 'toPile', carry: s.harvest.carry } : undefined;
+        const post = this.postOf(s);
+        // Older saves have no roles; a post whose building is gone reverts to patrol. Scavengers have no post.
+        if (s.role === 'scavenger') s.post = null;
+        else if (!post || this.postRole(post) !== s.role) { s.role = 'patrol'; s.post = null; }
+        // Drop references to things that no longer exist rather than trusting them.
+        if (s.rescue != null && !survivorIds.has(s.rescue)) s.rescue = null;
+        if (s.rescuer != null && !survivorIds.has(s.rescuer)) { s.rescuer = null; s.stabilizing = false; }
+        if (s.carriedBy != null && (!survivorIds.has(s.carriedBy) || s.rescuer !== s.carriedBy)) s.carriedBy = null;
+        if (s.order && !(id(s.order.zombieId) && zombieIds.has(s.order.zombieId) && s.order.lastKnown && finite(s.order.lastKnown.x) && finite(s.order.lastKnown.y) && finite(s.order.lost))) s.order = null;
+        if (s.respond && !this.alerts.some(a => a.id === s.respond)) s.respond = null;
+        if (s.shelter != null && !this.buildings.some(b => b.id === s.shelter)) { s.shelter = null; s.sheltered = false; }
+        if (s.resting && (this.onDuty(s) || !this.buildings.some(b => b.id === s.restAt))) this.wake(s);
+        const item = s.weapon != null && this.items.find(i => i.id === s.weapon && i.holder === s.id);
+        if (!item) { s.weapon = null; s.gear = null; } else s.gear = item.type;
+        if (s.condition !== 'downed') s.hp = Math.min(s.hp, survivorStats(s).hp);
+        // A saved survivor never holds a full level of unspent XP; more would level-up in a runaway loop.
+        s.xp = Math.min(s.xp, this.xpNeeded(s));
+      }
+      // Each sentry keeps one shift at their tower; older saves and clashes get the next open one.
+      for (const s of this.survivors) {
+        if (s.role !== 'sentry') { s.shift = undefined; continue; }
+        const b = this.postOf(s), clash = this.staffOf(b).some(o => o !== s && o.shift === s.shift && o.id < s.id);
+        if (!SHIFTS[s.shift] || !Number.isInteger(s.shift) || clash) s.shift = this.openShift(b, s);
+      }
+      for (const i of this.items) if (i.holder != null && !this.survivors.some(s => s.weapon === i.id)) i.holder = null;
+      this.rehouse();
+      if (legacy) this.equipAll();
+      this.navVersion++;
+      this.events = [];
+      this.effects = [];
+      this.trader = null;
+      this.traderTimer = 45 + this.random() * 60;
+      return true;
+    } catch { return false; }
+  }
+  // Saves from before the survivor system: generate stable stats from the save's own ids,
+  // replay one stat point per level gained, rescale trips to game hours and stock a pistol each.
+  migrateSurvivors() {
+    for (const s of this.survivors) {
+      const r = generateStats(this.worldSeed, s.id, 'legacy:' + s.id);
+      Object.assign(s, { stats: r.stats, aptitudes: r.aptitudes, unspent: 0, gen: { seed: r.seed, version: r.generatorVersion, quality: r.quality, budget: r.budget, source: 'legacy', eventId: 'legacy:' + s.id }, condition: 'healthy', home: null, weapon: null, gear: null });
+      // Once every stat is maxed, each remaining level is an unspent point; count them rather than loop.
+      for (let level = 2; level <= s.level; level++) if (!grantStatPoint(s.stats, s.aptitudes, s.gen.seed, level)) { s.unspent += Math.floor(s.level) - level + 1; break; }
+      delete s.points; delete s.upgrades;
+      if (s.expedition) {
+        const total = EXPEDITIONS[s.expedition.kind].hours * HOUR_SECONDS, share = s.expedition.remaining / s.expedition.total;
+        s.expedition = { kind: s.expedition.kind, remaining: Math.max(1, share * total), total, party: 'legacy:' + s.id, size: 1 };
+      }
+      this.updateCondition(s);
+    }
+    for (const type of ['rifle', ...this.survivors.map(() => 'pistol')]) this.addItem(type);
+  }
+}

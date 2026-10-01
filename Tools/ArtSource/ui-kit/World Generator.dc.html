@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#171a14;color:#d6d8c6;overflow:hidden}a{color:#c5d48a}a:hover{color:#d9e6a4}canvas{image-rendering:pixelated}input,select,button{font-family:'IBM Plex Mono',monospace}</style>
+</helmet>
+<div style="height:100vh;display:grid;grid-template-rows:auto minmax(0,1fr);font-family:'IBM Plex Mono',monospace;font-size:12px;color:#d6d8c6">
+  <header style="display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:10px 14px;border-bottom:1px solid #2a2f24;background:#1b1f17">
+    <span style="font-family:'Silkscreen',monospace;font-size:16px;color:#e4e6d2">World Generator</span>
+    <span style="color:#8b8f78">{{ title }}</span>
+    <div style="flex:1"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <button onClick="{{ savePng }}" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:12px" style-hover="border-color:#c5d48a;color:#c5d48a">PNG</button>
+      <button onClick="{{ saveMap }}" title="Open this file in the Map Editor to edit it or export to Unity" style="font-family:'Silkscreen',monospace;font-size:12px;background:#c5d48a;color:#1a1e14;border:0;padding:9px 14px;cursor:pointer" style-hover="background:#d9e6a4">Download for editor</button>
+    </div>
+  </header>
+
+  <div style="display:grid;grid-template-columns:300px minmax(0,1fr);min-height:0">
+    <aside style="display:flex;flex-direction:column;min-height:0;overflow-y:auto;border-right:1px solid #2a2f24;background:#1b1f17">
+
+      <div style="display:flex;flex-direction:column;gap:8px;padding:12px;border-bottom:1px solid #2a2f24">
+        <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78">Map size</span>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
+          <sc-for list="{{ sizes }}" as="s" hint-placeholder-count="3">
+            <button onClick="{{ s.pick }}" style="display:flex;flex-direction:column;align-items:flex-start;gap:4px;text-align:left;background:{{ s.bg }};border:1px solid {{ s.bd }};color:{{ s.fg }};padding:10px 8px;cursor:pointer">
+              <span style="font-family:'Silkscreen',monospace;font-size:12px">{{ s.label }}</span>
+              <span style="font-size:10px;opacity:.75">{{ s.dims }}</span>
+              <span style="font-size:10px;opacity:.75">{{ s.pois }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;padding:12px;border-bottom:1px solid #2a2f24">
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78">Seed</span>
+          <div style="display:flex;gap:6px">
+            <input value="{{ seed }}" onChange="{{ setSeed }}" onKeyDown="{{ seedKey }}" style="flex:1;min-width:0;background:#12150f;border:1px solid #3d4434;color:#e4e6d2;padding:7px 8px;font-size:12px">
+            <button onClick="{{ randomSeed }}" title="New random seed" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:12px" style-hover="border-color:#c5d48a;color:#c5d48a">Random</button>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78">Season</span>
+          <div style="display:flex;border:1px solid #3d4434">
+            <sc-for list="{{ seasons }}" as="s" hint-placeholder-count="4">
+              <button onClick="{{ s.pick }}" style="flex:1;font-family:'Silkscreen',monospace;font-size:10px;background:{{ s.bg }};color:{{ s.fg }};border:0;padding:8px 4px;cursor:pointer">{{ s.label }}</button>
+            </sc-for>
+          </div>
+        </div>
+        <button onClick="{{ generate }}" style="font-family:'Silkscreen',monospace;font-size:13px;background:#c5d48a;color:#1a1e14;border:0;padding:11px 14px;cursor:pointer" style-hover="background:#d9e6a4">{{ genLabel }}</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;padding:12px;border-bottom:1px solid #2a2f24">
+        <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78">This map</span>
+        <sc-for list="{{ stats }}" as="r" hint-placeholder-count="6">
+          <div style="display:flex;justify-content:space-between;gap:8px;font-size:11px"><span style="color:#8b8f78">{{ r.label }}</span><span>{{ r.value }}</span></div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;padding:12px;border-bottom:1px solid #2a2f24">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+          <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78">Rule checks</span>
+          <span style="font-size:10px;color:#8b8f78">{{ checkSum }}</span>
+        </div>
+        <sc-for list="{{ checks }}" as="c" hint-placeholder-count="12">
+          <button onClick="{{ c.go }}" style="display:flex;justify-content:space-between;gap:8px;background:transparent;border:0;padding:0;font-size:11px;color:#b9bca8;cursor:pointer;text-align:left"><span>{{ c.label }}</span><span style="color:{{ c.fg }}">{{ c.value }}</span></button>
+        </sc-for>
+        <p style="margin:2px 0 0;font-size:10px;line-height:1.5;color:#8b8f78;text-wrap:pretty">The same rules export as a per-tile grid so the game can check a tile before it spawns trees, props or roads at runtime.</p>
+        <button onClick="{{ saveRules }}" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:11px" style-hover="border-color:#c5d48a;color:#c5d48a">Download rules grid</button>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:4px;padding:12px;border-bottom:1px solid #2a2f24">
+        <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78;margin-bottom:2px">Jump to</span>
+        <button onClick="{{ goBase }}" style="display:flex;justify-content:space-between;gap:8px;text-align:left;background:#2a3120;border:1px solid #6f7d45;color:#c5d48a;padding:7px 8px;font-size:11px;cursor:pointer">
+          <span>Starting base</span><span style="opacity:.7">{{ baseAt }}</span>
+        </button>
+        <sc-for list="{{ pois }}" as="p" hint-placeholder-count="6">
+          <button onClick="{{ p.go }}" style="display:flex;justify-content:space-between;gap:8px;text-align:left;background:transparent;border:1px solid #2a2f24;color:#d6d8c6;padding:7px 8px;font-size:11px;cursor:pointer" style-hover="border-color:#6f7d45">
+            <span>{{ p.name }}</span><span style="color:#8b8f78">{{ p.info }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;padding:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78">How it's generated</span>
+          <button onClick="{{ toggleOverlay }}" title="Draw POI zones, the road graph and spawns over the map" style="font-size:10px;background:{{ ovBg }};border:1px solid #3d4434;color:{{ ovFg }};padding:5px 8px;cursor:pointer">{{ ovLabel }}</button>
+        </div>
+        <ol style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:11px;line-height:1.5;color:#b9bca8">
+          <li style="text-wrap:pretty"><span style="color:#e4e6d2">Seed.</span> Every random choice comes from one seeded generator, so the same seed and size always rebuild the same world.</li>
+          <li style="text-wrap:pretty"><span style="color:#e4e6d2">Noise fields.</span> Layered value noise gives a forest density map and scattered dirt patches.</li>
+          <li style="text-wrap:pretty"><span style="color:#e4e6d2">Starting base.</span> A walled compound in the middle band of the map, gate facing the centre, with towers, starter buildings, a campfire and survivor spawns. Its tiles are marked as the buildable base zone. The wall ring is always complete, building roofs never overlap the wall, towers or each other, and nothing from the outside world is placed within a few tiles of it.</li>
+          <li style="text-wrap:pretty"><span style="color:#e4e6d2">Points of interest.</span> Poisson-disc spacing, kept clear of the base. The farthest become towns; the rest are farmsteads, gas stops, ruins, chapels or camps.</li>
+          <li style="text-wrap:pretty"><span style="color:#e4e6d2">Roads.</span> The base gate, every POI and a few map-edge exits are joined by a minimum spanning tree plus some loops. Each link is routed with A*, which prefers existing road and avoids forest and the base.</li>
+          <li style="text-wrap:pretty"><span style="color:#e4e6d2">Buildings and decor.</span> Each POI places its buildings near its centre with the front facing a road, adds dirt yards and paths, then scatters its own decor. Chapels get a graveyard. Poles and streetlights line the roads; wrecked cars, buses and police checkpoints sit on them. Small scenes (remains, lone tents, abandoned bikes) are scattered in the open.</li>
+          <li style="text-wrap:pretty"><span style="color:#e4e6d2">Foliage.</span> Dense trees where the forest field is high, scattered trees, bushes and boulders elsewhere. Mushrooms, leaf piles and fallen logs under the trees; tall grass, flowers and pebbles in the open. Roads, yards and the base clearing stay open.</li>
+          <li style="text-wrap:pretty"><span style="color:#e4e6d2">Zombie spawns.</span> At every POI and along the map edge, never near the base.</li>
+        </ol>
+      </div>
+    </aside>
+
+    <main data-wrap="1" style="position:relative;min-width:0;min-height:0;overflow:hidden;background:#12150f">
+      <canvas data-view="1" style="position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none"></canvas>
+      <div style="position:absolute;top:12px;right:12px;display:flex;gap:4px">
+        <button onClick="{{ zoomOut }}" title="Zoom out" style="width:32px;height:32px;background:#1b1f17;color:#d6d8c6;border:1px solid #3d4434;cursor:pointer;font-size:14px" style-hover="border-color:#c5d48a">−</button>
+        <div style="min-width:48px;height:32px;display:grid;place-items:center;background:#1b1f17;border:1px solid #3d4434;font-size:11px">{{ zoomLabel }}</div>
+        <button onClick="{{ zoomIn }}" title="Zoom in" style="width:32px;height:32px;background:#1b1f17;color:#d6d8c6;border:1px solid #3d4434;cursor:pointer;font-size:14px" style-hover="border-color:#c5d48a">+</button>
+      </div>
+      <div style="position:absolute;right:12px;bottom:12px;display:flex;flex-direction:column;gap:8px;padding:10px;background:#1b1f17;border:1px solid #3d4434">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+          <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78">Minimap</span>
+          <span style="font-size:10px;color:#8b8f78">click or drag to move</span>
+        </div>
+        <canvas data-mini="1" style="display:block;cursor:crosshair;touch-action:none;border:1px solid #2a2f24"></canvas>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;font-size:10px;color:#8b8f78">
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#c5d48a"></span>Base</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#b0794a"></span>Building</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#a8a086"></span>Road</span>
+          <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:#d0694f"></span>Zombies</span>
+        </div>
+      </div>
+      <div data-status="1" style="position:absolute;left:12px;bottom:12px;padding:6px 8px;background:#1b1f17;border:1px solid #3d4434;font-size:11px;color:#8b8f78">Loading assets…</div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const LS = 'survival-worldgen-v1', TS = 16, PAD = 64, ZOOMS = [0.5, 1, 2, 3, 4];
+const SEASONS = ['spring', 'summer', 'fall', 'winter'];
+const rndSeed = () => String(Math.floor(Math.random() * 900000) + 100000);
+
+class Component extends DCLogic {
+  view = { zi: 2, cx: 0, cy: 0 }; cache = {};
+  state = { size: 'medium', seed: rndSeed(), season: 'summer', overlay: false, busy: true, rev: 0 };
+
+  componentDidMount() {
+    try { const s = JSON.parse(localStorage.getItem(LS)); if (s) this.state = { ...this.state, size: s.size || 'medium', seed: s.seed || this.state.seed, season: s.season || 'summer', overlay: !!s.overlay }; } catch (e) {}
+    this.cv = document.querySelector('canvas[data-view]'); this.mini = document.querySelector('canvas[data-mini]'); this.wrap = document.querySelector('[data-wrap]'); this.st = document.querySelector('[data-status]');
+    const files = ['pixel-assets-v2.js', 'pixel-buildings.js', 'pixel-decor.js', 'pixel-world.js', 'pixel-worldgen.js', 'pixel-rules.js'];
+    Promise.all(files.map(f => import(new URL(f, document.baseURI).href))).then(([m, b, dc, wd, wg, rl]) => {
+      this.m = m; this.wg = wg; this.rl = rl;
+      this.A = Object.assign(m.buildAll(), b.buildBuildings(), ...['spring', 'fall', 'winter'].map(n => b.buildBuildings(n)), ...m.SEASON_NAMES.map(n => dc.buildDecor(n)), ...m.SEASON_NAMES.map(n => wd.buildWorld(n)));
+      this.run();
+    });
+    const c = this.cv;
+    this.h = {
+      pointerdown: e => { c.setPointerCapture(e.pointerId); this.drag = { x: e.clientX, y: e.clientY, cx: this.view.cx, cy: this.view.cy }; c.style.cursor = 'grabbing'; },
+      pointermove: e => { if (this.drag) { const z = ZOOMS[this.view.zi]; this.view.cx = this.drag.cx - (e.clientX - this.drag.x) / z; this.view.cy = this.drag.cy - (e.clientY - this.drag.y) / z; this.clamp(); this.paint(); } this.hover(e); },
+      pointerup: () => { this.drag = null; c.style.cursor = 'grab'; },
+      wheel: e => { e.preventDefault(); const r = c.getBoundingClientRect(), mx = e.clientX - r.left - r.width / 2, my = e.clientY - r.top - r.height / 2, z0 = ZOOMS[this.view.zi]; const zi = Math.max(0, Math.min(ZOOMS.length - 1, this.view.zi + (e.deltaY < 0 ? 1 : -1))); if (zi === this.view.zi) return; const z1 = ZOOMS[zi]; this.view.cx += mx / z0 - mx / z1; this.view.cy += my / z0 - my / z1; this.view.zi = zi; this.clamp(); this.paint(); this.setState(s => ({ rev: s.rev + 1 })); }
+    };
+    for (const k in this.h) c.addEventListener(k, this.h[k], k === 'wheel' ? { passive: false } : undefined);
+    const mm = e => { if (!this.G || !(e.buttons & 1)) return; const r = this.mini.getBoundingClientRect(), M = this.G.map; this.view.cx = (e.clientX - r.left) / r.width * M.w * TS; this.view.cy = (e.clientY - r.top) / r.height * M.h * TS; this.clamp(); this.paint(); };
+    this.mh = { pointerdown: e => { this.mini.setPointerCapture(e.pointerId); mm(e); }, pointermove: mm };
+    for (const k in this.mh) this.mini.addEventListener(k, this.mh[k]);
+    this.ro = new ResizeObserver(() => this.paint()); this.ro.observe(this.wrap);
+  }
+  componentWillUnmount() { if (this.h) for (const k in this.h) this.cv.removeEventListener(k, this.h[k]); if (this.mh) for (const k in this.mh) this.mini.removeEventListener(k, this.mh[k]); this.ro && this.ro.disconnect(); }
+  persist() { try { localStorage.setItem(LS, JSON.stringify({ size: this.state.size, seed: this.state.seed, season: this.state.season, overlay: this.state.overlay })); } catch (e) {} }
+
+  run() {
+    if (!this.wg) return;
+    this.setState({ busy: true }); if (this.st) this.st.textContent = 'Generating…';
+    setTimeout(() => {
+      const t = performance.now();
+      this.G = this.wg.generate({ size: this.state.size, seed: this.state.seed });
+      this.genMs = Math.round(performance.now() - t);
+      this.rules = this.rl.computeRules(this.G.map, this.A); this.issues = this.rl.validate(this.G.map, this.A, this.rules);
+      this.render(); this.focusBase();
+      this.persist(); this.setState(s => ({ busy: false, rev: s.rev + 1 }));
+      if (this.st) this.st.textContent = `Generated in ${this.genMs} ms · drag to pan, scroll to zoom`;
+    }, 20);
+  }
+  spr(k) { let c = this.cache[k]; if (!c) { c = this.cache[k] = document.createElement('canvas'); this.m.draw(c, this.A[k], 'day'); } return c; }
+  render() {
+    const M = this.G.map, L = this.wg.layout(M, this.A, this.state.season); this.L = L;
+    const o = this.off || (this.off = document.createElement('canvas')); o.width = M.w * TS; o.height = M.h * TS + PAD;
+    const x = o.getContext('2d'); x.imageSmoothingEnabled = false;
+    for (let y = 0; y < M.h; y++) for (let i = 0; i < M.w; i++) { const k = L.ground[y * M.w + i]; if (this.A[k]) x.drawImage(this.spr(k), i * TS, PAD + y * TS); }
+    for (const d of L.draws) if (this.A[d.key]) x.drawImage(this.spr(d.key), d.x, PAD + d.y);
+    const px = this.wg.minimap(M, this.state.season), mc = this.mm || (this.mm = document.createElement('canvas')); mc.width = M.w; mc.height = M.h;
+    mc.getContext('2d').putImageData(new ImageData(px, M.w, M.h), 0, 0);
+    const scale = Math.max(1, Math.floor(220 / M.w)), mw = M.w * scale, mh = M.h * scale, mi = this.mini;
+    mi.width = mw; mi.height = mh; mi.style.width = Math.round(M.w * Math.min(224 / M.w, 170 / M.h)) + 'px'; mi.style.height = Math.round(M.h * Math.min(224 / M.w, 170 / M.h)) + 'px';
+    this.paint();
+  }
+  focusBase() { const b = this.G.meta.base; this.view.cx = (b.cx + 0.5) * TS; this.view.cy = (b.cy + 0.5) * TS; this.view.zi = 2; this.clamp(); this.paint(); }
+  goTo(x, y) { this.view.cx = (x + 0.5) * TS; this.view.cy = (y + 0.5) * TS; if (this.view.zi < 2) this.view.zi = 2; this.clamp(); this.paint(); this.setState(s => ({ rev: s.rev + 1 })); }
+  clamp() { if (!this.G) return; const M = this.G.map; this.view.cx = Math.max(0, Math.min(M.w * TS, this.view.cx)); this.view.cy = Math.max(0, Math.min(M.h * TS, this.view.cy)); }
+  hover(e) {
+    if (!this.G || !this.st) return; const r = this.cv.getBoundingClientRect(), z = ZOOMS[this.view.zi], M = this.G.map;
+    const wx = this.view.cx + (e.clientX - r.left - r.width / 2) / z, wy = this.view.cy + (e.clientY - r.top - r.height / 2) / z, tx = Math.floor(wx / TS), ty = Math.floor(wy / TS);
+    if (tx < 0 || ty < 0 || tx >= M.w || ty >= M.h) { this.st.textContent = 'Outside the map'; return; }
+    const o = this.L.at(tx, ty), mk = M.marks.find(m => m.tx === tx && m.ty === ty), t = M.terr[ty * M.w + tx];
+    const what = mk ? (mk.mk === 'zombie' ? 'Zombie spawn' : 'Survivor spawn') : o ? (o.k || o.t).replace(/^(wld|bld|deco)_/, '').replace(/_/g, ' ') : t === 'r' ? 'road' : t === 'd' ? 'dirt' : 'grass';
+    this.st.textContent = `${tx}, ${ty} · ${what}${M.base[ty * M.w + tx] ? ' · base zone' : ''}`;
+  }
+  paint() {
+    const cv = this.cv, wr = this.wrap; if (!cv || !wr) return;
+    const dpr = window.devicePixelRatio || 1, cw = wr.clientWidth, ch = wr.clientHeight, W = Math.round(cw * dpr), H = Math.round(ch * dpr);
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
+    const x = cv.getContext('2d'); x.setTransform(1, 0, 0, 1, 0, 0); x.fillStyle = '#12150f'; x.fillRect(0, 0, W, H);
+    if (!this.G || !this.off) return;
+    const z = ZOOMS[this.view.zi], M = this.G.map, s = z * dpr, ox = cw / 2 - this.view.cx * z, oy = ch / 2 - this.view.cy * z;
+    x.imageSmoothingEnabled = false;
+    x.setTransform(s, 0, 0, s, ox * dpr, oy * dpr);
+    x.drawImage(this.off, 0, -PAD);
+    x.strokeStyle = '#3d4434'; x.lineWidth = 1 / z; x.strokeRect(0, 0, M.w * TS, M.h * TS);
+    if (this.state.overlay) this.overlay(x, z);
+    x.setTransform(1, 0, 0, 1, 0, 0);
+    this.paintMini(cw / z, ch / z);
+  }
+  overlay(x, z) {
+    const { meta, map } = this.G, C = v => (v + 0.5) * TS, lw = 1.5 / z;
+    x.lineWidth = lw; x.setLineDash([4 / z, 3 / z]); x.strokeStyle = 'rgba(232,226,160,.8)';
+    for (const [a, b] of meta.edges) { const p = meta.nodes[a], q = meta.nodes[b]; x.beginPath(); x.moveTo(C(p.x) + 8, C(p.y) + 8); x.lineTo(C(q.x) + 8, C(q.y) + 8); x.stroke(); }
+    x.setLineDash([]);
+    for (const p of meta.pois) {
+      x.strokeStyle = 'rgba(176,121,74,.95)'; x.fillStyle = 'rgba(176,121,74,.12)'; x.beginPath(); x.arc(C(p.x), C(p.y), p.r * TS, 0, Math.PI * 2); x.fill(); x.stroke();
+      const fs = Math.max(8, 11 / z); x.font = `${fs}px 'IBM Plex Mono', monospace`; const tw = x.measureText(p.name).width;
+      x.fillStyle = 'rgba(18,21,15,.85)'; x.fillRect(C(p.x) - tw / 2 - 4 / z, C(p.y) - p.r * TS - fs * 1.6, tw + 8 / z, fs * 1.4);
+      x.fillStyle = '#e4e6d2'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText(p.name, C(p.x), C(p.y) - p.r * TS - fs * 0.9);
+    }
+    if (this.rules) { const Rb = this.rl.R, g = this.rules.grid;
+      for (let i = 0; i < g.length; i++) { const v = g[i], c = v & Rb.GATE_PATH ? 'rgba(120,190,230,.35)' : v & Rb.ROOF && !(v & Rb.WALL) ? 'rgba(230,140,90,.3)' : v & Rb.BUFFER ? 'rgba(197,212,138,.18)' : null; if (c) { x.fillStyle = c; x.fillRect((i % map.w) * TS, ((i / map.w) | 0) * TS, TS, TS); } } }
+    const b = meta.base; x.strokeStyle = '#c5d48a'; x.lineWidth = 2 / z; x.strokeRect(b.x0 * TS, b.y0 * TS, (b.x1 - b.x0 + 1) * TS, (b.y1 - b.y0 + 1) * TS);
+    for (const m of map.marks) { x.fillStyle = m.mk === 'zombie' ? 'rgba(208,105,79,.85)' : 'rgba(197,212,138,.9)'; x.fillRect(m.tx * TS + 3, m.ty * TS + 3, TS - 6, TS - 6); }
+  }
+  paintMini(vw, vh) {
+    const mi = this.mini, M = this.G.map; if (!mi || !this.mm) return;
+    const x = mi.getContext('2d'), sx = mi.width / M.w, sy = mi.height / M.h; x.imageSmoothingEnabled = false;
+    x.drawImage(this.mm, 0, 0, mi.width, mi.height);
+    x.fillStyle = '#d0694f'; for (const m of M.marks) if (m.mk === 'zombie') x.fillRect(Math.floor(m.tx * sx), Math.floor(m.ty * sy), Math.max(2, sx), Math.max(2, sy));
+    const b = this.G.meta.base; x.strokeStyle = '#c5d48a'; x.lineWidth = 1; x.strokeRect(b.x0 * sx + 0.5, b.y0 * sy + 0.5, (b.x1 - b.x0 + 1) * sx - 1, (b.y1 - b.y0 + 1) * sy - 1);
+    const rx = (this.view.cx - vw / 2) / TS * sx, ry = (this.view.cy - vh / 2) / TS * sy;
+    x.strokeStyle = '#ffffff'; x.lineWidth = 1; x.strokeRect(Math.round(rx) + 0.5, Math.round(ry) + 0.5, Math.max(4, Math.round(vw / TS * sx) - 1), Math.max(4, Math.round(vh / TS * sy) - 1));
+  }
+  dl(blob, name) { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 3000); }
+
+  renderVals() {
+    const S = this.state, SZ = this.wg ? this.wg.SIZES : { small: { label: 'Small', w: 64, h: 48, pois: 4 }, medium: { label: 'Medium', w: 112, h: 80, pois: 8 }, large: { label: 'Large', w: 176, h: 128, pois: 14 } };
+    const G = this.G, st = G && G.meta.stats, fmt = n => n.toLocaleString('en-US');
+    return {
+      title: G ? `${SZ[S.size].label} · ${G.map.w}×${G.map.h} tiles · seed ${S.seed}` : '',
+      sizes: Object.keys(SZ).map(k => ({ label: SZ[k].label, dims: `${SZ[k].w}×${SZ[k].h} tiles`, pois: `${SZ[k].pois} places`, bg: S.size === k ? '#2a3120' : 'transparent', bd: S.size === k ? '#6f7d45' : '#2a2f24', fg: S.size === k ? '#c5d48a' : '#d6d8c6', pick: () => this.setState({ size: k }, () => this.run()) })),
+      seed: S.seed,
+      setSeed: e => this.setState({ seed: e.target.value.trim() }),
+      seedKey: e => { if (e.key === 'Enter') this.run(); },
+      randomSeed: () => this.setState({ seed: rndSeed() }, () => this.run()),
+      seasons: SEASONS.map(n => ({ label: n, bg: S.season === n ? '#c5d48a' : 'transparent', fg: S.season === n ? '#1a1e14' : '#d6d8c6', pick: () => this.setState({ season: n }, () => { if (this.G) this.render(); this.persist(); }) })),
+      generate: () => this.run(),
+      genLabel: S.busy ? 'Generating…' : 'Generate world',
+      stats: st ? [
+        { label: 'Places', value: G.meta.pois.length },
+        { label: 'World buildings', value: st.buildings },
+        { label: 'Road tiles', value: fmt(st.road) },
+        { label: 'Trees and bushes', value: fmt(st.trees) },
+        { label: 'Decor props', value: fmt(st.decor) },
+        { label: 'Checkpoints', value: st.checkpoints || 0 },
+        { label: 'Graveyards', value: st.graveyards || 0 },
+        { label: 'Zombie spawns', value: st.zombies },
+        { label: 'Generation time', value: this.genMs + ' ms' }
+      ] : [],
+      checks: G && this.rl ? this.rl.CHECKS.map(([id, label]) => { const f = this.issues.find(i => i.id === id); return { label, value: f ? f.n + ' found' : 'pass', fg: f ? '#d0694f' : '#c5d48a', go: () => f && this.goTo(f.cells[0][0], f.cells[0][1]) }; }) : [],
+      checkSum: G && this.issues ? (this.issues.length ? this.issues.length + ' failing' : 'all pass') : '',
+      saveRules: () => { if (!this.rules) return; const M = this.G.map; this.dl(new Blob([JSON.stringify({ format: 'survival-rules', width: M.w, height: M.h, bits: this.rules.bits, deny: this.rules.deny, baseRect: this.rules.baseRect, grid: this.rules.grid })], { type: 'application/json' }), M.name + '.rules.json'); },
+      baseAt: G ? `${G.meta.base.x0}, ${G.meta.base.y0}` : '',
+      goBase: () => { if (this.G) { this.focusBase(); this.setState(s => ({ rev: s.rev + 1 })); } },
+      pois: G ? G.meta.pois.map(p => ({ name: p.name, info: `${p.blds.length} bld · ${p.x}, ${p.y}`, go: () => this.goTo(p.x, p.y) })) : [],
+      toggleOverlay: () => this.setState(s => ({ overlay: !s.overlay }), () => { this.paint(); this.persist(); }),
+      ovLabel: S.overlay ? 'Overlay on' : 'Overlay off', ovBg: S.overlay ? '#2a3120' : 'transparent', ovFg: S.overlay ? '#c5d48a' : '#8b8f78',
+      zoomLabel: ZOOMS[this.view.zi] + '×',
+      zoomIn: () => { this.view.zi = Math.min(ZOOMS.length - 1, this.view.zi + 1); this.paint(); this.setState(s => ({ rev: s.rev + 1 })); },
+      zoomOut: () => { this.view.zi = Math.max(0, this.view.zi - 1); this.paint(); this.setState(s => ({ rev: s.rev + 1 })); },
+      saveMap: () => { if (!this.G) return; this.dl(new Blob([JSON.stringify({ ...this.G.map, season: S.season, light: 'day', rules: this.rules.grid, ruleBits: this.rules.bits, baseRect: this.rules.baseRect })], { type: 'application/json' }), this.G.map.name + '.survmap.json'); },
+      savePng: () => { if (!this.off) return; const M = this.G.map, c = document.createElement('canvas'); c.width = M.w * TS; c.height = M.h * TS; c.getContext('2d').drawImage(this.off, 0, -PAD); c.toBlob(b => this.dl(b, M.name + '.png')); }
+    };
+  }
+}
+</script>
+</body>
+</html>

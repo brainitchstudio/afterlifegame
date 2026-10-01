@@ -1,0 +1,2191 @@
+[
+  {
+    "id": "p1_01",
+    "code": "P1-01",
+    "title": "Welcome to the assignment",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [],
+    "copy": {
+      "body": "Review the people and supplies assigned to your camp. The Food forecast tells you how long reserves last at the current population. Construction orders are issued through the SeerPad.",
+      "centroComIssue": "Overseer {overseerName}, deployment to Region {regionId} is confirmed. Your team, temporary accommodation and supply allocation are present. Open your SeerPad personnel roster, review available supplies, and confirm access to Construction. Your first objective is to keep these categories populated.",
+      "completionText": "Initial systems inspection recorded. Camp administration is operational. Camp survival remains an ongoing requirement.",
+      "unlockToast": "Construction available / Place structures and assign builders.",
+      "tutorial": "Select a survivor to inspect attributes and change their job. Jobs can be changed later.",
+      "maraAfterWelcome": "Private channel. Mara Venn, Outpost Coordination. CentroCom will give you the checklist. I'll point out the parts that can get somebody hurt. Start with food and a spare bed. The tents are real. The optimism came with the tablet."
+    },
+    "objectives": [
+      {
+        "id": "open_survivors",
+        "type": "interaction",
+        "description": "Open Survivors roster"
+      },
+      {
+        "id": "select_resident",
+        "type": "interaction",
+        "description": "Select one resident"
+      },
+      {
+        "id": "open_resources",
+        "type": "interaction",
+        "description": "Open Resources tab"
+      },
+      {
+        "id": "inspect_food",
+        "type": "interaction",
+        "description": "Inspect Food forecast"
+      },
+      {
+        "id": "open_build",
+        "type": "interaction",
+        "description": "Open Build menu"
+      }
+    ],
+    "reward": {},
+    "effects": {},
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [
+        "build"
+      ],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "p1_02",
+    "code": "P1-02",
+    "title": "Room for one more",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_01"
+    ],
+    "copy": {
+      "body": "Place a Tent and a Supply Stash. Select nearby resource nodes and assign a worker to gather. Any available survivor can build; an Engineer works faster. Keep the new bed free for a future recruit.",
+      "centroComIssue": "Your current housing allocation precisely matches your current personnel count. This is efficient and leaves no room for improvement, guests or mistakes. Add temporary accommodation and organized storage. Recover construction materials from nearby timber and metal debris.",
+      "completionText": "Accommodation and storage expansion verified. The camp now possesses a margin. Please retain some of it.",
+      "unlockToast": "Tent and Supply Stash authorized.",
+      "tutorial": "A blueprint reserves its cost immediately. It becomes useful only after a worker finishes construction. Emergency shelter and housing are separate capacities.",
+      "maraCopy": "One spare bed is planning. Five occupied beds and a speech about resilience is a different thing."
+    },
+    "objectives": [
+      {
+        "id": "build_tent",
+        "type": "build",
+        "target": "tent",
+        "count": 1,
+        "description": "Construct one new Tent"
+      },
+      {
+        "id": "build_stash",
+        "type": "build",
+        "target": "supply_stash",
+        "count": 1,
+        "description": "Construct one Supply Stash"
+      },
+      {
+        "id": "gather_wood",
+        "type": "cumulative_gather",
+        "target": "wood",
+        "count": 20,
+        "description": "Gather 20 Wood"
+      },
+      {
+        "id": "gather_scrap",
+        "type": "cumulative_gather",
+        "target": "scrap_metal",
+        "count": 10,
+        "description": "Gather 10 Scrap Metal"
+      },
+      {
+        "id": "housing_cap",
+        "type": "predicate",
+        "description": "Housing capacity >= 6",
+        "conditions": [
+          {
+            "metric": "housingCapacity",
+            "op": ">=",
+            "value": 6
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "cloth": 6
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "tent",
+        "supply_stash"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "p1_03",
+    "code": "P1-03",
+    "title": "Something that grows",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_02"
+    ],
+    "copy": {
+      "body": "Your five residents consume 5 Food each day. Two baseline Garden Plots can produce 6 Food per day when staffed for the full work shift. Harvests take time; the first crop needs twelve effective work hours.",
+      "centroComIssue": "Food reserves are a finite resource. Approved Garden Plots convert labor and suitable ground into a renewable supply. Establish two plots and assign Farmers. Please note that staring at crops is not classified as agricultural labor.",
+      "completionText": "First harvest logged. Local food production is active. The phrase self-sufficient will remain withheld pending observation.",
+      "unlockToast": "Garden Plot available / Assign Farmers to produce Food.",
+      "tutorial": "Projected output assumes scheduled work and current efficiency. Actual output falls if the Farmer is injured, exhausted or away.",
+      "maraCopy": "Plants are slow, but they don't lie about it. Put your steadiest pair of hands on the plots and leave them there."
+    },
+    "objectives": [
+      {
+        "id": "build_gardens",
+        "type": "build",
+        "target": "garden_plot",
+        "count": 2,
+        "description": "Construct two Garden Plots"
+      },
+      {
+        "id": "staff_farmers",
+        "type": "staff",
+        "role": "farmer",
+        "count": 2,
+        "description": "Assign a Farmer to each plot"
+      },
+      {
+        "id": "deliver_food",
+        "type": "cumulative_harvest",
+        "target": "food",
+        "count": 6,
+        "description": "Deliver 6 Food from gardens",
+        "building": "garden_plot"
+      }
+    ],
+    "reward": {
+      "seed_packets": 2
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "garden_plot"
+      ],
+      "jobs": [
+        "farmer"
+      ],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p1_04",
+    "code": "P1-04",
+    "title": "Tools before confidence",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_03"
+    ],
+    "copy": {
+      "body": "Open Crafting, select the Field Workbench and queue a Wooden Club. Inputs are reserved when queued. Completed equipment enters shared inventory and can be distributed automatically.",
+      "centroComIssue": "Authorize basic field manufacturing. Construct a Field Workbench and produce a serviceable implement. This division recognizes a broad range of tools, including tools intended primarily to discourage contact.",
+      "completionText": "Field manufacturing demonstrated. Local craftsmanship has been accepted at the applicable provisional standard.",
+      "unlockToast": "Crafting available / Field Workbench recipes unlocked.",
+      "tutorial": "Engineer assignments accelerate construction and crafting. A job is an assignment, not a permanent class.",
+      "maraCopy": "A club isn't a plan. It's what you hold while you make one. Still, I'd rather everyone held something."
+    },
+    "objectives": [
+      {
+        "id": "build_workbench",
+        "type": "build",
+        "target": "field_workbench",
+        "count": 1,
+        "description": "Construct Field Workbench"
+      },
+      {
+        "id": "staff_workbench",
+        "type": "staff",
+        "role": "engineer",
+        "count": 1,
+        "description": "Assign operator to Workbench"
+      },
+      {
+        "id": "craft_club",
+        "type": "cumulative_craft",
+        "target": "wooden_club",
+        "count": 1,
+        "description": "Craft and deliver one Wooden Club"
+      }
+    ],
+    "reward": {
+      "scrap_metal": 10
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "field_workbench"
+      ],
+      "jobs": [
+        "engineer"
+      ],
+      "recipes": [
+        "c01"
+      ],
+      "modules": [
+        "crafting"
+      ],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p1_05",
+    "code": "P1-05",
+    "title": "Reasonable medical coverage",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_04"
+    ],
+    "copy": {
+      "body": "Prepare a Bandage and a staffed medical bed. A routine handling injury will demonstrate treatment. Medics draw Medical Supplies from shared stock; patients temporarily leave their normal job.",
+      "centroComIssue": "Medical coverage is now eligible for local implementation. Establish an Aid Station, assign a Medic and prepare basic dressings. Coverage quality will depend on the medical infrastructure you build, which is why this message precedes the accident.",
+      "completionText": "Medical readiness confirmed. The injured resident has returned to a condition consistent with useful employment and personal preference.",
+      "unlockToast": "Aid Station and Bandage authorized.",
+      "tutorial": "Injuries and infection are separate. A Bandage stops bleeding; supervised treatment restores health and manages infection.",
+      "maraCopy": "The station isn't decoration. Check the bed, the Medic and the supplies. If one is missing, you've built a very optimistic table.",
+      "injuryNotice": "{survivorName} has suffered a minor cut while sorting equipment. No bite or infection is present. Assign treatment at the Aid Station."
+    },
+    "objectives": [
+      {
+        "id": "build_aid_station",
+        "type": "build",
+        "target": "aid_station",
+        "count": 1,
+        "description": "Construct Aid Station"
+      },
+      {
+        "id": "staff_medic",
+        "type": "staff",
+        "role": "medic",
+        "count": 1,
+        "description": "Assign Medic to Aid Station"
+      },
+      {
+        "id": "craft_bandage",
+        "type": "cumulative_craft",
+        "target": "bandage",
+        "count": 1,
+        "description": "Craft one Bandage"
+      },
+      {
+        "id": "treat_injury",
+        "type": "predicate",
+        "description": "Treat minor wound (HP >= 95 and bleeding absent)",
+        "conditions": [
+          {
+            "metric": "scriptedPatientTreated",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "medical_supplies": 4
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "aid_station"
+      ],
+      "jobs": [
+        "medic"
+      ],
+      "recipes": [
+        "c03"
+      ],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "p1_06",
+    "code": "P1-06",
+    "title": "Someone on the perimeter",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_05"
+    ],
+    "copy": {
+      "body": "Assign a Guard to patrol near camp. Craft a Spear or let automatic equipment allocation issue a pistol from the cache. Set a route that covers the main approach without pulling the Guard far from residents.",
+      "centroComIssue": "Perimeter security has been authorized. Establish a Guard Post and assign an armed patrol. A defensive assignment requires both a person and a means of discouraging infected contact. The sign alone is insufficient.",
+      "completionText": "Guard coverage recorded. Your camp now has a designated response to things approaching it.",
+      "unlockToast": "Defense available / Guard patrols and threat alerts unlocked.",
+      "tutorial": "Watch and patrol are different assignments. A Guard observing from a tower cannot patrol at the same time.",
+      "maraCopy": "Keep the patrol close enough to hear the camp. A guard who chases things into the trees is just a scout with worse odds."
+    },
+    "objectives": [
+      {
+        "id": "build_guard_post",
+        "type": "build",
+        "target": "guard_post",
+        "count": 1,
+        "description": "Build Guard Post"
+      },
+      {
+        "id": "equip_guard",
+        "type": "predicate",
+        "description": "Equip Guard with Spear or firearm",
+        "conditions": [
+          {
+            "metric": "hasArmedGuard",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "assign_patrol",
+        "type": "staff",
+        "role": "guard",
+        "count": 1,
+        "description": "Assign patrol Guard"
+      },
+      {
+        "id": "patrol_duration",
+        "type": "continuous_time",
+        "targetHours": 1,
+        "description": "Patrol for 1 continuous game hour"
+      }
+    ],
+    "reward": {
+      "ammo": 10
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "guard_post"
+      ],
+      "jobs": [
+        "guard"
+      ],
+      "recipes": [
+        "c02"
+      ],
+      "modules": [
+        "defense"
+      ],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p1_07",
+    "code": "P1-07",
+    "title": "See it coming",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_06"
+    ],
+    "copy": {
+      "body": "A staffed Lookout detects approaching infected and creates an alert. Your patrol responds to the reported location. Open the alert to inspect the direction and threat count.",
+      "centroComIssue": "Detection capability is currently limited to noticing a threat after it has become inconvenient. Construct a Lookout Post and assign a watch Guard. Retain a separate Guard for response.",
+      "completionText": "Observation and response sequence verified. Detection does not guarantee prevention, but it provides useful advance disagreement.",
+      "unlockToast": "Lookout Post authorized / Staff it to extend detection.",
+      "tutorial": "An empty tower provides no detection. Alerts report what was seen and when; a stale marker may no longer show the current position.",
+      "alertCopy": "INFECTED DETECTED / Lookout reports one approaching contact from {direction}. Patrol response requested.",
+      "maraCopy": "The first one is always a test. CentroCom will call it a demonstration. Either way, nobody goes out to meet it alone."
+    },
+    "objectives": [
+      {
+        "id": "build_lookout",
+        "type": "build",
+        "target": "lookout_post",
+        "count": 1,
+        "description": "Build Lookout Post"
+      },
+      {
+        "id": "staff_lookout",
+        "type": "predicate",
+        "description": "Staff Lookout with Guard",
+        "conditions": [
+          {
+            "metric": "staffedLookout",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "separate_patrol",
+        "type": "predicate",
+        "description": "Maintain separate patrol Guard",
+        "conditions": [
+          {
+            "metric": "separatePatrolGuard",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "detect_infected",
+        "type": "predicate",
+        "description": "Detect tutorial infected through watch",
+        "conditions": [
+          {
+            "metric": "tutorialInfectedDetected",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "ack_alert",
+        "type": "interaction",
+        "description": "Acknowledge alert"
+      },
+      {
+        "id": "neutralize_threat",
+        "type": "predicate",
+        "description": "Threat neutralized or driven away",
+        "conditions": [
+          {
+            "metric": "tutorialThreatNeutralized",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "scrap_metal": 8
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "lookout_post"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p1_08",
+    "code": "P1-08",
+    "title": "A voice on the radio",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_07"
+    ],
+    "copy": {
+      "body": "Broadcasting costs 2 Food and takes an operator for half an hour. Review a candidate's skills and needs before accepting. Keep a free housing slot and at least one day of Food for the larger population.",
+      "centroComIssue": "Regional recruitment authorization granted. Construct a Radio Kit and broadcast an invitation to survivors. Your SeerPad already communicates with CentroCom. The radio is for people who were not issued a SeerPad.",
+      "completionText": "Recruit arrival confirmed. Population expansion has increased both capability and consumption. Both changes have been recorded.",
+      "unlockToast": "Recruitment available / Broadcast and review candidates.",
+      "tutorial": "Recruitment is voluntary. Rejecting a candidate keeps the channel open. Accepted candidates count only after reaching camp.",
+      "maraCopy": "Read their whole card. A pair of hands comes with a person attached. And another dinner.",
+      "candidateResponse": "Your broadcast reached me. I can work. I would also like to sleep somewhere that has a plan for the door. Are you taking people?"
+    },
+    "objectives": [
+      {
+        "id": "build_radio",
+        "type": "build",
+        "target": "radio_kit",
+        "count": 1,
+        "description": "Build Radio Kit"
+      },
+      {
+        "id": "finish_broadcast",
+        "type": "interaction",
+        "description": "Finish broadcast"
+      },
+      {
+        "id": "review_candidate",
+        "type": "interaction",
+        "description": "Review candidate"
+      },
+      {
+        "id": "accept_candidate",
+        "type": "predicate",
+        "description": "Accept candidate and observe arrival",
+        "conditions": [
+          {
+            "metric": "recruitedCount",
+            "op": ">=",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "population_check",
+        "type": "predicate",
+        "description": "Living population >= 6 and housing >= population",
+        "conditions": [
+          {
+            "metric": "livingPopulation",
+            "op": ">=",
+            "value": 6
+          },
+          {
+            "metric": "housingCapacity",
+            "op": ">=",
+            "ref": "livingPopulation"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "food": 8
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "radio_kit"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [
+        "recruitment"
+      ],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "p1_09",
+    "code": "P1-09",
+    "title": "Strategic non engagement",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_08"
+    ],
+    "copy": {
+      "body": "Emergency shelter is separate from housing. Build enough slots for everyone, recall camp workers, then seal the shelter. Keep noisy work suspended while the migration passes. Guards are included in Shelter All.",
+      "centroComIssue": "Regional movement analysis indicates an approaching infected migration. Direct engagement is not required. Establish a Makeshift Shelter and prepare to suspend exposed activity. AfterLife Inc. recognizes strategic non-engagement as an approved survival outcome.",
+      "completionText": "Personnel accounted for. Migration survival recorded. Ammunition expenditure was not a mandatory success criterion.",
+      "unlockToast": "Shelter All available / Suspend work and move residents to emergency shelter.",
+      "tutorial": "People outside shelter remain at risk. Check the Outside list before sealing. Sheltering pauses work; it does not erase daily Food demand.",
+      "maraBefore": "This is the part where every bad film tells someone to prove they're brave. Let them walk past. Quiet is a skill.",
+      "maraAfter": "Everyone here? Good. That's the number I wanted.",
+      "warningText": "MIGRATION WARNING / Estimated arrival in 3 hours. Expected group: 12 infected. Prepare shelter and suspend noisy activity.",
+      "passageText": "MIGRATION IN PROGRESS / Keep shelters sealed. Passage is expected to last 2 hours.",
+      "clearText": "MIGRATION ROUTE CLEAR / No contacts observed for 1 hour. Safe release is available."
+    },
+    "objectives": [
+      {
+        "id": "build_shelter",
+        "type": "predicate",
+        "description": "Operational emergency capacity >= population",
+        "conditions": [
+          {
+            "metric": "emergencyShelterCapacity",
+            "op": ">=",
+            "ref": "livingPopulation"
+          }
+        ]
+      },
+      {
+        "id": "trigger_migration",
+        "type": "predicate",
+        "description": "Trigger first migration",
+        "conditions": [
+          {
+            "metric": "firstMigrationTriggered",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "shelter_all",
+        "type": "interaction",
+        "description": "Use Shelter All"
+      },
+      {
+        "id": "shelter_sealed",
+        "type": "predicate",
+        "description": "All residents sheltered and sealed during passage for 1 continuous hour",
+        "conditions": [
+          {
+            "metric": "shelteredContinuousHours",
+            "op": ">=",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "id": "migration_cleared",
+        "type": "predicate",
+        "description": "Migration cleared",
+        "conditions": [
+          {
+            "metric": "firstMigrationCleared",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "food": 12,
+      "wood": 10
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "makeshift_shelter"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [
+        "shelter_all",
+        "seal_shelter"
+      ],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "p1_10",
+    "code": "P1-10",
+    "title": "Camp certification",
+    "phase": 1,
+    "kind": "main",
+    "predecessors": [
+      "p1_09"
+    ],
+    "copy": {
+      "body": "Use the certification checklist to resolve deficits. The hold timer resets if a required live condition becomes false. Routine sleep and scheduled shifts do not invalidate projected production or guard assignments; illness, missing staff and broken buildings do.",
+      "centroComIssue": "The camp is eligible for operational review. Maintain sufficient housing, food production, medical facilities, manufacturing and defensive assignments. A brief period of sustained stability is required to distinguish an outpost from a fortunate afternoon.",
+      "completionText": "CAMP CLASSIFICATION UPDATED: ESTABLISHED CAMP. Local survival systems have met the minimum operating standard. Phase 2 authorizes organized resource recovery and regional operations. Congratulations, Overseer. Your responsibilities have expanded accordingly.",
+      "unlockToast": "Phase 2 authorized / Extend the outpost.",
+      "maraCopy": "You have a camp that can keep people alive while nothing especially terrible is happening. That's a real achievement, {overseerName}. Next we make it survive the days when something does."
+    },
+    "objectives": [
+      {
+        "id": "cert_hold",
+        "type": "continuous_time",
+        "targetHours": 12,
+        "description": "Maintain all Established Camp conditions for 12 continuous game hours"
+      }
+    ],
+    "reward": {
+      "food": 15
+    },
+    "effects": {
+      "phaseAdvance": 2
+    },
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "certification": {
+      "holdHours": 12,
+      "classification": "Established Camp",
+      "conditions": [
+        {
+          "id": "tasks",
+          "label": "Main tasks P1-01 to P1-09 complete",
+          "metric": "tasksCompleted",
+          "op": "includesAll",
+          "value": [
+            "p1_01",
+            "p1_02",
+            "p1_03",
+            "p1_04",
+            "p1_05",
+            "p1_06",
+            "p1_07",
+            "p1_08",
+            "p1_09"
+          ]
+        },
+        {
+          "id": "population",
+          "label": "Living population at least 6",
+          "metric": "livingPopulation",
+          "op": ">=",
+          "value": 6
+        },
+        {
+          "id": "downed",
+          "label": "Nobody downed",
+          "metric": "downedCount",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "id": "bleeding",
+          "label": "No untreated bleeding",
+          "metric": "untreatedBleedingCount",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "id": "housing",
+          "label": "Housing for everyone",
+          "metric": "housingCapacity",
+          "op": ">=",
+          "ref": "livingPopulation"
+        },
+        {
+          "id": "shelter",
+          "label": "Emergency shelter for everyone",
+          "metric": "emergencyShelterCapacity",
+          "op": ">=",
+          "ref": "livingPopulation"
+        },
+        {
+          "id": "food_rate",
+          "label": "Scheduled Food per day covers everyone",
+          "metric": "scheduledGrossFoodPerDay",
+          "op": ">=",
+          "ref": "livingPopulation"
+        },
+        {
+          "id": "food_stock",
+          "label": "Unreserved Food for 2 days",
+          "metric": "unreservedFood",
+          "op": ">=",
+          "ref": "livingPopulation",
+          "times": 2
+        },
+        {
+          "id": "medical",
+          "label": "Operational Aid Station or Clinic with a Medic",
+          "metric": "hasOperationalMedicalWithMedic",
+          "op": "true"
+        },
+        {
+          "id": "crafting",
+          "label": "Operational Workbench or Workshop",
+          "metric": "hasOperationalWorkbenchOrWorkshop",
+          "op": "true"
+        },
+        {
+          "id": "watch",
+          "label": "A Guard on watch in a Lookout or Watchtower",
+          "metric": "hasAssignedWatchGuard",
+          "op": "true"
+        },
+        {
+          "id": "patrol",
+          "label": "A separate patrol Guard",
+          "metric": "hasSeparateAssignedPatrolGuard",
+          "op": "true"
+        },
+        {
+          "id": "recruit",
+          "label": "At least one recruit arrived",
+          "metric": "recruitedCount",
+          "op": ">=",
+          "value": 1
+        },
+        {
+          "id": "radio",
+          "label": "Operational Radio Kit",
+          "metric": "hasOperationalRadioKit",
+          "op": "true"
+        }
+      ]
+    }
+  },
+  {
+    "id": "p2_01",
+    "code": "P2-01",
+    "title": "Beyond the clearing",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p1_10"
+    ],
+    "copy": {
+      "body": "Compare travel time, risk and carrying capacity. Reserve Food for the full trip. Leave enough staff to maintain essential camp work.",
+      "centroComIssue": "Local debris is a finite operating model. Organized Scavenging Runs are now authorized. Establish an Operations Board, review nearby sites and assign a recovery team. Personnel outside camp cannot simultaneously perform duties inside it.",
+      "completionText": "First recovery team dispatched. Their return time is an estimate, which is an improvement over no estimate.",
+      "unlockToast": "Operations available / Plan Scavenging Runs.",
+      "tutorial": "The mission Food reservation replaces the team's regular consumption while away. Carrying capacity may require repeated trips.",
+      "maraCopy": "Don't send everybody who can hold a tool. The camp still needs food, a watch and someone who knows where the bandages are."
+    },
+    "objectives": [
+      {
+        "id": "build_operations_board",
+        "type": "build",
+        "target": "operations_board",
+        "count": 1,
+        "description": "Build Operations Board"
+      },
+      {
+        "id": "assemble_team",
+        "type": "interaction",
+        "description": "Assemble two eligible residents"
+      },
+      {
+        "id": "inspect_grocery",
+        "type": "interaction",
+        "description": "Inspect Grocery mission card and reserve provisions"
+      },
+      {
+        "id": "launch_scavenging",
+        "type": "interaction",
+        "description": "Launch one Scavenging Run"
+      }
+    ],
+    "reward": {},
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "operations_board"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [
+        "operations"
+      ],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "p2_02",
+    "code": "P2-02",
+    "title": "Return with the useful parts",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_01"
+    ],
+    "copy": {
+      "body": "The Grocery Annex is a low-risk first assignment. Receive its Food cargo and inspect anything left behind due to carrying limits.",
+      "centroComIssue": "Await the team's return and review the recovery report. Inventory additions are recognized when delivered to camp, not when someone radios that they have found something promising.",
+      "completionText": "Recovery delivery verified. Offsite operations now contribute to local reserves.",
+      "unlockToast": "Scavenging recovery recorded / Seed Packet recipe learned.",
+      "tutorial": "A depleted site stays depleted. Uncarried items remain there for a later trip. A return report separates cargo, leftovers and consumed provisions.",
+      "maraCopy": "Count what comes back, then count who comes back. In that order on paper, the other order in your head."
+    },
+    "objectives": [
+      {
+        "id": "grocery_returns",
+        "type": "predicate",
+        "description": "First Grocery team returns",
+        "conditions": [
+          {
+            "metric": "firstGroceryReturned",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "unload_food",
+        "type": "predicate",
+        "description": "Unload at least 20 Food total from Grocery",
+        "conditions": [
+          {
+            "metric": "unloadedGroceryFood",
+            "op": ">=",
+            "value": 20
+          }
+        ]
+      },
+      {
+        "id": "review_report",
+        "type": "interaction",
+        "description": "Review return report"
+      }
+    ],
+    "reward": {
+      "cloth": 5
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [
+        "c11"
+      ],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p2_03",
+    "code": "P2-03",
+    "title": "Give the junk a system",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_02"
+    ],
+    "copy": {
+      "body": "Raw Salvage is an input resource. Yard workers convert six units into four Scrap Metal per worker-hour. Repeated Hardware runs may be needed to bring home all available material.",
+      "centroComIssue": "Improvised collection is now eligible for organized processing. Establish a Salvage Yard and recover Raw Salvage from the Hardware Yard. Useful metal requires sorting. Calling the pile infrastructure does not complete that step.",
+      "completionText": "Salvage processing verified. The outpost now has a repeatable material recovery route.",
+      "unlockToast": "Salvage Yard authorized / Process Raw Salvage into Scrap.",
+      "tutorial": "The Yard stops if inputs are empty or storage is full. Add workers only when both sides of the process can support them.",
+      "maraCopy": "Junk is only junk until someone sorts it. Then it's inventory, and CentroCom gets interested."
+    },
+    "objectives": [
+      {
+        "id": "recover_salvage",
+        "type": "predicate",
+        "description": "Recover 30 Raw Salvage from Hardware Yard",
+        "conditions": [
+          {
+            "metric": "recoveredRawSalvage",
+            "op": ">=",
+            "value": 30
+          }
+        ]
+      },
+      {
+        "id": "build_salvage_yard",
+        "type": "build",
+        "target": "salvage_yard",
+        "count": 1,
+        "description": "Build Salvage Yard"
+      },
+      {
+        "id": "process_scrap",
+        "type": "cumulative_process",
+        "target": "scrap_metal",
+        "count": 20,
+        "description": "Process and deliver 20 Scrap Metal"
+      }
+    ],
+    "reward": {
+      "wood": 15
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "salvage_yard"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [
+        "scrapyard_route"
+      ],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p2_04",
+    "code": "P2-04",
+    "title": "A workshop with ambitions",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_03"
+    ],
+    "copy": {
+      "body": "Planks require Wood. Metal Parts require Scrap. Queue both products and keep enough raw materials for essential repairs.",
+      "centroComIssue": "Improved field fabrication authorized. Construct a Workshop and manufacture standardized materials. Standards reduce the number of occasions on which a building must be described as holding so far.",
+      "completionText": "Workshop output accepted. Improved infrastructure recipes can now be supplied locally.",
+      "unlockToast": "Workshop authorized / Planks and Metal Parts recipes available.",
+      "tutorial": "A replacement station does not require demolition of the old one. Migrate queues and staff when the new station is ready.",
+      "maraCopy": "Planks don't sound exciting. Neither does a roof, right up until it rains."
+    },
+    "objectives": [
+      {
+        "id": "build_workshop",
+        "type": "build",
+        "target": "workshop",
+        "count": 1,
+        "description": "Build and operate Workshop"
+      },
+      {
+        "id": "craft_planks",
+        "type": "cumulative_craft",
+        "target": "planks",
+        "count": 10,
+        "description": "Craft 10 Planks"
+      },
+      {
+        "id": "craft_parts",
+        "type": "cumulative_craft",
+        "target": "metal_parts",
+        "count": 6,
+        "description": "Craft 6 Metal Parts"
+      }
+    ],
+    "reward": {
+      "scrap_metal": 10
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "workshop"
+      ],
+      "jobs": [],
+      "recipes": [
+        "c04",
+        "c05"
+      ],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p2_05",
+    "code": "P2-05",
+    "title": "A place to put progress",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_04"
+    ],
+    "copy": {
+      "body": "Additional storage improves intake capacity. Overflow remains usable, but local production cannot unload while the ledger exceeds operational capacity.",
+      "centroComIssue": "Recovery volume has exceeded the long-term suitability of tarp-covered storage. Build a Storage Depot and bring all stock within capacity. Materials on the ground remain materials, but the accounting system has developed concerns.",
+      "completionText": "Storage review passed. Your supplies now have an approved place to be.",
+      "unlockToast": "Storage Depot authorized / Add 1000 storage capacity.",
+      "tutorial": "Storage capacity is based on resource weight. Losing a Depot creates Overflow; it does not delete inventory.",
+      "maraCopy": "If the tarp pile has its own weather, it's time for a proper depot."
+    },
+    "objectives": [
+      {
+        "id": "build_storage_depot",
+        "type": "build",
+        "target": "storage_depot",
+        "count": 1,
+        "description": "Construct one Storage Depot"
+      },
+      {
+        "id": "total_storage",
+        "type": "predicate",
+        "description": "Total operational storage >= 1400",
+        "conditions": [
+          {
+            "metric": "totalStorageCapacity",
+            "op": ">=",
+            "value": 1400
+          }
+        ]
+      },
+      {
+        "id": "resolve_overflow",
+        "type": "predicate",
+        "description": "Resolve all Overflow",
+        "conditions": [
+          {
+            "metric": "hasOverflow",
+            "op": "false"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "cloth": 8
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "storage_depot"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p2_06",
+    "code": "P2-06",
+    "title": "Feed the larger camp",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_05"
+    ],
+    "copy": {
+      "body": "A Field Farm supports two Farmers and can produce 12 Food per day at baseline staffing. Barracks provide six housing slots. Grow gradually and compare gross production with current consumption.",
+      "centroComIssue": "Population growth is approved when supported by food and accommodation. Establish expanded agriculture and field housing. Recruitment without these provisions is classified as redistributing the shortage.",
+      "completionText": "Expanded subsistence and housing verified. The camp can support additional personnel without relying exclusively on found meals.",
+      "unlockToast": "Field Farm and Barracks authorized.",
+      "tutorial": "Gross Food production is not net Food. Net equals production minus residents and other recurring costs.",
+      "maraCopy": "More people means more of everything. Mostly more dinner. Grow the farm before you grow the roster."
+    },
+    "objectives": [
+      {
+        "id": "build_farm",
+        "type": "build",
+        "target": "field_farm",
+        "count": 1,
+        "description": "Build one Field Farm"
+      },
+      {
+        "id": "build_barracks",
+        "type": "build",
+        "target": "barracks",
+        "count": 1,
+        "description": "Build one Barracks"
+      },
+      {
+        "id": "population_8",
+        "type": "predicate",
+        "description": "Reach population >= 8",
+        "conditions": [
+          {
+            "metric": "livingPopulation",
+            "op": ">=",
+            "value": 8
+          }
+        ]
+      },
+      {
+        "id": "housing_check",
+        "type": "predicate",
+        "description": "Housing >= population",
+        "conditions": [
+          {
+            "metric": "housingCapacity",
+            "op": ">=",
+            "ref": "livingPopulation"
+          }
+        ]
+      },
+      {
+        "id": "gross_food",
+        "type": "predicate",
+        "description": "Projected gross Food/day >= population",
+        "conditions": [
+          {
+            "metric": "scheduledGrossFoodPerDay",
+            "op": ">=",
+            "ref": "livingPopulation"
+          }
+        ]
+      },
+      {
+        "id": "collect_farm_food",
+        "type": "cumulative_harvest",
+        "target": "food",
+        "count": 12,
+        "description": "Collect 12 Food from Field Farm",
+        "building": "field_farm"
+      }
+    ],
+    "reward": {
+      "seed_packets": 2
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "field_farm",
+        "barracks"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [
+        "food_foraging_route"
+      ],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p2_07",
+    "code": "P2-07",
+    "title": "Medical capacity is not a slogan",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_06"
+    ],
+    "copy": {
+      "body": "The Field Clinic replaces the Aid Station's limited bed capacity. Keep a Medic available and prepare portable First Aid Kits for remote teams.",
+      "centroComIssue": "Expanded medical authorization granted. Provide two treatment beds, a qualified assignment and replenishable supplies. Medical readiness is assessed before the need arises where possible.",
+      "completionText": "Expanded medical readiness confirmed. Emergency capacity has increased. Emergency frequency has not been negotiated.",
+      "unlockToast": "Field Clinic and medical recipes authorized.",
+      "tutorial": "A Kit helps an injured expedition member. It does not grant immunity or eliminate infection.",
+      "maraCopy": "Stock the clinic before you need it. Nobody has ever stocked one quickly while someone was bleeding on the floor."
+    },
+    "objectives": [
+      {
+        "id": "build_clinic",
+        "type": "build",
+        "target": "field_clinic",
+        "count": 1,
+        "description": "Build Field Clinic"
+      },
+      {
+        "id": "assign_medic",
+        "type": "staff",
+        "role": "medic",
+        "count": 1,
+        "description": "Assign Medic to Clinic"
+      },
+      {
+        "id": "craft_supplies",
+        "type": "cumulative_craft",
+        "target": "medical_supplies",
+        "count": 4,
+        "description": "Craft 4 Medical Supplies"
+      },
+      {
+        "id": "craft_kits",
+        "type": "cumulative_craft",
+        "target": "first_aid_kit",
+        "count": 2,
+        "description": "Craft 2 First Aid Kits"
+      },
+      {
+        "id": "zero_bleeding",
+        "type": "predicate",
+        "description": "Keep zero untreated bleeding residents",
+        "conditions": [
+          {
+            "metric": "untreatedBleedingCount",
+            "op": "==",
+            "value": 0
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "medical_supplies": 4
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "field_clinic"
+      ],
+      "jobs": [],
+      "recipes": [
+        "c07",
+        "c08"
+      ],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p2_08",
+    "code": "P2-08",
+    "title": "Raise the watch",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_07"
+    ],
+    "copy": {
+      "body": "The Watchtower detects farther than a Lookout. Its guard can fire from the tower, but that assignment does not replace ground patrol. Maintain a usable ammunition reserve.",
+      "centroComIssue": "Regional activity warrants improved observation. Establish a Watchtower and maintain a separate response patrol. Replenish ammunition. A taller platform does not manufacture bullets.",
+      "completionText": "Observation and response readiness accepted. The perimeter now benefits from a wider view and a practical response.",
+      "unlockToast": "Watchtower and defensive crafting authorized.",
+      "tutorial": "A tower only sees through valid lines of sight. Coverage circles are ranges, not guarantees through terrain.",
+      "maraCopy": "A taller tower sees trouble sooner. It doesn't make trouble smaller. Keep the patrol."
+    },
+    "objectives": [
+      {
+        "id": "build_watchtower",
+        "type": "build",
+        "target": "watchtower",
+        "count": 1,
+        "description": "Construct staffed Watchtower"
+      },
+      {
+        "id": "separate_patrol",
+        "type": "predicate",
+        "description": "Maintain one separately assigned patrol Guard",
+        "conditions": [
+          {
+            "metric": "separatePatrolGuard",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "craft_ammo",
+        "type": "cumulative_craft",
+        "target": "ammo",
+        "count": 10,
+        "description": "Craft 10 Ammo"
+      },
+      {
+        "id": "available_ammo",
+        "type": "predicate",
+        "description": "Available Ammo >= 20",
+        "conditions": [
+          {
+            "metric": "availableAmmo",
+            "op": ">=",
+            "value": 20
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "metal_parts": 5
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "watchtower"
+      ],
+      "jobs": [],
+      "recipes": [
+        "c06",
+        "c09",
+        "c10"
+      ],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p2_09",
+    "code": "P2-09",
+    "title": "Survey the old access road",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_08"
+    ],
+    "copy": {
+      "body": "Expeditions take longer than Scavenging Runs and may require choices during travel. Keep enough staff at camp and review provisions before launch.",
+      "centroComIssue": "Regional Expeditions are now authorized. Survey the old access road to establish reliable routes and identify communication infrastructure. Historical maps are supplied for orientation rather than promises.",
+      "completionText": "Access survey received. Rescue and relay sites added to Regional Intelligence.",
+      "unlockToast": "Expeditions available / Survey the access road.",
+      "tutorial": "Encounter choices show costs and risks before commitment. Reading an encounter pauses the campaign by default.",
+      "maraCopy": "If the report says no movement, check when it was written. Quiet has a timestamp."
+    },
+    "objectives": [
+      {
+        "id": "launch_e01",
+        "type": "interaction",
+        "description": "Launch and complete E01"
+      },
+      {
+        "id": "read_survey_report",
+        "type": "interaction",
+        "description": "Read survey report"
+      }
+    ],
+    "reward": {
+      "components": 2
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [
+        "regional_intelligence"
+      ],
+      "commands": [],
+      "routes": [],
+      "expeditions": [
+        "e01"
+      ]
+    }
+  },
+  {
+    "id": "p2_10",
+    "code": "P2-10",
+    "title": "People behind the door",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_09"
+    ],
+    "copy": {
+      "body": "Reach the maintenance crew. You may invite them or leave them as a safe contact after delivering aid. Build reinforced shelter for your growing camp.",
+      "centroComIssue": "Human activity has been detected at the service depot. Investigate, provide approved aid and assess voluntary relocation. Expand emergency shelter capacity before population growth exceeds the present refuge allocation.",
+      "completionText": "Contact established. Emergency accommodation reviewed. The maintenance crew's decision has been recorded.",
+      "unlockToast": "Reinforced Shelter authorized / Rescue contact available.",
+      "tutorial": "Rescued candidates do not bypass housing requirements. Their safe contact persists if the outpost is not ready.",
+      "maraCopy": "Offer them a place. Don't offer them a promise you can't feed."
+    },
+    "objectives": [
+      {
+        "id": "contact_maintenance",
+        "type": "predicate",
+        "description": "Complete contact with maintenance workers (E02)",
+        "conditions": [
+          {
+            "metric": "maintenanceCrewContacted",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "build_reinforced_shelter",
+        "type": "build",
+        "target": "reinforced_shelter",
+        "count": 1,
+        "description": "Construct Reinforced Shelter"
+      },
+      {
+        "id": "emergency_capacity",
+        "type": "predicate",
+        "description": "Emergency capacity >= population",
+        "conditions": [
+          {
+            "metric": "emergencyShelterCapacity",
+            "op": ">=",
+            "ref": "livingPopulation"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "food": 20
+    },
+    "effects": {
+      "tokens": [
+        "relay_keycard"
+      ]
+    },
+    "unlocks": {
+      "buildings": [
+        "reinforced_shelter"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": [
+        "e02"
+      ]
+    }
+  },
+  {
+    "id": "p2_11",
+    "code": "P2-11",
+    "title": "Restore the regional relay",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_10"
+    ],
+    "copy": {
+      "body": "The expedition provides the unique battery and diagram. Craft the structure's material requirements at camp. The Relay augments your Radio Kit; retain both.",
+      "centroComIssue": "Communication infrastructure recovery is authorized. Retrieve the relay equipment, establish a local Radio Relay and verify a broadcast through the restored link. This will improve regional contact and migration notice.",
+      "completionText": "Relay transmission verified. Recruitment intervals reduced and regional warning coverage improved. Communication remains an aid to judgment rather than a replacement.",
+      "unlockToast": "Radio Relay online / Faster recruitment and earlier migration warnings.",
+      "tutorial": "A broken Radio Kit prevents broadcasting even with an intact Relay. Repairing either restores the same permanent unlocks.",
+      "maraCopy": "Get that relay running and we hear the region breathing again. Bring everyone back, battery or not."
+    },
+    "objectives": [
+      {
+        "id": "complete_e03",
+        "type": "predicate",
+        "description": "Complete E03 (Secure battery & diagram)",
+        "conditions": [
+          {
+            "metric": "hasBatteryToken",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "build_relay",
+        "type": "build",
+        "target": "radio_relay",
+        "count": 1,
+        "description": "Construct Radio Relay with battery token"
+      },
+      {
+        "id": "radio_operational",
+        "type": "predicate",
+        "description": "Keep Radio Kit operational",
+        "conditions": [
+          {
+            "metric": "radioKitOperational",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "finish_relay_broadcast",
+        "type": "predicate",
+        "description": "Finish one relay-assisted broadcast",
+        "conditions": [
+          {
+            "metric": "relayBroadcastFinished",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {},
+    "effects": {},
+    "unlocks": {
+      "buildings": [
+        "radio_relay"
+      ],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": [
+        "e03"
+      ]
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "p2_12",
+    "code": "P2-12",
+    "title": "Prepared does not mean invincible",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_11"
+    ],
+    "copy": {
+      "body": "Choose sheltering, interception or a mixture. Ensure nobody is overlooked, preserve a treatment path and restore damaged essential stations after the route clears.",
+      "centroComIssue": "A larger infected migration has entered the region. Apply your defensive and shelter arrangements. The readiness review measures survival and recovery, not the number of contacts destroyed.",
+      "completionText": "Readiness event concluded. Personnel and infrastructure review complete. Preparedness has been demonstrated under unfavorable conditions.",
+      "unlockToast": "Readiness milestone recorded.",
+      "maraCopy": "You don't owe the road a fight. You owe the people here a morning.",
+      "warningText": "REGIONAL MIGRATION / 24 contacts estimated. Arrival in 6 hours. Prepare shelter, patrol assignments and medical supplies."
+    },
+    "objectives": [
+      {
+        "id": "survive_passage",
+        "type": "predicate",
+        "description": "Survive passage and route clears",
+        "conditions": [
+          {
+            "metric": "readinessMigrationCleared",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "residents_accounted",
+        "type": "predicate",
+        "description": "All living residents accounted for at clear",
+        "conditions": [
+          {
+            "metric": "allResidentsAccountedFor",
+            "op": "true"
+          }
+        ]
+      },
+      {
+        "id": "no_bleeding",
+        "type": "predicate",
+        "description": "No untreated bleeding",
+        "conditions": [
+          {
+            "metric": "untreatedBleedingCount",
+            "op": "==",
+            "value": 0
+          }
+        ]
+      },
+      {
+        "id": "repair_mandatory",
+        "type": "predicate",
+        "description": "Repair damaged mandatory structures above 25% HP",
+        "conditions": [
+          {
+            "metric": "mandatoryStructuresHealthy",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "food": 15
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "p2_13",
+    "code": "P2-13",
+    "title": "Established outpost",
+    "phase": 2,
+    "kind": "main",
+    "predecessors": [
+      "p2_12"
+    ],
+    "copy": {
+      "body": "Reach twelve residents and maintain a supported population. Retain emergency capacity, a staffed food economy, repairable stations and three days of Food. Certification checks current conditions throughout the hold.",
+      "centroComIssue": "Your outpost is eligible for sustained operations certification. Maintain the listed conditions for two consecutive days. Exceptional individual actions do not substitute for food, beds and working systems.",
+      "completionText": "OUTPOST CLASSIFICATION UPDATED: ESTABLISHED OUTPOST. Regional operations, replenishment, medical provision and defensive readiness meet the current standard. AfterLife Inc. acknowledges your contribution to the continued existence of this region. Further municipal development requires separate authorization.",
+      "unlockToast": "Established Outpost certified / Campaign Phases 0-2 complete.",
+      "maraCopy": "Twelve people have somewhere to sleep, something to eat and a reason to think about next week. That's more than a classification. Keep the private channel open."
+    },
+    "objectives": [
+      {
+        "id": "outpost_cert_hold",
+        "type": "continuous_time",
+        "targetHours": 48,
+        "description": "Maintain all Established Outpost conditions for 48 continuous game hours"
+      }
+    ],
+    "reward": {},
+    "effects": {
+      "classification": "Established Outpost",
+      "campaignComplete": true
+    },
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "certification": {
+      "holdHours": 48,
+      "classification": "Established Outpost",
+      "stabilityGuardHours": 6,
+      "conditions": [
+        {
+          "id": "tasks",
+          "label": "Main tasks P2-01 to P2-12 complete",
+          "metric": "tasksCompleted",
+          "op": "includesAll",
+          "value": [
+            "p2_01",
+            "p2_02",
+            "p2_03",
+            "p2_04",
+            "p2_05",
+            "p2_06",
+            "p2_07",
+            "p2_08",
+            "p2_09",
+            "p2_10",
+            "p2_11",
+            "p2_12"
+          ]
+        },
+        {
+          "id": "population",
+          "label": "Living population at least 12",
+          "metric": "livingPopulation",
+          "op": ">=",
+          "value": 12
+        },
+        {
+          "id": "downed",
+          "label": "Nobody downed",
+          "metric": "downedCount",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "id": "bleeding",
+          "label": "No untreated bleeding",
+          "metric": "untreatedBleedingCount",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "id": "infection",
+          "label": "No untreated infection at 50 or more",
+          "metric": "severeInfectionCount",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "id": "housing",
+          "label": "Housing for everyone",
+          "metric": "housingCapacity",
+          "op": ">=",
+          "ref": "livingPopulation"
+        },
+        {
+          "id": "shelter",
+          "label": "Emergency shelter for everyone",
+          "metric": "emergencyShelterCapacity",
+          "op": ">=",
+          "ref": "livingPopulation"
+        },
+        {
+          "id": "food_rate",
+          "label": "Scheduled Food per day covers everyone",
+          "metric": "scheduledGrossFoodPerDay",
+          "op": ">=",
+          "ref": "livingPopulation"
+        },
+        {
+          "id": "food_stock",
+          "label": "Available Food for 3 days",
+          "metric": "availableFood",
+          "op": ">=",
+          "ref": "livingPopulation",
+          "times": 3
+        },
+        {
+          "id": "food_actual",
+          "label": "Food actually produced in the last 24 hours covers everyone",
+          "metric": "actualFoodProduced24h",
+          "op": ">=",
+          "ref": "livingPopulation"
+        },
+        {
+          "id": "salvage_yard",
+          "label": "Operational Salvage Yard",
+          "metric": "hasOperationalSalvageYard",
+          "op": "true"
+        },
+        {
+          "id": "scrap_processed",
+          "label": "At least 60 Scrap processed",
+          "metric": "lifetimeProcessedScrap",
+          "op": ">=",
+          "value": 60
+        },
+        {
+          "id": "workshop",
+          "label": "Operational Workshop",
+          "metric": "hasOperationalWorkshop",
+          "op": "true"
+        },
+        {
+          "id": "planks_made",
+          "label": "At least 50 Planks crafted",
+          "metric": "lifetimeProcessedPlanks",
+          "op": ">=",
+          "value": 50
+        },
+        {
+          "id": "parts_made",
+          "label": "At least 30 Metal Parts crafted",
+          "metric": "lifetimeProcessedParts",
+          "op": ">=",
+          "value": 30
+        },
+        {
+          "id": "storage",
+          "label": "Operational storage at least 1400",
+          "metric": "totalStorageCapacity",
+          "op": ">=",
+          "value": 1400
+        },
+        {
+          "id": "overflow",
+          "label": "No overflow",
+          "metric": "hasOverflow",
+          "op": "false"
+        },
+        {
+          "id": "clinic",
+          "label": "Operational Field Clinic with a Medic",
+          "metric": "hasOperationalClinicWithMedic",
+          "op": "true"
+        },
+        {
+          "id": "med_supplies",
+          "label": "At least 4 Medical Supplies available",
+          "metric": "availableMedicalSupplies",
+          "op": ">=",
+          "value": 4
+        },
+        {
+          "id": "kits",
+          "label": "At least 1 First Aid Kit available",
+          "metric": "availableKits",
+          "op": ">=",
+          "value": 1
+        },
+        {
+          "id": "watch",
+          "label": "A Guard on watch in the Watchtower",
+          "metric": "hasAssignedWatchtowerGuard",
+          "op": "true"
+        },
+        {
+          "id": "patrol",
+          "label": "A separate patrol Guard",
+          "metric": "hasSeparateAssignedPatrolGuard",
+          "op": "true"
+        },
+        {
+          "id": "ammo",
+          "label": "At least 20 Ammo available",
+          "metric": "availableAmmo",
+          "op": ">=",
+          "value": 20
+        },
+        {
+          "id": "ops_board",
+          "label": "Operational Operations Board",
+          "metric": "hasOperationalOperationsBoard",
+          "op": "true"
+        },
+        {
+          "id": "scav_returns",
+          "label": "At least 3 scavenging returns",
+          "metric": "successfulScavengingReturns",
+          "op": ">=",
+          "value": 3
+        },
+        {
+          "id": "expeditions",
+          "label": "Expeditions E01, E02 and E03 complete",
+          "metric": "expeditionsCompleted",
+          "op": "includesAll",
+          "value": [
+            "e01",
+            "e02",
+            "e03"
+          ]
+        },
+        {
+          "id": "radio",
+          "label": "Operational Radio Kit",
+          "metric": "hasOperationalRadioKit",
+          "op": "true"
+        },
+        {
+          "id": "relay",
+          "label": "Operational Radio Relay",
+          "metric": "hasOperationalRadioRelay",
+          "op": "true"
+        },
+        {
+          "id": "relay_broadcast",
+          "label": "A relay-assisted broadcast completed",
+          "metric": "relayBroadcastCompleted",
+          "op": "true"
+        }
+      ]
+    }
+  },
+  {
+    "id": "s01",
+    "code": "S01",
+    "title": "Emergency Food Recovery",
+    "phase": null,
+    "kind": "side",
+    "predecessors": [],
+    "repeatable": "once_per_phase",
+    "trigger": [
+      {
+        "metric": "foodForecastDays",
+        "op": "<",
+        "value": 1
+      }
+    ],
+    "copy": {
+      "body": "Use the guaranteed nearby source. This task does not require gambling on a dangerous site.",
+      "centroComIssue": "Reserve warning. Recover the marked Food allocation before local shortages become injuries.",
+      "completionText": "Emergency food recovery logged. Review production before the next reserve warning.",
+      "unlockToast": "Emergency recovery source marked.",
+      "maraCopy": "The forecast is a warning, not an epitaph. There's food marked nearby. Send someone safe for it."
+    },
+    "objectives": [
+      {
+        "id": "gather_reserve_food",
+        "type": "predicate",
+        "description": "Recover marked emergency food allocation",
+        "conditions": [
+          {
+            "metric": "emergencyFoodRecovered",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {},
+    "effects": {},
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "s02",
+    "code": "S02",
+    "title": "Infrastructure Maintenance",
+    "phase": null,
+    "kind": "side",
+    "predecessors": [],
+    "repeatable": "once_per_phase",
+    "trigger": [
+      {
+        "metric": "hasStructureBelowHalfHp",
+        "op": "true"
+      }
+    ],
+    "copy": {
+      "body": "Select Repair. Cost scales with damage; a blueprint is not a repaired building.",
+      "centroComIssue": "Infrastructure damage detected. Repair the marked structure before its function becomes unavailable.",
+      "completionText": "Repair confirmed. Residents have noticed that maintenance remains part of the plan.",
+      "maraCopy": "Fix it now while it's cheap. Broken things get expensive at night."
+    },
+    "objectives": [
+      {
+        "id": "repair_structure",
+        "type": "predicate",
+        "description": "Repair selected structure to 100%",
+        "conditions": [
+          {
+            "metric": "selectedStructureRepaired",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {},
+    "effects": {
+      "moraleBoost": 2
+    },
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy"
+    ]
+  },
+  {
+    "id": "s03",
+    "code": "S03",
+    "title": "Rest the Exhausted",
+    "phase": null,
+    "kind": "side",
+    "predecessors": [],
+    "repeatable": "once_total",
+    "trigger": [
+      {
+        "metric": "exhaustedSurvivorsCount",
+        "op": ">=",
+        "value": 2
+      }
+    ],
+    "copy": {
+      "body": "Housing improves recovery. Job assignments resume after rest.",
+      "completionText": "They look human again. Keep that in the schedule.",
+      "maraCopy": "Two people are running on fumes. Give them a shift off before the camp gets a new category of accident."
+    },
+    "objectives": [
+      {
+        "id": "rest_exhausted",
+        "type": "predicate",
+        "description": "Rest two exhausted residents until fatigue <= 40",
+        "conditions": [
+          {
+            "metric": "exhaustedRested",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "food": 5
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "s04",
+    "code": "S04",
+    "title": "Candidate Housing Decision",
+    "phase": null,
+    "kind": "side",
+    "predecessors": [],
+    "repeatable": "once_total",
+    "trigger": [
+      {
+        "metric": "candidateWaitingNoBed",
+        "op": "true"
+      }
+    ],
+    "copy": {
+      "body": "Make room or decline. Capacity is a real promise.",
+      "completionText": "Candidate decision recorded. Accommodation commitments remain accurate.",
+      "maraCopy": "There's someone on the channel and no spare bed. Fix the gap or tell them honestly. Both are better than pretending the floor is an accommodation policy."
+    },
+    "objectives": [
+      {
+        "id": "decide_candidate",
+        "type": "predicate",
+        "description": "Create enough capacity, accept, or explicitly decline candidate",
+        "conditions": [
+          {
+            "metric": "candidateDecidedWithBedOrDeclined",
+            "op": "true"
+          }
+        ]
+      }
+    ],
+    "reward": {
+      "cloth": 4
+    },
+    "effects": {},
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    }
+  },
+  {
+    "id": "s05",
+    "code": "S05",
+    "title": "Readiness Munitions & Medical Reserve",
+    "phase": null,
+    "kind": "side",
+    "predecessors": [],
+    "repeatable": "once_total",
+    "trigger": [
+      {
+        "metric": "taskCompleted",
+        "op": "true",
+        "task": "p2_08"
+      }
+    ],
+    "copy": {
+      "body": "Prepare a field reserve of medical kits and ammunition. This is an optional readiness measure and does not alter certification requirements.",
+      "centroComIssue": "Optional readiness review available. Assemble a reserve of First Aid Kits and ammunition and store it where an emergency can find it. Participation is voluntary and will be remembered favorably.",
+      "completionText": "Reserve preparation recorded. Approved equipment has been placed where an emergency can actually use it.",
+      "maraCopy": "Kits and ammo in a crate by the gate. Boring until the day it isn't."
+    },
+    "objectives": [
+      {
+        "id": "prepare_reserves",
+        "type": "predicate",
+        "description": "Have 2 First Aid Kits and 30 Ammo available",
+        "conditions": [
+          {
+            "metric": "availableKits",
+            "op": ">=",
+            "value": 2
+          },
+          {
+            "metric": "availableAmmo",
+            "op": ">=",
+            "value": 30
+          }
+        ]
+      }
+    ],
+    "reward": {},
+    "effects": {
+      "badge": "reserve_prepared"
+    },
+    "unlocks": {
+      "buildings": [],
+      "jobs": [],
+      "recipes": [],
+      "modules": [],
+      "commands": [],
+      "routes": [],
+      "expeditions": []
+    },
+    "generated": [
+      "maraCopy",
+      "centroComIssue"
+    ]
+  }
+]

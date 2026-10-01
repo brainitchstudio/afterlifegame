@@ -1,0 +1,34 @@
+[
+  {
+    "id": "ch1_drop",
+    "title": "The Drop",
+    "act": 1,
+    "summary": "Three volunteers, one fire and a crate. Build the first line and give people a reason to come.",
+    "goal": "Reach Outpost status",
+    "notes": ""
+  },
+  {
+    "id": "ch2_outpost",
+    "title": "A Dot on the Map",
+    "act": 1,
+    "summary": "Command recognises the camp. Stockpile, tools and a tower over the treeline.",
+    "goal": "Reach Settlement status",
+    "notes": ""
+  },
+  {
+    "id": "ch3_settlement",
+    "title": "People Stop Asking",
+    "act": 2,
+    "summary": "A settlement needs medicine and people whose only job is to keep it safe.",
+    "goal": "Reach Town status",
+    "notes": ""
+  },
+  {
+    "id": "ch4_town",
+    "title": "Know the Enemy",
+    "act": 2,
+    "summary": "A town can afford to study the dead and arm itself.",
+    "goal": "Reach City status",
+    "notes": ""
+  }
+]

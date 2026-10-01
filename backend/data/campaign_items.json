@@ -1,0 +1,57 @@
+[
+  {
+    "id": "wooden_club",
+    "name": "Wooden Club",
+    "kind": "melee",
+    "weight": 2,
+    "damage": 8,
+    "cooldown": 1.5,
+    "reachTiles": 1
+  },
+  {
+    "id": "improvised_spear",
+    "name": "Improvised Spear",
+    "kind": "melee",
+    "weight": 2,
+    "damage": 12,
+    "cooldown": 2,
+    "reachTiles": 2
+  },
+  {
+    "id": "reinforced_club",
+    "name": "Reinforced Club",
+    "kind": "melee",
+    "weight": 2,
+    "damage": 14,
+    "cooldown": 1.5,
+    "reachTiles": 1
+  },
+  {
+    "id": "basic_pistol",
+    "name": "Basic Pistol",
+    "kind": "firearm",
+    "weight": 2,
+    "damage": 18,
+    "cooldown": 2,
+    "rangeTiles": 12,
+    "ammoPerShot": 1
+  },
+  {
+    "id": "bandage",
+    "name": "Bandage",
+    "kind": "medical",
+    "weight": 2,
+    "healHP": 10,
+    "stopsBleeding": true,
+    "cooldownHours": 6
+  },
+  {
+    "id": "first_aid_kit",
+    "name": "First Aid Kit",
+    "kind": "medical",
+    "weight": 2,
+    "healHP": 25,
+    "stopsBleeding": true,
+    "cooldownHours": 6
+  }
+]

@@ -1,0 +1,445 @@
+[
+  {
+    "id": "guard",
+    "name": "Guard",
+    "icon": "⚔",
+    "description": "Patrols outside refuge perimeter walls, engages hostiles at range, and mans watchtowers to spot incursions early. High combat resilience.",
+    "primaryStat": "str",
+    "secondaryStat": "agi",
+    "careerRanks": [
+      {
+        "level": 1,
+        "title": "Recruit Guard",
+        "requiredStats": {
+          "str": 4
+        },
+        "dutyHours": 0,
+        "bonus": "Baseline patrol qualification; +15 max HP."
+      },
+      {
+        "level": 2,
+        "title": "Perimeter Veteran",
+        "requiredStats": {
+          "str": 6,
+          "agi": 5
+        },
+        "dutyHours": 24,
+        "bonus": "+25% ranged accuracy; +10% movement sprint speed."
+      },
+      {
+        "level": 3,
+        "title": "Tower Marksman",
+        "requiredStats": {
+          "str": 8,
+          "agi": 7
+        },
+        "dutyHours": 72,
+        "bonus": "Shots pierce 1 additional hostile; +35 engagement range."
+      },
+      {
+        "level": 4,
+        "title": "Refuge Commander",
+        "requiredStats": {
+          "str": 10,
+          "end": 8
+        },
+        "dutyHours": 150,
+        "bonus": "Nearby allies gain +15% damage; suppressive fire slows targets by 40%."
+      }
+    ],
+    "roles": [
+      {
+        "id": "patrol",
+        "name": "Patrol",
+        "icon": "◇",
+        "description": "Goes out through the nearest gate and walks their side of the wall from outside, fighting anything in range. Climbs a watchtower inside the wall when wounded.",
+        "building": null,
+        "slots": 0,
+        "slotBonus": []
+      },
+      {
+        "id": "guard",
+        "name": "Guard",
+        "building": "barracks",
+        "icon": "⚔",
+        "description": "Patrols all the way round outside the wall and runs down any zombie that comes close; mans the watchtowers when the alarm sounds. +30 health, +25% damage.",
+        "slots": 4,
+        "slotBonus": [
+          {
+            "upgrade": "nightwatch",
+            "slots": 2
+          }
+        ]
+      },
+      {
+        "id": "sentry",
+        "name": "Sentry",
+        "building": "tower",
+        "icon": "♜",
+        "description": "A guard on watchtower duty. Walks out to the tower for an 8-hour shift, sees over the wall, spots the dead early and alerts the guards, then goes back to their bed to rest until the next shift. Everyone turns out when the alarm sounds. On the tower: +60% damage, +50 range, 30% faster fire.",
+        "slots": 3,
+        "slotBonus": []
+      }
+    ]
+  },
+  {
+    "id": "medic",
+    "name": "Medic",
+    "icon": "✚",
+    "description": "Works out of the medical clinic: rushes to rescue downed allies first, then provides intensive clinic care to heal injured survivors.",
+    "primaryStat": "int",
+    "secondaryStat": "end",
+    "careerRanks": [
+      {
+        "level": 1,
+        "title": "Paramedic",
+        "requiredStats": {
+          "int": 4
+        },
+        "dutyHours": 0,
+        "bonus": "Standard rescue & bandage speed; stabilizes downed in 4s."
+      },
+      {
+        "level": 2,
+        "title": "Field Surgeon",
+        "requiredStats": {
+          "int": 6,
+          "end": 5
+        },
+        "dutyHours": 24,
+        "bonus": "Stabilization time halved to 2s; patient recovery rate +35%."
+      },
+      {
+        "level": 3,
+        "title": "Chief Medical Officer",
+        "requiredStats": {
+          "int": 8,
+          "end": 7
+        },
+        "dutyHours": 72,
+        "bonus": "Revived survivors regain 50% max HP immediately."
+      },
+      {
+        "level": 4,
+        "title": "Panacea Synthesizer",
+        "requiredStats": {
+          "int": 10,
+          "cha": 8
+        },
+        "dutyHours": 150,
+        "bonus": "Refuge-wide passive HP regen; clinic patients never suffer fatal shock."
+      }
+    ],
+    "roles": [
+      {
+        "id": "medic",
+        "name": "Medic",
+        "building": "clinic",
+        "icon": "✚",
+        "description": "Works from the clinic: rescues the downed first, then treats patients who come in. Intelligence speeds treatment.",
+        "slots": 2,
+        "slotBonus": []
+      }
+    ]
+  },
+  {
+    "id": "engineer",
+    "name": "Engineer",
+    "icon": "⚒",
+    "description": "Maintains colony integrity: rebuilds torn-down fence panels, restores building durability under fire, and optimizes mechanical resource yields.",
+    "primaryStat": "int",
+    "secondaryStat": "str",
+    "careerRanks": [
+      {
+        "level": 1,
+        "title": "Apprentice Mechanic",
+        "requiredStats": {
+          "int": 4
+        },
+        "dutyHours": 0,
+        "bonus": "Repairs walls and gates at normal speed."
+      },
+      {
+        "level": 2,
+        "title": "Combat Welder",
+        "requiredStats": {
+          "int": 6,
+          "str": 5
+        },
+        "dutyHours": 24,
+        "bonus": "Repairs continue during active zombie attacks without interruption."
+      },
+      {
+        "level": 3,
+        "title": "Fortification Architect",
+        "requiredStats": {
+          "int": 8,
+          "str": 7
+        },
+        "dutyHours": 72,
+        "bonus": "Dismantling breaches yields 50% more salvage metal; repair speed +45%."
+      },
+      {
+        "level": 4,
+        "title": "Master Engineer",
+        "requiredStats": {
+          "int": 10,
+          "str": 9
+        },
+        "dutyHours": 150,
+        "bonus": "Reinforces walls with kinetic dampeners; prevents structural breach collapses."
+      }
+    ],
+    "roles": [
+      {
+        "id": "engineer",
+        "name": "Engineer",
+        "building": "workshop",
+        "icon": "⚒",
+        "description": "Rebuilds fence panels the dead tore down, then repairs the most damaged building or barricade, spending wood as they work. Intelligence speeds repairs.",
+        "slots": 2,
+        "slotBonus": []
+      }
+    ]
+  },
+  {
+    "id": "farmer",
+    "name": "Farmer",
+    "icon": "♧",
+    "description": "Cultivates sustainable food supplies on farm plots: plants, irrigates, and harvests crops to feed growing colony populations.",
+    "primaryStat": "int",
+    "secondaryStat": "end",
+    "careerRanks": [
+      {
+        "level": 1,
+        "title": "Field Hand",
+        "requiredStats": {
+          "int": 4
+        },
+        "dutyHours": 0,
+        "bonus": "+25% crop yield when actively tending soil."
+      },
+      {
+        "level": 2,
+        "title": "Cultivator",
+        "requiredStats": {
+          "int": 6,
+          "end": 5
+        },
+        "dutyHours": 24,
+        "bonus": "+50% farm output; reduces harvest loss from spoilage."
+      },
+      {
+        "level": 3,
+        "title": "Hydroponics Specialist",
+        "requiredStats": {
+          "int": 8,
+          "end": 7
+        },
+        "dutyHours": 72,
+        "bonus": "Vertical stacking doubles crop output per square foot of farmland."
+      },
+      {
+        "level": 4,
+        "title": "Master Agronomist",
+        "requiredStats": {
+          "int": 10,
+          "end": 9
+        },
+        "dutyHours": 150,
+        "bonus": "Winter crop synthesis; immunity to frost and seasonal harvest penalties."
+      }
+    ],
+    "roles": [
+      {
+        "id": "farmer",
+        "name": "Farmer",
+        "building": "farm",
+        "icon": "♧",
+        "description": "Plants, tends and harvests. Each farmer raises the farm's output; Intelligence helps.",
+        "slots": 2,
+        "slotBonus": []
+      }
+    ]
+  },
+  {
+    "id": "scavenger",
+    "name": "Scavenger",
+    "icon": "➚",
+    "description": "Prepares supply runs at HQ and leads expeditions into uncharted territory: scours urban ruins for firearms, blueprints, and canned rations.",
+    "primaryStat": "agi",
+    "secondaryStat": "cha",
+    "careerRanks": [
+      {
+        "level": 1,
+        "title": "Runner",
+        "requiredStats": {
+          "agi": 4
+        },
+        "dutyHours": 0,
+        "bonus": "Eligible for local supermarket and suburban scouting runs."
+      },
+      {
+        "level": 2,
+        "title": "Scout Veteran",
+        "requiredStats": {
+          "agi": 6,
+          "cha": 5
+        },
+        "dutyHours": 24,
+        "bonus": "Expedition casualty risk reduced by 25%; movement speed +20%."
+      },
+      {
+        "level": 3,
+        "title": "Depot Raider",
+        "requiredStats": {
+          "agi": 8,
+          "cha": 7
+        },
+        "dutyHours": 72,
+        "bonus": "40% greater firearm drop chance on industrial expeditions."
+      },
+      {
+        "level": 4,
+        "title": "Pathfinder",
+        "requiredStats": {
+          "agi": 10,
+          "cha": 9
+        },
+        "dutyHours": 150,
+        "bonus": "Discovers classified military caches; 50% extra loot returned."
+      }
+    ],
+    "roles": [
+      {
+        "id": "scavenger",
+        "name": "Scavenger",
+        "icon": "➚",
+        "description": "Prepares supply runs at the HQ and is first in line for expeditions.",
+        "building": "guard_post",
+        "slots": 2,
+        "slotBonus": []
+      }
+    ]
+  },
+  {
+    "id": "researcher",
+    "name": "Researcher",
+    "icon": "⚗",
+    "description": "Operates the research laboratory: analyzes zombie pathogen strains, formulates medical compounds, and invents advanced refuge technologies.",
+    "primaryStat": "int",
+    "secondaryStat": "cha",
+    "careerRanks": [
+      {
+        "level": 1,
+        "title": "Lab Assistant",
+        "requiredStats": {
+          "int": 4
+        },
+        "dutyHours": 0,
+        "bonus": "+15% compound synthesis speed in clinic and laboratory."
+      },
+      {
+        "level": 2,
+        "title": "Pathologist",
+        "requiredStats": {
+          "int": 6,
+          "cha": 5
+        },
+        "dutyHours": 24,
+        "bonus": "Technology research speeds up by 30%; unlocks pathogen analysis."
+      },
+      {
+        "level": 3,
+        "title": "Senior Geneticist",
+        "requiredStats": {
+          "int": 8,
+          "cha": 7
+        },
+        "dutyHours": 72,
+        "bonus": "+15% weapon damage against Runners, Brutes, and Bloaters."
+      },
+      {
+        "level": 4,
+        "title": "Director of Science",
+        "requiredStats": {
+          "int": 10,
+          "cha": 9
+        },
+        "dutyHours": 150,
+        "bonus": "Inoculation vector; downed survivors suffer zero infection degradation."
+      }
+    ],
+    "roles": [
+      {
+        "id": "researcher",
+        "name": "Researcher",
+        "building": "lab",
+        "icon": "⚗",
+        "description": "Works from the research lab: develops doctrines, analyzes pathogen mutations, and synthesizes medical compounds. Intelligence speeds research.",
+        "slots": 2,
+        "slotBonus": []
+      }
+    ]
+  },
+  {
+    "id": "logger",
+    "name": "Logger",
+    "icon": "🪓",
+    "description": "Stationed at the sawmill: fells trees in peripheral woodlands, runs timber through circular saws, and massively scales wood production.",
+    "primaryStat": "str",
+    "secondaryStat": "end",
+    "careerRanks": [
+      {
+        "level": 1,
+        "title": "Apprentice Feller",
+        "requiredStats": {
+          "str": 4
+        },
+        "dutyHours": 0,
+        "bonus": "+35% timber harvest yield when stationed at the sawmill."
+      },
+      {
+        "level": 2,
+        "title": "Sawyer Specialist",
+        "requiredStats": {
+          "str": 6,
+          "end": 5
+        },
+        "dutyHours": 24,
+        "bonus": "+50% timber processing throughput via gravity haulage chutes."
+      },
+      {
+        "level": 3,
+        "title": "Timber Boss",
+        "requiredStats": {
+          "str": 8,
+          "end": 7
+        },
+        "dutyHours": 72,
+        "bonus": "Doubles sawmill output per logger with steam-assisted bandsaws."
+      },
+      {
+        "level": 4,
+        "title": "Master of the Woods",
+        "requiredStats": {
+          "str": 10,
+          "end": 9
+        },
+        "dutyHours": 150,
+        "bonus": "+100% wood harvest speed; reinforces all wooden barricades with seasoned timber."
+      }
+    ],
+    "roles": [
+      {
+        "id": "logger",
+        "name": "Logger",
+        "building": "lumber_mill",
+        "icon": "🪓",
+        "description": "Works from the sawmill / lumber mill: harvests timber, cuts lumber, and accelerates refuge wood generation. Strength speeds timber processing.",
+        "slots": 2,
+        "slotBonus": []
+      }
+    ]
+  }
+]

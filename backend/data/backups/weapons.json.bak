@@ -1,0 +1,76 @@
+[
+  {
+    "id": "fists",
+    "name": "Bare hands",
+    "melee": true,
+    "damage": 8,
+    "range": 26,
+    "cooldown": 0.9,
+    "cost": {},
+    "description": "Unarmed desperate self-defense."
+  },
+  {
+    "id": "pipe",
+    "name": "Lead pipe",
+    "melee": true,
+    "damage": 14,
+    "range": 30,
+    "cooldown": 0.85,
+    "cost": {
+      "metal": 8
+    },
+    "description": "Solid iron clubbing weapon."
+  },
+  {
+    "id": "pistol",
+    "name": "Pistol",
+    "melee": false,
+    "damage": 17,
+    "range": 115,
+    "cooldown": 1.1,
+    "cost": {
+      "metal": 25,
+      "wood": 5
+    },
+    "description": "Standard reliable sidearm."
+  },
+  {
+    "id": "rifle",
+    "name": "Rifle",
+    "melee": false,
+    "damage": 26,
+    "range": 150,
+    "cooldown": 1.5,
+    "cost": {
+      "metal": 45,
+      "wood": 15
+    },
+    "description": "Long-range hunting rifle with high stopping power."
+  },
+  {
+    "id": "shotgun",
+    "name": "Pump Shotgun",
+    "melee": false,
+    "damage": 38,
+    "range": 85,
+    "cooldown": 1.8,
+    "cost": {
+      "metal": 55,
+      "wood": 20
+    },
+    "description": "Devastating close-range scattergun."
+  },
+  {
+    "id": "molotov",
+    "name": "Molotov Cocktail",
+    "melee": false,
+    "damage": 45,
+    "range": 95,
+    "cooldown": 2.2,
+    "cost": {
+      "metal": 15,
+      "food": 10
+    },
+    "description": "Incendiary bottle that ignites ground and targets."
+  }
+]

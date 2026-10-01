@@ -1,0 +1,73 @@
+[
+  {
+    "id": "patient",
+    "name": "Patient",
+    "type": "bonus",
+    "effect": "+10% treatment speed",
+    "modifiers": {
+      "labor": {
+        "treat": 0.1
+      }
+    }
+  },
+  {
+    "id": "handy",
+    "name": "Handy",
+    "type": "bonus",
+    "effect": "+10% construction",
+    "modifiers": {
+      "labor": {
+        "build": 0.1
+      }
+    }
+  },
+  {
+    "id": "green_thumb",
+    "name": "Green Thumb",
+    "type": "bonus",
+    "effect": "+10% farming output",
+    "modifiers": {
+      "labor": {
+        "farm": 0.1
+      }
+    }
+  },
+  {
+    "id": "alert",
+    "name": "Alert",
+    "type": "bonus",
+    "effect": "+10% detection range",
+    "modifiers": {
+      "detection": 0.1
+    }
+  },
+  {
+    "id": "sturdy",
+    "name": "Sturdy",
+    "type": "bonus",
+    "effect": "+10 max HP",
+    "modifiers": {
+      "maxHp": 10
+    }
+  },
+  {
+    "id": "slow_learner",
+    "name": "Slow Learner",
+    "type": "drawback",
+    "effect": "-10% crafting speed",
+    "modifiers": {
+      "labor": {
+        "craft": -0.1
+      }
+    }
+  },
+  {
+    "id": "restless",
+    "name": "Restless",
+    "type": "drawback",
+    "effect": "+10% fatigue cost",
+    "modifiers": {
+      "fatigueCost": 0.1
+    }
+  }
+]

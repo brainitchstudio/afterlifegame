@@ -1,0 +1,515 @@
+[
+  {
+    "id": "campfire",
+    "code": "B00",
+    "name": "Campfire",
+    "phase": 1,
+    "unlockedBy": "starter",
+    "cost": {
+      "wood": 10,
+      "scrap_metal": 2
+    },
+    "tokens": {},
+    "laborHours": 0.5,
+    "tiles": {
+      "w": 2,
+      "h": 2
+    },
+    "hp": 100,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {
+      "social": 16
+    },
+    "effect": "Initial camp center & spawn rendezvous; resting within 10 tiles grants +1 morale/day.",
+    "starter": true
+  },
+  {
+    "id": "supply_cache",
+    "code": "B01",
+    "name": "Supply Cache",
+    "phase": 1,
+    "unlockedBy": "starter",
+    "cost": {},
+    "tokens": {},
+    "laborHours": 0,
+    "tiles": {
+      "w": 3,
+      "h": 2
+    },
+    "hp": 300,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {
+      "storage": 600
+    },
+    "effect": "Central startup stock, persistent marker. Capacity shifts to overflow if broken.",
+    "starterOnly": true,
+    "starter": true
+  },
+  {
+    "id": "tent",
+    "code": "B02",
+    "name": "Tent",
+    "phase": 1,
+    "unlockedBy": "p1_02",
+    "cost": {
+      "wood": 10,
+      "cloth": 4
+    },
+    "tokens": {},
+    "laborHours": 1,
+    "tiles": {
+      "w": 2,
+      "h": 2
+    },
+    "hp": 100,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {
+      "housing": 1
+    },
+    "effect": "Rest & housing bonus; automatic vacancy assignment; not protective shelter.",
+    "starter": true
+  },
+  {
+    "id": "supply_stash",
+    "code": "B03",
+    "name": "Supply Stash",
+    "phase": 1,
+    "unlockedBy": "p1_02",
+    "cost": {
+      "wood": 15,
+      "scrap_metal": 5
+    },
+    "tokens": {},
+    "laborHours": 1,
+    "tiles": {
+      "w": 3,
+      "h": 2
+    },
+    "hp": 180,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {
+      "storage": 200
+    },
+    "effect": "Primitive storage capacity, no processing."
+  },
+  {
+    "id": "garden_plot",
+    "code": "B04",
+    "name": "Garden Plot",
+    "phase": 1,
+    "unlockedBy": "p1_03",
+    "cost": {
+      "wood": 12,
+      "scrap_metal": 4,
+      "seed_packets": 1
+    },
+    "tokens": {},
+    "laborHours": 1.5,
+    "tiles": {
+      "w": 4,
+      "h": 4
+    },
+    "hp": 100,
+    "workerSlots": 1,
+    "job": "farmer",
+    "capacity": {
+      "foodOutputPerDay": 3
+    },
+    "effect": "Produces 0.25 Food/work-hour, 3 Food/day; first harvest after 12 effective hours, then 3h batches."
+  },
+  {
+    "id": "field_workbench",
+    "code": "B05",
+    "name": "Field Workbench",
+    "phase": 1,
+    "unlockedBy": "p1_04",
+    "cost": {
+      "wood": 20,
+      "scrap_metal": 10
+    },
+    "tokens": {},
+    "laborHours": 2,
+    "tiles": {
+      "w": 3,
+      "h": 2
+    },
+    "hp": 200,
+    "workerSlots": 1,
+    "job": "engineer",
+    "capacity": {},
+    "effect": "One active craft queue, 10 entries; Engineer 1.5x speed applies; retains unlocked recipes.",
+    "queueCapacity": 10
+  },
+  {
+    "id": "aid_station",
+    "code": "B06",
+    "name": "Aid Station",
+    "phase": 1,
+    "unlockedBy": "p1_05",
+    "cost": {
+      "wood": 15,
+      "scrap_metal": 10,
+      "cloth": 6
+    },
+    "tokens": {},
+    "laborHours": 2,
+    "tiles": {
+      "w": 3,
+      "h": 3
+    },
+    "hp": 180,
+    "workerSlots": 1,
+    "job": "medic",
+    "capacity": {
+      "beds": 1
+    },
+    "effect": "+8 HP/patient-hour, supervised infection treatment, consumes 1 Medical Supply per 4 patient-hours."
+  },
+  {
+    "id": "guard_post",
+    "code": "B07",
+    "name": "Guard Post",
+    "phase": 1,
+    "unlockedBy": "p1_06",
+    "cost": {
+      "wood": 20,
+      "scrap_metal": 15
+    },
+    "tokens": {},
+    "laborHours": 2,
+    "tiles": {
+      "w": 3,
+      "h": 3
+    },
+    "hp": 250,
+    "workerSlots": 2,
+    "job": "guard",
+    "capacity": {},
+    "effect": "Up to 2 patrol routes, radius 20 tiles; rally point and threat response; no innate damage.",
+    "patrolRadius": 20
+  },
+  {
+    "id": "lookout_post",
+    "code": "B08",
+    "name": "Lookout Post",
+    "phase": 1,
+    "unlockedBy": "p1_07",
+    "cost": {
+      "wood": 30,
+      "scrap_metal": 15
+    },
+    "tokens": {},
+    "laborHours": 3,
+    "tiles": {
+      "w": 3,
+      "h": 3
+    },
+    "hp": 220,
+    "workerSlots": 1,
+    "job": "guard",
+    "capacity": {},
+    "effect": "Detection 45 tiles, 360° on visible terrain; reports alarms; guard must leave watch to fight.",
+    "detectionRadius": 45
+  },
+  {
+    "id": "radio_kit",
+    "code": "B09",
+    "name": "Radio Kit",
+    "phase": 1,
+    "unlockedBy": "p1_08",
+    "cost": {
+      "wood": 10,
+      "scrap_metal": 15,
+      "components": 3
+    },
+    "tokens": {},
+    "laborHours": 1.5,
+    "tiles": {
+      "w": 2,
+      "h": 2
+    },
+    "hp": 150,
+    "workerSlots": 1,
+    "job": null,
+    "capacity": {},
+    "effect": "Broadcast/recruitment (cost 2 Food); no housing or CentroCom dependency.",
+    "broadcastDuration": 0.5,
+    "broadcastCooldownHours": 24
+  },
+  {
+    "id": "makeshift_shelter",
+    "code": "B10",
+    "name": "Makeshift Shelter",
+    "phase": 1,
+    "unlockedBy": "p1_09",
+    "cost": {
+      "wood": 35,
+      "scrap_metal": 25,
+      "cloth": 8
+    },
+    "tokens": {},
+    "laborHours": 4,
+    "tiles": {
+      "w": 4,
+      "h": 4
+    },
+    "hp": 500,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {
+      "emergencyOccupants": 8
+    },
+    "effect": "Quiet shelter, 75% reduction in occupant detection; no housing; cannot fire from inside."
+  },
+  {
+    "id": "operations_board",
+    "code": "B20",
+    "name": "Operations Board",
+    "phase": 2,
+    "unlockedBy": "p2_01",
+    "cost": {
+      "wood": 20,
+      "scrap_metal": 15,
+      "components": 1
+    },
+    "tokens": {},
+    "laborHours": 2,
+    "tiles": {
+      "w": 3,
+      "h": 2
+    },
+    "hp": 250,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {},
+    "effect": "Enables one remote operation at a time; team assembly point; not a worker producer.",
+    "maxConcurrentOperations": 1
+  },
+  {
+    "id": "salvage_yard",
+    "code": "B21",
+    "name": "Salvage Yard",
+    "phase": 2,
+    "unlockedBy": "p2_03",
+    "cost": {
+      "wood": 40,
+      "scrap_metal": 30
+    },
+    "tokens": {},
+    "laborHours": 4,
+    "tiles": {
+      "w": 5,
+      "h": 4
+    },
+    "hp": 400,
+    "workerSlots": 2,
+    "job": "general_worker",
+    "capacity": {},
+    "effect": "Per worker-hour consumes 6 Raw Salvage, produces 4 Scrap Metal; max base 96 S/day with two workers."
+  },
+  {
+    "id": "workshop",
+    "code": "B22",
+    "name": "Workshop",
+    "phase": 2,
+    "unlockedBy": "p2_04",
+    "cost": {
+      "wood": 40,
+      "scrap_metal": 35,
+      "components": 4
+    },
+    "tokens": {},
+    "laborHours": 5,
+    "tiles": {
+      "w": 4,
+      "h": 4
+    },
+    "hp": 450,
+    "workerSlots": 2,
+    "job": "engineer",
+    "capacity": {},
+    "effect": "One active queue; second contributes 0.75x; 20 entries; basic plus advanced recipes.",
+    "queueCapacity": 20
+  },
+  {
+    "id": "storage_depot",
+    "code": "B23",
+    "name": "Storage Depot",
+    "phase": 2,
+    "unlockedBy": "p2_05",
+    "cost": {
+      "planks": 25,
+      "metal_parts": 15
+    },
+    "tokens": {},
+    "laborHours": 4,
+    "tiles": {
+      "w": 5,
+      "h": 4
+    },
+    "hp": 500,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {
+      "storage": 1000
+    },
+    "effect": "Improved storage (+1000 capacity); existing Stashes remain valid; resolves overflow."
+  },
+  {
+    "id": "field_farm",
+    "code": "B24",
+    "name": "Field Farm",
+    "phase": 2,
+    "unlockedBy": "p2_06",
+    "cost": {
+      "planks": 20,
+      "metal_parts": 10,
+      "seed_packets": 1
+    },
+    "tokens": {},
+    "laborHours": 4,
+    "tiles": {
+      "w": 6,
+      "h": 6
+    },
+    "hp": 300,
+    "workerSlots": 2,
+    "job": "farmer",
+    "capacity": {
+      "foodOutputPerDay": 12
+    },
+    "effect": "Per worker-hour 0.5 Food, 6/day per worker; max 12/day; first harvest after 12 effective hours per plot lane."
+  },
+  {
+    "id": "barracks",
+    "code": "B25",
+    "name": "Barracks",
+    "phase": 2,
+    "unlockedBy": "p2_06",
+    "cost": {
+      "planks": 30,
+      "metal_parts": 15,
+      "cloth": 12
+    },
+    "tokens": {},
+    "laborHours": 5,
+    "tiles": {
+      "w": 5,
+      "h": 4
+    },
+    "hp": 500,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {
+      "housing": 6
+    },
+    "effect": "Same rest bonus as tents (-8 fatigue/hr); temporary prefab dormitory, not town housing."
+  },
+  {
+    "id": "field_clinic",
+    "code": "B26",
+    "name": "Field Clinic",
+    "phase": 2,
+    "unlockedBy": "p2_07",
+    "cost": {
+      "planks": 20,
+      "metal_parts": 20,
+      "cloth": 10,
+      "components": 2
+    },
+    "tokens": {},
+    "laborHours": 5,
+    "tiles": {
+      "w": 4,
+      "h": 4
+    },
+    "hp": 450,
+    "workerSlots": 1,
+    "job": "medic",
+    "capacity": {
+      "beds": 2
+    },
+    "effect": "+12 HP per patient-hour, shared medic; two beds do not require two Medics."
+  },
+  {
+    "id": "watchtower",
+    "code": "B27",
+    "name": "Watchtower",
+    "phase": 2,
+    "unlockedBy": "p2_08",
+    "cost": {
+      "planks": 25,
+      "metal_parts": 20
+    },
+    "tokens": {},
+    "laborHours": 5,
+    "tiles": {
+      "w": 3,
+      "h": 3
+    },
+    "hp": 600,
+    "workerSlots": 1,
+    "job": "guard",
+    "capacity": {},
+    "effect": "Detection 70 tiles; equipped firearm range +5 tiles while on tower; does not increase damage.",
+    "detectionRadius": 70,
+    "firearmRangeBonus": 5
+  },
+  {
+    "id": "reinforced_shelter",
+    "code": "B28",
+    "name": "Reinforced Shelter",
+    "phase": 2,
+    "unlockedBy": "p2_10",
+    "cost": {
+      "planks": 40,
+      "metal_parts": 30,
+      "cloth": 12
+    },
+    "tokens": {},
+    "laborHours": 6,
+    "tiles": {
+      "w": 5,
+      "h": 5
+    },
+    "hp": 1000,
+    "workerSlots": 0,
+    "job": null,
+    "capacity": {
+      "emergencyOccupants": 16
+    },
+    "effect": "90% detection reduction; no firing; stacks capacity with Makeshift Shelter (total 24 slots)."
+  },
+  {
+    "id": "radio_relay",
+    "code": "B29",
+    "name": "Radio Relay",
+    "phase": 2,
+    "unlockedBy": "p2_11",
+    "cost": {
+      "planks": 20,
+      "metal_parts": 15,
+      "components": 6
+    },
+    "tokens": {
+      "battery_token": 1
+    },
+    "laborHours": 4,
+    "tiles": {
+      "w": 3,
+      "h": 3
+    },
+    "hp": 350,
+    "workerSlots": 1,
+    "job": null,
+    "capacity": {},
+    "effect": "Recruitment cooldown 18h, response 2-4h; candidate success +10%, cap 95%; reveal migration 6h sooner.",
+    "broadcastCooldownHours": 18,
+    "candidateBonusChance": 0.1,
+    "advanceWarningBonusHours": 6
+  }
+]

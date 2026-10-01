@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#171a14;color:#d6d8c6;overflow:hidden}a{color:#c5d48a}a:hover{color:#d9e6a4}canvas{image-rendering:pixelated}input,select,button{font-family:'IBM Plex Mono',monospace}input[type=number]{-moz-appearance:textfield}</style>
+</helmet>
+<div style="height:100vh;display:grid;grid-template-rows:auto minmax(0,1fr);font-family:'IBM Plex Mono',monospace;font-size:12px;color:#d6d8c6">
+  <header style="display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;padding:10px 14px;border-bottom:1px solid #2a2f24;background:#1b1f17">
+    <span style="font-family:'Silkscreen',monospace;font-size:16px;color:#e4e6d2;margin-right:4px">Map Editor</span>
+    <input value="{{ name }}" onChange="{{ setName }}" title="Map name" style="width:140px;background:#12150f;border:1px solid #3d4434;color:#e4e6d2;padding:7px 8px;font-size:12px">
+    <div style="display:flex;border:1px solid #3d4434">
+      <sc-for list="{{ seasons }}" as="s" hint-placeholder-count="4">
+        <button onClick="{{ s.pick }}" style="font-family:'Silkscreen',monospace;font-size:11px;background:{{ s.bg }};color:{{ s.fg }};border:0;padding:8px 10px;cursor:pointer">{{ s.label }}</button>
+      </sc-for>
+    </div>
+    <select value="{{ light }}" onChange="{{ setLight }}" title="Time of day" style="background:#12150f;border:1px solid #3d4434;color:#d6d8c6;padding:7px 6px;font-size:12px">
+      <sc-for list="{{ lights }}" as="l" hint-placeholder-count="7"><option value="{{ l.id }}">{{ l.label }}</option></sc-for>
+    </select>
+    <div style="flex:1"></div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <button onClick="{{ undo }}" title="Undo (Ctrl+Z)" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:12px;opacity:{{ undoOp }}" style-hover="border-color:#c5d48a">Undo</button>
+      <button onClick="{{ redo }}" title="Redo (Ctrl+Shift+Z)" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:12px;opacity:{{ redoOp }}" style-hover="border-color:#c5d48a">Redo</button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px">
+      <button onClick="{{ newMap }}" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:12px" style-hover="border-color:#c5d48a;color:#c5d48a">New</button>
+      <button onClick="{{ openMap }}" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:12px" style-hover="border-color:#c5d48a;color:#c5d48a">Open</button>
+      <button onClick="{{ saveMap }}" title="Download the editor project (.survmap.json)" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:12px" style-hover="border-color:#c5d48a;color:#c5d48a">Save</button>
+      <button onClick="{{ exportPng }}" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:7px 10px;cursor:pointer;font-size:12px" style-hover="border-color:#c5d48a;color:#c5d48a">PNG</button>
+      <button onClick="{{ exportUnity }}" title="Zip with map JSON, sprite atlas and a C# loader" style="font-family:'Silkscreen',monospace;font-size:12px;background:#c5d48a;color:#1a1e14;border:0;padding:9px 14px;cursor:pointer" style-hover="background:#d9e6a4">{{ exportLabel }}</button>
+    </div>
+    <input type="file" accept=".json,application/json" data-open="1" onChange="{{ onFile }}" style="display:none">
+  </header>
+
+  <div style="display:grid;grid-template-columns:300px minmax(0,1fr);min-height:0">
+    <aside style="display:flex;flex-direction:column;min-height:0;overflow-y:auto;border-right:1px solid #2a2f24;background:#1b1f17">
+
+      <div style="display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-bottom:1px solid #2a2f24">
+        <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78;margin-bottom:2px">Layers</span>
+        <sc-for list="{{ layers }}" as="l" hint-placeholder-count="4">
+          <div style="display:flex;gap:4px">
+            <button onClick="{{ l.pick }}" style="flex:1;min-width:0;display:flex;justify-content:space-between;gap:8px;text-align:left;background:{{ l.bg }};border:1px solid {{ l.bd }};color:{{ l.fg }};padding:7px 8px;font-size:11px;cursor:pointer">
+              <span>{{ l.label }}</span><span style="opacity:.6">{{ l.count }}</span>
+            </button>
+            <button onClick="{{ l.toggleVis }}" title="Show or hide this layer" style="width:58px;font-size:10px;background:transparent;border:1px solid #2a2f24;color:{{ l.visFg }};cursor:pointer" style-hover="border-color:#6f7d45">{{ l.visLabel }}</button>
+            <button onClick="{{ l.toggleLock }}" title="Lock to stop edits on this layer" style="width:58px;font-size:10px;background:transparent;border:1px solid #2a2f24;color:{{ l.lockFg }};cursor:pointer" style-hover="border-color:#6f7d45">{{ l.lockLabel }}</button>
+          </div>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ hasSel }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:10px;padding:12px;border-bottom:1px solid #2a2f24;background:#1f2419">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:8px">
+            <span style="font-family:'Silkscreen',monospace;font-size:12px;color:#e4e6d2">{{ selTitle }}</span>
+            <span style="font-size:10px;color:#8b8f78">{{ selSub }}</span>
+          </div>
+          <sc-for list="{{ selRows }}" as="r">
+            <div style="display:flex;align-items:center;gap:8px">
+              <span style="width:56px;flex:none;font-size:11px;color:#8b8f78">{{ r.label }}</span>
+              <div style="display:flex;flex-wrap:wrap;border:1px solid #3d4434">
+                <sc-for list="{{ r.opts }}" as="o"><button onClick="{{ o.pick }}" style="font-size:11px;background:{{ o.bg }};color:{{ o.fg }};border:0;padding:5px 8px;cursor:pointer">{{ o.label }}</button></sc-for>
+              </div>
+            </div>
+          </sc-for>
+          <div style="display:flex;gap:6px">
+            <button onClick="{{ dupSel }}" title="Ctrl+D" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:6px 10px;cursor:pointer;font-size:11px" style-hover="border-color:#c5d48a;color:#c5d48a">Duplicate</button>
+            <button onClick="{{ delSel }}" title="Delete" style="background:transparent;color:#d0694f;border:1px solid #3d4434;padding:6px 10px;cursor:pointer;font-size:11px" style-hover="border-color:#d0694f">Delete</button>
+            <button onClick="{{ clearSel }}" title="Esc" style="margin-left:auto;background:transparent;color:#8b8f78;border:1px solid #2a2f24;padding:6px 10px;cursor:pointer;font-size:11px" style-hover="color:#d6d8c6">Deselect</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showCats }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-wrap:wrap;gap:4px;padding:10px 12px 0">
+          <sc-for list="{{ cats }}" as="c" hint-placeholder-count="2">
+            <button onClick="{{ c.pick }}" style="font-family:'Silkscreen',monospace;font-size:10px;background:{{ c.bg }};color:{{ c.fg }};border:1px solid {{ c.bd }};padding:6px 8px;cursor:pointer">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ gateOpts }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px 0;align-items:center">
+          <div style="display:flex;border:1px solid #3d4434">
+            <sc-for list="{{ gateStates }}" as="g"><button onClick="{{ g.pick }}" style="font-size:11px;background:{{ g.bg }};color:{{ g.fg }};border:0;padding:6px 10px;cursor:pointer">{{ g.label }}</button></sc-for>
+          </div>
+          <sc-if value="{{ sideOpts }}">
+            <div style="display:flex;border:1px solid #3d4434">
+              <sc-for list="{{ gateSides }}" as="g"><button onClick="{{ g.pick }}" title="{{ g.title }}" style="font-size:11px;background:{{ g.bg }};color:{{ g.fg }};border:0;padding:6px 10px;cursor:pointer">{{ g.label }}</button></sc-for>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ baseOpts }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:8px;padding:10px 12px 0">
+          <p style="margin:0;font-size:11px;line-height:1.5;color:#8b8f78;text-wrap:pretty">Base tiles are where the player can build at the start. They export as the buildable grid.</p>
+          <div style="display:flex;gap:6px">
+            <button onClick="{{ baseAuto }}" title="Marks every tile enclosed by walls and gates, plus the walls" style="background:#2a3120;color:#c5d48a;border:1px solid #6f7d45;padding:6px 10px;cursor:pointer;font-size:11px" style-hover="border-color:#c5d48a">Fill inside walls</button>
+            <button onClick="{{ baseClear }}" style="background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:6px 10px;cursor:pointer;font-size:11px" style-hover="border-color:#c5d48a">Clear all</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <div style="flex:1 0 180px;padding:12px">
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">
+          <sc-for list="{{ items }}" as="it" hint-placeholder-count="9">
+            <button onClick="{{ it.pick }}" title="{{ it.label }}" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;padding:8px 4px 6px;min-height:88px;background:{{ it.bg }};border:1px solid {{ it.bd }};cursor:pointer" style-hover="border-color:#6f7d45">
+              <div style="flex:1;display:grid;place-items:center"><canvas data-thumb="{{ it.thumb }}" data-mk="{{ it.mk }}"></canvas></div>
+              <span style="font-size:10px;line-height:1.2;text-align:center;color:{{ it.fg }}">{{ it.label }}</span>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:6px;padding:10px 12px;border-top:1px solid #2a2f24">
+        <span style="font-family:'Silkscreen',monospace;font-size:10px;color:#8b8f78">Checks</span>
+        <sc-for list="{{ checks }}" as="c" hint-placeholder-count="1">
+          <button onClick="{{ c.pick }}" style="display:flex;gap:8px;text-align:left;background:transparent;border:0;padding:0;font-size:11px;line-height:1.45;color:{{ c.fg }};cursor:pointer" style-hover="color:#e4e6d2">
+            <span style="flex:none;width:6px;height:6px;margin-top:5px;background:{{ c.dot }}"></span><span style="text-wrap:pretty">{{ c.text }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;padding:12px;border-top:1px solid #2a2f24">
+        <div style="display:flex;gap:6px;align-items:center">
+          <span style="font-size:11px;color:#8b8f78;width:40px">Size</span>
+          <input type="number" min="8" max="256" value="{{ rw }}" onChange="{{ setRw }}" title="Width in tiles" style="width:52px;background:#12150f;border:1px solid #3d4434;color:#e4e6d2;padding:6px;font-size:12px">
+          <span style="color:#8b8f78">×</span>
+          <input type="number" min="8" max="256" value="{{ rh }}" onChange="{{ setRh }}" title="Height in tiles" style="width:52px;background:#12150f;border:1px solid #3d4434;color:#e4e6d2;padding:6px;font-size:12px">
+          <button onClick="{{ resize }}" style="margin-left:auto;background:transparent;color:#d6d8c6;border:1px solid #3d4434;padding:6px 10px;cursor:pointer;font-size:11px" style-hover="border-color:#c5d48a;color:#c5d48a">Resize</button>
+        </div>
+      </div>
+    </aside>
+
+    <main data-wrap="1" style="position:relative;min-width:0;min-height:0;overflow:hidden;background:#0e100c">
+      <canvas data-editor="1" style="position:absolute;inset:0;width:100%;height:100%;touch-action:none;display:block"></canvas>
+      <div style="position:absolute;left:12px;top:12px;max-height:calc(100% - 54px);overflow-y:auto;scrollbar-width:none;box-sizing:border-box;display:flex;flex-direction:column;gap:2px;padding:3px;background:rgba(27,31,23,0.96);border:1px solid #3d4434;box-shadow:0 4px 0 rgba(0,0,0,0.35)">
+        <button onClick="{{ tb.hand.pick }}" title="{{ tb.hand.title }}" style="position:relative;width:40px;height:40px;display:grid;place-items:center;background:{{ tb.hand.bg }};color:{{ tb.hand.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.hand.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path d="M6 1h2v7H6zM4 3h2v5H4zM8 2h2v6H8zM10 4h2v6h-2zM1 7h2v2H1zM2 9h2v2H2zM3 10h2v2H3zM4 8h8v5H4zM5 13h6v2H5z"></path></svg><span style="position:absolute;right:3px;bottom:1px;font-size:8px;opacity:.55">H</span></button>
+        <button onClick="{{ tb.select.pick }}" title="{{ tb.select.title }}" style="position:relative;width:40px;height:40px;display:grid;place-items:center;background:{{ tb.select.bg }};color:{{ tb.select.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.select.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M3 1v13l3.2-3.2 2.1 4.4 2.2-1.1-2.1-4.3H13z"></path></svg><span style="position:absolute;right:3px;bottom:1px;font-size:8px;opacity:.55">V</span></button>
+        <div style="height:1px;background:#3d4434;margin:3px 4px"></div>
+        <button onClick="{{ tb.paint.pick }}" title="{{ tb.paint.title }}" style="position:relative;width:40px;height:40px;display:grid;place-items:center;background:{{ tb.paint.bg }};color:{{ tb.paint.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.paint.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M11.5 1l3.5 3.5-1.6 1.6-3.5-3.5zM9 3.5L12.5 7 5.5 14 1 15l1-4.5z"></path></svg><span style="position:absolute;right:3px;bottom:1px;font-size:8px;opacity:.55">B</span></button>
+        <button onClick="{{ tb.line.pick }}" title="{{ tb.line.title }}" style="position:relative;width:40px;height:40px;display:grid;place-items:center;background:{{ tb.line.bg }};color:{{ tb.line.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.line.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 12.5l9-9" stroke="currentColor" stroke-width="2"></path><rect x="1" y="11" width="4" height="4"></rect><rect x="11" y="1" width="4" height="4"></rect></svg><span style="position:absolute;right:3px;bottom:1px;font-size:8px;opacity:.55">L</span></button>
+        <button onClick="{{ tb.rect.pick }}" title="{{ tb.rect.title }}" style="position:relative;width:40px;height:40px;display:grid;place-items:center;background:{{ tb.rect.bg }};color:{{ tb.rect.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.rect.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" shape-rendering="crispEdges"><path fill-rule="evenodd" d="M1 3h14v10H1zM3 5v6h10V5z"></path></svg><span style="position:absolute;right:3px;bottom:1px;font-size:8px;opacity:.55">R</span></button>
+        <button onClick="{{ tb.fill.pick }}" title="{{ tb.fill.title }}" style="position:relative;width:40px;height:40px;display:grid;place-items:center;background:{{ tb.fill.bg }};color:{{ tb.fill.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.fill.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 8.5L7 3l5.5 5.5L7 14z"></path><path d="M4.5 1.5L8 5" stroke="currentColor" stroke-width="1.6" fill="none"></path><path d="M14 9c-1.2 1.7-1.7 2.7-1.7 3.3a1.7 1.7 0 003.4 0c0-.6-.5-1.6-1.7-3.3z"></path></svg><span style="position:absolute;right:3px;bottom:1px;font-size:8px;opacity:.55">G</span></button>
+        <button onClick="{{ tb.erase.pick }}" title="{{ tb.erase.title }}" style="position:relative;width:40px;height:40px;display:grid;place-items:center;background:{{ tb.erase.bg }};color:{{ tb.erase.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.erase.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M9.5 1.5l5 5-4 4-5-5z"></path><path d="M4.8 6.2l5 5L7.5 13.5h-3L1.5 10.5z" fill-opacity=".55"></path><rect x="8" y="13" width="7" height="1.6"></rect></svg><span style="position:absolute;right:3px;bottom:1px;font-size:8px;opacity:.55">E</span></button>
+        <button onClick="{{ tb.pick.pick }}" title="{{ tb.pick.title }}" style="position:relative;width:40px;height:40px;display:grid;place-items:center;background:{{ tb.pick.bg }};color:{{ tb.pick.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.pick.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M12 1.2a2 2 0 012.8 2.8l-2 2 .9.9-1.4 1.4-.9-.9-5.6 5.6H2.5v-3.3l5.6-5.6-.9-.9 1.4-1.4.9.9z"></path></svg><span style="position:absolute;right:3px;bottom:1px;font-size:8px;opacity:.55">I</span></button>
+        <div style="height:1px;background:#3d4434;margin:3px 4px"></div>
+        <button onClick="{{ tb.grid.pick }}" title="{{ tb.grid.title }}" style="width:40px;height:40px;display:grid;place-items:center;background:{{ tb.grid.bg }};color:{{ tb.grid.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.grid.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.5 1.5h13v13h-13zM5.8 1.5v13M10.2 1.5v13M1.5 5.8h13M1.5 10.2h13"></path></svg></button>
+        <button onClick="{{ tb.col.pick }}" title="{{ tb.col.title }}" style="width:40px;height:40px;display:grid;place-items:center;background:{{ tb.col.bg }};color:{{ tb.col.fg }};border:0;padding:0;cursor:pointer" style-hover="background:{{ tb.col.hov }}"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 2h12v12H2zM2 2l12 12M14 2L2 14"></path></svg></button>
+      </div>
+      <div style="position:absolute;top:12px;left:68px;right:12px;display:flex;pointer-events:none">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;max-width:100%;padding:7px 12px;min-height:30px;box-sizing:border-box;background:rgba(27,31,23,0.96);border:1px solid #3d4434;box-shadow:0 4px 0 rgba(0,0,0,0.35);pointer-events:auto">
+          <span style="font-family:'Silkscreen',monospace;font-size:12px;color:#e4e6d2">{{ toolName }}</span>
+          <sc-if value="{{ showBrush }}" hint-placeholder-val="{{ true }}">
+            <div style="display:flex;align-items:center;gap:8px;padding-left:12px;border-left:1px solid #3d4434">
+              <div style="width:24px;height:24px;display:grid;place-items:center"><canvas data-thumb="{{ brushThumb }}" data-mk="{{ brushMk }}" data-max="24"></canvas></div>
+              <span style="font-size:11px;color:#c5d48a">{{ brushLabel }}</span>
+            </div>
+          </sc-if>
+          <span style="flex:1 1 240px;padding-left:12px;border-left:1px solid #3d4434;font-size:11px;line-height:1.45;color:{{ hintFg }};text-wrap:pretty">{{ hint }}</span>
+        </div>
+      </div>
+      <div style="position:absolute;right:12px;bottom:42px;display:flex;align-items:stretch;background:rgba(27,31,23,0.96);border:1px solid #3d4434;box-shadow:0 4px 0 rgba(0,0,0,0.35)">
+        <button onClick="{{ zoomOut }}" title="Zoom out (-)" style="width:34px;height:34px;background:transparent;color:#d6d8c6;border:0;font-size:16px;cursor:pointer" style-hover="background:#2a3120">−</button>
+        <span style="min-width:52px;display:grid;place-items:center;font-size:11px;color:#d6d8c6;border-left:1px solid #2a2f24;border-right:1px solid #2a2f24">{{ zoomPct }}</span>
+        <button onClick="{{ zoomIn }}" title="Zoom in (+)" style="width:34px;height:34px;background:transparent;color:#d6d8c6;border:0;font-size:16px;cursor:pointer" style-hover="background:#2a3120">+</button>
+        <button onClick="{{ zoomFit }}" title="Fit map (0)" style="width:34px;height:34px;display:grid;place-items:center;background:transparent;color:#d6d8c6;border:0;border-left:1px solid #2a2f24;cursor:pointer" style-hover="background:#2a3120"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1.5 5.5v-4h4M10.5 1.5h4v4M14.5 10.5v4h-4M5.5 14.5h-4v-4"></path></svg></button>
+      </div>
+      <sc-if value="{{ loading }}" hint-placeholder-val="{{ true }}">
+        <div style="position:absolute;inset:0;display:grid;place-items:center;font-family:'Silkscreen',monospace;font-size:14px;color:#8b8f78">Generating sprites…</div>
+      </sc-if>
+      <div style="position:absolute;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:space-between;padding:7px 12px;background:rgba(18,21,15,0.92);border-top:1px solid #2a2f24;font-size:11px;color:#8b8f78;pointer-events:none">
+        <span data-status="1" style="color:#d6d8c6"></span>
+        <span>{{ info }}</span>
+      </div>
+    </main>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ghost&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;background&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;dark&quot;,&quot;mid&quot;],&quot;default&quot;:&quot;dark&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const TS = 16, PAD = 64, LS = 'survival-map-editor-v1';
+const DIRS = [['n', 0, -1], ['e', 1, 0], ['s', 0, 1], ['w', -1, 0]];
+const FP = { bld_town_hall: [4, 3], bld_clinic: [3, 3], bld_barracks: [4, 2], bld_workshop: [3, 3], bld_farm: [4, 3], bld_shelter: [2, 2], bld_lumber_mill: [3, 2], bld_storage: [3, 3], bld_lab: [3, 3], bld_armory: [2, 2], bld_bunkhouse: [3, 2] };
+const BN = { bld_town_hall: 'Town hall', bld_clinic: 'Clinic', bld_barracks: 'Barracks', bld_workshop: 'Workshop', bld_farm: 'Farm plot', bld_shelter: 'Shelter', bld_lumber_mill: 'Lumber mill', bld_storage: 'Storage', bld_lab: 'Research lab', bld_armory: 'Armory', bld_bunkhouse: 'Bunkhouse' };
+const TREES = [['tree_oak', 'Oak'], ['tree_pine', 'Pine'], ['tree_dead', 'Dead tree'], ['bush', 'Berry bush'], ['stump', 'Stump']];
+const DECO = [['deco_car', 'Wrecked car'], ['deco_drum', 'Oil drum'], ['deco_crates', 'Crates'], ['deco_tires', 'Tire pile'], ['deco_boulder', 'Boulder'], ['deco_fence', 'Broken fence'], ['deco_streetlight', 'Streetlight'], ['deco_rubble', 'Rubble'], ['deco_campfire', 'Cold campfire'], ['deco_dumpster', 'Dumpster'], ['deco_bench', 'Park bench'], ['deco_barrier', 'Road barrier'], ['deco_sign', 'Road sign'], ['deco_mailbox', 'Mailbox'], ['deco_hydrant', 'Hydrant'], ['deco_haybale', 'Hay bale'], ['deco_logs', 'Log pile'], ['deco_trash', 'Trash bags'], ['deco_pole', 'Utility pole'], ['deco_well', 'Stone well'], ['deco_flowers', 'Wildflowers'], ['deco_tuft', 'Tall grass'], ['deco_mushrooms', 'Mushrooms'], ['deco_leaves', 'Leaf pile'], ['deco_pebbles', 'Pebbles'], ['deco_fallen_log', 'Fallen log'], ['deco_skeleton', 'Skeleton'], ['deco_blood', 'Bloodstain'], ['deco_tent', 'Tent'], ['deco_cart', 'Shopping cart'], ['deco_backpack', 'Backpack'], ['deco_bicycle', 'Bicycle'], ['deco_picnic', 'Picnic table'], ['deco_scarecrow', 'Scarecrow'], ['deco_wheelbarrow', 'Wheelbarrow'], ['deco_tractor', 'Rusted tractor'], ['deco_bus', 'School bus'], ['deco_police_car', 'Police car'], ['deco_grave_cross', 'Grave cross'], ['deco_tombstone', 'Tombstone'], ['deco_wire', 'Barbed wire'], ['deco_sandbags', 'Sandbag pile']];
+const DFP = { deco_car: [2, 1], deco_dumpster: [2, 1], deco_bench: [2, 1], deco_barrier: [2, 1], deco_fallen_log: [2, 1], deco_tent: [2, 1], deco_picnic: [2, 1], deco_tractor: [2, 1], deco_police_car: [2, 1], deco_wire: [2, 1], deco_bus: [3, 1] }, WALKABLE = { deco_rubble: 1, deco_campfire: 1, deco_trash: 1, deco_flowers: 1, deco_tuft: 1, deco_mushrooms: 1, deco_leaves: 1, deco_pebbles: 1, deco_skeleton: 1, deco_blood: 1, deco_backpack: 1, deco_bicycle: 1 };
+const WORLD = [['wld_house', 'Farmhouse', [3, 3]], ['wld_burnt_house', 'Burned house', [3, 2]], ['wld_gas_station', 'Gas station', [4, 3]], ['wld_barn', 'Barn', [4, 3]], ['wld_chapel', 'Chapel', [3, 3]], ['wld_water_tower', 'Water tower', [2, 2]], ['wld_shed', 'Tool shed', [2, 2]], ['wld_trailer', 'Trailer home', [3, 2]]];
+WORLD.forEach(([k, l, f]) => { FP[k] = f; BN[k] = l; });
+const isWorld = k => !!k && k.startsWith('wld_');
+const MATS = [['planks', 'Planks'], ['palisade', 'Palisade'], ['sandbag', 'Sandbags'], ['scrap', 'Scrap']];
+const GATES = [['wood', 'Wood'], ['metal', 'Reinforced'], ['log', 'Log'], ['scrap', 'Scrap']];
+const CATS = [['terrain', 'Terrain'], ['roads', 'Roads'], ['base', 'Base zone'], ['walls', 'Walls'], ['gates', 'Gates'], ['structures', 'Buildings'], ['world', 'World'], ['foliage', 'Foliage'], ['decor', 'Decor'], ['markers', 'Markers']];
+const CAT_LAYER = { terrain: 'ground', roads: 'ground', base: 'base', walls: 'objects', gates: 'objects', structures: 'objects', world: 'objects', foliage: 'objects', decor: 'objects', markers: 'markers' };
+const LAYERS = [['markers', 'Markers'], ['base', 'Base zone'], ['objects', 'Objects'], ['ground', 'Ground']];
+const TOOLS = [['hand', 'Hand', 'H'], ['select', 'Move', 'V'], ['paint', 'Pencil', 'B'], ['line', 'Line', 'L'], ['rect', 'Rectangle', 'R'], ['fill', 'Fill', 'G'], ['erase', 'Eraser', 'E'], ['pick', 'Picker', 'I']];
+const LIGHTS = ['early_morning', 'morning', 'day', 'early_evening', 'evening', 'night', 'late_night'];
+const MK = { survivor: '#c5d48a', zombie: '#d0694f', base: '#c5d48a', wild: '#565b4c' };
+const hh = (x, y, s = 0) => { let n = (Math.imul(x | 0, 374761393) + Math.imul(y | 0, 668265263) + Math.imul(s | 0, 982451653)) | 0; n = Math.imul(n ^ (n >>> 13), 1274126177); n ^= n >>> 16; return (n >>> 0) / 4294967296; };
+const fam = k => k.startsWith('road') ? 'r' : k.startsWith('grass') ? 'g' : 'd';
+const slug = s => (s || 'map').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '') || 'map';
+const isMark = o => o && o.mk !== undefined;
+const CONT = { terr: 1, tile: 1, wall: 1, tree: 1, marker: 1, base: 1 };
+const lineCells = (x0, y0, x1, y1) => { const r = [[x0, y0]], dx = Math.abs(x1 - x0), dy = -Math.abs(y1 - y0), sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1; let err = dx + dy; while (!(x0 === x1 && y0 === y1)) { const e2 = 2 * err; if (e2 >= dy) { err += dy; x0 += sx; } if (e2 <= dx) { err += dx; y0 += sy; } r.push([x0, y0]); } return r; };
+function brushes() {
+  const B = [], add = (cat, id, label, o) => B.push({ cat, id, label, ...o });
+  add('terrain', 't_grass', 'Grass', { kind: 'terr', terr: 'g', thumb: 'grass_a' });
+  add('terrain', 't_dirt', 'Dirt', { kind: 'terr', terr: 'd', thumb: 'dirt_a' });
+  [['grass_a', 'Grass plain'], ['grass_b', 'Grass tufts'], ['grass_c', 'Grass flowers'], ['dirt_a', 'Dirt plain'], ['dirt_b', 'Dirt stones'], ['dirt_c', 'Dirt rutted'], ['edge_n', 'Edge N'], ['edge_e', 'Edge E'], ['edge_s', 'Edge S'], ['edge_w', 'Edge W']].forEach(([k, l]) => add('terrain', 'k_' + k, l, { kind: 'tile', key: k, thumb: k }));
+  add('roads', 't_road', 'Road', { kind: 'terr', terr: 'r', thumb: 'road_x' });
+  [['road_h', 'E–W'], ['road_v', 'N–S'], ['road_x', 'Junction'], ['road_p', 'Potholes'], ['road_edge_n', 'Edge N'], ['road_edge_e', 'Edge E'], ['road_edge_s', 'Edge S'], ['road_edge_w', 'Edge W'], ['road_corner_nw', 'Corner NW'], ['road_corner_ne', 'Corner NE'], ['road_corner_sw', 'Corner SW'], ['road_corner_se', 'Corner SE']].forEach(([k, l]) => add('roads', 'k_' + k, l, { kind: 'tile', key: k, thumb: k }));
+  add('base', 'b_on', 'Base tile', { kind: 'base', v: 1, mk: 'base' });
+  add('base', 'b_off', 'Outside base', { kind: 'base', v: 0, mk: 'wild' });
+  MATS.forEach(([m, l]) => add('walls', 'w_' + m, l === 'Scrap' ? 'Scrap metal' : l, { kind: 'wall', mat: m, thumb: 'wall_' + m + '_h' }));
+  add('walls', 'w_planks_dmg', 'Planks damaged', { kind: 'wall', mat: 'planks', dmg: 1, thumb: 'wall_planks_dmg' });
+  GATES.forEach(([g, l]) => { add('gates', 'g_' + g + '_h', l + ' N/S', { kind: 'gate', gk: g, o: 'h', thumb: 'gate_' + g + '_closed' }); add('gates', 'g_' + g + '_v', l + ' W/E', { kind: 'gate', gk: g, o: 'v', thumb: 'gate_' + g + '_v_closed' }); });
+  add('structures', 'tw_open', 'Lookout', { kind: 'tower', roof: 0, thumb: 'tower_open' });
+  add('structures', 'tw_roof', 'Roofed tower', { kind: 'tower', roof: 1, thumb: 'tower_roofed' });
+  for (const k in FP) if (!isWorld(k)) add('structures', k, BN[k], { kind: 'bld', k, thumb: k });
+  WORLD.forEach(([k, l]) => add('world', k, l, { kind: 'bld', k, thumb: k }));
+  TREES.forEach(([k, l]) => add('foliage', k, l, { kind: 'tree', k, thumb: k }));
+  DECO.forEach(([k, l]) => add('decor', k, l, { kind: 'tree', k, thumb: k }));
+  add('markers', 'm_survivor', 'Survivor spawn', { kind: 'marker', mk: 'survivor' });
+  add('markers', 'm_zombie', 'Zombie spawn', { kind: 'marker', mk: 'zombie' });
+  return B;
+}
+function crc32(b) { let t = crc32.t; if (!t) { t = crc32.t = []; for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } } let c = -1; for (let i = 0; i < b.length; i++) c = t[(c ^ b[i]) & 255] ^ (c >>> 8); return (c ^ -1) >>> 0; }
+function zip(files) {
+  const enc = new TextEncoder(), parts = [], cd = []; let off = 0, cds = 0;
+  for (const f of files) {
+    const nm = enc.encode(f.name), crc = crc32(f.data), n = f.data.length;
+    const h = new DataView(new ArrayBuffer(30)); h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(12, 0x21, true); h.setUint32(14, crc, true); h.setUint32(18, n, true); h.setUint32(22, n, true); h.setUint16(26, nm.length, true);
+    parts.push(h.buffer, nm, f.data);
+    const c = new DataView(new ArrayBuffer(46)); c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(14, 0x21, true); c.setUint32(16, crc, true); c.setUint32(20, n, true); c.setUint32(24, n, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cd.push(c.buffer, nm); cds += 46 + nm.length; off += 30 + nm.length + n;
+  }
+  const e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cds, true); e.setUint32(16, off, true);
+  return new Blob([...parts, ...cd, e.buffer], { type: 'application/zip' });
+}
+const dl = (blob, name) => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 3000); };
+const pngBytes = async cv => new Uint8Array(await (await new Promise(r => cv.toBlob(r, 'image/png'))).arrayBuffer());
+
+class Component extends DCLogic {
+  B = brushes(); cache = {}; undoS = []; redoS = []; view = { z: 3, ox: 0, oy: 0 }; list = []; sel = []; clip = null; skip = null;
+  state = { tool: 'paint', layer: 'ground', cat: 'terrain', brush: 't_grass', season: 'summer', light: 'day', grid: true, col: false,
+    vis: { ground: true, base: true, objects: true, markers: true }, lock: { ground: false, base: false, objects: false, markers: false },
+    gateOpen: false, gateSide: 'e', zoom: 3, loading: true, rev: 0, name: 'outpost', rw: 40, rh: 28, busy: false };
+
+  componentDidMount() {
+    this.cv = document.querySelector('canvas[data-editor]'); this.wrap = document.querySelector('[data-wrap]'); this.st = document.querySelector('[data-status]');
+    Promise.all(['pixel-assets-v2.js', 'pixel-buildings.js', 'pixel-decor.js', 'pixel-world.js'].map(f => import(new URL(f, document.baseURI).href))).then(([m, b, dc, wd]) => {
+      this.m = m;
+      this.A = Object.assign(m.buildAll(), b.buildBuildings(), b.buildBuildings('spring'), b.buildBuildings('fall'), b.buildBuildings('winter'), ...m.SEASON_NAMES.map(n => dc.buildDecor(n)), ...m.SEASON_NAMES.map(n => wd.buildWorld(n)));
+      let saved = null; try { saved = JSON.parse(localStorage.getItem(LS)); } catch (e) {}
+      if (saved && saved.format === 'survival-map') this.load(saved); else { this.load(this.blank(40, 28, 'outpost')); this.demo(); }
+      this.fit();
+      this.setState({ loading: false, name: this.M.name, rw: this.M.w, rh: this.M.h, season: saved?.season || 'summer', light: saved?.light || 'day' });
+    });
+    const c = this.cv;
+    this.h = {
+      pointerdown: e => this.down(e), pointermove: e => this.move(e), pointerup: e => this.up(e), pointercancel: e => this.up(e),
+      pointerleave: () => { if (!this.drag) { this.hover = null; this.paint(); if (this.st) this.st.textContent = ''; } },
+      contextmenu: e => e.preventDefault(), wheel: e => this.wheel(e)
+    };
+    for (const k in this.h) c.addEventListener(k, this.h[k], k === 'wheel' ? { passive: false } : undefined);
+    this.onKey = e => this.key(e); window.addEventListener('keydown', this.onKey); window.addEventListener('keyup', this.onKey);
+    this.cursor();
+    this.ro = new ResizeObserver(() => { if (this.M && (this.needFit || !this.userMoved)) this.fit(); else this.paint(); }); this.ro.observe(this.wrap);
+  }
+  componentWillUnmount() {
+    if (this.h) for (const k in this.h) this.cv.removeEventListener(k, this.h[k]);
+    window.removeEventListener('keydown', this.onKey); window.removeEventListener('keyup', this.onKey); this.ro && this.ro.disconnect();
+  }
+  componentDidUpdate() { this.redraw(); this.thumbs(); this.cursor(); }
+  cursor() { const c = this.cv; if (!c) return; const d = this.drag, t = this.state.tool; c.style.cursor = d && d.pan ? 'grabbing' : this.space || t === 'hand' ? 'grab' : t === 'select' ? (this.hot ? 'move' : 'default') : 'crosshair'; }
+  bump() { this.setState(s => ({ rev: s.rev + 1 })); }
+
+  /* ---------- model ---------- */
+  blank(w, h, name) { return { format: 'survival-map', version: 2, name, w, h, terr: new Array(w * h).fill('g'), fixed: new Array(w * h).fill(null), base: new Array(w * h).fill(0), objs: [], marks: [] }; }
+  ser() { const M = this.M; return { format: 'survival-map', version: 2, name: M.name, w: M.w, h: M.h, terr: M.terr.slice(), fixed: M.fixed.slice(), base: M.base.slice(), objs: M.objs.map(o => ({ ...o })), marks: M.marks.map(o => ({ ...o })) }; }
+  load(d) {
+    this.M = { name: d.name || 'map', w: d.w, h: d.h, terr: d.terr.slice(), fixed: d.fixed.map(v => v || null), base: d.base ? d.base.map(v => v ? 1 : 0) : new Array(d.w * d.h).fill(0), objs: (d.objs || []).map(o => ({ ...o })), marks: (d.marks || []).map(o => ({ ...o })) };
+    this.sel = []; this.reocc(); if (!d.base) this.autoBase();
+  }
+  inb(x, y) { return x >= 0 && y >= 0 && x < this.M.w && y < this.M.h; }
+  fp(o) { return o.t === 'gate' ? (o.o === 'h' ? [2, 1] : [1, 2]) : o.t === 'tower' ? [2, 2] : o.t === 'bld' ? FP[o.k] : DFP[o.k] || [1, 1]; }
+  reocc() { const M = this.M; this.occ = new Int32Array(M.w * M.h).fill(-1); M.objs.forEach((o, n) => { const [fw, fh] = this.fp(o); for (let j = 0; j < fh; j++) for (let i = 0; i < fw; i++) if (this.inb(o.tx + i, o.ty + j)) this.occ[(o.ty + j) * M.w + o.tx + i] = n; }); }
+  at(x, y) { if (!this.inb(x, y)) return null; const k = this.occ[y * this.M.w + x]; return k >= 0 ? this.M.objs[k] : null; }
+  wallish(x, y) { const o = this.at(x, y); return !!o && (o.t === 'wall' || o.t === 'gate'); }
+  sk(k) { const sf = this.state.season === 'summer' ? '' : '_' + this.state.season; return this.A[k + sf] ? k + sf : k; }
+  cur() { return this.B.find(b => b.id === this.state.brush) || this.B[0]; }
+  editable(l) { return this.state.vis[l] && !this.state.lock[l]; }
+  nameOf(o) {
+    if (isMark(o)) return o.mk === 'zombie' ? 'Zombie spawn' : 'Survivor spawn';
+    if (o.t === 'wall') return (MATS.find(m => m[0] === o.mat) || [0, o.mat])[1] + ' wall' + (o.dmg ? ', damaged' : '');
+    if (o.t === 'gate') return (GATES.find(g => g[0] === o.gk) || [0, o.gk])[1] + ' gate ' + (o.o === 'h' ? 'N/S' : 'W/E');
+    if (o.t === 'tower') return o.roof ? 'Roofed tower' : 'Lookout';
+    if (o.t === 'bld') return BN[o.k];
+    return ([...TREES, ...DECO].find(t => t[0] === o.k) || [0, o.k])[1];
+  }
+  ground(x, y) {
+    const M = this.M, i = y * M.w + x, f = M.fixed[i]; if (f) return f;
+    const t = M.terr[i], h = hh(x, y, 5), T = (a, b) => this.inb(a, b) ? M.terr[b * M.w + a] : null;
+    if (t === 'g') return h < 0.55 ? 'grass_a' : h < 0.88 ? 'grass_b' : 'grass_c';
+    if (t === 'd') { for (const [d, dx, dy] of DIRS) if (T(x + dx, y + dy) === 'g') return 'edge_' + d; return h < 0.8 ? 'dirt_a' : h < 0.95 ? 'dirt_b' : 'dirt_c'; }
+    const g = {}; for (const [d, dx, dy] of DIRS) { const v = T(x + dx, y + dy); g[d] = v !== null && v !== 'r'; }
+    const n = g.n + g.e + g.s + g.w;
+    if (n === 0) return h < 0.12 ? 'road_p' : 'road_x';
+    if (n === 1) return 'road_edge_' + (g.n ? 'n' : g.e ? 'e' : g.s ? 's' : 'w');
+    if (n === 2) { if (g.n && g.s) return 'road_h'; if (g.e && g.w) return 'road_v'; return 'road_corner_' + (g.n ? 'n' : 's') + (g.w ? 'w' : 'e'); }
+    if (n === 3) return g.n && g.s ? 'road_h' : 'road_v';
+    return 'road_p';
+  }
+  piece(x, y) {
+    const n = this.wallish(x, y - 1), s = this.wallish(x, y + 1), e = this.wallish(x + 1, y), w = this.wallish(x - 1, y), hz = e || w, vt = n || s;
+    if (hz && !vt) return 'h'; if (vt && !hz) return 'v';
+    if (s && e && !n && !w) return 'tl'; if (s && w && !n && !e) return 'tr'; if (n && e && !s && !w) return 'bl'; if (n && w && !s && !e) return 'br';
+    return e && w ? 'h' : vt ? 'v' : 'h';
+  }
+  sprOf(o) {
+    if (o.t === 'wall') { const p = this.piece(o.tx, o.ty); return { key: o.dmg && p === 'h' ? 'wall_planks_dmg' : `wall_${o.mat}_${p}`, x: o.tx * TS, y: o.ty * TS - 16, ord: o.ty * TS + 16 }; }
+    if (o.t === 'gate') {
+      if (o.o === 'h') return { key: `gate_${o.gk}_${o.open ? 'open' : 'closed'}`, x: o.tx * TS, y: o.ty * TS - 16, ord: o.ty * TS + 16 };
+      return { key: o.open ? `gate_${o.gk}_v_open_${o.side || 'e'}` : `gate_${o.gk}_v_closed`, x: o.tx * TS - (o.open && o.side === 'w' ? 16 : 0), y: o.ty * TS - 16, ord: (o.ty + 2) * TS };
+    }
+    if (o.t === 'tower') return { key: o.roof ? 'tower_roofed' : 'tower_open', x: o.tx * TS, y: (o.ty + 2) * TS - 56, ord: (o.ty + 2) * TS };
+    const s = this.A[this.sk(o.k)];
+    if (o.t === 'bld') { const [fw, fh] = FP[o.k]; return { key: o.k, x: o.tx * TS + ((fw * TS - s.w) >> 1), y: (o.ty + fh) * TS - s.h, ord: (o.ty + fh) * TS }; }
+    const fw = (DFP[o.k] || [1])[0];
+    return { key: o.k, x: o.tx * TS + ((fw * TS) >> 1) - (s.w >> 1), y: o.ty * TS + 18 - s.h, ord: o.ty * TS + 16 };
+  }
+  collision() { const M = this.M, c = new Array(M.w * M.h).fill(0); for (const o of M.objs) { const [fw, fh] = this.fp(o), v = o.t === 'gate' ? 2 : WALKABLE[o.k] ? 0 : 1; for (let j = 0; j < fh; j++) for (let i = 0; i < fw; i++) if (this.inb(o.tx + i, o.ty + j)) c[(o.ty + j) * M.w + o.tx + i] = v; } return c; }
+  autoBase() {
+    const M = this.M, out = new Uint8Array(M.w * M.h), st = [];
+    for (let x = 0; x < M.w; x++) st.push(x, (M.h - 1) * M.w + x); for (let y = 0; y < M.h; y++) st.push(y * M.w, y * M.w + M.w - 1);
+    while (st.length) { const i = st.pop(); if (out[i]) continue; const x = i % M.w, y = (i / M.w) | 0; if (this.wallish(x, y)) continue; out[i] = 1; if (x > 0) st.push(i - 1); if (x < M.w - 1) st.push(i + 1); if (y > 0) st.push(i - M.w); if (y < M.h - 1) st.push(i + M.w); }
+    M.base = Array.from(out, v => v ? 0 : 1);
+  }
+
+  /* ---------- painting ---------- */
+  mk(b, cx, cy) {
+    let o;
+    if (b.kind === 'wall') o = { t: 'wall', mat: b.mat, dmg: b.dmg ? 1 : 0 };
+    else if (b.kind === 'gate') o = { t: 'gate', gk: b.gk, o: b.o, open: this.state.gateOpen ? 1 : 0, side: this.state.gateSide };
+    else if (b.kind === 'tower') o = { t: 'tower', roof: b.roof ? 1 : 0 };
+    else if (b.kind === 'bld') o = { t: 'bld', k: b.k };
+    else o = { t: 'tree', k: b.k };
+    const [fw, fh] = this.fp(o); o.tx = cx - ((fw - 1) >> 1); o.ty = cy - (fh - 1); return o;
+  }
+  canPlace(o, ignore) {
+    const [fw, fh] = this.fp(o);
+    for (let j = 0; j < fh; j++) for (let i = 0; i < fw; i++) {
+      const x = o.tx + i, y = o.ty + j; if (!this.inb(x, y)) return false;
+      const e = this.at(x, y); if (!e || (ignore && ignore.has(e))) continue;
+      if (e.t === 'wall' && (o.t === 'wall' || o.t === 'gate')) { if (o.t === 'wall' && e.mat === o.mat && e.dmg === o.dmg) return false; continue; }
+      return false;
+    }
+    return true;
+  }
+  place(o) {
+    const M = this.M, [fw, fh] = this.fp(o), rm = new Set();
+    for (let j = 0; j < fh; j++) for (let i = 0; i < fw; i++) { const k = this.occ[(o.ty + j) * M.w + o.tx + i]; if (k >= 0) rm.add(M.objs[k]); }
+    M.objs = M.objs.filter(x => !rm.has(x)); M.objs.push(o); this.reocc();
+  }
+  apply(b, cx, cy) {
+    const M = this.M; if (!this.editable(CAT_LAYER[b.cat])) return;
+    if (b.kind === 'terr' || b.kind === 'tile') {
+      if (!this.inb(cx, cy)) return; const i = cy * M.w + cx, t = b.kind === 'terr' ? b.terr : fam(b.key), f = b.kind === 'tile' ? b.key : null;
+      if (M.terr[i] !== t || M.fixed[i] !== f) { M.terr[i] = t; M.fixed[i] = f; this.changed = true; } return;
+    }
+    if (b.kind === 'base') { if (!this.inb(cx, cy)) return; const i = cy * M.w + cx; if (M.base[i] !== b.v) { M.base[i] = b.v; this.changed = true; } return; }
+    if (b.kind === 'marker') {
+      if (!this.inb(cx, cy)) return; const ex = M.marks.find(m => m.tx === cx && m.ty === cy); if (ex && ex.mk === b.mk) return;
+      M.marks = M.marks.filter(m => m !== ex); M.marks.push({ mk: b.mk, tx: cx, ty: cy }); this.changed = true; return;
+    }
+    const o = this.mk(b, cx, cy); if (this.canPlace(o)) { this.place(o); this.changed = true; }
+  }
+  erase(x, y) {
+    const L = this.state.layer, M = this.M; if (!this.inb(x, y) || !this.editable(L)) return; const i = y * M.w + x;
+    if (L === 'ground') { if (M.terr[i] !== 'g' || M.fixed[i]) { M.terr[i] = 'g'; M.fixed[i] = null; this.changed = true; } return; }
+    if (L === 'base') { if (M.base[i]) { M.base[i] = 0; this.changed = true; } return; }
+    if (L === 'markers') { const n = M.marks.length; M.marks = M.marks.filter(m => !(m.tx === x && m.ty === y)); if (M.marks.length !== n) this.changed = true; return; }
+    const k = this.occ[i]; if (k >= 0) { this.sel = this.sel.filter(s => s !== M.objs[k]); M.objs.splice(k, 1); this.reocc(); this.changed = true; }
+  }
+  fill(x, y) {
+    const b = this.cur(), M = this.M; if (!this.inb(x, y) || !this.editable(CAT_LAYER[b.cat])) return;
+    const i0 = y * M.w + x, W = M.w, st = [i0], seen = new Uint8Array(M.w * M.h);
+    const flood = (same, set, stop) => { while (st.length) { const i = st.pop(); if (seen[i]) continue; seen[i] = 1; if (!same(i)) continue; set(i); const cx = i % W, cy = (i / W) | 0; if (stop && stop(cx, cy)) continue; if (cx > 0) st.push(i - 1); if (cx < W - 1) st.push(i + 1); if (cy > 0) st.push(i - W); if (cy < M.h - 1) st.push(i + W); } this.changed = true; };
+    if (b.kind === 'base') { const v0 = M.base[i0]; if (v0 === b.v) return; flood(i => M.base[i] === v0, i => { M.base[i] = b.v; }, (cx, cy) => this.wallish(cx, cy)); return; }
+    if (b.kind !== 'terr' && b.kind !== 'tile') return;
+    const t0 = M.terr[i0], f0 = M.fixed[i0], t = b.kind === 'terr' ? b.terr : fam(b.key), f = b.kind === 'tile' ? b.key : null;
+    if (t0 === t && f0 === f) return;
+    flood(i => M.terr[i] === t0 && M.fixed[i] === f0, i => { M.terr[i] = t; M.fixed[i] = f; });
+  }
+  rect(ax, ay, bx, by) {
+    const b = this.cur(), M = this.M;
+    const x0 = Math.max(0, Math.min(ax, bx)), x1 = Math.min(M.w - 1, Math.max(ax, bx)), y0 = Math.max(0, Math.min(ay, by)), y1 = Math.min(M.h - 1, Math.max(ay, by));
+    if (x0 > x1 || y0 > y1) return; const seed = Date.now() & 0xffff;
+    for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) {
+      if (b.kind === 'terr' || b.kind === 'tile' || b.kind === 'base') this.apply(b, x, y);
+      else if (b.kind === 'wall') { if (x === x0 || x === x1 || y === y0 || y === y1) this.apply(b, x, y); }
+      else if (b.kind === 'tree') { if (hh(x, y, seed) < 0.3) this.apply(b, x, y); }
+    }
+    if (!['terr', 'tile', 'wall', 'tree', 'base'].includes(b.kind)) this.apply(b, ax, ay);
+  }
+  pick(x, y) {
+    if (!this.inb(x, y)) return; const M = this.M, S = this.state, m = S.vis.markers && M.marks.find(m => m.tx === x && m.ty === y); let id; const st = {};
+    if (m) id = 'm_' + m.mk;
+    else { const o = S.vis.objects && this.at(x, y);
+      if (o) { id = o.t === 'wall' ? (o.dmg ? 'w_planks_dmg' : 'w_' + o.mat) : o.t === 'gate' ? `g_${o.gk}_${o.o}` : o.t === 'tower' ? (o.roof ? 'tw_roof' : 'tw_open') : o.k; if (o.t === 'gate') { st.gateOpen = !!o.open; st.gateSide = o.side || 'e'; } }
+      else if (S.layer === 'base') id = M.base[y * M.w + x] ? 'b_on' : 'b_off';
+      else { const i = y * M.w + x; id = M.fixed[i] ? 'k_' + M.fixed[i] : { g: 't_grass', d: 't_dirt', r: 't_road' }[M.terr[i]]; } }
+    const b = this.B.find(b => b.id === id); if (b) this.setState({ ...st, brush: id, cat: b.cat, layer: CAT_LAYER[b.cat], tool: 'paint' });
+  }
+
+  /* ---------- selection ---------- */
+  hitTest(p) {
+    const { z, ox, oy } = this.view, wx = (p.mx - ox) / z, wy = (p.my - oy) / z;
+    if (this.editable('markers')) { const m = this.M.marks.find(m => m.tx === p.tx && m.ty === p.ty); if (m) return m; }
+    if (!this.editable('objects')) return null;
+    for (let i = this.list.length - 1; i >= 0; i--) { const d = this.list[i], s = this.A[this.sk(d.key)], lx = Math.floor(wx - d.x), ly = Math.floor(wy - d.y); if (lx >= 0 && ly >= 0 && lx < s.w && ly < s.h && s.p[ly * s.w + lx]) return d.ob; }
+    return this.at(p.tx, p.ty);
+  }
+  canMove(sel, dx, dy, dup) {
+    const ign = new Set(dup ? [] : sel);
+    for (const o of sel) {
+      if (isMark(o)) { if (!this.inb(o.tx + dx, o.ty + dy)) return false; continue; }
+      if (!this.canPlace({ ...o, tx: o.tx + dx, ty: o.ty + dy }, ign)) return false;
+    }
+    return true;
+  }
+  doMove(sel, dx, dy, dup) {
+    const M = this.M, S = new Set(sel), rm = new Set(), out = [];
+    for (const o of sel) {
+      if (isMark(o)) { M.marks.forEach(m => { if (!S.has(m) && m.tx === o.tx + dx && m.ty === o.ty + dy) rm.add(m); }); continue; }
+      const [fw, fh] = this.fp(o); for (let j = 0; j < fh; j++) for (let i = 0; i < fw; i++) { const e = this.at(o.tx + dx + i, o.ty + dy + j); if (e && !S.has(e)) rm.add(e); }
+    }
+    M.objs = M.objs.filter(o => !rm.has(o)); M.marks = M.marks.filter(m => !rm.has(m));
+    for (const o of sel) { const n = dup ? { ...o } : o; n.tx = o.tx + dx; n.ty = o.ty + dy; if (dup) (isMark(n) ? M.marks : M.objs).push(n); out.push(n); }
+    this.reocc(); this.sel = out;
+  }
+  delSel() { if (!this.sel.length) return; const S = new Set(this.sel); this.commit(() => { this.M.objs = this.M.objs.filter(o => !S.has(o)); this.M.marks = this.M.marks.filter(m => !S.has(m)); this.reocc(); }); this.sel = []; this.bump(); }
+  dupSel() { if (!this.sel.length) return; for (const [dx, dy] of [[1, 1], [1, 0], [0, 1], [2, 0], [0, 2], [-1, 0], [0, -1], [2, 2], [3, 0], [0, 3]]) if (this.canMove(this.sel, dx, dy, true)) { this.commit(() => this.doMove(this.sel, dx, dy, true)); return; } }
+  nudge(dx, dy) { if (this.sel.length && this.canMove(this.sel, dx, dy, false)) this.commit(() => this.doMove(this.sel, dx, dy, false)); }
+  copySel() { if (!this.sel.length) return; const x0 = Math.min(...this.sel.map(o => o.tx)), y0 = Math.min(...this.sel.map(o => o.ty)); this.clip = this.sel.map(o => ({ ...o, tx: o.tx - x0, ty: o.ty - y0 })); }
+  paste() {
+    if (!this.clip || !this.M) return; const hv = this.hover && this.inb(this.hover.tx, this.hover.ty) ? this.hover : { tx: this.M.w >> 1, ty: this.M.h >> 1 };
+    const n = this.clip.map(o => ({ ...o, tx: o.tx + hv.tx, ty: o.ty + hv.ty }));
+    if (!n.every(o => isMark(o) ? this.inb(o.tx, o.ty) && this.editable('markers') : this.editable('objects') && this.canPlace(o))) return;
+    this.commit(() => { for (const o of n) { if (isMark(o)) { this.M.marks = this.M.marks.filter(m => !(m.tx === o.tx && m.ty === o.ty)); this.M.marks.push(o); } else this.place(o); } this.sel = n; });
+  }
+  selectIn(x0, y0, x1, y1) {
+    const r = [], M = this.M;
+    if (this.editable('objects')) for (const o of M.objs) { const [fw, fh] = this.fp(o); if (o.tx <= x1 && o.tx + fw - 1 >= x0 && o.ty <= y1 && o.ty + fh - 1 >= y0) r.push(o); }
+    if (this.editable('markers')) for (const m of M.marks) if (m.tx >= x0 && m.tx <= x1 && m.ty >= y0 && m.ty <= y1) r.push(m);
+    return r;
+  }
+  commit(fn) { const snap = JSON.stringify(this.ser()); fn(); this.undoS.push(snap); if (this.undoS.length > 100) this.undoS.shift(); this.redoS = []; this.save(); this.setState(s => ({ rev: s.rev + 1, name: this.M.name, rw: this.M.w, rh: this.M.h })); }
+  step(from, to) { if (!from.length || !this.M) return; to.push(JSON.stringify(this.ser())); this.load(JSON.parse(from.pop())); this.save(); this.setState(s => ({ rev: s.rev + 1, name: this.M.name, rw: this.M.w, rh: this.M.h })); }
+  save() { clearTimeout(this._sv); this._sv = setTimeout(() => { try { localStorage.setItem(LS, JSON.stringify({ ...this.ser(), season: this.state.season, light: this.state.light })); } catch (e) {} }, 300); }
+  demo() {
+    const M = this.M, T = (x0, y0, x1, y1, t) => { for (let y = y0; y <= y1; y++) for (let x = x0; x <= x1; x++) M.terr[y * M.w + x] = t; }, P = o => { if (this.canPlace(o)) this.place(o); };
+    T(10, 5, 29, 14, 'd'); T(0, 20, 39, 21, 'r'); T(19, 14, 20, 19, 'r');
+    for (let x = 10; x <= 29; x++) { P({ t: 'wall', mat: 'palisade', dmg: 0, tx: x, ty: 5 }); P({ t: 'wall', mat: 'planks', dmg: x === 13 ? 1 : 0, tx: x, ty: 14 }); }
+    for (let y = 6; y <= 13; y++) { P({ t: 'wall', mat: 'sandbag', dmg: 0, tx: 10, ty: y }); P({ t: 'wall', mat: 'scrap', dmg: 0, tx: 29, ty: y }); }
+    P({ t: 'gate', gk: 'wood', o: 'h', open: 0, side: 'e', tx: 19, ty: 14 }); P({ t: 'gate', gk: 'metal', o: 'v', open: 0, side: 'w', tx: 29, ty: 9 });
+    P({ t: 'tower', roof: 1, tx: 11, ty: 6 }); P({ t: 'tower', roof: 0, tx: 27, ty: 6 });
+    [['bld_town_hall', 15, 6], ['bld_barracks', 21, 6], ['bld_clinic', 12, 10], ['bld_bunkhouse', 16, 11], ['bld_workshop', 22, 10], ['bld_armory', 26, 11], ['bld_farm', 32, 8]].forEach(([k, tx, ty]) => P({ t: 'bld', k, tx, ty }));
+    [['deco_car', 5, 22], ['deco_car', 30, 19], ['deco_drum', 9, 19], ['deco_drum', 32, 19], ['deco_tires', 33, 22], ['deco_streetlight', 14, 19], ['deco_streetlight', 25, 19], ['deco_streetlight', 36, 22], ['deco_crates', 30, 15], ['deco_crates', 8, 22], ['deco_fence', 1, 19], ['deco_fence', 2, 19], ['deco_rubble', 12, 22], ['deco_rubble', 23, 22], ['deco_campfire', 33, 13], ['deco_boulder', 4, 4], ['deco_boulder', 35, 2], ['deco_boulder', 6, 25]].forEach(([k, tx, ty]) => P({ t: 'tree', k, tx, ty }));
+    const TR = [['tree_oak', 0.3], ['tree_pine', 0.35], ['tree_dead', 0.1], ['bush', 0.15], ['stump', 0.1]]; let n = 0;
+    for (let i = 0; i < 600 && n < 46; i++) {
+      const x = (hh(i, 1, 9) * M.w) | 0, y = 1 + ((hh(i, 2, 9) * (M.h - 1)) | 0);
+      if (x >= 8 && x <= 31 && y >= 3 && y <= 16) continue; if (x >= 31 && x <= 36 && y >= 6 && y <= 11) continue; if (y >= 19 && y <= 22) continue; if (x >= 18 && x <= 21 && y > 14) continue;
+      let clash = false; for (let j = -1; j <= 1; j++) for (let k = -1; k <= 1; k++) if (this.at(x + k, y + j)) clash = true; if (clash) continue;
+      let v = hh(i, 3, 9), k = TR[0][0]; for (const [t, w] of TR) { if (v < w) { k = t; break; } v -= w; }
+      P({ t: 'tree', k, tx: x, ty: y }); n++;
+    }
+    M.marks.push({ mk: 'survivor', tx: 19, ty: 12 }, { mk: 'zombie', tx: 1, ty: 2 }, { mk: 'zombie', tx: 38, ty: 3 }, { mk: 'zombie', tx: 2, ty: 26 }, { mk: 'zombie', tx: 37, ty: 25 });
+    this.autoBase();
+  }
+  checks() {
+    const M = this.M; if (!M) return [];
+    const out = [], B = i => M.base[i], inBase = o => { const [fw, fh] = this.fp(o); for (let j = 0; j < fh; j++) for (let i = 0; i < fw; i++) if (!B((o.ty + j) * M.w + o.tx + i)) return false; return true; };
+    if (!M.base.some(v => v)) out.push({ text: 'No base tiles yet. Select the Base zone layer and use Fill inside walls.' });
+    if (!M.marks.some(m => m.mk === 'survivor')) out.push({ text: 'No survivor spawn.' });
+    if (!M.marks.some(m => m.mk === 'zombie')) out.push({ text: 'No zombie spawns.' });
+    const so = M.marks.filter(m => m.mk === 'survivor' && !B(m.ty * M.w + m.tx)); if (so.length && M.base.some(v => v)) out.push({ text: `${so.length} survivor spawn${so.length > 1 ? 's' : ''} outside the base.`, sel: so });
+    const zi = M.marks.filter(m => m.mk === 'zombie' && B(m.ty * M.w + m.tx)); if (zi.length) out.push({ text: `${zi.length} zombie spawn${zi.length > 1 ? 's' : ''} inside the base.`, sel: zi });
+    const bo = M.objs.filter(o => o.t === 'bld' && !isWorld(o.k) && !inBase(o)); if (bo.length && M.base.some(v => v)) out.push({ text: `${bo.length} building${bo.length > 1 ? 's' : ''} outside the base.`, sel: bo });
+    const wl = (x, y) => { const o = this.at(x, y); return !!o && o.t === 'wall'; };
+    const lg = M.objs.filter(o => o.t === 'gate' && (o.o === 'h' ? !wl(o.tx - 1, o.ty) && !wl(o.tx + 2, o.ty) : !wl(o.tx, o.ty - 1) && !wl(o.tx, o.ty + 2))); if (lg.length) out.push({ text: `${lg.length} gate${lg.length > 1 ? 's' : ''} not attached to a wall.`, sel: lg });
+    return out;
+  }
+
+  /* ---------- input ---------- */
+  pt(e) { const r = this.cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top, { z, ox, oy } = this.view; return { mx, my, tx: Math.floor((mx - ox) / (TS * z)), ty: Math.floor((my - oy) / (TS * z)) }; }
+  down(e) {
+    if (!this.M || this.state.loading) return;
+    this.cv.setPointerCapture(e.pointerId); const p = this.pt(e); this.hover = p;
+    if (e.button === 1 || this.space || (e.button === 0 && this.state.tool === 'hand')) { this.drag = { pan: 1, sx: e.clientX, sy: e.clientY, ox: this.view.ox, oy: this.view.oy }; this.cv.style.cursor = 'grabbing'; return; }
+    const tool = e.button === 2 ? 'erase' : this.state.tool;
+    if (tool === 'select') {
+      const hit = this.hitTest(p);
+      if (hit) {
+        if (e.shiftKey) { this.sel = this.sel.includes(hit) ? this.sel.filter(s => s !== hit) : [...this.sel, hit]; this.drag = { tool: 'none' }; }
+        else { if (!this.sel.includes(hit)) this.sel = [hit]; this.drag = { tool: 'move', sx: p.tx, sy: p.ty, dx: 0, dy: 0, dup: e.altKey }; if (!e.altKey) this.skip = new Set(this.sel); }
+      } else { if (!e.shiftKey) this.sel = []; this.drag = { tool: 'marquee', sx: p.tx, sy: p.ty, add: e.shiftKey }; }
+      this.bump(); return;
+    }
+    this.snap = JSON.stringify(this.ser()); this.changed = false;
+    this.drag = { tool, sx: p.tx, sy: p.ty, lx: p.tx, ly: p.ty, ex: p.tx, ey: p.ty };
+    if (tool === 'paint') this.apply(this.cur(), p.tx, p.ty);
+    else if (tool === 'erase') this.erase(p.tx, p.ty);
+    else if (tool === 'fill') this.fill(p.tx, p.ty);
+    else if (tool === 'pick') this.pick(p.tx, p.ty);
+    this.redraw();
+  }
+  move(e) {
+    if (!this.M) return; const p = this.pt(e); this.hover = p; this.status(p); const d = this.drag;
+    if (d && d.pan) { this.userMoved = true; this.view.ox = d.ox + e.clientX - d.sx; this.view.oy = d.oy + e.clientY - d.sy; this.paint(); return; }
+    if (d && d.tool === 'line') { let dx = p.tx - d.sx, dy = p.ty - d.sy; if (e.shiftKey) { const ax = Math.abs(dx), ay = Math.abs(dy); if (ax > 2 * ay) dy = 0; else if (ay > 2 * ax) dx = 0; else { const m = Math.max(ax, ay); dx = Math.sign(dx) * m; dy = Math.sign(dy) * m; } } d.ex = d.sx + dx; d.ey = d.sy + dy; this.paint(); return; }
+    if (d && d.tool === 'move') { d.dx = p.tx - d.sx; d.dy = p.ty - d.sy; this.cv.style.cursor = d.dup ? 'copy' : 'move'; this.paint(); return; }
+    if (d && (d.tool === 'paint' || d.tool === 'erase') && (p.tx !== d.lx || p.ty !== d.ly)) {
+      const b = this.cur();
+      if (d.tool === 'erase' || CONT[b.kind]) {
+        let x0 = d.lx, y0 = d.ly; const dx = Math.abs(p.tx - x0), dy = -Math.abs(p.ty - y0), sx = x0 < p.tx ? 1 : -1, sy = y0 < p.ty ? 1 : -1; let err = dx + dy;
+        while (!(x0 === p.tx && y0 === p.ty)) { const e2 = 2 * err; if (e2 >= dy) { err += dy; x0 += sx; } if (e2 <= dx) { err += dx; y0 += sy; } if (d.tool === 'erase') this.erase(x0, y0); else this.apply(b, x0, y0); }
+      }
+      d.lx = p.tx; d.ly = p.ty; this.redraw(); return;
+    }
+    if (!d && this.state.tool === 'select' && !this.space) { this.hot = this.hitTest(p); this.cv.style.cursor = this.hot ? 'move' : 'default'; }
+    this.paint();
+  }
+  up() {
+    const d = this.drag; this.drag = null; this.cursor(); if (!d || d.pan) return;
+    if (d.tool === 'move') { this.skip = null; if ((d.dx || d.dy) && this.canMove(this.sel, d.dx, d.dy, d.dup)) this.commit(() => this.doMove(this.sel, d.dx, d.dy, d.dup)); else this.bump(); return; }
+    if (d.tool === 'marquee') { const h = this.hover || { tx: d.sx, ty: d.sy }, r = this.selectIn(Math.min(d.sx, h.tx), Math.min(d.sy, h.ty), Math.max(d.sx, h.tx), Math.max(d.sy, h.ty)); this.sel = d.add ? [...new Set([...this.sel, ...r])] : r; this.bump(); return; }
+    if (d.tool === 'none') return;
+    if (d.tool === 'line') { const b = this.cur(); for (const [cx, cy] of lineCells(d.sx, d.sy, d.ex, d.ey)) this.apply(b, cx, cy); }
+    if (d.tool === 'rect' && this.hover) this.rect(d.sx, d.sy, this.hover.tx, this.hover.ty);
+    if (this.changed) { this.undoS.push(this.snap); if (this.undoS.length > 100) this.undoS.shift(); this.redoS = []; this.save(); this.bump(); }
+    this.redraw();
+  }
+  wheel(e) {
+    e.preventDefault(); if (!this.M) return;
+    this._wa = (this._wa || 0) + e.deltaY; if (Math.abs(this._wa) < 40) return;
+    const dir = this._wa > 0 ? -1 : 1; this._wa = 0; const p = this.pt(e); this.zoomAt(this.view.z + dir, p.mx, p.my);
+  }
+  zoomAt(nz, mx, my) { this.userMoved = true; const v = this.view; nz = Math.max(1, Math.min(10, nz)); if (nz === v.z) return; v.ox = Math.round(mx - (mx - v.ox) * nz / v.z); v.oy = Math.round(my - (my - v.oy) * nz / v.z); v.z = nz; this.setState({ zoom: nz }); }
+  fit() {
+    this.userMoved = false; const M = this.M, cw = this.wrap.clientWidth, ch = this.wrap.clientHeight; if (!M || !cw || !ch) { this.needFit = true; return; } this.needFit = false;
+    const z = Math.max(1, Math.min(8, Math.floor(Math.min((cw - 104) / (M.w * TS), (ch - 120) / (M.h * TS)))));
+    this.view = { z, ox: Math.max(68, 56 + Math.round((cw - 56 - M.w * TS * z) / 2)), oy: Math.max(16 + PAD, Math.round((ch - M.h * TS * z) / 2) + 14) };
+    if (this.state.zoom !== z) this.setState({ zoom: z }); else this.paint();
+  }
+  key(e) {
+    const tg = e.target.tagName; if (tg === 'INPUT' || tg === 'SELECT' || tg === 'TEXTAREA') return;
+    if (e.code === 'Space') { e.preventDefault(); this.space = e.type === 'keydown'; if (!this.drag) this.cursor(); return; }
+    if (e.type !== 'keydown' || !this.M) return; const k = e.key.toLowerCase(), mod = e.metaKey || e.ctrlKey;
+    if (mod && k === 'z') { e.preventDefault(); if (e.shiftKey) this.step(this.redoS, this.undoS); else this.step(this.undoS, this.redoS); return; }
+    if (mod && k === 'y') { e.preventDefault(); this.step(this.redoS, this.undoS); return; }
+    if (mod && k === 'g') { e.preventDefault(); this.setState(s => ({ grid: !s.grid })); return; }
+    if (mod && k === 'd') { e.preventDefault(); this.dupSel(); return; }
+    if (mod && k === 'c') { this.copySel(); return; }
+    if (mod && k === 'x') { this.copySel(); this.delSel(); return; }
+    if (mod && k === 'v') { e.preventDefault(); this.paste(); return; }
+    if (mod && k === 'a') { e.preventDefault(); this.sel = this.selectIn(0, 0, this.M.w - 1, this.M.h - 1); this.setState({ tool: 'select' }); return; }
+    if (mod || e.altKey) return;
+    if (k === 'escape') { this.sel = []; this.bump(); return; }
+    if ((k === 'delete' || k === 'backspace') && this.sel.length) { e.preventDefault(); this.delSel(); return; }
+    const AR = { arrowleft: [-1, 0], arrowright: [1, 0], arrowup: [0, -1], arrowdown: [0, 1] }[k];
+    if (AR && this.sel.length) { e.preventDefault(); this.nudge(AR[0], AR[1]); return; }
+    const t = TOOLS.find(t => t[2].toLowerCase() === k); if (t) { this.setState({ tool: t[0] }); return; }
+    const cw = this.wrap.clientWidth / 2, ch = this.wrap.clientHeight / 2;
+    if (k === '=' || k === '+') this.zoomAt(this.view.z + 1, cw, ch); else if (k === '-') this.zoomAt(this.view.z - 1, cw, ch); else if (k === '0') this.fit();
+  }
+  status(p) {
+    if (!this.st) return; if (!this.inb(p.tx, p.ty)) { this.st.textContent = ''; return; }
+    const M = this.M, o = this.at(p.tx, p.ty), m = M.marks.find(m => m.tx === p.tx && m.ty === p.ty);
+    this.st.textContent = `${p.tx}, ${p.ty}  ·  ${this.sk(this.ground(p.tx, p.ty))}` + (M.base[p.ty * M.w + p.tx] ? '  ·  base' : '') + (o ? '  ·  ' + this.nameOf(o) : '') + (m ? '  ·  ' + this.nameOf(m) : '');
+  }
+
+  /* ---------- drawing ---------- */
+  sprC(k, l = this.state.light) { const ck = k + '|' + l; let c = this.cache[ck]; if (!c) { c = this.cache[ck] = document.createElement('canvas'); this.m.draw(c, this.A[k], l); } return c; }
+  renderTo(c, oy, gnd, objs, l) {
+    const M = this.M;
+    if (gnd) for (let y = 0; y < M.h; y++) for (let x = 0; x < M.w; x++) c.drawImage(this.sprC(this.sk(this.ground(x, y)), l), x * TS, oy + y * TS);
+    if (objs) for (const d of this.list) if (!this.skip || !this.skip.has(d.ob)) c.drawImage(this.sprC(this.sk(d.key), l), d.x, oy + d.y);
+  }
+  redraw() {
+    if (!this.A || !this.M) return; const M = this.M, W = M.w * TS, H = M.h * TS + PAD;
+    const o = this.off || (this.off = document.createElement('canvas')); if (o.width !== W || o.height !== H) { o.width = W; o.height = H; }
+    const c = o.getContext('2d'); c.clearRect(0, 0, W, H);
+    this.list = M.objs.map(ob => ({ ob, ...this.sprOf(ob) })).sort((a, b) => a.ord - b.ord || a.x - b.x);
+    this.renderTo(c, PAD, this.state.vis.ground, this.state.vis.objects); this.paint();
+  }
+  paint() {
+    const cv = this.cv, wr = this.wrap; if (!cv || !wr) return;
+    const dpr = window.devicePixelRatio || 1, cw = wr.clientWidth, ch = wr.clientHeight, W = Math.round(cw * dpr), H = Math.round(ch * dpr);
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; }
+    const x = cv.getContext('2d'), bg = this.props.background ?? 'dark';
+    x.setTransform(1, 0, 0, 1, 0, 0); x.fillStyle = bg === 'mid' ? '#2a2f24' : '#0e100c'; x.fillRect(0, 0, W, H);
+    if (!this.off || !this.M) return;
+    x.setTransform(dpr, 0, 0, dpr, 0, 0); x.imageSmoothingEnabled = false;
+    const { z, ox, oy } = this.view, M = this.M, S = this.state, q = TS * z, mw = M.w * q, mh = M.h * q;
+    const cell = (tx, ty, fw = 1, fh = 1) => [ox + tx * q, oy + ty * q, fw * q, fh * q];
+    const outline = (c, r, lw = 2) => { x.strokeStyle = c; x.lineWidth = lw; x.strokeRect(r[0] + lw / 2, r[1] + lw / 2, r[2] - lw, r[3] - lw); };
+    if (!S.vis.ground) { x.fillStyle = '#12150f'; x.fillRect(ox, oy, mw, mh); }
+    x.drawImage(this.off, ox, oy - PAD * z, this.off.width * z, this.off.height * z);
+    x.strokeStyle = '#3d4434'; x.lineWidth = 1; x.strokeRect(ox - 0.5, oy - 0.5, mw + 1, mh + 1);
+    if (S.grid && z >= 2) { x.fillStyle = 'rgba(255,255,255,0.07)'; for (let i = 1; i < M.w; i++) x.fillRect(ox + i * q, oy, 1, mh); for (let j = 1; j < M.h; j++) x.fillRect(ox, oy + j * q, mw, 1); }
+    if (S.vis.base) {
+      const act = S.layer === 'base', B = M.base, b = (tx, ty) => this.inb(tx, ty) && B[ty * M.w + tx];
+      if (act) { x.fillStyle = 'rgba(8,10,6,0.42)'; for (let i = 0; i < B.length; i++) if (!B[i]) x.fillRect(...cell(i % M.w, (i / M.w) | 0)); }
+      x.fillStyle = act ? 'rgba(197,212,138,0.2)' : 'rgba(197,212,138,0.07)'; for (let i = 0; i < B.length; i++) if (B[i]) x.fillRect(...cell(i % M.w, (i / M.w) | 0));
+      x.fillStyle = act ? '#c5d48a' : 'rgba(197,212,138,0.6)'; const lw = act ? 2 : 1;
+      for (let i = 0; i < B.length; i++) if (B[i]) { const tx = i % M.w, ty = (i / M.w) | 0, [a, c] = cell(tx, ty);
+        if (!b(tx, ty - 1)) x.fillRect(a, c, q, lw); if (!b(tx, ty + 1)) x.fillRect(a, c + q - lw, q, lw); if (!b(tx - 1, ty)) x.fillRect(a, c, lw, q); if (!b(tx + 1, ty)) x.fillRect(a + q - lw, c, lw, q); }
+    }
+    if (S.col) { const col = this.collision(); for (let i = 0; i < col.length; i++) if (col[i]) { x.fillStyle = col[i] === 1 ? 'rgba(208,105,79,0.4)' : 'rgba(197,212,138,0.4)'; x.fillRect(...cell(i % M.w, (i / M.w) | 0)); } }
+    if (S.vis.markers) {
+      x.font = `${Math.max(8, 8 * Math.floor(z / 2))}px Silkscreen`; x.textAlign = 'center'; x.textBaseline = 'middle';
+      for (const m of M.marks) { const [a, b, w, h] = cell(m.tx, m.ty), c = MK[m.mk]; x.fillStyle = c + '4d'; x.fillRect(a, b, w, h); outline(c, [a, b, w, h]); x.fillStyle = c; x.fillText(m.mk === 'zombie' ? 'Z' : 'S', a + w / 2, b + h / 2 + 1); }
+    }
+    const hv = this.hover, d = this.drag;
+    // selection + move preview
+    if (this.sel.length) {
+      const mv = d && d.tool === 'move' ? d : null, dx = mv ? mv.dx : 0, dy = mv ? mv.dy : 0, ok = mv ? this.canMove(this.sel, dx, dy, mv.dup) : true, col = ok ? '#c5d48a' : '#d0694f';
+      for (const o of this.sel) {
+        if (isMark(o)) { outline(mv ? col : '#e4e6d2', cell(o.tx + dx, o.ty + dy), 3); continue; }
+        const [fw, fh] = this.fp(o), n = { ...o, tx: o.tx + dx, ty: o.ty + dy }, sp = this.sprOf(n), c = this.sprC(this.sk(sp.key));
+        if (mv) { x.fillStyle = ok ? 'rgba(197,212,138,0.25)' : 'rgba(208,105,79,0.4)'; x.fillRect(...cell(n.tx, n.ty, fw, fh)); x.globalAlpha = ok ? 0.9 : 0.5; x.drawImage(c, ox + sp.x * z, oy + sp.y * z, c.width * z, c.height * z); x.globalAlpha = 1; }
+        x.setLineDash([4, 3]); x.strokeStyle = 'rgba(228,230,210,0.7)'; x.lineWidth = 1; x.strokeRect(ox + sp.x * z + 0.5, oy + sp.y * z + 0.5, c.width * z - 1, c.height * z - 1); x.setLineDash([]);
+        outline(col, cell(n.tx, n.ty, fw, fh));
+      }
+    }
+    if (d && (d.tool === 'rect' || d.tool === 'marquee') && hv) {
+      const x0 = Math.max(0, Math.min(d.sx, hv.tx)), x1 = Math.min(M.w - 1, Math.max(d.sx, hv.tx)), y0 = Math.max(0, Math.min(d.sy, hv.ty)), y1 = Math.min(M.h - 1, Math.max(d.sy, hv.ty));
+      if (x0 <= x1 && y0 <= y1) { const r = cell(x0, y0, x1 - x0 + 1, y1 - y0 + 1), mq = d.tool === 'marquee'; x.fillStyle = mq ? 'rgba(228,230,210,0.08)' : 'rgba(197,212,138,0.14)'; x.fillRect(...r); x.strokeStyle = mq ? '#e4e6d2' : '#c5d48a'; x.lineWidth = mq ? 1 : 2; x.setLineDash([6, 4]); x.strokeRect(r[0] + 1, r[1] + 1, r[2] - 2, r[3] - 2); x.setLineDash([]); if (!mq) { x.fillStyle = '#e4e6d2'; x.font = '12px "IBM Plex Mono"'; x.textAlign = 'left'; x.textBaseline = 'bottom'; x.fillText(`${x1 - x0 + 1} × ${y1 - y0 + 1}`, r[0], r[1] - 4); } }
+    } else if (d && d.tool === 'line') {
+      const cells = lineCells(d.sx, d.sy, d.ex, d.ey).filter(([a, b]) => this.inb(a, b));
+      x.fillStyle = 'rgba(197,212,138,0.3)'; for (const [a, b] of cells) x.fillRect(...cell(a, b));
+      x.strokeStyle = '#c5d48a'; x.lineWidth = 2; x.beginPath(); x.moveTo(ox + (d.sx + 0.5) * q, oy + (d.sy + 0.5) * q); x.lineTo(ox + (d.ex + 0.5) * q, oy + (d.ey + 0.5) * q); x.stroke();
+      const [lx, ly] = cell(d.ex, d.ey); x.fillStyle = '#e4e6d2'; x.font = '12px "IBM Plex Mono"'; x.textAlign = 'left'; x.textBaseline = 'bottom'; x.fillText(cells.length + ' tiles', lx + q + 4, ly);
+    } else if (hv && !d && !this.space && this.inb(hv.tx, hv.ty)) {
+      const b = this.cur(), tool = S.tool;
+      if (tool === 'hand') {} else if (tool === 'select') { const h = this.hot; if (h && !this.sel.includes(h)) { if (isMark(h)) outline('rgba(228,230,210,0.6)', cell(h.tx, h.ty), 1); else { const [fw, fh] = this.fp(h); outline('rgba(228,230,210,0.6)', cell(h.tx, h.ty, fw, fh), 1); } } }
+      else if (!this.editable(tool === 'erase' ? S.layer : CAT_LAYER[b.cat]) && tool !== 'pick') outline('#565b4c', cell(hv.tx, hv.ty));
+      else if (tool === 'erase') { const o = this.at(hv.tx, hv.ty); if (o && S.layer === 'objects') { const [fw, fh] = this.fp(o); outline('#d0694f', cell(o.tx, o.ty, fw, fh)); } else outline('#d0694f', cell(hv.tx, hv.ty)); }
+      else if (tool === 'pick') outline('#e4e6d2', cell(hv.tx, hv.ty));
+      else if ((tool === 'paint' || tool === 'rect' || tool === 'line') && ['gate', 'tower', 'bld', 'tree', 'wall'].includes(b.kind)) {
+        const o = this.mk(b, hv.tx, hv.ty), ok = this.canPlace(o), [fw, fh] = this.fp(o);
+        x.fillStyle = ok ? 'rgba(197,212,138,0.28)' : 'rgba(208,105,79,0.42)'; x.fillRect(...cell(o.tx, o.ty, fw, fh));
+        if (this.props.ghost ?? true) { const sp = this.sprOf(o), c = this.sprC(this.sk(sp.key)); x.globalAlpha = ok ? 0.75 : 0.4; x.drawImage(c, ox + sp.x * z, oy + sp.y * z, c.width * z, c.height * z); x.globalAlpha = 1; }
+        outline(ok ? '#c5d48a' : '#d0694f', cell(o.tx, o.ty, fw, fh));
+      } else outline('#c5d48a', cell(hv.tx, hv.ty));
+    }
+  }
+  thumbs() {
+    if (!this.A) return;
+    document.querySelectorAll('canvas[data-thumb]').forEach(c => {
+      const mk = c.dataset.mk;
+      if (mk) { if (c.dataset.k === mk) return; c.dataset.k = mk; c.width = 16; c.height = 16; const x = c.getContext('2d'), col = MK[mk]; x.clearRect(0, 0, 16, 16); x.fillStyle = mk === 'wild' ? '#12150f' : col + '4d'; x.fillRect(0, 0, 16, 16); x.fillStyle = col; x.fillRect(0, 0, 16, 1); x.fillRect(0, 15, 16, 1); x.fillRect(0, 0, 1, 16); x.fillRect(15, 0, 1, 16); x.font = '8px Silkscreen'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText({ zombie: 'Z', survivor: 'S', base: 'B', wild: '' }[mk], 8, 8.5); const sz = Math.min(36, +c.dataset.max || 36) + 'px'; c.style.width = sz; c.style.height = sz; return; }
+      const key = this.sk(c.dataset.thumb), s = this.A[key]; if (!s || c.dataset.k === key) return;
+      c.dataset.k = key; this.m.draw(c, s, 'day');
+      const k = Math.min(3, (+c.dataset.max || 60) / Math.max(s.w, s.h)); c.style.width = s.w * k + 'px'; c.style.height = s.h * k + 'px';
+    });
+  }
+
+  /* ---------- export ---------- */
+  async exportUnity() {
+    if (!this.M || this.state.busy) return; this.setState({ busy: true });
+    try {
+      this.skip = null; this.redraw();
+      const M = this.M, l = this.state.light, name = slug(M.name), gk = [];
+      for (let y = 0; y < M.h; y++) for (let x = 0; x < M.w; x++) gk.push(this.sk(this.ground(x, y)));
+      const used = [...new Set([...gk, ...this.list.map(d => this.sk(d.key))])];
+      const items = used.map(k => ({ k, s: this.A[k] })).sort((a, b) => b.s.h - a.s.h || b.s.w - a.s.w || (a.k < b.k ? -1 : 1));
+      const AW = 256, G = 2; let x = 0, y = 0, rh = 0;
+      for (const it of items) { if (x + it.s.w > AW) { x = 0; y += rh + G; rh = 0; } it.x = x; it.y = y; x += it.s.w + G; rh = Math.max(rh, it.s.h); }
+      let AH = 16; while (AH < y + rh) AH *= 2;
+      const at = document.createElement('canvas'); at.width = AW; at.height = AH; const ac = at.getContext('2d');
+      const idx = {}, sprites = items.map((it, i) => { ac.drawImage(this.sprC(it.k, l), it.x, it.y); idx[it.k] = i; return { name: it.k, x: it.x, y: AH - it.y - it.s.h, w: it.s.w, h: it.s.h }; });
+      const kindOf = o => o.t === 'wall' ? o.mat + (o.dmg ? '_damaged' : '') : o.t === 'gate' ? `${o.gk}_${o.o}_${o.open ? 'open' : 'closed'}` : o.t === 'tower' ? (o.roof ? 'roofed' : 'open') : o.t === 'bld' ? o.k.slice(4) : o.k;
+      const objects = this.list.map(d => { const o = d.ob, [fw, fh] = this.fp(o); return { type: o.t === 'bld' ? (isWorld(o.k) ? 'landmark' : 'building') : o.k && o.k.startsWith('deco_') ? 'decor' : o.t, kind: kindOf(o), sprite: this.sk(d.key), tx: o.tx, ty: o.ty, fw, fh, px: d.x, py: d.y, order: d.ord, blocking: o.t !== 'gate' && !WALKABLE[o.k] }; });
+      const data = { version: 2, name: M.name, width: M.w, height: M.h, tileSize: TS, season: this.state.season, light: l, atlas: name + '_atlas.png', sprites, ground: gk.map(k => idx[k]), objects, markers: M.marks.map(m => ({ type: m.mk + '_spawn', tx: m.tx, ty: m.ty })), collision: this.collision(), buildable: M.base.slice() };
+      const rl = await import(new URL('pixel-rules.js', document.baseURI).href), rules = rl.computeRules(M, this.A);
+      data.rules = rules.grid; data.baseRect = rules.baseRect || { x0: -1, y0: -1, x1: -1, y1: -1 };
+      const pv = document.createElement('canvas'); pv.width = M.w * TS; pv.height = M.h * TS; this.renderTo(pv.getContext('2d'), 0, true, true, l);
+      const base = new URL('unity/', document.baseURI).href, [cs, rd] = await Promise.all(['SurvivalMapLoader.cs', 'README.txt'].map(f => fetch(base + f).then(r => r.text())));
+      const enc = new TextEncoder(), dir = name + '/';
+      dl(zip([
+        { name: dir + name + '.json', data: enc.encode(JSON.stringify(data)) },
+        { name: dir + name + '_atlas.png', data: await pngBytes(at) },
+        { name: dir + name + '_preview.png', data: await pngBytes(pv) },
+        { name: dir + name + '.survmap.json', data: enc.encode(JSON.stringify(this.ser())) },
+        { name: dir + 'SurvivalMapLoader.cs', data: enc.encode(cs) },
+        { name: dir + 'README.txt', data: enc.encode(rd.split('{name}').join(name)) }
+      ]), name + '_unity.zip');
+    } catch (e) { console.error(e); }
+    this.setState({ busy: false });
+  }
+  exportPng() { if (!this.M) return; this.skip = null; this.redraw(); const M = this.M, pv = document.createElement('canvas'); pv.width = M.w * TS; pv.height = M.h * TS; this.renderTo(pv.getContext('2d'), 0, true, true, this.state.light); pv.toBlob(b => dl(b, slug(M.name) + (this.state.light === 'day' ? '' : '_' + this.state.light) + '.png')); }
+
+  renderVals() {
+    const S = this.state, B = this.B, cur = this.cur(), M = this.M, lab = n => n[0].toUpperCase() + n.slice(1).replace('_', ' ');
+    const seg = (on, pick, label, extra) => ({ label, pick, bg: on ? '#c5d48a' : 'transparent', fg: on ? '#1a1e14' : '#d6d8c6', ...extra });
+    const ground = cur.kind === 'terr' || cur.kind === 'tile' || cur.kind === 'base';
+    const H = {
+      paint: { terr: 'Click or drag to paint. Edge and road pieces are picked from the neighbours.', tile: 'Paints this exact tile. Automatic edges leave it alone.', base: 'Paint where the player can build. Fill inside a wall ring fills the enclosed area.', wall: 'Drag to draw walls. Corners join automatically.', gate: 'Place on a wall line. It replaces the wall tiles it covers.', tower: 'Click to place. The cursor marks the bottom of the footprint.', bld: 'Click to place. The cursor marks the bottom of the footprint.', tree: 'Click or drag to plant.', marker: 'Marks a spawn point. Exported as an empty GameObject.' },
+      hand: 'Drag to pan. Scroll to zoom. Hold Space to pan with any other tool.',
+      line: ground ? 'Drag a straight line. Shift snaps to 45°.' : cur.kind === 'wall' ? 'Drag a straight wall run. Shift snaps to 45°.' : 'Drag to place along a line wherever it fits. Shift snaps to 45°.',
+      select: 'Click to select, drag to move. Shift-click adds, drag on empty ground to box-select, Alt-drag copies. Arrows nudge, Delete removes, Ctrl+C / V / D copy, paste and duplicate.',
+      rect: ground ? 'Drag to fill a rectangle.' : cur.kind === 'wall' ? 'Drag to build a walled rectangle.' : cur.kind === 'tree' ? 'Drag to scatter across a rectangle.' : 'Rect works with ground, base, walls and foliage.',
+      fill: cur.kind === 'base' ? 'Fills connected tiles, stopping at walls and gates.' : ground ? 'Flood-fills connected ground of the same kind.' : 'Fill works with ground and base brushes.',
+      erase: 'Clears the active layer (' + (LAYERS.find(l => l[0] === S.layer) || [0, ''])[1].toLowerCase() + '). Right-drag erases with any tool.',
+      pick: 'Click the map to copy a tile or object into the brush.'
+    };
+    const tLayer = S.tool === 'erase' ? S.layer : ['select', 'hand', 'pick'].includes(S.tool) ? null : CAT_LAYER[cur.cat], locked = tLayer && !this.editable(tLayer);
+    const hint = locked ? `The ${(LAYERS.find(l => l[0] === tLayer) || [0, ''])[1].toLowerCase()} layer is ${S.vis[tLayer] ? 'locked' : 'hidden'}. Unlock or show it to edit.` : (S.tool === 'paint' ? H.paint[cur.kind] : H[S.tool]);
+    const setLayer = id => { const keep = CAT_LAYER[cur.cat] === id, c = keep ? cur.cat : CATS.find(c => CAT_LAYER[c[0]] === id)[0]; this.setState({ layer: id, cat: c, brush: keep ? cur.id : B.find(b => b.cat === c).id, tool: ['select', 'pick', 'hand'].includes(S.tool) ? 'paint' : S.tool }); };
+    const cnt = M ? { ground: '', base: M.base.reduce((a, v) => a + v, 0) + ' tiles', objects: M.objs.length + '', markers: M.marks.length + '' } : {};
+    // inspector
+    const sel = this.sel, one = sel.length === 1 ? sel[0] : null, rows = [];
+    const setP = fn => () => this.commit(() => { fn(one); this.reocc(); });
+    const row = (label, list, curV, fn) => rows.push({ label, opts: list.map(([v, l]) => seg(curV === v, setP(o => fn(o, v)), l)) });
+    if (one) {
+      if (isMark(one)) row('Type', [['survivor', 'Survivor'], ['zombie', 'Zombie']], one.mk, (o, v) => { o.mk = v; });
+      else if (one.t === 'gate') { row('Gate', [[0, 'Closed'], [1, 'Open']], one.open ? 1 : 0, (o, v) => { o.open = v; }); if (one.o === 'v' && one.open) row('Swing', [['e', 'East'], ['w', 'West']], one.side || 'e', (o, v) => { o.side = v; }); row('Material', GATES, one.gk, (o, v) => { o.gk = v; }); }
+      else if (one.t === 'wall') { row('Material', MATS, one.mat, (o, v) => { o.mat = v; if (v !== 'planks') o.dmg = 0; }); if (one.mat === 'planks') row('Damage', [[0, 'Intact'], [1, 'Damaged']], one.dmg ? 1 : 0, (o, v) => { o.dmg = v; }); }
+      else if (one.t === 'tower') row('Roof', [[0, 'Open'], [1, 'Tin roof']], one.roof ? 1 : 0, (o, v) => { o.roof = v; });
+      else if (one.t === 'tree') { const dec = one.k.startsWith('deco_'), L = dec ? DECO.filter(([k]) => !DFP[k] === !DFP[one.k]) : TREES; row('Type', L, one.k, (o, v) => { o.k = v; }); }
+    }
+    const fpS = one && !isMark(one) ? this.fp(one) : [1, 1];
+    return {
+      loading: S.loading, name: S.name, light: S.light, rw: S.rw, rh: S.rh, hint, hintFg: locked ? '#d4a24a' : '#8b8f78',
+      exportLabel: S.busy ? 'Exporting…' : 'Export for Unity',
+      info: M ? `${M.w} × ${M.h} tiles  ·  ${M.objs.length} objects  ·  ${M.marks.length} markers` + (sel.length ? `  ·  ${sel.length} selected` : '') + `  ·  ${S.zoom}×` : '',
+      undoOp: this.undoS.length ? 1 : 0.4, redoOp: this.redoS.length ? 1 : 0.4,
+      seasons: ['spring', 'summer', 'fall', 'winter'].map(n => seg(n === S.season, () => { this.setState({ season: n }); setTimeout(() => this.save()); }, lab(n))),
+      lights: LIGHTS.map(n => ({ id: n, label: lab(n) })),
+      setLight: e => { this.setState({ light: e.target.value }); setTimeout(() => this.save()); },
+      setName: e => { const v = e.target.value; if (this.M) this.M.name = v; this.setState({ name: v }); this.save(); },
+      setRw: e => this.setState({ rw: e.target.value }), setRh: e => this.setState({ rh: e.target.value }),
+      resize: () => { if (!M) return; const w = Math.max(8, Math.min(256, parseInt(S.rw) || 40)), h = Math.max(8, Math.min(256, parseInt(S.rh) || 28)); this.commit(() => { const t = new Array(w * h).fill('g'), f = new Array(w * h).fill(null), bs = new Array(w * h).fill(0); for (let y = 0; y < Math.min(h, M.h); y++) for (let x = 0; x < Math.min(w, M.w); x++) { t[y * w + x] = M.terr[y * M.w + x]; f[y * w + x] = M.fixed[y * M.w + x]; bs[y * w + x] = M.base[y * M.w + x]; } M.w = w; M.h = h; M.terr = t; M.fixed = f; M.base = bs; M.objs = M.objs.filter(o => { const [fw, fh] = this.fp(o); return o.tx >= 0 && o.ty >= 0 && o.tx + fw <= w && o.ty + fh <= h; }); M.marks = M.marks.filter(m => m.tx < w && m.ty < h); this.sel = []; this.reocc(); }); this.fit(); },
+      tb: (() => { const r = {}; TOOLS.forEach(([id, l, k]) => { const on = id === S.tool; r[id] = { pick: () => this.setState({ tool: id }), title: `${l} (${k})`, bg: on ? '#c5d48a' : 'transparent', fg: on ? '#1a1e14' : '#d6d8c6', hov: on ? '#c5d48a' : '#2a3120' }; }); [['grid', 'Grid (Ctrl+G)'], ['col', 'Collision overlay']].forEach(([k, t]) => { r[k] = { pick: () => this.setState(s => ({ [k]: !s[k] })), title: t, bg: S[k] ? '#2a3120' : 'transparent', fg: S[k] ? '#c5d48a' : '#8b8f78', hov: '#2a3120' }; }); return r; })(),
+      toolName: (TOOLS.find(t => t[0] === S.tool) || TOOLS[0])[1],
+      showBrush: ['paint', 'line', 'rect', 'fill'].includes(S.tool), brushLabel: cur.label, brushThumb: cur.thumb || '', brushMk: cur.mk || '',
+      zoomPct: S.zoom * 100 + '%',
+      zoomIn: () => this.wrap && this.zoomAt(this.view.z + 1, this.wrap.clientWidth / 2, this.wrap.clientHeight / 2),
+      zoomOut: () => this.wrap && this.zoomAt(this.view.z - 1, this.wrap.clientWidth / 2, this.wrap.clientHeight / 2),
+      zoomFit: () => this.M && this.fit(),
+      layers: LAYERS.map(([id, l]) => { const on = id === S.layer; return { label: l, count: cnt[id] || '', pick: () => setLayer(id), bg: on ? '#2a3120' : 'transparent', bd: on ? '#6f7d45' : '#2a2f24', fg: on ? '#e4e6d2' : '#d6d8c6',
+        visLabel: S.vis[id] ? 'Shown' : 'Hidden', visFg: S.vis[id] ? '#c5d48a' : '#565b4c', toggleVis: () => this.setState(s => ({ vis: { ...s.vis, [id]: !s.vis[id] } })),
+        lockLabel: S.lock[id] ? 'Locked' : 'Lock', lockFg: S.lock[id] ? '#d4a24a' : '#8b8f78', toggleLock: () => this.setState(s => ({ lock: { ...s.lock, [id]: !s.lock[id] } })) }; }),
+      showCats: CATS.filter(c => CAT_LAYER[c[0]] === S.layer).length > 1,
+      cats: CATS.filter(c => CAT_LAYER[c[0]] === S.layer).map(([id, l]) => ({ label: l, pick: () => this.setState({ cat: id, brush: (B.find(b => b.cat === id && b.id === S.brush) || B.find(b => b.cat === id)).id }), bg: id === S.cat ? '#2a3120' : 'transparent', fg: id === S.cat ? '#c5d48a' : '#8b8f78', bd: id === S.cat ? '#6f7d45' : '#2a2f24' })),
+      items: B.filter(b => b.cat === S.cat).map(b => { const on = b.id === S.brush; return { label: b.label, thumb: b.thumb || '', mk: b.mk || '', bg: on ? '#2a3120' : '#161912', bd: on ? '#c5d48a' : '#2a2f24', fg: on ? '#e4e6d2' : '#8b8f78', pick: () => this.setState({ brush: b.id, tool: ['erase', 'pick', 'select', 'hand'].includes(S.tool) ? 'paint' : S.tool }) }; }),
+      gateOpts: cur.kind === 'gate' && S.tool !== 'select', sideOpts: cur.kind === 'gate' && cur.o === 'v' && S.gateOpen,
+      gateStates: [[false, 'Closed'], [true, 'Open']].map(([v, l]) => seg(S.gateOpen === v, () => this.setState({ gateOpen: v }), l)),
+      gateSides: [['e', 'Swing E', 'Use on a west wall'], ['w', 'Swing W', 'Use on an east wall']].map(([v, l, t]) => seg(S.gateSide === v, () => this.setState({ gateSide: v }), l, { title: t })),
+      baseOpts: S.layer === 'base',
+      baseAuto: () => { if (M && this.editable('base')) this.commit(() => this.autoBase()); },
+      baseClear: () => { if (M && this.editable('base')) this.commit(() => { M.base = M.base.map(() => 0); }); },
+      hasSel: sel.length > 0,
+      selTitle: one ? this.nameOf(one) : `${sel.length} selected`,
+      selSub: one ? `${one.tx}, ${one.ty}` + (isMark(one) ? '' : `  ·  ${fpS[0]}×${fpS[1]}`) : 'Drag any of them to move all',
+      selRows: rows,
+      dupSel: () => this.dupSel(), delSel: () => this.delSel(), clearSel: () => { this.sel = []; this.bump(); },
+      checks: (() => { const c = this.checks(); return c.length ? c.map(k => ({ text: k.text, dot: '#d4a24a', fg: '#d6d8c6', pick: () => { if (k.sel) { this.sel = k.sel.slice(); this.setState({ tool: 'select' }); } } })) : [{ text: 'No problems found.', dot: '#6f7d45', fg: '#8b8f78', pick: () => {} }]; })(),
+      views: [['grid', 'Grid'], ['col', 'Collision']].map(([k, l]) => ({ label: l, pick: () => this.setState(s => ({ [k]: !s[k] })), bg: S[k] ? '#2a3120' : 'transparent', fg: S[k] ? '#c5d48a' : '#8b8f78', bd: S[k] ? '#6f7d45' : '#2a2f24' })),
+      undo: () => this.step(this.undoS, this.redoS), redo: () => this.step(this.redoS, this.undoS),
+      newMap: () => { if (!M) return; this.commit(() => this.load(this.blank(M.w, M.h, M.name))); },
+      openMap: () => { const i = document.querySelector('input[data-open]'); if (i) { i.value = ''; i.click(); } },
+      onFile: e => { const f = e.target.files && e.target.files[0]; if (!f) return; f.text().then(t => { let d; try { d = JSON.parse(t); } catch (err) { return; } if (d && d.format === 'survival-map' && d.w && d.h) { this.commit(() => this.load(d)); this.fit(); } }); },
+      saveMap: () => { if (M) dl(new Blob([JSON.stringify(this.ser())], { type: 'application/json' }), slug(M.name) + '.survmap.json'); },
+      exportPng: () => this.exportPng(), exportUnity: () => this.exportUnity()
+    };
+  }
+}
+</script>
+</body>
+</html>

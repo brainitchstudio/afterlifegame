@@ -1,0 +1,324 @@
+[
+  {
+    "id": "firewood",
+    "rank": "camp",
+    "title": "Firewood",
+    "brief": "You have tools but no timber. Click trees near camp to mark them; your survivors fell them and stack the logs by the fire.",
+    "objectives": [
+      {
+        "kind": "fell",
+        "count": 3
+      }
+    ],
+    "unlock": [
+      "barricade"
+    ],
+    "reward": {
+      "metal": 10
+    },
+    "log": "The first logs are stacked. The axes are dull but they bite.",
+    "chapter": "ch1_drop",
+    "giver": "command"
+  },
+  {
+    "id": "palisade",
+    "rank": "camp",
+    "title": "Draw a Line",
+    "brief": "Barricades are unlocked. Build them along the edge of camp so the dead have something to break on besides us.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 6,
+        "type": "barricade"
+      }
+    ],
+    "unlock": [
+      "gate"
+    ],
+    "reward": {
+      "wood": 20
+    },
+    "log": "Six barricades stand. Not a fort, but a line the dead have to cross.",
+    "chapter": "ch1_drop",
+    "giver": "command"
+  },
+  {
+    "id": "gate",
+    "rank": "camp",
+    "title": "A Way In",
+    "brief": "A wall needs a way through. Put a gate across one of the road openings or a stretch of the fence.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "gate"
+      }
+    ],
+    "unlock": [
+      "farm"
+    ],
+    "reward": {
+      "metal": 10
+    },
+    "log": "The gate swings. Smoke from our fire can be seen for miles; word that someone is out here will spread.",
+    "chapter": "ch1_drop",
+    "giver": "command"
+  },
+  {
+    "id": "crops",
+    "rank": "camp",
+    "title": "Something to Eat",
+    "brief": "The cache will not feed us forever. Break ground on a farm inside the walls.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "farm"
+      }
+    ],
+    "unlock": [
+      "dorm"
+    ],
+    "reward": {
+      "food": 30
+    },
+    "log": "Seed is in the ground. Now we wait, and guard it.",
+    "chapter": "ch1_drop",
+    "giver": "command"
+  },
+  {
+    "id": "beds",
+    "rank": "camp",
+    "title": "Room for More",
+    "brief": "Tents will not hold newcomers. Build a bunkhouse so anyone who finds us has a bed.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "dorm"
+      }
+    ],
+    "unlock": [
+      "lumber_mill"
+    ],
+    "reward": {
+      "wood": 25
+    },
+    "log": "Four more beds. Now we need people to sleep in them.",
+    "chapter": "ch1_drop",
+    "giver": "command"
+  },
+  {
+    "id": "newcomer",
+    "rank": "camp",
+    "title": "Word Gets Around",
+    "brief": "Survivors who hear of the camp will come to the gate. Welcome someone in, or broadcast on the radio from your tablet.",
+    "objectives": [
+      {
+        "kind": "survivors",
+        "count": 4
+      }
+    ],
+    "unlock": [
+      "shelter"
+    ],
+    "reward": {
+      "food": 20
+    },
+    "log": "A fourth face at the fire. They say others are talking about us.",
+    "chapter": "ch1_drop",
+    "giver": "command"
+  },
+  {
+    "id": "timber",
+    "rank": "camp",
+    "title": "Timber",
+    "brief": "Felling by hand is slow. Build a lumber mill and post a logger to it.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "lumber_mill"
+      },
+      {
+        "kind": "staff",
+        "count": 1,
+        "role": "logger"
+      }
+    ],
+    "unlock": [
+      "storage"
+    ],
+    "reward": {
+      "metal": 15
+    },
+    "log": "The mill is running. We finally have more wood than we can burn.",
+    "chapter": "ch1_drop",
+    "giver": "command"
+  },
+  {
+    "id": "depot",
+    "rank": "outpost",
+    "title": "Stockpile",
+    "brief": "An outpost needs somewhere to keep what it gathers. Build a storage depot.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "storage"
+      }
+    ],
+    "unlock": [
+      "workshop"
+    ],
+    "reward": {
+      "wood": 30
+    },
+    "log": "The depot is dry and locked. Command will want an inventory.",
+    "chapter": "ch2_outpost",
+    "giver": "command"
+  },
+  {
+    "id": "tools",
+    "rank": "outpost",
+    "title": "Tools of the Trade",
+    "brief": "Build a workshop and post an engineer to keep the walls standing and salvage metal.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "workshop"
+      },
+      {
+        "kind": "staff",
+        "count": 1,
+        "role": "engineer"
+      }
+    ],
+    "unlock": [
+      "tower"
+    ],
+    "reward": {
+      "metal": 20
+    },
+    "log": "Sparks from the workshop until midnight. The walls will hold longer now.",
+    "chapter": "ch2_outpost",
+    "giver": "command"
+  },
+  {
+    "id": "watch",
+    "rank": "outpost",
+    "title": "Eyes on the Treeline",
+    "brief": "The dead come out of the trees without warning. Raise a watchtower and put someone on it.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "tower"
+      }
+    ],
+    "unlock": [
+      "clinic"
+    ],
+    "reward": {
+      "wood": 30,
+      "metal": 10
+    },
+    "log": "From the tower you can see the whole valley. It is bigger than I thought.",
+    "chapter": "ch2_outpost",
+    "giver": "command"
+  },
+  {
+    "id": "medicine",
+    "rank": "settlement",
+    "title": "Field Medicine",
+    "brief": "Wounds fester without care. Build a clinic and post a medic.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "clinic"
+      },
+      {
+        "kind": "staff",
+        "count": 1,
+        "role": "medic"
+      }
+    ],
+    "unlock": [
+      "barracks"
+    ],
+    "reward": {
+      "food": 30
+    },
+    "log": "We lost nobody this week. The clinic is why.",
+    "chapter": "ch3_settlement",
+    "giver": "command"
+  },
+  {
+    "id": "guard",
+    "rank": "settlement",
+    "title": "Standing Guard",
+    "brief": "A settlement needs people whose only job is to keep it safe. Build a barracks.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "barracks"
+      }
+    ],
+    "unlock": [
+      "lab"
+    ],
+    "reward": {
+      "metal": 25
+    },
+    "log": "The guards drill at dawn. The children watch them.",
+    "chapter": "ch3_settlement",
+    "giver": "command"
+  },
+  {
+    "id": "research",
+    "rank": "town",
+    "title": "Know the Enemy",
+    "brief": "A town can afford to study the dead. Build a research lab.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "lab"
+      }
+    ],
+    "unlock": [
+      "armory"
+    ],
+    "reward": {
+      "wood": 40,
+      "metal": 20
+    },
+    "log": "The lab smells of bleach and smoke. The researchers say they are close to something.",
+    "chapter": "ch4_town",
+    "giver": "command"
+  },
+  {
+    "id": "arsenal",
+    "rank": "town",
+    "title": "Arsenal",
+    "brief": "Build an armory to fabricate munitions and outfit the guard.",
+    "objectives": [
+      {
+        "kind": "build",
+        "count": 1,
+        "type": "armory"
+      }
+    ],
+    "unlock": [],
+    "reward": {
+      "metal": 40,
+      "food": 40
+    },
+    "log": "Racks of rifles. We are not hiding any more.",
+    "chapter": "ch4_town",
+    "giver": "command"
+  }
+]

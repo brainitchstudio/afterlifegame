@@ -1,0 +1,987 @@
+/* Page layout for the web host. The HUD itself is styled by afterlife.css, generated from Unity's USS. */
+html, body, #root, #app-container { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #070a0c; }
+body {
+  /* Unity's default runtime font is Liberation Sans / Arial. */
+  font-family: 'Liberation Sans', Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}
+#world, #world canvas { position: absolute; inset: 0; display: block; }
+#world canvas { image-rendering: pixelated; }
+
+/* The HUD panel is laid out at 1440 × 900-relative size and scaled to the window (PanelSettings). */
+.hud-root { position: absolute; left: 0; top: 0; transform-origin: 0 0; pointer-events: none; }
+.hud-root > * { pointer-events: auto; }
+/* Picking mode Ignore in the Unity HUD. */
+.hud-root > .hud-helper-bar, .hud-root > .incursion-alert-card { pointer-events: none; }
+
+.boot-screen { position: absolute; inset: 0; align-items: center; justify-content: center; background-color: #070a0c; }
+.fatal-screen { padding: 20px; background-color: #0c100b; pointer-events: auto; }
+.fatal-trace { flex-grow: 1; overflow: auto; margin-top: 12px; padding: 12px; color: #f7a694; background-color: #1a1210; border: 1px solid #b84435; font-size: 12px; white-space: pre-wrap; user-select: text; }
+.save-import-field {
+  min-height: 160px; margin: 6px 3px; padding: 8px; resize: vertical;
+  color: #d8ddbd; background-color: #141a11; border: 1px solid #3f5033; border-radius: 3px;
+  font-family: ui-monospace, Menlo, monospace; font-size: 11px; user-select: text;
+}
+
+/* World seed entry on the map size step (web addition; matches the new-game panel palette). */
+.hud-root .new-game-seed-row { flex-direction: row; flex-wrap: wrap; align-items: center; margin-top: 0; margin-bottom: 0; }
+.hud-root .new-game-seed-label { color: #c4d889; font-size: 13px; font-weight: 700; letter-spacing: 2px; margin-right: 12px; }
+.hud-root .new-game-seed-field {
+  width: 160px; height: 32px; padding: 0 10px; color: #f0f4de; background-color: #1b2620;
+  border: 2px solid #41523d; border-radius: 0; font: 700 15px ui-monospace, Menlo, monospace; letter-spacing: 1px; outline: none; user-select: text;
+}
+.hud-root .new-game-seed-field:focus { border-color: #d3e397; background-color: #303e2c; }
+.hud-root .new-game-seed-field::placeholder { color: #6f7f66; font-weight: 400; }
+.hud-root .new-game-seed-btn { min-height: 32px; height: 32px; margin: 0 0 0 8px; padding: 0 12px; border-radius: 0; border-width: 1px; border-color: #64735c; background-color: #29372a; color: #dce5d3; font-size: 12px; font-weight: 700; letter-spacing: 1px; }
+.hud-root .new-game-seed-hint { flex-basis: 100%; margin-top: 6px; color: #8e9c86; font-size: 12px; }
+
+/* New game v4 world customizer & map size grid */
+.hud-root .new-game-panel {
+  width: 720px;
+  max-width: 95vw;
+  max-height: 510px;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+}
+.hud-root .new-game-scroll-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 6px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.hud-root .new-game-scroll-body::-webkit-scrollbar { width: 6px; }
+.hud-root .new-game-scroll-body::-webkit-scrollbar-track { background: #111a17; }
+.hud-root .new-game-scroll-body::-webkit-scrollbar-thumb { background: #3d4f38; border-radius: 3px; }
+.hud-root .new-game-scroll-body::-webkit-scrollbar-thumb:hover { background: #627549; }
+
+.hud-root .new-game-choices.four-cols {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+  margin-bottom: 0;
+}
+.hud-root .new-game-choices.four-cols .new-game-choice {
+  width: auto;
+  height: 82px;
+  padding: 6px 4px;
+}
+.hud-root .new-game-choices.four-cols .new-game-map-name {
+  font-size: 16px;
+  margin-bottom: 3px;
+}
+.hud-root .new-game-choices.four-cols .new-game-map-detail {
+  font-size: 10px;
+}
+
+.hud-root .new-game-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #283626;
+}
+.hud-root .new-game-section-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.hud-root .new-game-section-title {
+  color: #c4d889;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+.hud-root .new-game-toggle-group {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid #41523d;
+}
+.hud-root .new-game-toggle-btn {
+  background: transparent;
+  border: 0;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #99a78d;
+  cursor: pointer;
+  border-radius: 0;
+}
+.hud-root .new-game-toggle-btn.active {
+  background: #c5d48a;
+  color: #162015;
+}
+
+.hud-root .new-game-chip-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.hud-root .new-game-chip {
+  padding: 4px 9px;
+  background: transparent;
+  border: 1px solid #3d4d3a;
+  color: #8b9b82;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 0;
+}
+.hud-root .new-game-chip:hover {
+  border-color: #64735c;
+  color: #dce5d3;
+}
+.hud-root .new-game-chip.active {
+  background: #253421;
+  border-color: #8fa368;
+  color: #d6e5c2;
+}
+
+.hud-root .new-game-presets-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.hud-root .new-game-preset-btn {
+  padding: 6px 4px;
+  background: #1b2620;
+  border: 1px solid #41523d;
+  color: #dce5d3;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 0;
+  text-align: center;
+}
+.hud-root .new-game-preset-btn:hover {
+  border-color: #64735c;
+}
+.hud-root .new-game-preset-btn.active {
+  background: #2a3824;
+  border-color: #c5d48a;
+  color: #c5d48a;
+}
+
+.hud-root .new-game-sliders-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.hud-root .new-game-slider-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #15201b;
+  border: 1px solid #283626;
+  padding: 8px 10px;
+}
+.hud-root .new-game-slider-card-title {
+  font-size: 10px;
+  color: #7d9171;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.hud-root .new-game-slider-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 8px;
+  align-items: center;
+}
+.hud-root .new-game-slider-name {
+  font-size: 11px;
+  color: #c6d4be;
+}
+.hud-root .new-game-slider-val {
+  font-size: 11px;
+  color: #c5d48a;
+  font-weight: 700;
+}
+.hud-root .new-game-slider-input {
+  grid-column: 1 / -1;
+  width: 100%;
+  accent-color: #c5d48a;
+  cursor: pointer;
+  margin: 2px 0 0 0;
+}
+.hud-root .new-game-reset-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid #41523d;
+  color: #b9c7ac;
+  padding: 6px 12px;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 0;
+}
+.hud-root .new-game-reset-btn:hover {
+  border-color: #c5d48a;
+  color: #c5d48a;
+}
+
+/* The supplies card, top right (SuppliesCard.jsx): a small overseer tablet like the clock and survivors
+   cards, with the tablet's bars, rates and pills. */
+.hud-root .supplies-tablet {
+  position: absolute; top: 16px; right: 16px; width: 360px;
+  border: 28px solid transparent; border-image: var(--kit-tablet-frame) 14 fill / 28px stretch;
+  image-rendering: pixelated; filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .45));
+}
+.hud-root .supplies-tablet .tablet-screen { margin: -4px; }
+.hud-root .supplies-head { gap: 8px; padding: 6px 8px; }
+.hud-root .supplies-head .tablet-title { font-size: 12px; }
+.hud-root .supplies-head-btn { min-height: 22px; padding: 0 8px; font-size: 10px; }
+.hud-root .supplies-fold { width: 22px; padding: 0; font-size: 13px; }
+.hud-root .supplies-row { flex-direction: row; align-items: center; gap: 10px; padding: 7px 10px; border-bottom: 1px solid #1e231a; cursor: pointer; }
+.hud-root .supplies-row:hover { background-color: #1d2119; }
+.hud-root .supplies-icon { width: 28px; height: 28px; flex-shrink: 0; }
+.hud-root .supplies-line { gap: 6px; align-items: baseline; position: relative; }
+.hud-root .supplies-amount { display: block; font: 700 15px ui-monospace, Menlo, monospace; color: #d6d8c6; white-space: nowrap; }
+.hud-root .supplies-amount.amber { color: #d4a24a; }
+.hud-root .supplies-amount .tab-dim { font-size: 11px; }
+.hud-root .supplies-rate { margin-top: 0; }
+.hud-root .supplies-row .tab-bar { margin-top: 3px; }
+.hud-root .supplies-outlook { margin-top: 3px; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #5d6452; }
+.hud-root .supplies-outlook.amber { color: #d4a24a; }
+.hud-root .supplies-outlook.red { color: #d0694f; }
+.hud-root .supplies-pop { font: 700 11px ui-monospace, Menlo, monospace; color: #c5d48a; animation: supplies-pop 1.6s ease-out forwards; pointer-events: none; }
+.hud-root .supplies-pop.down { color: #d0694f; }
+@keyframes supplies-pop { from { opacity: 1; transform: translateY(0); } 70% { opacity: 1; } to { opacity: 0; transform: translateY(-8px); } }
+.hud-root .supplies-stats { flex-direction: row; gap: 6px; padding: 8px 10px; background-color: #151911; }
+.hud-root .supplies-stat {
+  flex: 1 1 0; min-width: 0; flex-direction: row; align-items: center; gap: 4px; min-height: 30px; padding: 0 6px; margin: 0;
+  background-color: #1d2119; border: 1px solid #343c2d; border-radius: 0; box-shadow: inset 1px 1px 0 #4a5440, inset -1px -1px 0 #232820;
+}
+.hud-root .supplies-stat:hover { background-color: #252c1d; border-color: #6f7d45; }
+.hud-root .supplies-stat.warn { border-color: #8a6a2a; background-color: #2a2718; }
+.hud-root .supplies-stat-icon { width: 18px; height: 18px; flex-shrink: 0; }
+.hud-root .supplies-stat-value { font: 700 12px ui-monospace, Menlo, monospace; color: #d6d8c6; }
+.hud-root .supplies-stat.warn .supplies-stat-value { color: #e6c874; }
+.hud-root .supplies-stat-label { margin-left: auto; font-size: 8px; white-space: nowrap; font-weight: 700; letter-spacing: 1.5px; color: #8b8f78; }
+.hud-root .supplies-warnings { padding: 6px 10px 8px; gap: 3px; border-top: 1px solid #343c2d; background-color: #1c1712; }
+.hud-root .supplies-warning { font-size: 10px; color: #e6c874; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud-root .supplies-warning.more { color: #8b8f78; }
+.hud-root .supplies-compact { flex-direction: row; align-items: center; gap: 12px; padding: 7px 10px; }
+.hud-root .supplies-compact-item { gap: 5px; }
+.hud-root .supplies-compact-icon { width: 20px; height: 20px; }
+.hud-root .supplies-compact-amount { font: 700 13px ui-monospace, Menlo, monospace; color: #d6d8c6; }
+.hud-root .supplies-compact-amount.amber { color: #d4a24a; }
+.hud-root .supplies-compact-warn { margin-left: auto; }
+.hud-root .supplies-compact-warn + .supplies-compact-warn { margin-left: 0; }
+/* A campaign's other resources: two columns of icon, name and amount under the essentials. */
+.hud-root .supplies-others { flex-direction: row; flex-wrap: wrap; padding: 4px 10px 6px; border-bottom: 1px solid #1e231a; }
+.hud-root .supplies-other { width: 50%; gap: 5px; padding: 2px 4px 2px 0; cursor: pointer; }
+.hud-root .supplies-other:hover { background-color: #1d2119; }
+.hud-root .supplies-other-label { font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #8b8f78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud-root .supplies-other-amount { font: 700 12px ui-monospace, Menlo, monospace; color: #d6d8c6; }
+
+/* Jobs & Careers Management Hub Styles */
+.jobs-selector-strip {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+  background-color: #141b12;
+  padding: 8px;
+  border: 1px solid #2d3b25;
+  border-radius: 4px;
+}
+.jobs-tab-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background-color: #1c2618;
+  border: 1px solid #36482c;
+  border-radius: 3px;
+  color: #c9d5be;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.jobs-tab-pill:hover {
+  background-color: #273622;
+  border-color: #637d4d;
+  color: #f0f7e4;
+}
+.jobs-tab-pill.active {
+  background-color: #384d2a;
+  border-color: #9cb882;
+  color: #f7ffe9;
+  box-shadow: 0 0 8px rgba(156, 184, 130, 0.25);
+}
+.jobs-count-tag {
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 1px 6px;
+  border-radius: 9px;
+  font-size: 10px;
+  color: #cddaba;
+}
+.jobs-tab-pill.active .jobs-count-tag {
+  background-color: #192514;
+  color: #d8f5ab;
+}
+
+.job-overview-hero {
+  background-color: #182214;
+  border: 1px solid #3a4c2e;
+  border-radius: 4px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.job-hero-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #28371f;
+  padding-bottom: 8px;
+}
+.job-hero-title-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.job-hero-icon {
+  font-size: 22px;
+  width: 38px;
+  height: 38px;
+  background-color: #23311c;
+  border: 1px solid #4a633a;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.job-hero-badges {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  align-items: center;
+}
+.job-stat-tag {
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.job-stat-tag.pri {
+  background-color: #3b4e28;
+  border: 1px solid #7c9b5b;
+  color: #e5f5c0;
+}
+.job-stat-tag.sec {
+  background-color: #273e3b;
+  border: 1px solid #477b75;
+  color: #a7ebe5;
+}
+.job-formula-box {
+  background-color: #131a10;
+  border-left: 3px solid #7c9b5b;
+  padding: 6px 12px;
+  font-size: 11px;
+  color: #d6e2c4;
+}
+
+.job-workstation-card {
+  background-color: #192315;
+  border: 1px solid #36492b;
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+.job-workstation-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #2b3921;
+}
+
+.career-ladder-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  margin-bottom: 14px;
+  background-color: #161e12;
+  border: 1px solid #324327;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.career-ladder-table th {
+  background-color: #1d2817;
+  color: #8da46e;
+  font-size: 10px;
+  font-weight: 700;
+  text-align: left;
+  padding: 6px 10px;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #324327;
+}
+.career-ladder-table td {
+  padding: 7px 10px;
+  font-size: 11px;
+  color: #c7d4bc;
+  border-bottom: 1px solid #25331c;
+  vertical-align: middle;
+}
+.career-ladder-table tr:last-child td {
+  border-bottom: none;
+}
+.career-ladder-table tr.qualified-row {
+  background-color: rgba(156, 184, 130, 0.08);
+}
+.rank-badge-pill {
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 700;
+  display: inline-block;
+}
+.rank-badge-pill.r1 { background-color: #2c3823; border: 1px solid #4a5d3c; color: #b9caa9; }
+.rank-badge-pill.r2 { background-color: #27402f; border: 1px solid #457855; color: #a4e5bb; }
+.rank-badge-pill.r3 { background-color: #3b3924; border: 1px solid #786f3b; color: #f2e399; }
+.rank-badge-pill.r4 { background-color: #442a22; border: 1px solid #944f38; color: #fcae95; }
+
+/* The overseer's tablet (Tablet.jsx). The bezel, button frames and bars are the design kit's own
+   9-slice parts (tablet_frame, frame_btn/hover/select, sup_bar_back/sup_fill_*) drawn at 3× and 2×;
+   Tablet.jsx sets the --kit-* image variables so they resolve the same in dev and in the build,
+   in the kit palette: text #d6d8c6, muted #8b8f78, lime #c5d48a, amber #d4a24a, red #d0694f. */
+.hud-root .tablet {
+  width: 1200px; max-width: 96%; height: 760px; max-height: 94%;
+  border: 42px solid transparent; border-image: var(--kit-tablet-frame) 14 fill / 42px stretch;
+  image-rendering: pixelated; filter: drop-shadow(0 6px 0 rgba(0, 0, 0, .45));
+}
+/* The device's name, stamped into the bottom bezel like a maker's mark. */
+.hud-root .tablet { position: relative; }
+.hud-root .tablet-brand {
+  position: absolute; left: 0; right: 0; bottom: -31px; text-align: center; pointer-events: none;
+  font: 700 11px ui-monospace, Menlo, monospace; letter-spacing: 6px; color: #8b9470;
+  text-shadow: 0 -1px 0 #1a1e16, 0 1px 0 #6f7d5a;
+}
+.hud-root .tablet-screen { flex-grow: 1; min-height: 0; margin: -6px; background-color: #12150f; color: #d6d8c6; }
+.hud-root .tablet-head { flex-direction: row; align-items: center; gap: 10px; padding: 8px 12px; border-bottom: 1px solid #343c2d; background-color: #171b13; }
+.hud-root .tablet-head-icon { width: 24px; height: 24px; }
+.hud-root .tablet-title { font-size: 13px; font-weight: 700; letter-spacing: 2px; color: #c5d48a; }
+.hud-root .tablet-chip { padding: 2px 8px; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; color: #c5d48a; border: 1px solid #6f7d45; background-color: #252c1d; }
+.hud-root .tablet-clock { font-size: 11px; letter-spacing: 1px; color: #8b8f78; font-family: ui-monospace, Menlo, monospace; }
+.hud-root .tablet-hint { font-size: 10px; letter-spacing: 1.5px; color: #5d6452; }
+.hud-root .tablet-close { width: 26px; height: 26px; padding: 0; background: var(--kit-btn-close) center / 100% 100% no-repeat; image-rendering: pixelated; }
+.hud-root .tablet-close:hover { background-image: var(--kit-btn-close-hover); }
+.hud-root .tablet-close:active { background-image: var(--kit-btn-close-down); }
+.hud-root .tablet-body { flex-direction: row; flex-grow: 1; min-height: 0; }
+.hud-root .tablet-rail { width: 176px; flex-shrink: 0; padding: 4px 8px 10px; border-right: 1px solid #343c2d; background-color: #151911; }
+.hud-root .tablet-group { gap: 3px; margin-bottom: 6px; }
+.hud-root .tablet-group-label { margin: 8px 2px 2px; font-size: 9px; font-weight: 700; letter-spacing: 2px; color: #5d6452; }
+.hud-root .tablet-tab-key { margin-left: auto; margin-right: -6px; padding: 0 4px; font: 700 9px ui-monospace, Menlo, monospace; color: #5d6452; border: 1px solid #2b3224; background-color: #12150f; }
+.hud-root .tablet-tab {
+  flex-direction: row; align-items: center; gap: 8px; height: 38px; flex-shrink: 0; padding: 0 8px; justify-content: flex-start;
+  border: 16px solid transparent; border-image: var(--kit-frame-btn) 8 fill / 16px stretch; image-rendering: pixelated;
+  padding: 0; margin: 0;
+}
+.hud-root .tablet-tab > * { margin: -12px 0; }
+.hud-root .tablet-tab:hover { border-image-source: var(--kit-frame-hover); }
+.hud-root .tablet-tab.active { border-image-source: var(--kit-frame-select); }
+.hud-root .tablet-tab-icon { width: 24px; height: 24px; flex-shrink: 0; margin-left: -6px; }
+.hud-root .tablet-tab-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: #8b8f78; }
+.hud-root .tablet-tab:hover .tablet-tab-label { color: #d6d8c6; }
+.hud-root .tablet-tab.active .tablet-tab-label { color: #c5d48a; }
+.hud-root .tablet-tab-badge { margin-left: auto; margin-right: -6px; min-width: 18px; padding: 1px 5px; font-size: 10px; font-weight: 700; text-align: center; color: #1a1e14; background-color: #d4a24a; border: 1px solid #1a1e16; }
+.hud-root .tablet-page { flex-grow: 1; min-width: 0; padding: 12px 16px 16px; }
+
+.hud-root .tab-heading { flex-direction: row; align-items: baseline; margin: 10px 0 8px; padding-bottom: 5px; border-bottom: 1px solid #343c2d; }
+.hud-root .tab-heading:first-child { margin-top: 0; }
+.hud-root .tab-heading-text { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #c5d48a; }
+.hud-root .tab-heading-right { font-size: 10px; letter-spacing: 1.5px; color: #8b8f78; }
+.hud-root .tab-card { padding: 10px 12px; margin-bottom: 8px; background-color: #1d2119; border: 1px solid #343c2d; box-shadow: inset 1px 1px 0 #4a5440, inset -1px -1px 0 #232820; }
+.hud-root .tab-card.locked { opacity: .55; }
+.hud-root .tab-feature { border-color: #6f7d45; }
+.hud-root .tab-feature.waiting { border-color: #8a6a2a; }
+.hud-root .tab-warnings { border-color: #a4513f; background-color: #2a1b16; }
+.hud-root .tab-row { flex-direction: row; align-items: center; gap: 8px; }
+.hud-root .tab-col { flex-direction: column; min-width: 0; }
+.hud-root .tab-col.grow, .hud-root .grow { flex-grow: 1; }
+.hud-root .tab-grid3, .hud-root .tab-grid4 { display: grid; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.hud-root .tab-grid4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.hud-root .tab-grid3 > .tab-card, .hud-root .tab-grid4 > .tab-card { margin-bottom: 0; }
+.hud-root .tab-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.hud-root .tab-badge { width: 10px; height: 10px; flex-shrink: 0; }
+.hud-root .tab-thumb { width: 40px; height: 32px; flex-shrink: 0; background-size: contain; background-color: #12150f; border: 1px solid #343c2d; }
+.hud-root .tab-portrait { width: 44px; height: 44px; flex-shrink: 0; border: 1px solid #4a5440; }
+.hud-root .tab-portrait.small { width: 30px; height: 30px; }
+.hud-root .tab-caption { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #8b8f78; }
+.hud-root .tab-title { font-size: 15px; font-weight: 700; color: #d6d8c6; margin: 1px 0 3px; white-space: normal; }
+.hud-root .tab-name { font-size: 12px; font-weight: 700; color: #d6d8c6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud-root .tab-sub { font-size: 10px; color: #8b8f78; white-space: normal; }
+.hud-root .tab-body { font-size: 12px; line-height: 1.45; color: #aeb29c; white-space: normal; margin-bottom: 6px; }
+.hud-root .tab-empty { font-size: 12px; color: #8b8f78; padding: 8px 2px 12px; white-space: normal; }
+.hud-root .tab-big { font: 700 20px ui-monospace, Menlo, monospace; color: #d6d8c6; }
+.hud-root .tab-big.amber { color: #d4a24a; }
+.hud-root .tab-dim { font-size: 12px; color: #8b8f78; }
+.hud-root .tab-rate { font: 700 11px ui-monospace, Menlo, monospace; color: #8b8f78; margin-top: 4px; text-align: right; }
+.hud-root .tab-rate.lime { color: #c5d48a; } .hud-root .tab-rate.red { color: #d0694f; }
+.hud-root .tab-count { font: 700 11px ui-monospace, Menlo, monospace; color: #8b8f78; }
+.hud-root .tab-bar { height: 12px; margin-top: 5px; border: 3px solid transparent; border-image: var(--kit-sup-bar-back) 1 fill / 3px stretch; image-rendering: pixelated; }
+.hud-root .tab-bar-fill { height: 100%; background: var(--kit-sup-fill-lime) left top / 18px 6px repeat-x; image-rendering: pixelated; }
+.hud-root .tab-bar-fill.amber { background-image: var(--kit-sup-fill-amber); }
+.hud-root .tab-bar-fill.red { background-image: var(--kit-sup-fill-red); }
+.hud-root .tab-objective { margin: 6px 0; }
+.hud-root .tab-objective-text { font-size: 12px; color: #d6d8c6; }
+.hud-root .tab-objective.done .tab-objective-text { color: #c5d48a; }
+.hud-root .tab-reward { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #343c2d; }
+.hud-root .tab-pill { padding: 2px 7px; font-size: 10px; font-weight: 700; letter-spacing: 1px; border: 1px solid #343c2d; background-color: #151911; color: #8b8f78; }
+.hud-root .tab-pill.lime { color: #c5d48a; border-color: #6f7d45; background-color: #252c1d; }
+.hud-root .tab-pill.amber { color: #e6c874; border-color: #8a6a2a; background-color: #2a2718; }
+.hud-root .tab-actions { flex-direction: row; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.hud-root .tablet-btn { min-height: 26px; padding: 0 12px; font-size: 11px; font-weight: 700; letter-spacing: 1px; color: #d6d8c6; background-color: #343c2c; border: 1px solid #1a1e16; box-shadow: inset 1px 1px 0 #5a664c, inset -1px -2px 0 #262c20; }
+.hud-root .tablet-btn:hover { background-color: #434d38; box-shadow: inset 1px 1px 0 #76845f, inset -1px -2px 0 #2e3526; }
+.hud-root .tablet-btn.primary { color: #1a1e14; background-color: #b7c67e; box-shadow: inset 1px 1px 0 #e0eab0, inset -1px -2px 0 #5a6636; }
+.hud-root .tablet-btn.primary:hover { background-color: #c5d48a; }
+.hud-root .tablet-btn:disabled { color: #5d6452; background-color: #262b21; box-shadow: none; border-color: #1e221a; }
+.hud-root .tab-list-row { flex-direction: row; align-items: center; gap: 8px; padding: 7px 10px; border-bottom: 1px solid #1e231a; }
+.hud-root .tab-list-row.locked, .hud-root .tab-list-row.waiting { opacity: .6; }
+.hud-root .tab-list-row.done .tab-name { color: #8b8f78; }
+.hud-root .tab-list-row.active { background-color: #252c1d; }
+.hud-root .tab-list-index { font: 700 10px ui-monospace, Menlo, monospace; color: #5d6452; }
+.hud-root .tab-list-rank { width: 82px; text-align: right; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #5d6452; }
+.hud-root .tab-survivor { cursor: pointer; }
+.hud-root .tab-survivor:hover { background-color: #1d2119; }
+.hud-root .tab-health { width: 130px; flex-shrink: 0; }
+.hud-root .tab-task { width: 110px; flex-shrink: 0; text-align: right; }
+.hud-root .tab-candidate .tablet-btn { flex-shrink: 0; }
+.hud-root .tab-entry { padding: 8px 0 10px; border-bottom: 1px solid #1e231a; }
+.hud-root .tab-when { font: 10px ui-monospace, Menlo, monospace; letter-spacing: 1px; color: #6f7d45; }
+.hud-root .tab-log { padding: 4px 0; border-bottom: 1px solid #1a1e16; }
+.hud-root .tab-message { padding: 9px 12px; margin-bottom: 8px; background-color: #171b13; border: 1px solid #2b3224; border-left: 3px solid #4a5440; }
+.hud-root .tab-message.good { border-left-color: #6f7d45; }
+.hud-root .tab-message.warn { border-left-color: #d4a24a; }
+.hud-root .tab-message.unread { background-color: #1d2119; }
+.hud-root .tab-dot { width: 7px; height: 7px; background-color: #c5d48a; border: 1px solid #1a1e16; }
+.hud-root .tab-from { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #8b8f78; }
+.hud-root .tab-ladder { gap: 0; }
+.hud-root .tab-rank.earned { border-color: #6f7d45; }
+.hud-root .tab-rank.current { border-color: #c5d48a; background-color: #252c1d; }
+.hud-root .tab-rank.next { border-color: #8a6a2a; }
+.hud-root .tab-rank:not(.earned):not(.next) { opacity: .6; }
+.hud-root .tab-map { width: 100%; aspect-ratio: 760 / 440; image-rendering: pixelated; border: 1px solid #343c2d; cursor: crosshair; }
+.hud-root .tab-legend { margin-top: 8px; flex-wrap: wrap; }
+.hud-root .tab-key { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #8b8f78; }
+.hud-root .tab-key::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 5px; vertical-align: -1px; border: 1px solid #1a1e16; }
+.hud-root .tab-key.lime::before { background: #cfe08e; } .hud-root .tab-key.red::before { background: #cf6a55; } .hud-root .tab-key.cloth::before { background: #d6d8c6; }
+.hud-root .tab-key.wood::before { background: #b89d6e; } .hud-root .tab-key.amber::before { background: #d4a24a; }
+.hud-root .tab-key.teal::before { background: #6fc2b0; } .hud-root .tab-key.violet::before { background: #b79be0; }
+.hud-root .tablet-page > button:not(.tablet-btn) { margin-bottom: 6px; }
+
+/* Screens the tablet hosts: the crew manager, the admin console, construction and expeditions keep
+   their own styles inside the tablet page. */
+.hud-root .crew-embed, .hud-root .admin-embed { flex-shrink: 0; }
+.hud-root .crew-embed .crew-tab-bar { margin-top: 0; }
+.hud-root .screen-construction .build-grid { flex-shrink: 0; }
+
+/* The clock card, top left: a small overseer tablet like the survivors card below, holding the day
+   strip (DayDial.jsx, a 3× pixel canvas), the clock and speeds, the notification bell, refuge
+   integrity and the current orders. */
+.hud-root .clock-tablet {
+  position: absolute; top: 16px; left: 16px; width: 372px;
+  border: 28px solid transparent; border-image: var(--kit-tablet-frame) 14 fill / 28px stretch;
+  image-rendering: pixelated; filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .45));
+}
+.hud-root .clock-tablet .tablet-screen { margin: -4px; padding: 8px; }
+.hud-root .clock-main { flex-direction: row; align-items: center; gap: 12px; }
+.hud-root .day-dial { flex-shrink: 0; image-rendering: pixelated; }
+.hud-root .clock-info { gap: 2px; }
+.hud-root .clock-day { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #8b8f78; }
+.hud-root .clock-time-row { gap: 8px; }
+.hud-root .clock-time { font: 700 24px ui-monospace, Menlo, monospace; color: #d6d8c6; letter-spacing: 1px; }
+.hud-root .clock-countdown { font-size: 11px; color: #aeb29c; }
+.hud-root .clock-speeds { gap: 4px; margin-top: 4px; }
+.hud-root .clock-speed { min-height: 22px; min-width: 34px; padding: 0 6px; font-size: 11px; }
+.hud-root .clock-bell { position: relative; width: 30px; min-height: 26px; padding: 0; align-items: center; justify-content: center; }
+.hud-root .clock-bell-icon { width: 20px; height: 20px; }
+.hud-root .clock-bell-badge { position: absolute; top: -7px; right: -7px; min-width: 16px; padding: 1px 4px; font-size: 9px; font-weight: 700; text-align: center; color: #1a1e14; background-color: #d4a24a; border: 1px solid #1a1e16; }
+.hud-root .clock-bell.pulse { animation: clock-bell-pulse 1s steps(2, jump-none) infinite; }
+@keyframes clock-bell-pulse { from { background-color: #343c2c; } to { background-color: #6b5a2a; } }
+.hud-root .clock-integrity { margin-top: 10px; padding-top: 8px; border-top: 1px solid #343c2d; }
+.hud-root .clock-integrity .tab-row { gap: 6px; }
+.hud-root .clock-integrity-icon { width: 16px; height: 16px; }
+.hud-root .clock-integrity-low { color: #d0694f; }
+.hud-root .clock-tablet .orders-row { margin-top: 10px; }
+.hud-root .clock-notices {
+  position: absolute; top: calc(100% + 4px); left: -28px; right: -28px; max-height: 360px; overflow-y: auto; padding: 10px 12px 4px;
+  background-color: #12150f; border: 1px solid #343c2d; box-shadow: inset 1px 1px 0 #4a5440, 0 4px 0 rgba(0, 0, 0, .45); color: #d6d8c6;
+}
+.hud-root .clock-notices .tab-heading { align-items: center; margin-top: 0; }
+.hud-root .clock-notices-journal { min-height: 20px; padding: 0 8px; font-size: 9px; }
+.hud-root .clock-notices .tab-message { margin-bottom: 6px; padding: 6px 10px; }
+.hud-root .clock-notices .tab-body { margin-bottom: 0; }
+
+/* The inspector (Inspector.jsx) in the same small-tablet frame as the HUD cards; it grows with its
+   contents up to the room above the dock, then its body scrolls. The survivor and zombie views are
+   built from the tablet's parts; the building view keeps its own styles inside the frame. */
+.hud-root .inspector.inspector-tablet {
+  bottom: auto; width: 380px; padding: 0; border-radius: 0; background-color: transparent;
+  border: 28px solid transparent; border-image: var(--kit-tablet-frame) 14 fill / 28px stretch;
+  image-rendering: pixelated; filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .45));
+}
+.hud-root .inspector-tablet .tablet-screen { margin: -4px; min-height: 0; }
+.hud-root .inspector-building .tablet-screen { padding: 12px; }
+.hud-root .inspector-head { gap: 10px; padding: 8px 10px; }
+.hud-root .inspector-head .tab-portrait { width: 40px; height: 40px; }
+.hud-root .inspector-name { font-size: 16px; font-weight: 700; color: #d6d8c6; }
+.hud-root .inspector-follow { width: 26px; min-height: 26px; padding: 0; font-size: 14px; }
+.hud-root .inspector-body { flex-shrink: 1; min-height: 0; padding: 10px 12px 12px; }
+.hud-root .inspector-doing { font-size: 11px; color: #aeb29c; margin-bottom: 8px; white-space: normal; }
+.hud-root .inspector-body .tab-message { margin-bottom: 8px; }
+.hud-root .tab-grid2 { display: grid; gap: 10px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.hud-root .inspector-meter .tab-bar { margin-top: 3px; }
+.hud-root .inspector-stats { display: grid; gap: 5px; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.hud-root .inspector-stat { align-items: center; padding: 5px 0 4px; background-color: #1d2119; border: 1px solid #343c2d; box-shadow: inset 1px 1px 0 #4a5440, inset -1px -1px 0 #232820; }
+.hud-root .inspector-stat-label { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #8b8f78; }
+.hud-root .inspector-stat-value { font: 700 16px ui-monospace, Menlo, monospace; color: #d6d8c6; }
+.hud-root .inspector-stat.primary { border-color: #6f7d45; background-color: #252c1d; }
+.hud-root .inspector-stat.primary .inspector-stat-value, .hud-root .inspector-stat.primary .inspector-stat-label { color: #c5d48a; }
+.hud-root .inspector-stat.secondary .inspector-stat-value { color: #c5d48a; }
+.hud-root .inspector-stat.weak .inspector-stat-value { color: #d0694f; }
+.hud-root .inspector-weapon { margin-bottom: 0; padding: 8px 10px; }
+.hud-root .inspector-weapon-stat { align-items: flex-end; min-width: 40px; }
+.hud-root .inspector-crew-job .tab-bar { margin-top: 4px; }
+.hud-root .inspector-traits { gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.hud-root .inspector-sides { flex-direction: row; gap: 4px; }
+.hud-root .inspector-sides .tablet-btn { flex: 1 1 0; min-width: 0; padding: 0; font-size: 10px; }
+.hud-root .inspector-job { width: 100%; margin: 0; background-color: transparent; border: 0; border-bottom: 1px solid #1e231a; border-radius: 0; text-align: left; justify-content: flex-start; }
+.hud-root .inspector-job:hover { background-color: #1d2119; }
+.hud-root .inspector-job:disabled { opacity: .5; }
+.hud-root .inspector-foot { padding: 8px 12px; border-top: 1px solid #343c2d; background-color: #151911; }
+.hud-root .inspector-dossier { width: 100%; min-height: 30px; }
+
+/* The current orders under the clock, and the dock's tablet badge. */
+.hud-root .orders-row { flex-direction: row; align-items: center; gap: 10px; margin-top: 10px; padding: 8px 10px; background-color: #1d2119; border: 1px solid #343c2d; border-left: 3px solid #6f7d45; }
+.hud-root .orders-row:hover { background-color: #252c1d; border-color: #4a5440; border-left-color: #c5d48a; }
+.hud-root .orders-icon { width: 24px; height: 24px; flex-shrink: 0; }
+.hud-root .orders-text { flex-grow: 1; min-width: 0; }
+.hud-root .orders-caption { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; color: #8b8f78; }
+.hud-root .orders-title { font-size: 13px; font-weight: 700; color: #d6d8c6; }
+.hud-root .orders-objective { font-size: 11px; color: #c5d48a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud-root .orders-unread { align-self: flex-start; padding: 1px 5px; font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #1a1e14; background-color: #d4a24a; }
+/* The survivors card, bottom left: a small overseer tablet. The kit bezel is drawn at 2× here (3× on
+   the tablet itself); the screen, rows, bars and buttons reuse the tablet's classes. */
+.hud-root .roster-tablet {
+  position: absolute; bottom: 16px; left: 16px; width: 372px; max-height: 480px;
+  border: 28px solid transparent; border-image: var(--kit-tablet-frame) 14 fill / 28px stretch;
+  image-rendering: pixelated; filter: drop-shadow(0 4px 0 rgba(0, 0, 0, .45));
+}
+.hud-root .roster-tablet .tablet-screen { margin: -4px; }
+.hud-root .roster-head { gap: 8px; padding: 6px 8px; }
+.hud-root .roster-head .tablet-title { font-size: 12px; }
+.hud-root .roster-head-btn { min-height: 22px; padding: 0 8px; font-size: 10px; }
+.hud-root .roster-fold { width: 22px; padding: 0; font-size: 13px; }
+.hud-root .roster-list { max-height: 252px; }
+.hud-root .roster-row { padding: 6px 8px; }
+.hud-root .roster-row .tab-bar { height: 8px; margin-top: 3px; border-width: 2px; border-image-width: 2px; }
+.hud-root .roster-row .tab-bar-fill { background-size: 12px 4px; }
+.hud-root .roster-status { color: #8b8f78; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.hud-root .roster-status.downed { color: #d0694f; font-weight: 700; }
+.hud-root .roster-focus { width: 24px; min-height: 24px; padding: 0; flex-shrink: 0; font-size: 13px; }
+.hud-root .roster-side { flex-shrink: 0; min-width: 52px; text-align: center; cursor: pointer; }
+.hud-root .roster-side:hover { color: #d6d8c6; border-color: #6f7d45; }
+.hud-root .roster-recruit { flex-direction: row; justify-content: space-between; align-items: center; margin: 8px 8px 0; }
+.hud-root .roster-recruit-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: inherit; }
+.hud-root .roster-recruit-cost { font: 700 10px ui-monospace, Menlo, monospace; color: inherit; }
+.hud-root .roster-patrol { flex-direction: row; align-items: center; gap: 6px; padding: 7px 8px; margin-top: 8px; border-top: 1px solid #343c2d; background-color: #151911; }
+.hud-root .roster-patrol .tab-caption { margin-right: auto; }
+.hud-root .dock-badge { position: absolute; top: -6px; right: -6px; min-width: 16px; padding: 1px 4px; font-size: 9px; font-weight: 700; text-align: center; color: #1a1e14; background-color: #d4a24a; border: 1px solid #1a1e16; }
+
+/* Admin Command Console & Debug Studio (the tablet's Admin screen) */
+.admin-header-icon {
+  width: 18px;
+  height: 18px;
+  image-rendering: pixelated;
+}
+.admin-status-strip {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  padding: 8px 10px;
+  background-color: #131c14;
+  border: 1px solid #293822;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.admin-status-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  background-color: #19241a;
+  border: 1px solid #2f4027;
+  border-radius: 3px;
+  font-size: 11px;
+}
+.admin-pill-lbl {
+  color: #7d9670;
+  font-weight: 700;
+  font-size: 9px;
+  letter-spacing: 0.5px;
+}
+.admin-pill-val {
+  color: #dce7d1;
+  font-weight: 700;
+  font-family: ui-monospace, Menlo, monospace;
+}
+.admin-toggle-pill {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: #212d1b;
+  border: 1px solid #476137;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.admin-toggle-pill:hover {
+  background-color: #2c3d23;
+  border-color: #63874c;
+}
+.admin-toggle-pill.active {
+  background-color: #3b5329;
+  border-color: #9ecc77;
+  box-shadow: 0 0 10px rgba(158, 204, 119, 0.4);
+}
+.admin-toggle-pill.active .admin-pill-val {
+  color: #a6f56e;
+  font-weight: 900;
+}
+
+.admin-cli-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #090e0a;
+  border: 1px solid #2b3a24;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.admin-cli-input-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background-color: #111812;
+  border-bottom: 1px solid #273620;
+}
+.admin-prompt {
+  color: #8ed659;
+  font-family: ui-monospace, Menlo, monospace;
+  font-weight: 700;
+  font-size: 13px;
+  user-select: none;
+}
+.admin-cmd-input {
+  flex-grow: 1;
+  height: 28px;
+  padding: 0 8px;
+  background-color: #0b110c;
+  border: 1px solid #293822;
+  border-radius: 2px;
+  color: #e3ebd8;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 12px;
+  outline: none;
+  user-select: text;
+}
+.admin-cmd-input:focus {
+  border-color: #6b8f4f;
+  background-color: #121c13;
+}
+.admin-cmd-input::placeholder {
+  color: #55664d;
+}
+.btn-admin-exec {
+  height: 28px;
+  padding: 0 12px;
+  background-color: #2b3d22;
+  border: 1px solid #50703c;
+  border-radius: 2px;
+  color: #dcedc9;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.btn-admin-exec:hover {
+  background-color: #3d5630;
+  border-color: #79a65c;
+  color: #ffffff;
+}
+.btn-admin-clear {
+  height: 28px;
+  padding: 0 10px;
+  background-color: #1b2419;
+  border: 1px solid #36482e;
+  border-radius: 2px;
+  color: #92a488;
+  font-size: 10px;
+  font-weight: 700;
+}
+.btn-admin-clear:hover {
+  background-color: #2a3826;
+  color: #ccd9c4;
+}
+
+.admin-log-box {
+  max-height: 105px;
+  padding: 6px 10px;
+  background-color: #070a08;
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 11px;
+  line-height: 1.45;
+  user-select: text;
+}
+.admin-log-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 1px 0;
+}
+.admin-log-time {
+  color: #53664d;
+}
+.admin-log-line.cmd { color: #87cf65; font-weight: 700; }
+.admin-log-line.info { color: #8fa086; }
+.admin-log-line.success { color: #a9e072; }
+.admin-log-line.error { color: #e87a6b; font-weight: 700; }
+.admin-log-line.warn { color: #e6b86e; }
+
+.admin-tabs-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.admin-tab-btn {
+  padding: 6px 12px;
+  background-color: #172216;
+  border: 1px solid #2d3f25;
+  border-radius: 3px;
+  color: #a4b896;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.admin-tab-btn:hover {
+  background-color: #23331f;
+  border-color: #496339;
+  color: #dcebd0;
+}
+.admin-tab-btn.active {
+  background-color: #354a2a;
+  border-color: #7ca85d;
+  color: #f3fbe9;
+  box-shadow: 0 0 8px rgba(124, 168, 93, 0.3);
+}
+
+.admin-tab-content {
+  padding-right: 4px;
+}
+.admin-section-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.admin-card {
+  padding: 10px 12px;
+  background-color: #131b13;
+  border: 1px solid #2c3a25;
+  border-radius: 4px;
+}
+.admin-btn-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+
+/* Campaign setup: three choice cards a row, a wide text field. */
+.hud-root .new-game-choices.three-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 4px 0 0; }
+.hud-root .new-game-choices.three-cols .new-game-choice { width: auto; height: auto; min-height: 96px; padding: 8px 6px; gap: 4px; }
+.hud-root .new-game-choices.three-cols .new-game-map-name { font-size: 17px; margin-bottom: 2px; }
+.hud-root .new-game-choices.three-cols .new-game-map-detail { font-size: 11px; text-align: center; white-space: normal; }
+.hud-root .new-game-seed-field.wide { width: 300px; font-weight: 400; letter-spacing: 0; }
+
+/* The recruitment letter (LegalAgreement.jsx) and the acceptance notice. */
+.hud-root .letter-panel, .hud-root .accepted-panel { width: 760px; max-height: 520px; }
+.hud-root .letter { display: flex; flex-direction: column; min-height: 0; flex: 1; }
+.hud-root .letter h2, .hud-root .accepted-panel h2 { margin: 0 0 8px; font-family: inherit; }
+.hud-root .letter-scroll {
+  flex: 1; min-height: 0; overflow-y: auto; padding: 14px 18px; margin: 4px 0 8px;
+  background-color: #e8e4d4; color: #23261d; border: 2px solid #627549; outline: none; user-select: text;
+  font: 13px/1.5 Georgia, 'Times New Roman', serif;
+}
+.hud-root .letter-scroll:focus-visible { border-color: #d3e397; }
+.hud-root .letter-header { margin: 0 0 14px; font: 700 12px/1.5 ui-monospace, Menlo, monospace; letter-spacing: 1px; white-space: pre-wrap; color: #2f3a28; }
+.hud-root .letter-section { margin-bottom: 14px; outline: none; }
+.hud-root .letter-title { margin: 0 0 6px; font: 700 12px ui-monospace, Menlo, monospace; letter-spacing: 1.5px; color: #3c4a31; }
+.hud-root .letter-block { margin-bottom: 8px; }
+.hud-root .letter-p { margin: 0; }
+.hud-root .letter-line { display: block; }
+.hud-root .letter-list { margin: 4px 0 0 20px; padding: 0; }
+.hud-root .letter-statement { margin: 18px 0 4px; padding-top: 10px; border-top: 1px solid #9aa58a; font-style: italic; }
+.hud-root .letter-foot { flex-direction: row; align-items: center; gap: 8px; margin-bottom: 12px; }
+.hud-root .letter-hint { flex: 1; color: #d4a24a; font-size: 12px; }
+.hud-root .letter-hint.read { color: #c4d889; }
+.hud-root .accepted-panel .letter-body { color: #e8f2c5; font-size: 14px; line-height: 1.5; }
+.hud-root .new-game-primary:disabled { opacity: .45; cursor: not-allowed; }
+
+/* After deployment the region fades in from black under its title, then the SeerPad button pulses. */
+.hud-root .deploy-intro { position: absolute; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center; pointer-events: none;
+  background-color: #000; animation: deploy-fade 2s ease-out forwards; }
+.hud-root .deploy-intro-title { color: #e8f2c5; font: 700 26px ui-monospace, Menlo, monospace; letter-spacing: 4px; text-shadow: 0 2px 0 #000;
+  animation: deploy-title 3s ease-in forwards; }
+@keyframes deploy-fade { from { background-color: rgba(0, 0, 0, 1); } to { background-color: rgba(0, 0, 0, 0); } }
+@keyframes deploy-title { 0%, 70% { opacity: 1; } 100% { opacity: 0; } }
+.hud-root .dock-pulse { animation: dock-pulse 1.1s ease-in-out infinite; }
+@keyframes dock-pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(212, 227, 151, 0); } 50% { box-shadow: 0 0 0 4px rgba(212, 227, 151, .75); } }
+@media (prefers-reduced-motion: reduce) {
+  .hud-root .deploy-intro, .hud-root .deploy-intro-title, .hud-root .dock-pulse { animation-duration: .01s; animation-iteration-count: 1; }
+}
+
+/* Campaign SeerPad: locked modules, task copy, channels, crafting and the food forecast. */
+.hud-root .tablet-tab.locked { opacity: .45; cursor: not-allowed; }
+.hud-root .tablet-tab.locked:hover { background-color: transparent; }
+.hud-root .task-issue { color: #c9d6b0; border-left: 2px solid #6f7d45; padding-left: 8px; }
+.hud-root .task-tip { color: #9fb7c9; }
+.hud-root .task-mara { color: #cdb8f0; font-style: italic; }
+.hud-root .tab-channels { gap: 6px; margin-bottom: 8px; flex-wrap: wrap; }
+.hud-root .craft-station { gap: 6px; margin-bottom: 8px; }
+.hud-root .craft-entry { gap: 8px; align-items: center; }
+.hud-root .craft-recipes { gap: 6px; flex-wrap: wrap; }
+.hud-root .tablet-btn.locked { opacity: .5; }
+.hud-root .food-forecast { width: 100%; text-align: left; margin-bottom: 10px; cursor: pointer; }
+.hud-root .food-forecast.warn { border-color: #8a6a2a; }

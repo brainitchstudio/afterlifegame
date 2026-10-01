@@ -1,0 +1,41 @@
+[
+  {
+    "id": "msg_welcome",
+    "from": "command",
+    "subject": "Welcome, Overseer",
+    "body": "You have been dropped into the region with three volunteers and a cache of supplies. Establish a foothold, grow it, and earn it full city status. Your orders and milestones are on this tablet; open it any time with Tab.",
+    "tone": "good",
+    "trigger": {
+      "on": "game_start",
+      "ref": "",
+      "day": 0
+    },
+    "chapter": "ch1_drop"
+  },
+  {
+    "id": "msg_no_beds",
+    "from": "overseer",
+    "subject": "Not enough housing",
+    "body": "People are waiting at the gate and every bed is taken. Build a bunkhouse or upgrade one with bunk beds.",
+    "tone": "warn",
+    "trigger": {
+      "on": "event",
+      "ref": "no_beds",
+      "day": 0
+    },
+    "chapter": ""
+  },
+  {
+    "id": "msg_no_food",
+    "from": "overseer",
+    "subject": "Not enough food",
+    "body": "The stores cannot feed more mouths. Build more farms and post farmers before taking anyone else in.",
+    "tone": "warn",
+    "trigger": {
+      "on": "event",
+      "ref": "no_food",
+      "day": 0
+    },
+    "chapter": ""
+  }
+]

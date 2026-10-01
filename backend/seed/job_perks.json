@@ -1,0 +1,345 @@
+[
+  {
+    "id": "guard_overwatch",
+    "job": "guard",
+    "name": "Overwatch Protocols",
+    "description": "Guards engage hostiles 35 units farther out and prioritize Runners.",
+    "tier": 1,
+    "requires": null,
+    "cost": {
+      "scrap_metal": 25,
+      "wood": 15
+    },
+    "perkEffect": {
+      "rangeBonus": 35,
+      "targetRunnersFirst": true
+    },
+    "icon": "🔭"
+  },
+  {
+    "id": "guard_ballistics",
+    "job": "guard",
+    "name": "Heavy Caliber",
+    "description": "Guards deal +25% firearms damage and shots pierce through one extra zombie.",
+    "tier": 2,
+    "requires": "guard_overwatch",
+    "cost": {
+      "scrap_metal": 45,
+      "wood": 25
+    },
+    "perkEffect": {
+      "damageBonus": 0.25,
+      "pierce": 1
+    },
+    "icon": "💥"
+  },
+  {
+    "id": "guard_suppression",
+    "job": "guard",
+    "name": "Suppressing Fire",
+    "description": "Ranged hits slow target movement by 40% for 2.5 seconds.",
+    "tier": 3,
+    "requires": "guard_ballistics",
+    "cost": {
+      "scrap_metal": 80,
+      "wood": 40
+    },
+    "perkEffect": {
+      "slowRate": 0.4,
+      "slowDuration": 2.5
+    },
+    "icon": "🛑"
+  },
+  {
+    "id": "medic_triage",
+    "job": "medic",
+    "name": "Rapid Triage",
+    "description": "Medics revive downed survivors in 2.5s and treat clinic patients 40% faster.",
+    "tier": 1,
+    "requires": null,
+    "cost": {
+      "wood": 20,
+      "scrap_metal": 20
+    },
+    "perkEffect": {
+      "healRate": 0.4,
+      "reviveSpeed": 0.5
+    },
+    "icon": "🩹"
+  },
+  {
+    "id": "medic_sutures",
+    "job": "medic",
+    "name": "Emergency Sutures",
+    "description": "Revived survivors immediately regain 50% max HP instead of standard 20%.",
+    "tier": 2,
+    "requires": "medic_triage",
+    "cost": {
+      "wood": 35,
+      "scrap_metal": 35
+    },
+    "perkEffect": {
+      "reviveHealthPercent": 0.5
+    },
+    "icon": "🧵"
+  },
+  {
+    "id": "medic_panacea",
+    "job": "medic",
+    "name": "Compound Antidote",
+    "description": "Clinic automatically dispenses immunity treatments; survivors recover while walking.",
+    "tier": 3,
+    "requires": "medic_sutures",
+    "cost": {
+      "wood": 60,
+      "scrap_metal": 60
+    },
+    "perkEffect": {
+      "passiveHealRefuge": 0.15
+    },
+    "icon": "✨"
+  },
+  {
+    "id": "eng_scrap_reclaim",
+    "job": "engineer",
+    "name": "Scrap Reclamation",
+    "description": "Engineers recover 50% more metal when dismantling or salvaging breaches.",
+    "tier": 1,
+    "requires": null,
+    "cost": {
+      "wood": 25,
+      "scrap_metal": 15
+    },
+    "perkEffect": {
+      "metalSalvageBonus": 0.5
+    },
+    "icon": "🧲"
+  },
+  {
+    "id": "eng_combat_welding",
+    "job": "engineer",
+    "name": "Combat Welding",
+    "description": "Repairs continue even while structures are under zombie attack without interruption.",
+    "tier": 2,
+    "requires": "eng_scrap_reclaim",
+    "cost": {
+      "wood": 45,
+      "scrap_metal": 35
+    },
+    "perkEffect": {
+      "uninterruptedRepairs": true
+    },
+    "icon": "🔥"
+  },
+  {
+    "id": "eng_blast_plating",
+    "job": "engineer",
+    "name": "Kinetic Dampeners",
+    "description": "Engineers reinforce all walls with 40% explosive and Bloater burst resistance.",
+    "tier": 3,
+    "requires": "eng_combat_welding",
+    "cost": {
+      "wood": 75,
+      "scrap_metal": 65
+    },
+    "perkEffect": {
+      "blastResistance": 0.4
+    },
+    "icon": "🛡"
+  },
+  {
+    "id": "farm_soil_enrich",
+    "job": "farmer",
+    "name": "Bio-Enriched Soil",
+    "description": "Increases daily farm crop growth by +30% across all farm plots.",
+    "tier": 1,
+    "requires": null,
+    "cost": {
+      "wood": 30,
+      "scrap_metal": 10
+    },
+    "perkEffect": {
+      "foodYield": 0.3
+    },
+    "icon": "🌿"
+  },
+  {
+    "id": "farm_rotational",
+    "job": "farmer",
+    "name": "Hydroponic Stacks",
+    "description": "Vertical layering doubles crop yield per square foot of farmland.",
+    "tier": 2,
+    "requires": "farm_soil_enrich",
+    "cost": {
+      "wood": 50,
+      "scrap_metal": 30
+    },
+    "perkEffect": {
+      "foodYield": 0.6
+    },
+    "icon": "🌾"
+  },
+  {
+    "id": "farm_evergreen",
+    "job": "farmer",
+    "name": "Winter Crop Synthesis",
+    "description": "Farms produce full food harvests even during harsh winter frost.",
+    "tier": 3,
+    "requires": "farm_rotational",
+    "cost": {
+      "wood": 80,
+      "scrap_metal": 50
+    },
+    "perkEffect": {
+      "winterImmunity": true
+    },
+    "icon": "❄"
+  },
+  {
+    "id": "scav_silent_step",
+    "job": "scavenger",
+    "name": "Stealth Infiltration",
+    "description": "Expedition injury and casualty risk reduced by a flat 25%.",
+    "tier": 1,
+    "requires": null,
+    "cost": {
+      "wood": 15,
+      "scrap_metal": 20
+    },
+    "perkEffect": {
+      "expeditionRiskDiscount": 0.25
+    },
+    "icon": "🤫"
+  },
+  {
+    "id": "scav_locksmith",
+    "job": "scavenger",
+    "name": "Master Lockpicking",
+    "description": "Weapon drop chance on Industrial Depot and Supermarket runs increased by 40%.",
+    "tier": 2,
+    "requires": "scav_silent_step",
+    "cost": {
+      "wood": 35,
+      "scrap_metal": 40
+    },
+    "perkEffect": {
+      "weaponDropBonus": 0.4
+    },
+    "icon": "🔑"
+  },
+  {
+    "id": "scav_cache_hunter",
+    "job": "scavenger",
+    "name": "Secret Depot Caches",
+    "description": "Expeditions occasionally bring back rare military supplies and extra firearms.",
+    "tier": 3,
+    "requires": "scav_locksmith",
+    "cost": {
+      "wood": 65,
+      "scrap_metal": 70
+    },
+    "perkEffect": {
+      "bonusMilitaryCaches": true
+    },
+    "icon": "💎"
+  },
+  {
+    "id": "res_lab_protocols",
+    "job": "researcher",
+    "name": "Lab Protocols",
+    "description": "Standardizes compound synthesis, speeding medicine development and technology research by 30%.",
+    "tier": 1,
+    "requires": null,
+    "cost": {
+      "wood": 30,
+      "scrap_metal": 20
+    },
+    "perkEffect": {
+      "researchSpeed": 0.3
+    },
+    "icon": "🔬"
+  },
+  {
+    "id": "res_pathogen_analysis",
+    "job": "researcher",
+    "name": "Pathogen Analysis",
+    "description": "Decodes zombie mutation vectors; all defenders deal +15% damage to Runners, Brutes, and Bloaters.",
+    "tier": 2,
+    "requires": "res_lab_protocols",
+    "cost": {
+      "wood": 50,
+      "scrap_metal": 45
+    },
+    "perkEffect": {
+      "specialInfectedDamage": 0.15
+    },
+    "icon": "🧬"
+  },
+  {
+    "id": "res_vaccine_synthesis",
+    "job": "researcher",
+    "name": "Inoculation Vector",
+    "description": "Synthesizes broad-spectrum immunizers; downed survivors no longer suffer infection degradation and bleedout timer is doubled refuge-wide.",
+    "tier": 3,
+    "requires": "res_pathogen_analysis",
+    "cost": {
+      "wood": 80,
+      "scrap_metal": 75,
+      "food": 30
+    },
+    "perkEffect": {
+      "infectionImmunity": true,
+      "bleedoutMultiplier": 2
+    },
+    "icon": "💉"
+  },
+  {
+    "id": "logger_felling_axe",
+    "job": "logger",
+    "name": "Hardened Felling Axes",
+    "description": "Equips loggers with balanced high-carbon axes, boosting wood harvesting yield by +35% at the sawmill.",
+    "tier": 1,
+    "requires": null,
+    "cost": {
+      "wood": 20,
+      "scrap_metal": 15
+    },
+    "perkEffect": {
+      "woodYieldBonus": 0.35
+    },
+    "icon": "🪓"
+  },
+  {
+    "id": "logger_haulage_chutes",
+    "job": "logger",
+    "name": "Gravity Haulage Chutes",
+    "description": "Streamlines timber processing at the sawmill, allowing loggers to feed logs directly into mills with +50% throughput.",
+    "tier": 2,
+    "requires": "logger_felling_axe",
+    "cost": {
+      "wood": 40,
+      "scrap_metal": 35
+    },
+    "perkEffect": {
+      "woodYieldBonus": 0.5
+    },
+    "icon": "🪵"
+  },
+  {
+    "id": "logger_mechanized_bandsaw",
+    "job": "logger",
+    "name": "Steam-Assisted Bandsaws",
+    "description": "Connects heavy-duty industrial bandsaws directly to lumber mill steam headers, doubling sawmill output per logger.",
+    "tier": 3,
+    "requires": "logger_haulage_chutes",
+    "cost": {
+      "wood": 75,
+      "scrap_metal": 60
+    },
+    "perkEffect": {
+      "woodYieldBonus": 1,
+      "woodBonus": 0.5
+    },
+    "icon": "⚙"
+  }
+]

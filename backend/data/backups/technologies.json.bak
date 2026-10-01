@@ -1,0 +1,98 @@
+[
+  {
+    "id": "tech_solar_grid",
+    "name": "Solar Battery Array",
+    "description": "Supplies constant power to spotlights, watchtowers, and automated gates.",
+    "branch": "defense",
+    "tier": 1,
+    "cost": {
+      "metal": 60,
+      "wood": 40
+    },
+    "requires": null,
+    "globalEffects": {
+      "watchtowerNightRange": 0.25
+    },
+    "icon": "☀️"
+  },
+  {
+    "id": "tech_barbed_perimeter",
+    "name": "Barbed Mesh Wire",
+    "description": "All barricades deal 6 continuous damage/sec to hostiles.",
+    "branch": "defense",
+    "tier": 2,
+    "cost": {
+      "metal": 90,
+      "wood": 50
+    },
+    "requires": "tech_solar_grid",
+    "globalEffects": {
+      "barricadeThorns": 6
+    },
+    "icon": "⛓️"
+  },
+  {
+    "id": "tech_advanced_metallurgy",
+    "name": "Tempered Alloy Smelting",
+    "description": "Improves metal generation by 35% and weapon durability.",
+    "branch": "industry",
+    "tier": 1,
+    "cost": {
+      "wood": 50,
+      "metal": 50
+    },
+    "requires": null,
+    "globalEffects": {
+      "metalYield": 0.35
+    },
+    "icon": "🔥"
+  },
+  {
+    "id": "tech_automated_sawmills",
+    "name": "Steam-Driven Sawmills",
+    "description": "Workshop and Lumber Mill wood yields increased by 50%.",
+    "branch": "industry",
+    "tier": 2,
+    "cost": {
+      "wood": 100,
+      "metal": 75
+    },
+    "requires": "tech_advanced_metallurgy",
+    "globalEffects": {
+      "woodYield": 0.5
+    },
+    "icon": "⚙️"
+  },
+  {
+    "id": "tech_penicillin",
+    "name": "Penicillin Fermentation",
+    "description": "Survivors treat injuries 50% faster and gain resistance to infection.",
+    "branch": "medicine",
+    "tier": 1,
+    "cost": {
+      "wood": 40,
+      "food": 50
+    },
+    "requires": null,
+    "globalEffects": {
+      "healingRate": 0.5
+    },
+    "icon": "🧪"
+  },
+  {
+    "id": "tech_radio_mesh",
+    "name": "CB Radio Mesh Network",
+    "description": "Doubles survivor signal broadcast reach and detects incursions 2 hours earlier.",
+    "branch": "recon",
+    "tier": 1,
+    "cost": {
+      "wood": 45,
+      "metal": 60
+    },
+    "requires": null,
+    "globalEffects": {
+      "earlyWarningHours": 2
+    },
+    "icon": "📡"
+  }
+]

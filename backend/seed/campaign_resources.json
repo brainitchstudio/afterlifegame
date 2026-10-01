@@ -1,0 +1,74 @@
+[
+  {
+    "id": "wood",
+    "name": "Wood",
+    "weight": 1,
+    "category": "raw"
+  },
+  {
+    "id": "scrap_metal",
+    "name": "Scrap Metal",
+    "weight": 1,
+    "category": "raw"
+  },
+  {
+    "id": "food",
+    "name": "Food",
+    "weight": 1,
+    "category": "consumable"
+  },
+  {
+    "id": "ammo",
+    "name": "Ammo",
+    "weight": 0.25,
+    "category": "munitions"
+  },
+  {
+    "id": "medical_supplies",
+    "name": "Medical Supplies",
+    "weight": 1,
+    "category": "medical"
+  },
+  {
+    "id": "cloth",
+    "name": "Cloth",
+    "weight": 1,
+    "category": "raw"
+  },
+  {
+    "id": "components",
+    "name": "Components",
+    "weight": 1,
+    "category": "tech"
+  },
+  {
+    "id": "seed_packets",
+    "name": "Seed Packets",
+    "weight": 1,
+    "category": "agriculture"
+  },
+  {
+    "id": "raw_salvage",
+    "name": "Raw Salvage",
+    "weight": 1,
+    "category": "salvage"
+  },
+  {
+    "id": "planks",
+    "name": "Planks",
+    "weight": 1,
+    "category": "manufactured"
+  },
+  {
+    "id": "metal_parts",
+    "name": "Metal Parts",
+    "weight": 1,
+    "category": "manufactured"
+  },
+  {
+    "id": "equipment",
+    "name": "Equipment Item",
+    "weight": 2,
+    "category": "gear"
+  }
+]

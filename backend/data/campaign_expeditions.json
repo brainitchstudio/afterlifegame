@@ -1,0 +1,177 @@
+[
+  {
+    "id": "e01",
+    "code": "E01",
+    "name": "Survey the Old Access Road",
+    "site": "old_access_road",
+    "unlockedBy": "p2_09",
+    "objective": "Inspect road marker and transmission trace",
+    "siteWorkHours": 6,
+    "team": [
+      3,
+      3
+    ],
+    "provisions": {
+      "ammo": 4
+    },
+    "rationsPerPersonPerDay": 1,
+    "reward": {
+      "components": 2
+    },
+    "reveals": [
+      "service_depot",
+      "regional_relay"
+    ],
+    "tokens": [],
+    "briefing": "Survey the old access road and confirm the transmission trace. CentroCom maps show the route as \"passable\", a term last reviewed before the road was.",
+    "encounter": {
+      "title": "A blocked service lane",
+      "text": "Halfway along the road a collapsed sign gantry blocks the service lane. A drainage culvert runs beside it: narrow, damp, and already somebody else's idea.",
+      "choices": [
+        {
+          "id": "clear_lane",
+          "label": "Clear the service lane",
+          "detail": "+2 hours. Recover 10 Scrap Metal from the gantry.",
+          "addHours": 2,
+          "grant": {
+            "scrap_metal": 10
+          },
+          "result": "The team cuts the gantry apart and drags it clear. The lane is open, the scrap is coming home, and everyone is two hours more tired."
+        },
+        {
+          "id": "drainage_path",
+          "label": "Use the drainage path",
+          "detail": "No delay. No salvage.",
+          "addHours": 0,
+          "grant": {},
+          "result": "The team squeezes through the culvert. Nobody discusses what they stepped in. The survey continues on schedule."
+        }
+      ]
+    },
+    "report": "Access survey complete. The road marker is a relay maintenance beacon. Two sites added to Regional Intelligence: a service depot showing recent human activity, and the regional relay station.",
+    "generated": [
+      "briefing",
+      "encounter",
+      "report"
+    ]
+  },
+  {
+    "id": "e02",
+    "code": "E02",
+    "name": "The Maintenance Crew",
+    "site": "service_depot",
+    "unlockedBy": "p2_10",
+    "objective": "Contact two survivors sheltering at service depot",
+    "siteWorkHours": 8,
+    "team": [
+      3,
+      4
+    ],
+    "provisions": {
+      "ammo": 6
+    },
+    "itemProvisions": {
+      "first_aid_kit": 1
+    },
+    "rationsPerPersonPerDay": 1,
+    "reward": {},
+    "tokens": [
+      "relay_keycard"
+    ],
+    "briefing": "Two maintenance workers have been sheltering at the service depot. Make contact. CentroCom reminds you that rescued personnel are not pre-approved for housing.",
+    "encounter": {
+      "title": "People behind the door",
+      "text": "The depot door opens a hand's width. Two maintenance workers, thin but steady, look past your team at the road. \"We have the relay keycard,\" one says. \"We also have questions about your food.\"",
+      "choices": [
+        {
+          "id": "offer_place",
+          "label": "Offer a place at the outpost",
+          "detail": "Creates 2 recruit candidates. They still need beds and Food.",
+          "candidates": 2,
+          "consumeItems": {},
+          "result": "They pack in four minutes; they have been ready for weeks. Their candidate cards are waiting on the Recruitment screen."
+        },
+        {
+          "id": "deliver_aid",
+          "label": "Deliver aid and exchange information",
+          "detail": "Uses 1 First Aid Kit. Gain 20 Food. They stay as safe contacts.",
+          "candidates": 0,
+          "consumeItems": {
+            "first_aid_kit": 1
+          },
+          "grant": {
+            "food": 20
+          },
+          "contacts": 2,
+          "result": "The kit changes hands, then a crate of tinned food comes back the other way. They will stay put for now, and they know where to find you."
+        }
+      ]
+    },
+    "report": "Contact established with the maintenance crew. Relay keycard recovered.",
+    "generated": [
+      "briefing",
+      "encounter",
+      "report"
+    ]
+  },
+  {
+    "id": "e03",
+    "code": "E03",
+    "name": "Restore the Regional Relay",
+    "site": "regional_relay",
+    "unlockedBy": "p2_11",
+    "objective": "Secure portable battery and relay diagram",
+    "siteWorkHours": 10,
+    "team": [
+      3,
+      4
+    ],
+    "provisions": {
+      "ammo": 8
+    },
+    "itemProvisions": {
+      "first_aid_kit": 1
+    },
+    "rationsPerPersonPerDay": 1,
+    "reward": {
+      "components": 6
+    },
+    "tokens": [
+      "relay_battery"
+    ],
+    "blueprint": "radio_relay",
+    "repeatSafeHours": 2,
+    "briefing": "Recover the relay battery and wiring diagram. The station has been \"temporarily resting\" for three years. Please do not wake anything else.",
+    "encounter": {
+      "title": "The lower door",
+      "text": "The battery sits in a cage below the transmitter. The lower door hangs on one hinge, and the ceiling above it has been thinking about falling for some time.",
+      "choices": [
+        {
+          "id": "secure_door",
+          "label": "Secure the door and follow the diagram",
+          "detail": "+2 hours. No injury risk.",
+          "addHours": 2,
+          "result": "The team props the ceiling, unbolts the cage by the book and carries the battery out. Slow, careful and completely uneventful. CentroCom considers this ideal."
+        },
+        {
+          "id": "grab_battery",
+          "label": "Recover the battery and withdraw",
+          "detail": "No delay. One member takes 10 damage (5 with a First Aid Kit).",
+          "addHours": 0,
+          "injury": {
+            "hp": 10,
+            "mitigatedBy": "first_aid_kit",
+            "mitigatedHp": 5
+          },
+          "result": "The battery comes free; so does part of the ceiling. One of the team limps out swearing, battery in hand."
+        }
+      ]
+    },
+    "report": "Relay battery and wiring diagram recovered. Radio Relay blueprint authorized. 6 Components salvaged from the station.",
+    "generated": [
+      "briefing",
+      "encounter",
+      "report"
+    ]
+  }
+]

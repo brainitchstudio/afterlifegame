@@ -1,0 +1,77 @@
+[
+  {
+    "id": "woodland",
+    "name": "Woodland salvage",
+    "description": "Recover timber from an abandoned logging camp.",
+    "hours": 4,
+    "cost": {
+      "food": 8
+    },
+    "reward": {
+      "wood": 65,
+      "scrap_metal": 8
+    },
+    "risk": 0.15,
+    "rescueChance": 0.12,
+    "recruit": {
+      "label": "Lost hiker",
+      "options": {}
+    }
+  },
+  {
+    "id": "depot",
+    "name": "Industrial depot",
+    "description": "Search the old rail yard for machinery and weapons.",
+    "hours": 7,
+    "cost": {
+      "food": 12
+    },
+    "reward": {
+      "wood": 15,
+      "scrap_metal": 40
+    },
+    "risk": 0.3,
+    "rescueChance": 0.15,
+    "recruit": {
+      "label": "Rail mechanic",
+      "options": {
+        "qualityFloor": 8,
+        "forcedPrimaryStat": "int",
+        "forcedSecondaryStat": "str"
+      }
+    },
+    "weapon": {
+      "chance": 0.35,
+      "types": [
+        "pistol",
+        "rifle"
+      ]
+    }
+  },
+  {
+    "id": "market",
+    "name": "Empty supermarket",
+    "description": "Bring back canned food and preserved supplies.",
+    "hours": 5,
+    "cost": {
+      "food": 6
+    },
+    "reward": {
+      "food": 55,
+      "wood": 10
+    },
+    "risk": 0.2,
+    "rescueChance": 0.25,
+    "recruit": {
+      "label": "Stranded shopper",
+      "options": {}
+    },
+    "weapon": {
+      "chance": 0.15,
+      "types": [
+        "pipe",
+        "pistol"
+      ]
+    }
+  }
+]
